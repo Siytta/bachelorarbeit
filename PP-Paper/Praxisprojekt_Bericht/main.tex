@@ -1,0 +1,121 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Journal Article
+% LaTeX Template
+% Version 2.0 (February 7, 2023)
+%
+% This template originates from:
+% https://www.LaTeXTemplates.com
+%
+% Author:
+% Vel (vel@latextemplates.com)
+%
+% License:
+% CC BY-NC-SA 4.0 (https://creativecommons.org/licenses/by-nc-sa/4.0/)
+%
+% NOTE: The bibliography needs to be compiled using the biber engine.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[
+	a4paper, % Paper size, use either a4paper or letterpaper
+	10pt, % Default font size, can also use 11pt or 12pt, although this is not recommended
+	unnumberedsections, % Comment to enable section numbering
+	twoside, % Two side traditional mode where headers and footers change between odd and even pages, comment this option to make them fixed
+]{LTJournalArticle}
+
+\addbibresource{sample.bib} % BibLaTeX bibliography file
+
+\runninghead{Praxisprojekt: Quantenalgorithmen, Juli 2023} % A shortened article title to appear in the running head, leave this command empty for no running head
+
+\footertext{} % Text to appear in the footer, leave this command empty for no footer text
+
+\setcounter{page}{1} % The page number of the first page, set this to a higher number if the article is to be part of an issue or larger work
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\title{Implementierung einer Bibliothek von Quantenalgorithmen zur Kryptoanalyse} % Article title, use manual lines breaks (\\) to beautify the layout
+
+% Authors are listed in a comma-separated list with superscript numbers indicating affiliations
+% \thanks{} is used for any text that should be placed in a footnote on the first page, such as the corresponding author's email, journal acceptance dates, a copyright/license notice, keywords, etc
+\author{%
+	Simon Kalytta\textsuperscript{1,2}, Janis König\textsuperscript{2}
+}
+
+% Affiliations are output in the \date{} command
+\date{\footnotesize\textsuperscript{\textbf{1}}Fachhochschule Aachen, Eupener Str. 70, 52066 Aachen\\ \textsuperscript{\textbf{2}}it.sec GmbH, Einsteinstr. 55, 89077 Ulm}
+
+% Full-width abstract
+\renewcommand{\maketitlehookd}{%
+	\begin{abstract}
+		\noindent Seit der Entwicklung des theoretischen Konzepts eines Quantencomputers in den 1980er Jahren wurden Quantenalgorithmen entworfen, die durch die Ausnutzung der Quantenmechanik bestimmte Berechnungen effizienter lösen können als die schnellsten bekannten klassischen Algorithmen. Insbesondere betreffen sie mathematische Probleme, die die Grundlage aktueller kryptografischer Verfahren bilden. Obwohl derzeit keine Quantencomputer mit ausreichender Rechenleistung existieren, hat die Entwicklung in den letzten Jahren an Geschwindigkeit gewonnen und sollte aufgrund der erwarteten zukünftigen Fortschritte in der IT-Sicherheit berücksichtigt werden.\\
+        Um eine Grundlage für die zukünftige Anwendung von Quantenalgorithmen zu schaffen, wird eine eigene Bibliothek mit den bekanntesten Quantenalgorithmen entwickelt. Die Implementierungen umfassen ressourcensparende Varianten, die gleichzeitig skalierbar sind, um mit leistungsstärkeren Quantencomputern umfangreichere Eingabegrößen zu bewältigen. Derzeit gibt es nur wenige praktische Umsetzungen von Quantenalgorithmen und noch weniger spezifische Implementierungen für die Kryptoanalyse. Eine genauere Untersuchung von Quantenalgorithmen und deren Auswirkung auf unsere Kryptografie wird jedoch mit fortschreitender Leistungsfähigkeit von Quantencomputern immer wichtiger.
+	\end{abstract}
+}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle % Output the title section
+
+%----------------------------------------------------------------------------------------
+%	ARTICLE CONTENTS
+%----------------------------------------------------------------------------------------
+
+\section{Einleitung}
+
+Heutzutage hat nahezu jeder schon einmal von Quantencomputern gehört. Allerdings beschränkt sich das Wissen über diese Technologie oft lediglich auf den Begriff selbst. Selbst Personen aus der IT-Branche verbinden mit einem Quantencomputer häufig nur eine neuartige Zukunftstechnologie eines besonders leistungsfähigen Supercomputers nach der von-Neumann-Architektur.
+
+Die ersten Ansätze zur Entwicklung von Quantencomputern gehen jedoch bereits auf die 1980er Jahre zurück, als der Physiker Richard Feynman feststellte, dass klassische Computer Schwierigkeiten haben würden, bestimmte quantenphysikalische Phänomene nachzubilden. Feynman kam zu dem Schluss, dass ein Computer, der nach den Gesetzen der Quantenmechanik arbeitet, möglicherweise besser geeignet wäre, quantenmechanische Systeme zu simulieren \autocite{Feynman:1982}. Erst mehr als ein Jahrzehnt später, im Jahr 1998, gelang die erste physikalische Realisierung eines Quantencomputers mit insgesamt zwei Qubits \autocite{Chuang:1998ExperimentalIO}.
+
+Seitdem hat sich die Entwicklungsgeschwindigkeit deutlich erhöht, insbesondere aufgrund des Engagements großer Unternehmen wie IBM, Microsoft, Google und Intel. Ein Beispiel dafür ist IBM, das seit der Vorstellung ihres 27-Qubits-Systems namens "Falcon" eine jährliche Verdoppelung der vorhandenen Qubits bei ihren neuen Systemen plant. Bislang konnte dieser Trend aufrechterhalten werden indem im Jahr 2022 IBM mit ihrem "Osprey"-System 433 Qubits erreichte\autocite{IBM:2022}.
+Basierend auf den Fortschritten der letzten Jahre und den Prognosen für die kommenden Jahre erwartet das Bundesamt für Sicherheit in der Informationstechnik, dass in den 2030er Jahren Quantencomputer existieren werden, die für die Kryptografie relevant sein werden \autocite{BSI:2023}. In diesem Zusammenhang sind insbesondere zwei Anwendungsbereiche für die Kryptografie von Bedeutung: zum einen die Quantenkryptografie, bei der die Eigenschaften der Quantenmechanik genutzt werden, um Sicherheit in der Kommunikation zu gewährleisten, und zum anderen die Kryptoanalyse mit Quantenalgorithmen, die darauf abzielt, Verschlüsselungsverfahren zu schwächen oder sogar vollständig zu brechen.
+
+Trotz einiger theoretischer Arbeiten zu Quantenalgorithmen besteht immer noch eine deutliche Lücke in Bezug auf praktische Ansätze mit Fokus auf die Kryptoanalyse. Daher bietet es sich an, diese Lücke zu schließen und die Funktionsweise solcher Algorithmen genauer zu untersuchen. Das Ziel dieser Arbeit besteht darin, eine Bibliothek zur Kryptoanalyse zu entwickeln, die aktuelle Verschlüsselungsverfahren mithilfe von Quantenalgorithmen kompromittiert. Um sicherzustellen, dass die Bibliothek auch mit zukünftigen Quantencomputern kompatibel ist, skalieren die Implementierungen mit zusätzlichen Qubits und ermöglichen so die Verarbeitung komplexerer Eingabegrößen.
+
+Die Realisierung erfolgt in Python unter Verwendung des Softwareentwicklungskits Qiskit. Qiskit ist ein Open-Source-SDK von IBM, das speziell für die Entwicklung von Anwendungen für Quantencomputer entwickelt wurde. Programme, die mithilfe von Qiskit entwickelt wurden, können über die Cloud auf den Quantencomputern von IBM getestet werden. Aufgrund der begrenzten Rechenleistung der derzeit verfügbaren kostenlosen Quantensysteme werden die Implementierungen mithilfe von Simulatoren getestet.
+
+
+%------------------------------------------------
+
+\section{Stand der Technik}
+Für die Kryptoanalyse mit Quantencomputer gibt es zwei Quantenalgorithmen die eine besonders wichtige Rolle spielen:
+
+\subsection{Shor-Algorithmus}
+Der Shor-Algorithmus ist ein quantenbasiertes Verfahren, das die Primfaktorzerlegung und die Berechnung des diskreten Logarithmus mit polynomialem Aufwand bewältigen kann. Da es für beide dieser Berechnungen keinen effizienten klassischen Algorithmus gibt, spielen sie eine essentielle Rolle in der Kryptografie \autocite{Shor:1997}. Zahlreiche theoretische Arbeiten beschäftigen sich mit dem Shor-Algorithmus und insbesondere mit der Optimierung zur Reduktion der benötigten Qubits.
+
+Im Bereich praktischer Umsetzungen und Realisierungen gibt es bisher keine skalierbare Implementierung des Shor-Algorithmus in Qiskit. Die meisten praktischen Umsetzungen bedienen sich einer vereinfachten Variante, die ausschließlich die Faktorisierung der Zahl 15 ermöglicht. Dadurch ist die Schaltung einfach nachzustellen, und die Funktionsweise des Algorithmus kann dennoch demonstriert werden \autocite{9376169, Monz_2016, IBM:Shor}.
+
+Früher gab es offenbar eine skalierbare Implementierung des Shor-Algorithmus in Qiskit, jedoch ist es nicht mehr möglich, diese zu importieren. In der Dokumentation findet man noch immer einen entsprechenden Eintrag. Dort kann man nachlesen, dass die damals implementierte Version eine Variante war, die 4n+2 Qubits erforderte \autocite{Shor_docu}.
+
+
+
+\subsection{Grover-Algorithmus}
+
+\section{Eigener Ansatz}
+
+
+\section{Stand der Umsetzung}
+
+
+%------------------------------------------------
+
+\section{Ausblick }
+
+
+%----------------------------------------------------------------------------------------
+%	 REFERENCES
+%----------------------------------------------------------------------------------------
+
+\printbibliography % Output the bibliography
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
+
