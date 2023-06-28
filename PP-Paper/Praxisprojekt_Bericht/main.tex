@@ -85,20 +85,31 @@ Die Realisierung erfolgt in Python unter Verwendung des Softwareentwicklungskits
 %------------------------------------------------
 
 \section{Stand der Technik}
-Für die Kryptoanalyse mit Quantencomputer gibt es zwei Quantenalgorithmen die eine besonders wichtige Rolle spielen:
+
+Für die Kryptoanalyse mit Quantencomputern spielen zwei Quantenalgorithmen eine besonders wichtige Rolle:
 
 \subsection{Shor-Algorithmus}
-Der Shor-Algorithmus ist ein quantenbasiertes Verfahren, das die Primfaktorzerlegung und die Berechnung des diskreten Logarithmus mit polynomialem Aufwand bewältigen kann. Da es für beide dieser Berechnungen keinen effizienten klassischen Algorithmus gibt, spielen sie eine essentielle Rolle in der Kryptografie \autocite{Shor:1997}. Zahlreiche theoretische Arbeiten beschäftigen sich mit dem Shor-Algorithmus und insbesondere mit der Optimierung zur Reduktion der benötigten Qubits.
+Der Shor-Algorithmus ist ein quantenbasiertes Verfahren, das die Primfaktorzerlegung und die Berechnung des diskreten Logarithmus mit polynomialem Aufwand bewältigen kann. Da es für beide dieser Berechnungen keinen effizienten klassischen Algorithmus gibt, spielen sie eine essentielle Rolle in der Kryptografie\autocite{Shor:1997}. Zahlreiche theoretische Arbeiten beschäftigen sich mit dem Shor-Algorithmus und insbesondere mit der Optimierung zur Reduktion der benötigten Qubits.
 
-Im Bereich praktischer Umsetzungen und Realisierungen gibt es bisher keine skalierbare Implementierung des Shor-Algorithmus in Qiskit. Die meisten praktischen Umsetzungen bedienen sich einer vereinfachten Variante, die ausschließlich die Faktorisierung der Zahl 15 ermöglicht. Dadurch ist die Schaltung einfach nachzustellen, und die Funktionsweise des Algorithmus kann dennoch demonstriert werden \autocite{9376169, Monz_2016, IBM:Shor}.
+Im Bereich praktischer Umsetzungen und Realisierungen gibt es bisher keine skalierbare Implementierung des Shor-Algorithmus in Qiskit. Die meisten praktischen Umsetzungen bedienen sich einer vereinfachten Variante, die ausschließlich die Faktorisierung der Zahl 15 ermöglicht. Dadurch ist die Schaltung einfach nachzustellen, und die Funktionsweise des Algorithmus kann dennoch demonstriert werden\autocite{9376169, Monz_2016, IBM:Shor}.
 
-Früher gab es offenbar eine skalierbare Implementierung des Shor-Algorithmus in Qiskit, jedoch ist es nicht mehr möglich, diese zu importieren. In der Dokumentation findet man noch immer einen entsprechenden Eintrag. Dort kann man nachlesen, dass die damals implementierte Version eine Variante war, die 4n+2 Qubits erforderte \autocite{Shor_docu}.
-
-
+In der Vergangenheit gab es eine skalierbare Version des Shor-Algorithmus in Qiskit. Diese ist jedoch nicht mehr importierbar und als veraltet gekennzeichnet. In der Dokumentation findet man noch immer einen entsprechenden Eintrag. Dort kann man nachlesen, dass die damals implementierte Version eine Variante war, die 4n+2 Qubits erforderte\autocite{IBM:Shor_docu}.
 
 \subsection{Grover-Algorithmus}
+Der Grover-Algorithmus ist ein quantenbasiertes Suchverfahren, das eine quadratische Geschwindigkeitsverbesserung gegenüber dem besten klassischen Suchalgorithmus bietet\autocite{grover1996fast}. Der Algorithmus ermöglicht die effiziente Suche in unsortierten Datenbanken. In Bezug auf die Kryptoanalyse bedeutet dies, dass mithilfe des Grover-Algorithmus der Gesamtraum aller möglichen Schlüssel eines Verschlüsselungsverfahrens effizienter nach einem passenden Schlüssel durchsucht werden kann.
+
+Konkret bedeutet dies, dass der Grover-Algorithmus eine deutliche Verbesserung gegenüber dem besten klassischen Suchalgorithmus bietet, der eine lineare Laufzeit aufweist. Die Laufzeit des Grover-Algorithmus beträgt $O(\sqrt N)$, wobei N für die Anzahl der Elemente in der Datenbank steht, im Vergleich zur linearen Laufzeit $O(N)$ des klassischen Suchalgorithmus. Im Fall des Verschlüsselungsverfahrens AES-128 würde dies bedeuten,  dass die Laufzeit von $O(2^{128})$ auf $O(2^{64})$ reduziert wird.
+
+Es wurden verschiedene Arbeiten zur praktischen Umsetzung des Grover-Algorithmus durchgeführt. Einige dieser Arbeiten wurden auch mit Hilfe von Qiskit umgesetzt, und Qiskit bietet eine importierbare Implementierung des Algorithmus\autocite{IBM:Grover}.
+
+Aufgrund der Natur des Grover-Algorithmus ist für die Kryptoanalyse ein Orakel erforderlich, das erkennt, ob ein gegebenes Ergebnis eine gültige Lösung darstellt. Im konkreten Fall bedeutet dies, dass das Orakel den passenden Schlüssel erkennen muss. Die Realisierung eines solchen Orakels für AES entspricht der Überführung des klassischen AES-Schaltkreises in einen Quantenschaltkreis. In diesem Zusammenhang wurden bereits Arbeiten durchgeführt, die sich mit der Implementierung\autocite{jaques2019implementing}, dem Ressourcenbedarf \autocite{grassl2015applying} und der Optimierung\autocite{Li2022} befassen.  Einige dieser Arbeiten umfassen auch Realisierungen in Qiskit, obwohl der entsprechende Code nicht veröffentlicht wurde\autocite{app11199085}.
+
 
 \section{Eigener Ansatz}
+
+Gemäß der Vorhersage, dass die Anzahl der Qubits selbst auf zukünftigen Quantencomputern eine begrenzte Ressource darstellen wird, wird bei der Implementierung der Algorithmen ein äußerst effizientes Vorgehen angestrebt. 
+Es wird eine Variante des Shor-Algorithmus umgesetzt, die die ursprünglichen benötigten Qubits bei der Faktorisierung der Zahl $N = 2^{n}$ von $3n$\autocite{zalka1998fast} bzw. $4n+2$\autocite{IBM:Shor_docu} Qubits auf {2n+3} Qubits reduziert\autocite{beauregard2003circuit}. Eine solche Einsparung wird unter anderem durch die Verwendung der Quanten-Fourier-Transformation zur Durchführung von Additionen und die Vorwegberechnung von Phasengattern anstelle von kontrollierten Gattern erreicht. Durch diese Technik wird es möglich, die Nachbildung eines klassischen Volladdierers in einem Quantenschaltkreis zu umgehen\autocite{draper2000addition}.
+
 
 
 \section{Stand der Umsetzung}
