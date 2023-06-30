@@ -35,6 +35,22 @@
 
 \setcounter{page}{1} % The page number of the first page, set this to a higher number if the article is to be part of an issue or larger work
 
+\usepackage[braket, qm]{qcircuit}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{physics}
+\usepackage{graphicx}
+\graphicspath{{./pictures/}}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+    pdftitle={Praxisprojekt: Quantenalgorithmen, Juli 2023},
+    pdfpagemode=FullScreen,
+    }
+
 %----------------------------------------------------------------------------------------
 %	TITLE SECTION
 %----------------------------------------------------------------------------------------
@@ -59,6 +75,10 @@
 }
 
 %----------------------------------------------------------------------------------------
+
+
+
+
 
 \begin{document}
 
@@ -107,17 +127,54 @@ Aufgrund der Natur des Grover-Algorithmus ist für die Kryptoanalyse ein Orakel 
 
 \section{Eigener Ansatz}
 
-Gemäß der Vorhersage, dass die Anzahl der Qubits selbst auf zukünftigen Quantencomputern eine begrenzte Ressource darstellen wird, wird bei der Implementierung der Algorithmen ein äußerst effizientes Vorgehen angestrebt. 
-Es wird eine Variante des Shor-Algorithmus umgesetzt, die die ursprünglichen benötigten Qubits bei der Faktorisierung der Zahl $N = 2^{n}$ von $3n$\autocite{zalka1998fast} bzw. $4n+2$\autocite{IBM:Shor_docu} Qubits auf {2n+3} Qubits reduziert\autocite{beauregard2003circuit}. Eine solche Einsparung wird unter anderem durch die Verwendung der Quanten-Fourier-Transformation zur Durchführung von Additionen und die Vorwegberechnung von Phasengattern anstelle von kontrollierten Gattern erreicht. Durch diese Technik wird es möglich, die Nachbildung eines klassischen Volladdierers in einem Quantenschaltkreis zu umgehen\autocite{draper2000addition}.
+Gemäß der Vorhersage, dass die Anzahl der Qubits selbst auf zukünftigen Quantencomputern eine begrenzte Ressource darstellen wird\autocite{zalka1998fast}, wird bei der Implementierung der Algorithmen ein äußerst effizientes Vorgehen angestrebt. 
+Es wird eine Variante des Shor-Algorithmus verwendet, bei der die ursprünglich benötigte Anzahl an Qubits zur Faktorisierung der Zahl $N = 2^{n}$ von $3n$ (\autocite{zalka1998fast} beziehungsweise $4n+2$\autocite{IBM:Shor_docu} auf $2n+3$ Qubits reduziert wird\autocite{beauregard2003circuit}.
+Eine solche Einsparung wird unter anderem durch die Verwendung der Quanten-Fourier-Transformation zur Durchführung von Additionen und die Vorwegberechnung von Phasengattern anstelle von kontrollierten Gattern erreicht. Durch diese Technik wird es möglich, die Nachbildung eines klassischen Volladdierers in einem Quantenschaltkreis zu umgehen\autocite{draper2000addition}. Des Weiteren können zusätzliche Qubits der Größe $2n$ auf ein einzelnes Qubits reduziert werde,n indem man die Messung des Ergebnisses sequenziell durchführt und anschließend das gemessene Qubit wieder verwertet\autocite{Parker_2000}. 
+Allerdings besteht die Funktion des Quantenalgorithmus darin, die Periode zu bestimmen. Nachdem die Periode bekannt ist, kann die Primfaktorisierung mit einem klassischen Algorithmus berechnet werden. Die Implementierung wird beide Teile kombinieren, sodass für die Anwendung nur die zu faktorisierende Zahl beziehungsweise der öffentliche RSA-Schlüssel ($N$ und $e$) an die Funktion übergeben werden muss. Als Ergebnis werden anschließend die Primfaktoren bzw. der private Schlüssel ($d$) ausgegeben.
+\hfill \break
+Das genaue Vorgehen für den Grover-Algorithmus ist noch nicht festgelegt. Es wird jedoch darauf geachtet, eine möglichst effiziente Implementierung in Bezug auf die Anzahl der Qubits zu wählen. Es muss überprüft werden, ob die Grover-Implementierung von Qiskit die bekannteste effizienteste Variante des Algorithmus ist. Falls dies der Fall ist, wird es nicht notwendig sein, eine eigene Implementation des Grover-Algorithmus zu entwickeln. Hingegen wird die Entwicklung des AES-Verfahren als Quantenschaltkreis unumgänglich sein.
 
+\section{\LARGE Stand der Umsetzung}
 
+Um mit Qiskit zu arbeiten, gibt es grundsätzlich zwei empfehlenswerte Möglichkeiten:
+\begin{description}
+\item[Lokale Installation]\hfill \\
+Die lokale Installation erfordert Python, die Installation des Qiskit-Pakets und eine Entwicklungsumgebung wie beispielsweise Jupyter Notebook. Eine Anleitung zur Installation findet man auf der offiziellen Qiskit-Dokumentationsseite (siehe \href{https://qiskit.org/documentation/stable/0.24/install.html}{hier}).
+\item[IBM Quantum Lab]\hfill \\
+Die bequemere Möglichkeit besteht darin, eine vorab aufgesetzte Jupyter Notebook-Instanz über \href{https://qiskit.org/documentation/stable/0.24/install.html}{IBM Quantum Lab} zu nutzen. Dabei entfällt die Notwendigkeit einer lokalen Installation und man kann direkt mit Qiskit arbeiten. Weitere Informationen und Zugang zum IBM Quantum Lab finden Sie ebenfalls auf der genannten Qiskit-Dokumentationsseite.
+\end{description}
+Beide Optionen bieten verschiedene Vorteile und es hängt von den individuellen Präferenzen und Anforderungen ab, welche Methode gewählt wird.
 
-\section{Stand der Umsetzung}
+\subsection{\Large Funktionsweise Shor-Algorithmus}
+
+Der Shor-Algorithmus basiert auf dem Quantum Phase Estimation (QPE) Algorithmus. Der QPE-Algorithmus ermöglicht es, die Phasenverschiebung eines Eigenvektors zu extrahieren, welche durch eine unitäre Transformation erzeugt wurde. Durch die Anwendung der modularen Exponentiation als unitäre Transformation, in der Form $U\ket{x} = \ket{ax\,mod\,N}$\autocite{IBM:Shor}, kann die Information über die Periode des zugehörigen Modulus in die Phase der Kontroll-Qubits übertragen werden. In diesem Fall repräsentiert die zu faktorisierende Zahl $N$ den Modulus, während die zu N teilerfremde Basiszahl $a$ die Bedingung $0 < a < N$ erfüllen muss. Anschließend wird die Information über die Periode aus der Phase der Qubits durch die Verwendung der Inversen Quanten-Fouriertransformation in das Binärsystem überführt. Anhand der Messergebnisse wird in einer klassischen Nachberechnung die Information genutzt um die Periode und folglich die Primfaktoren zu bestimmen.
+
+\subsection{\Large Implementierung Shor- Algorithmus}
+Das Herzstück des Algorithmus bilden die Transformationsgatter $U_a$ der modularen Exponentiation, wie in Abbildung \ref{fig:c-Ugate} dargestellt.
+\begin{figure}[h]
+\caption{Das Kontrollierte-$U_a$ Gatter\autocite{beauregard2003circuit}}
+\label{fig:c-Ugate}
+\includegraphics[scale=0.8]{c-Ugate.PNG}
+\centering
+\end{figure}
+Aufgrund der Komplexität dieser Gatter erfolgt der Aufbau schrittweise.
+\subsection{\large Adder-Gate}
+Ein wichtiger Bestandteil ist das Adder-Gate, dessen Zweck darin besteht, den Wert $a$ zu einem Quantenregister hinzuzufügen. Da $a$ eine klassische Zahl darstellt, ist es möglich, die Addition ohne die Verwendung eines zusätzlichen Quantenregisters durchzuführen. Der Trick besteht darin, die Addition in der Fourier-Basis durchzuführen, anstatt dies in der Standard- oder Computational-Basis zu tun, wie es bei einem klassischen Volladdierer der Fall ist. In Abbildung \ref{fig:Quantum-Addition} ist anhand des $\phi$ des Quantenregister $\ket{\phi(a_n)}$  erkennbar, dass sich dieses in der Fourier-Basis befindet.
+Anschließend wird auf das Quantenregister $\ket{\phi(a_n)}$ kontrolliert eine Phasenverschiebung übertragen, abhängig vom Inhalt des klassischen Registers $\ket{b_n}$. Dieses Vorgehen entspricht der Addition in der Fourier-Basis und ermöglicht es, die benötigten Qubits von $3n$ auf $n$ zu reduzieren.
+\begin{figure}[h]
+\caption{Quantum-Addition\autocite{draper2000addition}}
+\label{fig:Quantum-Addition}
+\includegraphics[scale=0.4]{Quantum-Addition.PNG}
+\centering
+\end{figure}
+\subsection{\normalsize Implementierung}
+Erklärung Umsetzung Qiskit- also wie wurden die Phasegatter realisiert bzw vorgerechnet. 
+
 
 
 %------------------------------------------------
 
-\section{Ausblick }
+\section{Ausblick}
 
 
 %----------------------------------------------------------------------------------------
@@ -127,6 +184,5 @@ Es wird eine Variante des Shor-Algorithmus umgesetzt, die die ursprünglichen be
 \printbibliography % Output the bibliography
 
 %----------------------------------------------------------------------------------------
-
 \end{document}
 
