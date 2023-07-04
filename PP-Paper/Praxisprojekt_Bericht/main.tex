@@ -118,7 +118,7 @@
 %	ARTICLE CONTENTS
 %----------------------------------------------------------------------------------------
 
-\section{Einleitung}
+\subsection{Einleitung}
 
 Heutzutage hat nahezu jeder schon einmal von Quantencomputern gehört.
 Allerdings beschränkt sich das Wissen über diese Technologie oft lediglich auf den Begriff selbst.
@@ -175,11 +175,11 @@ werden die Implementierungen mithilfe von Simulatoren getestet.
 
 %------------------------------------------------
 
-\section{Stand der Technik}
+\subsection{Stand der Technik}
 
 Für die Kryptoanalyse mit Quantencomputern spielen zwei Quantenalgorithmen eine besonders wichtige Rolle:
 
-\subsection{Shor-Algorithmus}
+\subsubsection{Shor-Algorithmus}
 Der Shor-Algorithmus ist ein quantenbasiertes Verfahren,
 das die Primfaktorzerlegung und die Berechnung des diskreten Logarithmus
 mit polynomialem Aufwand bewältigen kann.
@@ -201,7 +201,7 @@ In der Dokumentation findet man noch immer einen entsprechenden Eintrag.
 Dort kann man nachlesen, dass die damals implementierte Version eine Variante war,
 die \(4n+2\) Qubits erforderte~\autocite{IBM:Shor_docu}.
 
-\subsection{Grover-Algorithmus}
+\subsubsection{Grover-Algorithmus}
 Der Grover-Algorithmus ist ein quantenbasiertes Suchverfahren,
 das eine quadratische Geschwindigkeitsverbesserung
 gegenüber dem besten klassischen Suchalgorithmus bietet~\autocite{grover1996fast}.
@@ -235,7 +235,7 @@ Einige dieser Arbeiten umfassen auch Realisierungen in Qiskit,
 obwohl der entsprechende Code nicht veröffentlicht wurde~\autocite{app11199085}.
 
 
-\section{Eigener Ansatz}
+\subsection{Eigener Ansatz}
 
 Gemäß der Vorhersage, dass die Anzahl der Qubits
 selbst auf zukünftigen Quantencomputern eine begrenzte Ressource darstellen wird~\autocite{zalka1998fast},
@@ -269,7 +269,7 @@ Falls dies der Fall ist, wird es nicht notwendig sein,
 eine eigene Implementation des Grover-Algorithmus zu entwickeln.
 Hingegen wird die Entwicklung des AES-Verfahren als Quantenschaltkreis unumgänglich sein.
 
-\section{\LARGE Stand der Umsetzung}
+\section{Stand der Umsetzung}
 
 Um mit Qiskit zu arbeiten, gibt es grundsätzlich zwei empfehlenswerte Möglichkeiten:
 \begin{description}[style=nextline]
@@ -289,7 +289,7 @@ Weitere Informationen und Zugang zum IBM Quantum Lab finden Sie ebenfalls auf de
 Beide Optionen bieten verschiedene Vorteile und es hängt von den individuellen Präferenzen und Anforderungen ab,
 welche Methode gewählt wird.
 
-\subsection{\Large Funktionsweise Shor-Algorithmus}
+\subsection{Funktionsweise Shor-Algorithmus}
 
 Der Shor-Algorithmus basiert auf dem Quantum Phase Estimation (QPE) Algorithmus.
 Der QPE-Algorithmus ermöglicht es, die Phasenverschiebung eines Eigenvektors zu extrahieren,
@@ -304,7 +304,7 @@ durch die Verwendung der Inversen Quanten-Fouriertransformation in das Binärsys
 Anhand der Messergebnisse wird in einer klassischen Nachberechnung die Information genutzt
 um die Periode und folglich die Primfaktoren zu bestimmen.
 
-\subsection{\Large Implementierung Shor-Algorithmus}
+\subsection{Implementierung Shor-Algorithmus}
 Das Herzstück des Algorithmus bilden die Transformationsgatter \(U_a\) der modularen Exponentiation,
 wie in Abbildung~\ref{fig:c-Ugate} dargestellt.
 \begin{figure}[h]
@@ -314,7 +314,7 @@ wie in Abbildung~\ref{fig:c-Ugate} dargestellt.
 \centering
 \end{figure}
 Aufgrund der Komplexität dieser Gatter erfolgt der Aufbau schrittweise.
-\subsection{\large Adder-Gate}
+\subsubsection{Adder-Gate}
 Ein wichtiger Bestandteil ist das Adder-Gate, dessen Zweck darin besteht,
 den Wert \(a\) zu einem Quantenregister hinzuzufügen.
 Da \(a\) eine klassische Zahl darstellt, ist es möglich,
@@ -334,14 +334,14 @@ die benötigten Qubits von \(3n\) auf \(n\) zu reduzieren.
 \includegraphics[scale=0.4]{Quantum-Addition.PNG}
 \centering
 \end{figure}
-\subsection{\normalsize Implementierung}
+\subsubsection{Implementierung}
 Erklärung Umsetzung Qiskit- also wie wurden die Phasegatter realisiert bzw vorgerechnet. 
 
 
 
 %------------------------------------------------
 
-\section{Ausblick}
+\subsection{Ausblick}
 
 
 %----------------------------------------------------------------------------------------
