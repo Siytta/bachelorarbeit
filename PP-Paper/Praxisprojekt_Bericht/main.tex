@@ -52,6 +52,7 @@
 }
 
 \usepackage[ngerman]{babel}
+\DeclareMathOperator{\Landau}{\mathcal{O}} % Landau/Big-O Notation
 
 
 %----------------------------------------------------------------------------------------
@@ -212,11 +213,11 @@ eines Verschlüsselungsverfahrens effizienter nach einem passenden Schlüssel du
 Konkret bedeutet dies,
 dass der Grover-Algorithmus eine deutliche Verbesserung gegenüber dem besten klassischen Suchalgorithmus bietet,
 der eine lineare Laufzeit aufweist.
-Die Laufzeit des Grover-Algorithmus beträgt \(O(\sqrt N)\),
+Die Laufzeit des Grover-Algorithmus beträgt \(\Landau(\sqrt N)\),
 wobei \(N\) für die Anzahl der Elemente in der Datenbank steht,
-im Vergleich zur linearen Laufzeit \(O(N)\) des klassischen Suchalgorithmus.
+im Vergleich zur linearen Laufzeit \(\Landau(N)\) des klassischen Suchalgorithmus.
 Im Fall des Verschlüsselungsverfahrens AES-128 würde dies bedeuten,
-dass die Laufzeit von \(O(2^{128})\) auf \(O(2^{64})\) reduziert wird.
+dass die Laufzeit von \(\Landau(2^{128})\) auf \(\Landau(2^{64})\) reduziert wird.
 
 Es wurden verschiedene Arbeiten zur praktischen Umsetzung des Grover-Algorithmus durchgeführt.
 Einige dieser Arbeiten wurden auch mit Hilfe von Qiskit umgesetzt,
