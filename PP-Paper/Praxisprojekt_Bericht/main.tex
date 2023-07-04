@@ -29,7 +29,6 @@
 
 \addbibresource{sample.bib} % BibLaTeX bibliography file
 
-\runninghead{Praxisprojekt: Quantenalgorithmen, Juli 2023} % A shortened article title to appear in the running head, leave this command empty for no running head
 
 \footertext{} % Text to appear in the footer, leave this command empty for no footer text
 
@@ -42,15 +41,6 @@
 \usepackage{graphicx}
 \graphicspath{{./pictures/}}
 
-\hypersetup{
-  colorlinks=true,
-  linkcolor=blue,
-  filecolor=magenta,    
-  urlcolor=blue,
-  pdftitle={Praxisprojekt: Quantenalgorithmen, Juli 2023},
-  pdfpagemode=FullScreen,
-}
-
 \usepackage[ngerman]{babel}
 \DeclareMathOperator{\Landau}{\mathcal{O}} % Landau/Big-O Notation
 
@@ -60,6 +50,8 @@
 %----------------------------------------------------------------------------------------
 
 \title{Implementierung einer Bibliothek von Quantenalgorithmen zur Kryptoanalyse} % Article title, use manual lines breaks (\\) to beautify the layout
+\newcommand{\shorttitle}{Praxisprojekt: Quantenalgorithmen, Juli 2023} % A shortened article title ...
+\runninghead{\shorttitle} % ... to appear in the running head, leave this command empty for no running head
 
 % Authors are listed in a comma-separated list with superscript numbers indicating affiliations
 % \thanks{} is used for any text that should be placed in a footnote on the first page, such as the corresponding author's email, journal acceptance dates, a copyright/license notice, keywords, etc
@@ -75,6 +67,15 @@
   \textsuperscript{\textbf{2}}%
   it.sec GmbH,
   Einsteinstr. 55, 89077 Ulm%
+}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  filecolor=magenta,
+  urlcolor=blue,
+  pdftitle={\shorttitle},
+  pdfpagemode=FullScreen,
 }
 
 % Full-width abstract
