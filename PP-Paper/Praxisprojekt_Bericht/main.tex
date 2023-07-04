@@ -246,8 +246,8 @@ die Verwendung der Quanten-Fourier-Transformation zur Durchführung von Addition
 die Vorwegberechnung von Phasengattern anstelle von kontrollierten Gattern erreicht.
 Durch diese Technik wird es möglich,
 die Nachbildung eines klassischen Volladdierers in einem Quantenschaltkreis zu umgehen\autocite{draper2000addition}.
-Des Weiteren können zusätzliche Qubits der Größe $2n$ auf ein einzelnes Qubits reduziert werde,
-n indem man die Messung des Ergebnisses sequenziell durchführt und anschließend das gemessene Qubit wieder verwertet\autocite{Parker_2000}.
+Des Weiteren können zusätzliche Qubits der Größe $2n$ auf ein einzelnes Qubits reduziert werden,
+indem man die Messung des Ergebnisses sequenziell durchführt und anschließend das gemessene Qubit wieder verwertet\autocite{Parker_2000}.
 
 Allerdings besteht die Funktion des Quantenalgorithmus darin,
 die Periode zu bestimmen.
@@ -300,7 +300,7 @@ durch die Verwendung der Inversen Quanten-Fouriertransformation in das Binärsys
 Anhand der Messergebnisse wird in einer klassischen Nachberechnung die Information genutzt
 um die Periode und folglich die Primfaktoren zu bestimmen.
 
-\subsection{\Large Implementierung Shor- Algorithmus}
+\subsection{\Large Implementierung Shor-Algorithmus}
 Das Herzstück des Algorithmus bilden die Transformationsgatter $U_a$ der modularen Exponentiation,
 wie in Abbildung \ref{fig:c-Ugate} dargestellt.
 \begin{figure}[h]
@@ -318,7 +318,7 @@ die Addition ohne die Verwendung eines zusätzlichen Quantenregisters durchzufü
 Der Trick besteht darin, die Addition in der Fourier-Basis durchzuführen,
 anstatt dies in der Standard- oder Computational-Basis zu tun,
 wie es bei einem klassischen Volladdierer der Fall ist.
-In Abbildung \ref{fig:Quantum-Addition} ist anhand des $\phi$ des Quantenregister $\ket{\phi(a_n)}$  erkennbar,
+In Abbildung \ref{fig:Quantum-Addition} ist anhand des $\phi$ des Quantenregister $\ket{\phi(a_n)}$ erkennbar,
 dass sich dieses in der Fourier-Basis befindet.
 Anschließend wird auf das Quantenregister $\ket{\phi(a_n)}$ kontrolliert eine Phasenverschiebung übertragen,
 abhängig vom Inhalt des klassischen Registers $\ket{b_n}$.
