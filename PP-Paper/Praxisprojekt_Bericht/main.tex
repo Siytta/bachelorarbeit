@@ -85,7 +85,8 @@
     die die Grundlage aktueller kryptografischer Verfahren bilden.
     Obwohl derzeit keine Quantencomputer mit ausreichender Rechenleistung existieren,
     hat die Entwicklung in den letzten Jahren an Geschwindigkeit gewonnen und
-    sollte aufgrund der erwarteten zukünftigen Fortschritte in der IT-Sicherheit berücksichtigt werden.\\
+    sollte aufgrund der erwarteten zukünftigen Fortschritte in der IT-Sicherheit berücksichtigt werden.
+
     Um eine Grundlage für die zukünftige Anwendung von Quantenalgorithmen zu schaffen,
     wird eine eigene Bibliothek mit den bekanntesten Quantenalgorithmen entwickelt.
     Die Implementierungen umfassen ressourcensparende Varianten,
@@ -256,7 +257,7 @@ Die Implementierung wird beide Teile kombinieren,
 sodass für die Anwendung nur die zu faktorisierende Zahl beziehungsweise
 der öffentliche RSA-Schlüssel ($N$ und $e$) an die Funktion übergeben werden muss.
 Als Ergebnis werden anschließend die Primfaktoren bzw. der private Schlüssel ($d$) ausgegeben.
-\hfill \break
+
 Das genaue Vorgehen für den Grover-Algorithmus ist noch nicht festgelegt.
 Es wird jedoch darauf geachtet, eine möglichst effiziente Implementierung in Bezug auf die Anzahl der Qubits zu wählen.
 Es muss überprüft werden, ob die Grover-Implementierung von Qiskit die bekannteste effizienteste Variante des Algorithmus ist.
@@ -267,13 +268,13 @@ Hingegen wird die Entwicklung des AES-Verfahren als Quantenschaltkreis unumgäng
 \section{\LARGE Stand der Umsetzung}
 
 Um mit Qiskit zu arbeiten, gibt es grundsätzlich zwei empfehlenswerte Möglichkeiten:
-\begin{description}
-\item[Lokale Installation]\hfill \\
+\begin{description}[style=nextline]
+\item[Lokale Installation]
 Die lokale Installation erfordert Python,
 die Installation des Qiskit-Pakets und eine Entwicklungsumgebung wie beispielsweise Jupyter Notebook.
 Eine Anleitung zur Installation findet man auf der offiziellen Qiskit-Dokumentationsseite
 (siehe \href{https://qiskit.org/documentation/stable/0.24/install.html}{hier}).
-\item[IBM Quantum Lab]\hfill \\
+\item[IBM Quantum Lab]
 Die bequemere Möglichkeit besteht darin,
 eine vorab aufgesetzte Jupyter Notebook-Instanz über
 \href{https://qiskit.org/documentation/stable/0.24/install.html}{IBM Quantum Lab}
