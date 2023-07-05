@@ -114,7 +114,7 @@ das speziell für die Entwicklung von Anwendungen für Quantencomputer entwickel
 Programme, die mithilfe von Qiskit entwickelt wurden,
 können über die Cloud auf den Quantencomputern von IBM getestet werden.
 Aufgrund der begrenzten Rechenleistung der derzeit verfügbaren kostenlosen Quantensysteme
-werden die Implementierungen mithilfe von Simulatoren getestet.
+werden die Implementierungen dieser Arbeit mithilfe von Simulatoren getestet.
 
 \subsection{Stand der Technik}
 
@@ -194,7 +194,8 @@ die Nachbildung eines klassischen Volladdierers in einem Quantenschaltkreis zu u
 Des Weiteren können zusätzliche Qubits der Größe \(2n\) auf ein einzelnes Qubits reduziert werden,
 indem man die Messung des Ergebnisses sequenziell durchführt und anschließend das gemessene Qubit wieder verwertet~\cite{Parker_2000}.
 
-Allerdings besteht die Funktion des Quantenalgorithmus darin,
+Allerdings ist die Qer Quantenalgorithmus nur ein Teil des gesamten Short-Algorithmus.
+Die Funktion des Quantenalgorithmus besteht darin,
 die Periode zu bestimmen.
 Nachdem die Periode bekannt ist,
 kann die Primfaktorisierung mit einem klassischen Algorithmus berechnet werden.
@@ -210,26 +211,7 @@ Falls dies der Fall ist, wird es nicht notwendig sein,
 eine eigene Implementation des Grover-Algorithmus zu entwickeln.
 Hingegen wird die Entwicklung des AES-Verfahren als Quantenschaltkreis unumgänglich sein.
 
-\section{Stand der Umsetzung}
-
-Um mit Qiskit zu arbeiten, gibt es grundsätzlich zwei empfehlenswerte Möglichkeiten:
-\begin{description}[style=nextline]
-\item[Lokale Installation]
-Die lokale Installation erfordert Python,
-die Installation des Qiskit-Pakets und eine Entwicklungsumgebung wie beispielsweise Jupyter Notebook.
-Eine Anleitung zur Installation findet man auf der offiziellen Qiskit-Dokumentationsseite
-(siehe \href{https://qiskit.org/documentation/stable/0.24/install.html}{hier}).
-\item[IBM Quantum Lab]
-Die bequemere Möglichkeit besteht darin,
-eine vorab aufgesetzte Jupyter Notebook-Instanz über
-\href{https://qiskit.org/documentation/stable/0.24/install.html}{IBM Quantum Lab}
-zu nutzen.
-Dabei entfällt die Notwendigkeit einer lokalen Installation und man kann direkt mit Qiskit arbeiten.
-Weitere Informationen und Zugang zum IBM Quantum Lab finden Sie ebenfalls auf der genannten Qiskit-Dokumentationsseite.
-\end{description}
-Beide Optionen bieten verschiedene Vorteile und es hängt von den individuellen Präferenzen und Anforderungen ab,
-welche Methode gewählt wird.
-
+\section{Umsetzung des Short-Algorithmus}
 \subsection{Funktionsweise Shor-Algorithmus}
 
 Der Shor-Algorithmus basiert auf dem Quantum Phase Estimation (QPE) Algorithmus.
@@ -245,42 +227,61 @@ durch die Verwendung der Inversen Quanten-Fouriertransformation in das Binärsys
 Anhand der Messergebnisse wird in einer klassischen Nachberechnung die Information genutzt
 um die Periode und folglich die Primfaktoren zu bestimmen.
 
+\subsection{Quanten-Fourier-Transformation}
+Die Quanten-Fourier-Transformation (QFT) spielt eine essenzielle Rolle im Shor-Algorithmus
+an verschiedenen Stellen.
+Ihr Zweck besteht darin, Qubits von der Standardbasis in die Fourierbasis zu transformieren.
+Die inverse QFT dagegen ermöglicht die Rücktransformation,
+bei der Qubits von der Fourierbasis zurück in die Standardbasis überführt werden.
+
+Im Allgemeinen kann die Inverse eines einzelnen Quantengatters berechnet werden,
+indem die zugehörige Transformationsmatrix adjungiert angewendet wird.
+Um die Inverse einer Quantenschaltung zu erhalten,
+müssen die Gatter in umgekehrter Reihenfolge angewendet und invertiert werden.
+
 \subsection{Implementierung Shor-Algorithmus}
-Das Herzstück des Algorithmus bilden die Transformationsgatter \(U_a\) der modularen Exponentiation,
-wie in Abbildung~\ref{fig:c-Ugate} dargestellt.
+Das Herzstück des Shor-Algorithmus bildet die modulare Exponentiation.
+Diese wird in Form eines Quantenschaltkreis es oder Gatters benötigt,
+um die Berechnung von \(\ket{(a \cdot x)\mod N}\) zu ermöglichen.
+Im Folgenden wird die Herleitung dieses Schaltkreises dargestellt:
+
+\subsubsection{Adder-Gate}
+Ein wichtiger Bestandteil ist das Adder-Gate.
+Der Zweck dieses Gates besteht darin,
+den Wert \(a\) zu einem Quantenregister hinzuzufügen.
+
+Da \(a\) eine klassische Zahl darstellt, ist es möglich,
+die Addition ohne die Verwendung eines zusätzlichen Quantenregisters zu realisieren.
+Der Trick besteht darin, die Addition in der Fourier-Basis anstelle der Standard-Basis durchzuführen,
+wie es bei einem klassischen Volladdierer der Fall wäre.
+
+In Abbildung~\ref{fig:Quantum-Addition} wird deutlich,
+dass sich das Quantenregister \(\ket{\phi(a_n)}\) in der Fourier-Basis befindet.
+Dies lässt sich am Symbol \(\phi\) erkennen.
+
+\begin{figure}[!h]
+\caption{Quantum-Addition~\cite{draper2000addition}}
+\label{fig:Quantum-Addition}
+\includegraphics[width=\linewidth]{Quantum-Addition.PNG}
+\centering
+\end{figure}
+
+Um die Addition in der Fourier-Basis zu realisieren,
+wird kontrolliert eine Phasenverschiebung auf jedes Qubit des Quantenregister
+\(\ket{\phi(a_n)}\) angewendet,
+abhängig vom Inhalt des klassischen Registers \(\ket{b_n}\).
+Dieses Vorgehen ermöglicht es,
+die benötigten Qubits von \(3n\) auf \(n\) zu reduzieren.
+
+
+\subsection{Ausblick}
+
 \begin{figure}[h]
 \caption{Das Kontrollierte-\(U_a\) Gatter~\cite{beauregard2003circuit}}
 \label{fig:c-Ugate}
 \includegraphics[width=\linewidth]{c-Ugate.PNG}
 \centering
 \end{figure}
-Aufgrund der Komplexität dieser Gatter erfolgt der Aufbau schrittweise.
-\subsubsection{Adder-Gate}
-Ein wichtiger Bestandteil ist das Adder-Gate, dessen Zweck darin besteht,
-den Wert \(a\) zu einem Quantenregister hinzuzufügen.
-Da \(a\) eine klassische Zahl darstellt, ist es möglich,
-die Addition ohne die Verwendung eines zusätzlichen Quantenregisters durchzuführen.
-Der Trick besteht darin, die Addition in der Fourier-Basis durchzuführen,
-anstatt dies in der Standard- oder Computational-Basis zu tun,
-wie es bei einem klassischen Volladdierer der Fall ist.
-In Abbildung~\ref{fig:Quantum-Addition} ist anhand des \(\phi\) des Quantenregister \(\ket{\phi(a_n)}\) erkennbar,
-dass sich dieses in der Fourier-Basis befindet.
-Anschließend wird auf das Quantenregister \(\ket{\phi(a_n)}\) kontrolliert eine Phasenverschiebung übertragen,
-abhängig vom Inhalt des klassischen Registers \(\ket{b_n}\).
-Dieses Vorgehen entspricht der Addition in der Fourier-Basis und ermöglicht es,
-die benötigten Qubits von \(3n\) auf \(n\) zu reduzieren.
-\begin{figure}[h]
-\caption{Quantum-Addition~\cite{draper2000addition}}
-\label{fig:Quantum-Addition}
-\includegraphics[width=\linewidth]{Quantum-Addition.PNG}
-\centering
-\end{figure}
-\subsubsection{Implementierung}
-Erklärung Umsetzung Qiskit- also wie wurden die Phasegatter realisiert bzw vorgerechnet. 
-
-
-\subsection{Ausblick}
-
 
 \bibliography{IEEEabrv,sample}
 
