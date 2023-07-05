@@ -23,6 +23,8 @@
 
 \usepackage[ngerman]{babel}
 \DeclareMathOperator{\Landau}{\mathcal{O}} % Landau/Big-O Notation
+\DeclareMathOperator{\fraction}{fraction}
+\DeclareMathOperator{\eqq}{\widehat{=}}
 
 
 \begin{document}
@@ -482,9 +484,9 @@ Mit der Zahl "`1000 0000"', die  genau so oft gemessen wurde, könnte man die Pr
 \begin{split}
   N = 21,
   n = 5,
-  a = 17\,10\,0000\,0000_2 \widehat{=} 512_{10}\\
+  a = 17\,10\,0000\,0000_2 \eqq 512_{10}\\
   512/2^{2\cdot n} = 0.5\\
-  fraction(0.5) = \frac{1}{2}
+  \fraction(0.5) = \frac{1}{2}
 \end{split}
 \end{equation*}
 In diesem Fall wäre die Berechnung eines Näherungsbruchs mit dem Kettenbruchalgorithmus nicht nötig gewesen.
