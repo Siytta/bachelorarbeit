@@ -481,16 +481,15 @@ die trotz gleichbleibender Parameter unterschiedlich sind.
 Es wird auch deutlich, dass der Algorithmus nur probabilistisch ein korrektes Ergebnis liefert.
 Wählt man beispielsweise von den beiden häufigsten Messergebnis die "`0000 0000"',
 würde man keinen der beiden Primfaktoren erhalten.
-Mit der Zahl "`1000 0000"', die  genau so oft gemessen wurde, könnte man die Primfaktoren bestimmen:
-\begin{equation*}
-\begin{split}
-  N = 21,
-  n = 5,
-  a = 17\,10\,0000\,0000_2 \eqq 512_{10}\\
-  512/2^{2\cdot n} = 0.5\\
-  \fraction(0.5) = \frac{1}{2}
-\end{split}
-\end{equation*}
+Mit der Zahl "`1000 0000"', die  genau so oft gemessen wurde, könnte man die Primfaktoren bestimmen.
+Gegeben \(N = 21\), \(n = 5\) und \(a = 17 \),
+mit dem Messergebnis \(X=10\,0000\,0000_2 \eqq 512_{10}\).
+Nun können wir den Kettenbruchalgorithmus anwenden:
+\begin{align*}
+  % > & <          &> 
+  512/2^{2\cdot n} &= 0.5\\
+  \fraction(0.5)   &= \frac{1}{2}
+\end{align*}
 In diesem Fall wäre die Berechnung eines Näherungsbruchs mit dem Kettenbruchalgorithmus nicht nötig gewesen.
 Die Berechnung wird mit dem Nenner fortgesetzt:
 \begin{equation*}
