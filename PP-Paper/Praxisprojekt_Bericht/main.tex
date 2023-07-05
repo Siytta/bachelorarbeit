@@ -1,123 +1,66 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Journal Article
-% LaTeX Template
-% Version 2.0 (February 7, 2023)
-%
-% This template originates from:
-% https://www.LaTeXTemplates.com
-%
-% Author:
-% Vel (vel@latextemplates.com)
-%
-% License:
-% CC BY-NC-SA 4.0 (https://creativecommons.org/licenses/by-nc-sa/4.0/)
-%
-% NOTE: The bibliography needs to be compiled using the biber engine.
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%----------------------------------------------------------------------------------------
-%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
-%----------------------------------------------------------------------------------------
-
-\documentclass[
-  a4paper, % Paper size, use either a4paper or letterpaper
-  10pt, % Default font size, can also use 11pt or 12pt, although this is not recommended
-  unnumberedsections, % Comment to enable section numbering
-  twoside, % Two side traditional mode where headers and footers change between odd and even pages, comment this option to make them fixed
-]{LTJournalArticle}
-
-\addbibresource{sample.bib} % BibLaTeX bibliography file
-
-
-\footertext{} % Text to appear in the footer, leave this command empty for no footer text
-
-\setcounter{page}{1} % The page number of the first page, set this to a higher number if the article is to be part of an issue or larger work
-
-\usepackage[braket, qm]{qcircuit}
-\usepackage{graphicx}
+\documentclass[lettersize,journal]{IEEEtran}
 \usepackage{hyperref}
 \usepackage{physics}
+\usepackage{amsmath,amsfonts}
+\usepackage{algorithmic}
+\usepackage{array}
+\usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+\usepackage{textcomp}
+\usepackage{stfloats}
+\usepackage{url}
+\usepackage{verbatim}
 \usepackage{graphicx}
 \graphicspath{{./pictures/}}
+\usepackage{physics}
+\usepackage{balance}
+\usepackage{enumitem}
+
+%\usepackage[backend=biber]{biblatex}
+\bibliographystyle{IEEEtran}
 
 \usepackage[ngerman]{babel}
 \DeclareMathOperator{\Landau}{\mathcal{O}} % Landau/Big-O Notation
 
 
-%----------------------------------------------------------------------------------------
-%	TITLE SECTION
-%----------------------------------------------------------------------------------------
-
-\title{Implementierung einer Bibliothek von Quantenalgorithmen zur Kryptoanalyse} % Article title, use manual lines breaks (\\) to beautify the layout
-\newcommand{\shorttitle}{Praxisprojekt: Quantenalgorithmen, Juli 2023} % A shortened article title ...
-\runninghead{\shorttitle} % ... to appear in the running head, leave this command empty for no running head
-
-% Authors are listed in a comma-separated list with superscript numbers indicating affiliations
-% \thanks{} is used for any text that should be placed in a footnote on the first page, such as the corresponding author's email, journal acceptance dates, a copyright/license notice, keywords, etc
-\author{%
-  Simon Kalytta\textsuperscript{1,2}, Janis König\textsuperscript{2}
-}
-
-% Affiliations are output in the \date{} command
-\date{%
-  \footnotesize\textsuperscript{\textbf{1}}%
-  Fachhochschule Aachen, 
-  Eupener Str. 70, 52066 Aachen\\
-  \textsuperscript{\textbf{2}}%
-  it.sec GmbH,
-  Einsteinstr. 55, 89077 Ulm%
-}
-
-\hypersetup{
-  colorlinks=true,
-  linkcolor=blue,
-  filecolor=magenta,
-  urlcolor=blue,
-  pdftitle={\shorttitle},
-%  pdfpagemode=FullScreen,
-}
-
-% Full-width abstract
-\renewcommand{\maketitlehookd}{%
-  \begin{abstract}
-    \noindent
-    Seit der Entwicklung des theoretischen Konzepts eines Quantencomputers in den 1980er Jahren
-    wurden Quantenalgorithmen entworfen,
-    die durch die Ausnutzung der Quantenmechanik bestimmte Berechnungen effizienter lösen können
-    als die schnellsten bekannten klassischen Algorithmen.
-    Insbesondere betreffen sie mathematische Probleme,
-    die die Grundlage aktueller kryptografischer Verfahren bilden.
-    Obwohl derzeit keine Quantencomputer mit ausreichender Rechenleistung existieren,
-    hat die Entwicklung in den letzten Jahren an Geschwindigkeit gewonnen und
-    sollte aufgrund der erwarteten zukünftigen Fortschritte in der IT-Sicherheit berücksichtigt werden.
-
-    Um eine Grundlage für die zukünftige Anwendung von Quantenalgorithmen zu schaffen,
-    wird eine eigene Bibliothek mit den bekanntesten Quantenalgorithmen entwickelt.
-    Die Implementierungen umfassen ressourcensparende Varianten,
-    die gleichzeitig skalierbar sind,
-    um mit leistungsstärkeren Quantencomputern umfangreichere Eingabegrößen zu bewältigen.
-    Derzeit gibt es nur wenige praktische Umsetzungen von Quantenalgorithmen und
-    noch weniger spezifische Implementierungen für die Kryptoanalyse.
-    Eine genauere Untersuchung von Quantenalgorithmen und
-    deren Auswirkung auf unsere Kryptografie
-    wird jedoch mit fortschreitender Leistungsfähigkeit von Quantencomputern immer wichtiger.
-  \end{abstract}
-}
-
-%----------------------------------------------------------------------------------------
-
-
-
-
-
 \begin{document}
 
-\maketitle % Output the title section
+\begin{abstract}
+  Seit der Entwicklung des theoretischen Konzepts eines Quantencomputers in den 1980er Jahren
+  wurden Quantenalgorithmen entworfen,
+  die durch die Ausnutzung der Quantenmechanik bestimmte Berechnungen effizienter lösen können
+  als die schnellsten bekannten klassischen Algorithmen.
+  Insbesondere betreffen sie mathematische Probleme,
+  die die Grundlage aktueller kryptografischer Verfahren bilden.
+  Obwohl derzeit keine Quantencomputer mit ausreichender Rechenleistung existieren,
+  hat die Entwicklung in den letzten Jahren an Geschwindigkeit gewonnen und
+  sollte aufgrund der erwarteten zukünftigen Fortschritte in der IT-Sicherheit berücksichtigt werden.
 
-%----------------------------------------------------------------------------------------
-%	ARTICLE CONTENTS
-%----------------------------------------------------------------------------------------
+  Um eine Grundlage für die zukünftige Anwendung von Quantenalgorithmen zu schaffen,
+  wird eine eigene Bibliothek mit den bekanntesten Quantenalgorithmen entwickelt.
+  Die Implementierungen umfassen ressourcensparende Varianten,
+  die gleichzeitig skalierbar sind,
+  um mit leistungsstärkeren Quantencomputern umfangreichere Eingabegrößen zu bewältigen.
+  Derzeit gibt es nur wenige praktische Umsetzungen von Quantenalgorithmen und
+  noch weniger spezifische Implementierungen für die Kryptoanalyse.
+  Eine genauere Untersuchung von Quantenalgorithmen und
+  deren Auswirkung auf unsere Kryptografie
+  wird jedoch mit fortschreitender Leistungsfähigkeit von Quantencomputern immer wichtiger.
+\end{abstract}
+
+\newcommand{\longtitle}{Implementierung einer Bibliothek von Quantenalgorithmen zur Kryptoanalyse}
+\newcommand{\shorttitle}{Praxisprojekt: Quantenalgorithmen, Juli 2023}
+\title{\longtitle}
+\markboth{\shorttitle}{\longtitle}
+\author{
+  Simon Kalytta, Janis König\\
+  it.sec GmbH, Einsteinstr. 55, 89077 Ulm\\
+  Fachhochschule Aachen, Eupener Str. 70, 52066
+  \thanks{}
+}
+
+
+
+\maketitle
 
 \subsection{Einleitung}
 
@@ -133,10 +76,10 @@ bestimmte quantenphysikalische Phänomene nachzubilden.
 Feynman kam zu dem Schluss, dass ein Computer,
 der nach den Gesetzen der Quantenmechanik arbeitet,
 möglicherweise besser geeignet wäre,
-quantenmechanische Systeme zu simulieren~\autocite{Feynman:1982}.
+quantenmechanische Systeme zu simulieren~\cite{Feynman:1982}.
 Erst mehr als ein Jahrzehnt später, im Jahr 1998,
 gelang die erste physikalische Realisierung eines Quantencomputers
-mit insgesamt zwei Qubits~\autocite{Chuang:1998ExperimentalIO}.
+mit insgesamt zwei Qubits~\cite{Chuang:1998ExperimentalIO}.
 
 Seitdem hat sich die Entwicklungsgeschwindigkeit deutlich erhöht,
 insbesondere aufgrund des Engagements großer Unternehmen wie IBM, Microsoft, Google und Intel.
@@ -144,12 +87,12 @@ Ein Beispiel dafür ist IBM,
 das seit der Vorstellung ihres 27-Qubits-Systems namens "`Falcon"'
 eine jährliche Verdoppelung der vorhandenen Qubits bei ihren neuen Systemen plant.
 Bislang konnte dieser Trend aufrechterhalten werden
-indem im Jahr 2022 IBM mit ihrem "`Osprey"'-System 433~Qubits erreichte~\autocite{IBM:2022}.
+indem im Jahr 2022 IBM mit ihrem "`Osprey"'-System 433~Qubits erreichte~\cite{IBM:2022}.
 Basierend auf den Fortschritten der letzten Jahre und
 den Prognosen für die kommenden Jahre erwartet
 das Bundesamt für Sicherheit in der Informationstechnik,
 dass in den 2030er Jahren Quantencomputer existieren werden,
-die für die Kryptografie relevant sein werden~\autocite{BSI:2023}.
+die für die Kryptografie relevant sein werden~\cite{BSI:2023}.
 In diesem Zusammenhang sind insbesondere zwei Anwendungsbereiche für die Kryptografie von Bedeutung:
 zum einen die Quantenkryptografie, bei der die Eigenschaften der Quantenmechanik genutzt werden,
 um Sicherheit in der Kommunikation zu gewährleisten, und
@@ -173,9 +116,6 @@ können über die Cloud auf den Quantencomputern von IBM getestet werden.
 Aufgrund der begrenzten Rechenleistung der derzeit verfügbaren kostenlosen Quantensysteme
 werden die Implementierungen mithilfe von Simulatoren getestet.
 
-
-%------------------------------------------------
-
 \subsection{Stand der Technik}
 
 Für die Kryptoanalyse mit Quantencomputern spielen zwei Quantenalgorithmen eine besonders wichtige Rolle:
@@ -185,7 +125,7 @@ Der Shor-Algorithmus ist ein quantenbasiertes Verfahren,
 das die Primfaktorzerlegung und die Berechnung des diskreten Logarithmus
 mit polynomialem Aufwand bewältigen kann.
 Da es für beide dieser Berechnungen keinen effizienten klassischen Algorithmus gibt,
-spielen sie eine essentielle Rolle in der Kryptografie~\autocite{Shor:1997}.
+spielen sie eine essentielle Rolle in der Kryptografie~\cite{Shor:1997}.
 Zahlreiche theoretische Arbeiten beschäftigen sich mit dem Shor-Algorithmus und
 insbesondere mit der Optimierung zur Reduktion der benötigten Qubits.
 
@@ -194,18 +134,18 @@ gibt es bisher keine skalierbare Implementierung des Shor-Algorithmus in Qiskit.
 Die meisten praktischen Umsetzungen bedienen sich einer vereinfachten Variante,
 die ausschließlich die Faktorisierung der Zahl 15 ermöglicht.
 Dadurch ist die Schaltung einfach nachzustellen,
-und die Funktionsweise des Algorithmus kann dennoch demonstriert werden~\autocite{9376169, Monz_2016, IBM:Shor}.
+und die Funktionsweise des Algorithmus kann dennoch demonstriert werden~\cite{9376169, Monz_2016, IBM:Shor}.
 
 In der Vergangenheit gab es eine skalierbare Version des Shor-Algorithmus in Qiskit.
 Diese ist jedoch nicht mehr importierbar und als veraltet gekennzeichnet.
 In der Dokumentation findet man noch immer einen entsprechenden Eintrag.
 Dort kann man nachlesen, dass die damals implementierte Version eine Variante war,
-die \(4n+2\) Qubits erforderte~\autocite{IBM:Shor_docu}.
+die \(4n+2\) Qubits erforderte~\cite{IBM:Shor_docu}.
 
 \subsubsection{Grover-Algorithmus}
 Der Grover-Algorithmus ist ein quantenbasiertes Suchverfahren,
 das eine quadratische Geschwindigkeitsverbesserung
-gegenüber dem besten klassischen Suchalgorithmus bietet~\autocite{grover1996fast}.
+gegenüber dem besten klassischen Suchalgorithmus bietet~\cite{grover1996fast}.
 Der Algorithmus ermöglicht die effiziente Suche in unsortierten Datenbanken.
 In Bezug auf die Kryptoanalyse bedeutet dies,
 dass mithilfe des Grover-Algorithmus der Gesamtraum aller möglichen Schlüssel
@@ -222,7 +162,7 @@ dass die Laufzeit von \(\Landau(2^{128})\) auf \(\Landau(2^{64})\) reduziert wir
 
 Es wurden verschiedene Arbeiten zur praktischen Umsetzung des Grover-Algorithmus durchgeführt.
 Einige dieser Arbeiten wurden auch mit Hilfe von Qiskit umgesetzt,
-und Qiskit bietet eine importierbare Implementierung des Algorithmus~\autocite{IBM:Grover}.
+und Qiskit bietet eine importierbare Implementierung des Algorithmus~\cite{IBM:Grover}.
 
 Aufgrund der Natur des Grover-Algorithmus ist für die Kryptoanalyse ein Orakel erforderlich,
 das erkennt, ob ein gegebenes Ergebnis eine gültige Lösung darstellt.
@@ -230,29 +170,29 @@ Im konkreten Fall bedeutet dies, dass das Orakel den passenden Schlüssel erkenn
 Die Realisierung eines solchen Orakels für AES
 entspricht der Überführung des klassischen AES-Schaltkreises in einen Quantenschaltkreis.
 In diesem Zusammenhang wurden bereits Arbeiten durchgeführt,
-die sich mit der Implementierung~\autocite{jaques2019implementing},
-dem Ressourcenbedarf~\autocite{grassl2015applying} und der Optimierung~\autocite{Li2022} befassen.
+die sich mit der Implementierung~\cite{jaques2019implementing},
+dem Ressourcenbedarf~\cite{grassl2015applying} und der Optimierung~\cite{Li2022} befassen.
 Einige dieser Arbeiten umfassen auch Realisierungen in Qiskit,
-obwohl der entsprechende Code nicht veröffentlicht wurde~\autocite{app11199085}.
+obwohl der entsprechende Code nicht veröffentlicht wurde~\cite{app11199085}.
 
 
 \subsection{Eigener Ansatz}
 
 Gemäß der Vorhersage, dass die Anzahl der Qubits
-selbst auf zukünftigen Quantencomputern eine begrenzte Ressource darstellen wird~\autocite{zalka1998fast},
+selbst auf zukünftigen Quantencomputern eine begrenzte Ressource darstellen wird~\cite{zalka1998fast},
 wird bei der Implementierung der Algorithmen ein äußerst effizientes Vorgehen angestrebt.
 
 Es wird eine Variante des Shor-Algorithmus verwendet,
 bei der die ursprünglich benötigte Anzahl an Qubits zur Faktorisierung der Zahl
-\(N = 2^{n}\) von \(3n\) (~\autocite{zalka1998fast} beziehungsweise
-\(4n+2\)~\autocite{IBM:Shor_docu} auf \(2n+3\) Qubits reduziert wird~\autocite{beauregard2003circuit}.
+\(N = 2^{n}\) von \(3n\) (~\cite{zalka1998fast} beziehungsweise
+\(4n+2\)~\cite{IBM:Shor_docu} auf \(2n+3\) Qubits reduziert wird~\cite{beauregard2003circuit}.
 Eine solche Einsparung wird unter anderem durch
 die Verwendung der Quanten-Fourier-Transformation zur Durchführung von Additionen und
 die Vorwegberechnung von Phasengattern anstelle von kontrollierten Gattern erreicht.
 Durch diese Technik wird es möglich,
-die Nachbildung eines klassischen Volladdierers in einem Quantenschaltkreis zu umgehen~\autocite{draper2000addition}.
+die Nachbildung eines klassischen Volladdierers in einem Quantenschaltkreis zu umgehen~\cite{draper2000addition}.
 Des Weiteren können zusätzliche Qubits der Größe \(2n\) auf ein einzelnes Qubits reduziert werden,
-indem man die Messung des Ergebnisses sequenziell durchführt und anschließend das gemessene Qubit wieder verwertet~\autocite{Parker_2000}.
+indem man die Messung des Ergebnisses sequenziell durchführt und anschließend das gemessene Qubit wieder verwertet~\cite{Parker_2000}.
 
 Allerdings besteht die Funktion des Quantenalgorithmus darin,
 die Periode zu bestimmen.
@@ -296,7 +236,7 @@ Der Shor-Algorithmus basiert auf dem Quantum Phase Estimation (QPE) Algorithmus.
 Der QPE-Algorithmus ermöglicht es, die Phasenverschiebung eines Eigenvektors zu extrahieren,
 welche durch eine unitäre Transformation erzeugt wurde.
 Durch die Anwendung der modularen Exponentiation als unitäre Transformation,
-in der Form \(U\ket{x} = \ket{ax \bmod N}\)~\autocite{IBM:Shor},
+in der Form \(U\ket{x} = \ket{ax \bmod N}\)~\cite{IBM:Shor},
 kann die Information über die Periode des zugehörigen Modulus in die Phase der Kontroll-Qubits übertragen werden.
 In diesem Fall repräsentiert die zu faktorisierende Zahl \(N\) den Modulus,
 während die zu \(N\) teilerfremde Basiszahl \(a\) die Bedingung \(0 < a < N\) erfüllen muss.
@@ -309,7 +249,7 @@ um die Periode und folglich die Primfaktoren zu bestimmen.
 Das Herzstück des Algorithmus bilden die Transformationsgatter \(U_a\) der modularen Exponentiation,
 wie in Abbildung~\ref{fig:c-Ugate} dargestellt.
 \begin{figure}[h]
-\caption{Das Kontrollierte-\(U_a\) Gatter~\autocite{beauregard2003circuit}}
+\caption{Das Kontrollierte-\(U_a\) Gatter~\cite{beauregard2003circuit}}
 \label{fig:c-Ugate}
 \includegraphics[width=\linewidth]{c-Ugate.PNG}
 \centering
@@ -330,7 +270,7 @@ abhängig vom Inhalt des klassischen Registers \(\ket{b_n}\).
 Dieses Vorgehen entspricht der Addition in der Fourier-Basis und ermöglicht es,
 die benötigten Qubits von \(3n\) auf \(n\) zu reduzieren.
 \begin{figure}[h]
-\caption{Quantum-Addition~\autocite{draper2000addition}}
+\caption{Quantum-Addition~\cite{draper2000addition}}
 \label{fig:Quantum-Addition}
 \includegraphics[width=\linewidth]{Quantum-Addition.PNG}
 \centering
@@ -339,18 +279,10 @@ die benötigten Qubits von \(3n\) auf \(n\) zu reduzieren.
 Erklärung Umsetzung Qiskit- also wie wurden die Phasegatter realisiert bzw vorgerechnet. 
 
 
-
-%------------------------------------------------
-
 \subsection{Ausblick}
 
 
-%----------------------------------------------------------------------------------------
-%	 REFERENCES
-%----------------------------------------------------------------------------------------
+\bibliography{IEEEabrv,sample}
 
-\printbibliography % Output the bibliography
-
-%----------------------------------------------------------------------------------------
 \end{document}
 
