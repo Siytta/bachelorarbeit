@@ -320,8 +320,8 @@ das den klassischen Wert des Modulus \(N\) subtrahiert.
 Dadurch ändert sich der Inhalt des Input-Quantenregister wie folgt:
 \begin{equation*}
 \ket{B} = \begin{cases}
-  \ket{\phi(a+b-N)},            & {\text{if}}\ a+b \geq N,\\
-  \ket{\phi(2^{n+1}-(N-(a+b)))} & {\text{if}}\ a+b < N
+  \ket{\phi(a+b-N)}             ,& \text{if } a+b \geq N,\\
+  \ket{\phi(2^{n+1}-(N-(a+b)))} ,& \text{if } a+b < N
 \end{cases}
 \end{equation*}
 Im ersten Fall der Gleichung befindet sich der Rest der Modulo Rechnung im Input-Quantenregister \(\ket{B}\).
@@ -425,9 +425,9 @@ Nach der Durchführung des Quantenalgorithmus liefert die Messung des Quantenreg
 die durch die Gleichung \(P = \frac{x}{2^{2n}}\) berechnet werden kann.
 Anschließend wird der klassische Kettenbruchalgorithmus angewendet,
 um einen Näherungsbruch zu erzeugen, bei dem die Periode \(r\) im Nenner steht.
-Durch die Berechnung des größten gemeinsamen Teilers (greatest common divisor - gcd)
+Durch die Berechnung des größten gemeinsamen Teilers (greatest common divisor -- gcd)
 können nun die beiden Primfaktoren ermittelt werden:
-\(gcd(a^{\frac{r}{2}}-1, N)\) und \(gcd(a^{\frac{r}{2}}+1, N)\).
+\(\gcd(a^{\frac{r}{2}}-1, N)\) und \(\gcd(a^{\frac{r}{2}}+1, N)\).
 
 Es ist möglich, dass nur einer oder kein Faktor gefunden wird,
 da der Shor-Algorithmus ein probabilistischer Algorithmus ist und
@@ -491,8 +491,8 @@ In diesem Fall wäre die Berechnung eines Näherungsbruchs mit dem Kettenbruchal
 Die Berechnung wird mit dem Nenner fortgesetzt:
 \begin{equation*}
 \begin{split}
-  gcd(a**(2//2)-1, N) = 1\\
-  gcd(a**(2//2)+1, N) = 3
+  \gcd(a**(2//2)-1, N) = 1\\
+  \gcd(a**(2//2)+1, N) = 3
 \end{split}
 \end{equation*}
 Für dieses Messergebnis konnte mit der klassischen Nachberechnung
