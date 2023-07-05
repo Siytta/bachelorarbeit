@@ -273,17 +273,281 @@ abhängig vom Inhalt des klassischen Registers \(\ket{b_n}\).
 Dieses Vorgehen ermöglicht es,
 die benötigten Qubits von \(3n\) auf \(n\) zu reduzieren.
 
+Die in Abbildung~\ref{fig:Quantum-Addition} gezeigten Gatter werden durch ein klassisches Register kontrolliert,
+um die Phasenverschiebung anzuwenden.
+Da jedoch der klassische Wert im Voraus bekannt ist,
+ist es möglich, die Phasenverschiebung, die auf die einzelnen Qubits angewendet wird,
+im Voraus zu berechnen.
+Dadurch wird die Anzahl der benötigten Phasen-Gatter auf dieselbe Anzahl an Qubits reduziert.
+Dies führt zur Schaltung wie in Abbildung~\ref{fig:A_gate}.
 
-\subsection{Ausblick}
+\begin{figure}[!h]
+\caption{Optimierte Quantum-Addition (vertauschte Bit-Reihenfolge)~\cite{beauregard2003circuit}}
+\label{fig:A_gate}
+\includegraphics[width=\linewidth]{A_gate.PNG}
+\centering
+\end{figure}
+Ein einzelnes Gatter aus Abbildung~\ref{fig:A_gate} realisiert dabei die folgende Transformation:
+
+\begin{equation}
+A_{x} = \prod_{k=1}^x{
+\begin{pmatrix}
+  1 & 0 \\
+  0 & e^{({2\pi j})/({2^{k}})}
+\end{pmatrix}^{(b_{x+1-k})}}
+\end{equation}
+Hier wird das Gatter \(A_{x}\) auf das Qubit \(x\) angewendet.
+\(b_{x}\) repräsentiert die \(x\)-te Binärstelle des klassischen Summanden und
+kann folglich die Werte \(0\) oder \(1\) annehmen.
+Die Inverse des Adder-Gates realisiert die Subtraktion. 
+
+\subsection{Modular-Adder-Gate}
+Die Funktionalität der Schaltung besteht in der Berechnung von
+\(\ket{(a+b) \bmod N}\).
+Um dies zu gewährleisten, ohne dass das Quantenregister über- oder unterläuft,
+wird das Register um ein sogenanntes "`Bedingung"'-Qubit erweitert.
+Dieses Qubit wird mit \(\ket{0}\) initialisiert und
+erweitert das Quantenregister \(\ket{B}\) als "`Most-Signifikant-Bit"'.
+Zu Beginn addiert die Schaltung den klassischen Wert \(a\) auf das Quantenregister
+\(\ket{B} = \phi(\ket{b} \otimes \ket{0})\).
+Anschließend folgt die Anwendung eines inversen Adder-Gate,
+das den klassischen Wert des Modulus \(N\) subtrahiert.
+Dadurch ändert sich der Inhalt des Input-Quantenregister wie folgt:
+\begin{equation*}
+\ket{B} = \begin{cases}
+  \ket{\phi(a+b-N)},            & {\text{if}}\ a+b \geq N,\\
+  \ket{\phi(2^{n+1}-(N-(a+b)))} & {\text{if}}\ a+b < N
+\end{cases}
+\end{equation*}
+Im ersten Fall der Gleichung befindet sich der Rest der Modulo Rechnung im Input-Quantenregister \(\ket{B}\).
+
+Im zweiten Fall, befindet sich im Input-Quantenregister \(\ket{B}\) ein ungültiges Ergebnis.
+Um die Berechnung umzukehren beziehungsweise zu korrigieren,
+wird das "`Bedingung"'-Qubit genutzt.
+Dieses hat durch die Berechnung den Zustand von \(\ket{0}\) auf \(\ket{1}\) gewechselt,
+befindet sich jedoch noch immer in der Fourierbasis.
+Nach der Anwendung der inversen Quanten-Fourier-Transformation
+auf das Quantenregister \(\ket{B}\) wird das "`Bedingung"'-Qubit
+mit einem kontrollierten NOT-Gate an ein zusätzliches Ancilla-Qubit mit dem Anfangszustand \(\ket{0}\) verbunden.
+
+Abhängig vom Zustand des Ancilla Qubit wird mithilfe
+eines kontrollierten Adder-Gates die Zahl \(N\) zum Quantenregister \(\ket{B}\) addiert.
+
+Anschließend befindet sich unabhängig der beiden vorherigen Fälle,
+der richtig berechnete Modulus im Quantenregister \(\ket{B}\).
+Um zu vermeiden, dass für jedes Modular-Adder-Gate ein zusätzliches Ancilla-Qubit benötigt wird,
+wird ein kontrollierter Bit-Flip auf dem Ancilla-Qubit durch das "`Bedingung"'-Qubit durchgeführt.
+Dadurch wird das Ancilla-Qubit praktisch "`recycled"' und nimmt wieder den Anfangszustand \(\ket{0}\) an.
+\begin{figure}[!h]
+\caption{Modular-Adder-Gate~\cite{beauregard2003circuit}}
+\label{fig:modular_adder_gate}
+\includegraphics[width=\linewidth]{modular_adder_gate.PNG}
+\centering
+\end{figure}
+
+\subsection{Controlled-Multiplier-Gate}
+Das Controlled-Multiplier-Gate basiert hauptsächlich auf mehreren Modular-Adder-Gates,
+wie in Abbildung~\ref{fig:modular_adder_gate} dargestellt.
+Es verwendet ein einzelnes Modular-Adder-Gate,
+um die Berechnung \(\ket{(x_i\cdot(2^ia)+b) \bmod N}\) durchzuführen,
+wobei \(x_i\) das Qubit mit dem Index \(i\) in \(\ket{x}\) repräsentiert.
+
+Das Gate ermöglicht die kontrollierte Multiplikation
+eines Quantenregister \(\ket{X}\) mit dem klassischen Wert \(a\) und
+die anschließende Addition eines Quantenregister \(\ket{B}\) im Wertebereich des Modulus \(N\).
+Definiert man Quantenregister \(\ket{B}\) mit dem Inhalt \(\ket{b} = 0\),
+erhält man die gewünschte Quantenschaltung zur Berechnung der gesuchten Funktionalität, den:
+\(\ket{(a \cdot x) + 0\mod N} = \ket{(a \cdot x)\mod N}\).
+Die Anwendung des Controlled-Multiplier-Gate als \(U_a\)-Gate wäre theoretisch möglich,
+würde jedoch dazu führen, dass jedes verwendete \(U_a\)-Gate ein
+zusätzliches \(n\)-Qubit-großes Quantenregister benötigt.
+\begin{figure}[!h]
+\caption{c-multiplier-gate~\cite{beauregard2003circuit}}
+\label{fig:c-multiplier-gate}
+\includegraphics[width=\linewidth]{c-multiplier-gate.PNG}
+\centering
+\end{figure}
+
+\subsection{Controlled-U-Gate}
+Um das \(U_a\)-Gate ressourcenschonend zu implementieren,
+wird das Controlled-Multiplier-Gate als Kernkomponente genutzt und um eine "`Recycling"'-Technik erweitert.
+
+Der Aufbau besteht aus der Anwendung eines Controlled-Multiplier-Gates
+mit dem Faktor \(a\) auf zwei Quantenregister \(\ket{X}\) und \(\ket{0}\).
+Dadurch bleibt \(\ket{X}\) unverändert,
+während das untere Register den Zustand von \(\ket{0}\) nach \(\ket{(a \cdot x) + 0\mod N}\) ändert.
+Anschließend folgt ein Swap-Gate das die Qubits beider Quantenregister vertauscht.
+Als letzten Schritt wird ein inverses Controlled-Multiplier-Gate
+mit dem inversen Element von \(a\) also \(a^{-1} \bmod N\),
+als Faktor angewendet.
+Der Finale Zustand des oberen Quantenregisters beträgt nun \(\ket{(a \cdot x) \mod N}\),
+während das untere Register sich im selben Zustand \(\ket{0}\) wie am Anfang befindet.
+
+Das Element \(a^{-1} \bmod N\) kann klassisch
+mit dem Erweiterter euklidischer Algorithmus berechnet werden.
+Insgesamt werden für das \(U_a\)-Gate \(2n\) Qubits für die beiden Register benötigt,
+einschließlich \(3\)~Qubits, wobei eines das Kontroll-Qubit des Gatters darstellt.
+Die beiden anderen Qubits dienen als Ancilla- und "`Bedingungs"'-Qubit für die zugrunde liegenden Gatter.
+
+Dadurch dass das untere Register des \(U_a\)-Gate den Zustand \(\ket{0}\) beibehält,
+ist es möglich, mehrere \(U_a\)-Gate nacheinander auf den selben Registern anzuwenden.
+Es werden also keine zusätzlichen Qubits in Abhängigkeit der Anzahl von \(U_a\)-Gatter benötigt. 
 
 \begin{figure}[h]
 \caption{Das Kontrollierte-\(U_a\) Gatter~\cite{beauregard2003circuit}}
 \label{fig:c-Ugate}
-\includegraphics[width=\linewidth]{c-Ugate.PNG}
+\includegraphics[width=\linewidth]{c-Ugate2.PNG}
 \centering
 \end{figure}
+
+\subsection{Quantenschaltkreis Shor-Algortihmus}
+Anschließend kann die Schaltung nach
+Stêphane Beauregard~\cite{beauregard2003circuit} wie folgt aufgebaut werden:
+\begin{figure}[!h]
+\caption{Sequenzieller Shor-Algorithmus~\cite{beauregard2003circuit}}
+\label{fig:Shor-Algorithmus}
+\includegraphics[width=\linewidth]{Shor-Algorithmus.PNG}
+\centering
+\end{figure}
+
+Die Schaltung führt die Messung sowie die inverse Quanten-Fouriertransformation sequenziell durch.
+Durch diese Methode wird der Gesamtbedarf auf \(2n+3\) Qubits reduziert,
+im Vergleich zu \(4n+2\) Qubits,
+die für die veraltete Variante von Qiskit benötigt würden~\cite{IBM:Shor_docu}.
+
+\subsection{Primfaktorenbestimmung}
+Nach der Durchführung des Quantenalgorithmus liefert die Messung des Quantenregisters \(\ket{X}\) die Phase \(P\),
+die durch die Gleichung \(P = \frac{x}{2^{2n}}\) berechnet werden kann.
+Anschließend wird der klassische Kettenbruchalgorithmus angewendet,
+um einen Näherungsbruch zu erzeugen, bei dem die Periode \(r\) im Nenner steht.
+Durch die Berechnung des größten gemeinsamen Teilers (greatest common divisor - gcd)
+können nun die beiden Primfaktoren ermittelt werden:
+\(gcd(a^{\frac{r}{2}}-1, N)\) und \(gcd(a^{\frac{r}{2}}+1, N)\).
+
+Es ist möglich, dass nur einer oder kein Faktor gefunden wird,
+da der Shor-Algorithmus ein probabilistischer Algorithmus ist und
+deswegen keine deterministischen Ergebnisse garantiert.
+Wenn nur ein Faktor \(F\) gefunden wird,
+kann der zweite Faktor logischerweise durch \(\frac{N}{F}\) berechnet werden.
+Wenn kein Faktor gefunden wurde, wird der gesamte Shor-Algorithmus erneut durchgeführt.
+Es kann sinnvoll sein, nach mehreren erfolglosen Versuchen ein anderes \(a\) auszuwählen.~\cite{Mounica}
+
+Die Nachbearbeitung des Shor-Algorithmus umfasst also die Auswertung der gemessenen Phasen,
+die Anwendung des Kettenbruchalgorithmus zur Ermittlung der Periode und
+schließlich die Berechnung der Primfaktoren mithilfe des größten gemeinsamen Teilers.
+
+\section{Beispiel Qiskit}
+Die Implementierung der \(U_a\)-Gatter entspricht dem Aufbau von
+Stêphane Beauregard~\cite{beauregard2003circuit},
+wie im vorherigen Abschnitt beschrieben.
+Allerdings wird in der Implementierung die Reihenfolge
+der sequentiellen inverse-Quanten-Fouriertransformation und
+die Reihenfolge der \(U_a\)-Gatter in gespiegelter Reihenfolge angewendet.
+
+Die Quanten-Fouriertransformation nach
+Stêphane Beauregard~\cite{beauregard2003circuit} behält
+nach der Anwendung die Reihenfolge der Qubits bei.
+Diese Version der Quanten-Fouriertransformation stimmt nicht
+mit anderen Literaturquellen überein.
+Normalerweise ist die Reihenfolge der Qubits
+nach der Quanten-Fouriertransformation umgekehrt~\cite{Hoever:QC,Young:QFT} oder
+es werden Swap-Gates verwendet,
+um die ursprüngliche Reihenfolge wiederherzustellen~\cite{IBM:QFT}.
+
+\subsection{Shor-Algorithmus für \(N = 21\)}
+Im Folgenden wird der Shor-Algorithmus verwendet,
+um die Zahl \(N = 21\) zu faktorisieren.
+Der Quantencomputer, der für die Ausführung des Algorithmus benötigt wird,
+wird mithilfe des Qiskit-Simulators simuliert.
+Es wird keine größere Zahl als \(21\) simuliert
+da ansonsten die Schaltkreisgrafiken nicht mehr lesbar wären und
+die Simulation ab einer Zahl \(N > 256\) zu viel Zeit in Anspruch nehmen würde.
+
+In Abbildung~\ref{fig:QiskitN1a17} sieht man den Aufbau des Quantenschaltkreises
+für die Wahl von \(a = 17\).
+Bei wiederholter Ausführung des Algorithmus wird deutlich,
+dass dieser probabilistischer Natur ist.
+In Abbildung~\ref{fig:shor_countsN21a17} sind die Messergebnisse dargestellt,
+die trotz gleichbleibender Parameter unterschiedlich sind.
+Es wird auch deutlich, dass der Algorithmus nur probabilistisch ein korrektes Ergebnis liefert.
+Wählt man beispielsweise von den beiden häufigsten Messergebnis die "`0000 0000"',
+würde man keinen der beiden Primfaktoren erhalten.
+Mit der Zahl "`1000 0000"', die  genau so oft gemessen wurde, könnte man die Primfaktoren bestimmen:
+\begin{equation*}
+\begin{split}
+  N = 21,
+  n = 5,
+  a = 17\,10\,0000\,0000_2 \widehat{=} 512_{10}\\
+  512/2^{2\cdot n} = 0.5\\
+  fraction(0.5) = \frac{1}{2}
+\end{split}
+\end{equation*}
+In diesem Fall wäre die Berechnung eines Näherungsbruchs mit dem Kettenbruchalgorithmus nicht nötig gewesen.
+Die Berechnung wird mit dem Nenner fortgesetzt:
+\begin{equation*}
+\begin{split}
+  gcd(a**(2//2)-1, N) = 1\\
+  gcd(a**(2//2)+1, N) = 3
+\end{split}
+\end{equation*}
+Für dieses Messergebnis konnte mit der klassischen Nachberechnung
+nur einer der beiden Primaktoren gefunden werden.
+Logischerweise kann in diesem Fall der andere Primfaktor mit einer einfachen Division berechnet werden:
+\(\frac{N}{3} = 7\).
+
+\subsection{Vereinfachungen Shor-Algorithmus}
+In Abbildung~\ref{fig:QiskitN1a13} sieht man,
+dass die Wahl der Zahl \(a\) erheblichen Einfluss auf die Komplexität der \(U_a\)-Gatter der Schaltung hat.
+Anhand der zugehörigen Messung in Abbildung~\ref{fig:shor_countsN21a13} wird deutlich,
+dass das wechseln der Zahl \(a\) nach mehreren Fehlversuchen sinnvoll sein kann.
+
+\section{Ausblick}
+Im weiteren Verlauf dieser Arbeit wird die vorhandene Implementierung des Shor-Algorithmus
+als Teil der Bibliothek genutzt,
+um einen Algorithmus zu entwerfen, der in der Lage ist,
+den privaten Schlüssel des RSA-Verfahrens aus den öffentlichen Schlüsseln zu berechnen.
+
+Desweiteren spielt der Grover-Algorithmus eine wichtige Rolle für die Kryptoanalyse mit Quantencomputern,
+weswegen dieser auch Einzug in die Bibliothek finden wird.
+
+In zukünftigen Arbeiten könnten die Algorithmen weiter vertieft werden,
+was jedoch fortgeschrittenes Wissen im Bereich des Quantencomputings erfordert.
+Dabei könnte man sich zum Beispiel damit beschäftigen,
+ob Vereinfachungen des Shor-Algorithmus möglich sind, falls man ein \(a\) wählt,
+welches die Gatter der Schaltung in einem Vergleichbaren Zustand wie Abbildung~\ref{fig:QiskitN1a17} bringt.
+
+Zukünftig wird die Fehlerkorrektur eine wichtige Rolle spielen.
+Im Bezug dazu könnte man sich mit Möglichkeiten zur Fehlerminimierung oder Fehlerkorrektur auseinandersetzen.
+Man könnte zum Beispiel Untersuchen, wie es sich Auswirkt,
+wenn die vollständige Quanten-Fouriertransformation durch eine approximative Variante ersetzt wird.
+
+\begin{figure*}[p]
+\centering
+\caption{Sequenzieller Shor-Algorithmus Qiskit N=21, a=17}
+\label{fig:QiskitN1a17}
+\includegraphics[height=\linewidth,angle=90]{qiskit_Shor_21_a17.PNG}
+\end{figure*}
+
+\begin{figure*}[p]
+\centering
+\caption{Sequenzieller Shor-Algorithmus Qiskit N=21, a=13}
+\label{fig:QiskitN1a13}
+\includegraphics[height=\linewidth,angle=90]{qiskit_Shor_21_a13.PNG}
+\end{figure*}
+
+\clearpage
+\begin{figure}[p]
+\caption{Messung sequenzieller Shor-Algorithmus Qiskit N=21, a=17}
+\label{fig:shor_countsN21a17}
+\includegraphics[height=\linewidth,angle=90]{shor_countsN21a17.PNG}
+\end{figure}
+\begin{figure}[p]
+\caption{Messung sequenzieller Shor-Algorithmus Qiskit N=21, a=13}
+\label{fig:shor_countsN21a13}
+\includegraphics[height=\linewidth,angle=90]{shor_countsN21a13.PNG}
+\end{figure}
+\clearpage
 
 \bibliography{IEEEabrv,sample}
 
 \end{document}
-
