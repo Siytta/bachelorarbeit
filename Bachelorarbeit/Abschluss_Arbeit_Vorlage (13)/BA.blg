@@ -1,0 +1,15 @@
+[0] Config.pm:307> INFO - This is Biber 2.19
+[0] Config.pm:310> INFO - Logfile is 'BA.blg'
+[129] biber-MSWIN64:340> INFO - === 
+[162] Biber.pm:419> INFO - Reading 'BA.bcf'
+[255] Biber.pm:979> INFO - Found 23 citekeys in bib section 0
+[268] Biber.pm:4419> INFO - Processing section 0
+[280] Biber.pm:4610> INFO - Looking for bibtex file 'BA_Bib.bib' for section 0
+[328] bibtex.pm:1713> INFO - LaTeX decoding ...
+[362] bibtex.pm:1519> INFO - Found BibTeX data source 'BA_Bib.bib'
+[467] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
+[467] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[467] Biber.pm:4239> INFO - Sorting list 'anyt/global//global/global' of type 'entry' with template 'anyt' and locale 'de-DE'
+[467] Biber.pm:4245> INFO - No sort tailoring available for locale 'de-DE'
+[486] bbl.pm:660> INFO - Writing 'BA.bbl' with encoding 'UTF-8'
+[494] bbl.pm:763> INFO - Output to BA.bbl

@@ -1,0 +1,57 @@
+\section{Fundament}
+\subsection{Literatur} 
+\subsubsection*{Shor's Algorithmus}
+Der Algorithmus wurde erstmals in der Publikation \textit{"`Algorithms for Quantum Computation: Discrete Logarithms and Factoring"'} von Peter W. Shor veröffentlicht.
+
+Die Arbeit von Shor umfasste zwei Algorithmen.
+Der erste Algorithmus ermöglicht die effiziente Berechnung der Primfaktorzerlegung, 
+während der zweite Algorithmus die effiziente Berechnung des diskreten Logarithmus ermöglicht.
+Aufgrund ihrer konzeptionellen Ähnlichkeiten werden beide Algorithmen häufig kollektiv als "`Shor's Algorithmus"' bezeichnet.
+
+Die Quantenberechnungen beider Algorithmen basieren auf arithmetische Operationen in Restklassen und der Quanten-Fourier-Transformation.
+Da Shor die Umsetzung von arithmetischen Operationen in Restklassen sowie die Quanten-Fourier-Transformation nicht explizit behandelt,
+stützt sich die Implementierung auf den Ergebnissen weiterer Arbeiten. 
+Diese untersuchen insbesondere effiziente Methoden zur Durchführung von arithmetischer Operationen in Restklassen innerhalb eines Quantenschaltkreises.
+Einige dieser Arbeiten untersuchen die Quanten-Fourier-Transformation, 
+da diese ein notwendiges Element für gewisse Berechnungen darstellt.
+
+In der Publikation \textit{"`Quantum Networks for Elementary Arithmetic Operations"'} erklären Vlatko Vedral,  Adriano Barenco und Artur Ekert,
+wie die modulare Exponentiation in einem Quantenschaltkreis berechnet werden kann. 
+
+St\'{e}phane Beauregard baut auf den Erkenntnissen von Vedral, Barenco und Ekert auf und
+verbessert den Quantenschaltkreis für die arithmetische Operation der modularen Exponentiation.
+Hierfür ersetzt Beauregard einen Teil des ursprünglichen Quantenschaltkreis,
+der in der modularen Exponentiation für die Berechnung der Addition genutzt wurde, 
+durch einen effizienteren Quantenschaltkreis,
+wie ihn Thomas G. Draper in \textit{"`Addition on a Quantum Computer"'} beschreibt.
+Des weiteren verwendet Beauregard diese Optimierungen in seiner Arbeit \textit{"`Circuit for Shor’s algorithm using 2n+3 qubits"'},
+um eine Realisierung von Shor's Algorithmus zur Faktorisierung zu beschreiben.
+
+Andere Arbeiten, die sich mit der Implementierung von Shors's Algorithmus auseinandersetzen,
+realisieren die modularen Exponentiation, 
+indem klassische Schaltkreise identisch in den Quantenkontext übersetzt werden.
+Der Nachbau von klassischen Operationen ist aufgrund der unitären Natur von Quantenoperationen nicht die effizienteste Realisierung.
+Des Weiteren meiden andere Arbeiten die Realisierung der modularen Exponentiation für allgemeine Eingaben. 
+Ohne modulare Exponentiation sind diese Varianten nicht in der Lage die Berechnung variabler Werte zu verarbeiten.
+Stattdessen dienen diese ausschließlich der Demonstration der Funktionsweise von Shor's Algorithmus und
+sind nur in der Lage, ausgewählte Eingaben zu verarbeiten.
+
+Bei Recherchen wurde keine allgemeine Variante gefunden,
+die weniger Qubits benötigt als die Variante aus der Arbeit \textit{"`Circuit for Shor’s algorithm using 2n+3 qubits"'},
+deswegen bildet diese die Grundlage der Implementierung ab.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

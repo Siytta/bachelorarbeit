@@ -1,0 +1,192 @@
+\section{Shor-Algorithmus}
+Im folgenden Kapitel wird der Shor-Algorithmus zum Faktorisieren von Zahlen beschrieben.
+Der Inhalt bezieht sich auf den Zweck, die Funktionsweise und den Aufbau des Algorithmus.
+Der Aufbau beinhaltet nicht die konkrete Implementierung der Bestandteile des Algorithmus.
+Stattdessen werden die Details bezüglich der Implementierung im nächsten Kapitel behandelt.
+
+\subsection{Zweck}
+Der Shor-Algorithmus wurde mit dem spezifischen Ziel entwickelt, 
+große zusammengesetzte Zahlen effizient auf Quantencomputern in ihre Primfaktoren zu faktorisieren. 
+Im Gegensatz zu klassischen Faktorisierungsverfahren, die exponentielle Zeit erfordern~\cite{katz2023}, 
+ermöglicht Shor's Ansatz die Faktorisierung in polynomialer Zeit, 
+in Bezug auf die Anzahl an Bits der zu faktorisierenden Zahl~\cite{Shor_1997}. 
+Dies stellt eine signifikante Beschleunigung gegenüber den besten bekannten klassischen Faktorisierungsverfahren dar.
+Der Shor-Algorithmus bekräftigt die These, das Quantencomputer
+bestimmte Probleme wesentlich schneller lösen können als ihre klassischen Gegenstücke.
+
+\subsection{Funktionsweise} \label{Funktionsweise}
+Der Shor-Algorithmus verwendet zwei Teilberechnungen, die zusammen die Faktorisierung berechnen.
+Die erste Teilberechnung erfolgt mittels eines Quantenalgorithmus. 
+Der zweite Teil basiert auf einem klassischen Algorithmus.
+Im quantenmechanischen Teil des Shor-Algorithmus geht es um die Bestimmung der Ordnung in der multiplikativen Gruppe modulo \(N\).
+Hierbei ist anzumerken, dass der Quantenalgorithmus nicht direkt die Primfaktoren der zu faktorisierenden Zahl berechnet.
+Stattdessen wird die Eigenschaft ausgenutzt, 
+dass das Problem der Faktorisierung äquivalent zu dem Problem der Ordnungsbestimmung ist~\cite{nielsen_chuang_2010}.
+Daher impliziert eine effiziente Lösung für die Berechnung der Ordnung eine ebenso effiziente Methode zur Faktorisierung.
+Der nachfolgende klassische Algorithmus verwendet die ermittelte Ordnung, 
+um die Primfaktoren abzuleiten. 
+Beide Teilberechnungen, sowohl die quantenmechanische als auch die klassische, 
+führen ihre Berechnungen in polynomialer Zeit durch. 
+Daher liegt die gesamte Laufzeit des Shor-Algorithmus ebenfalls in einer polynomialen Größenordnung.
+
+\subsection{Ordnungsbestimmung}
+Zu bestimmen sind die Primfaktoren der Zahl \(N\).
+Zuerst wird ein \(a\) mit \(0 < a < N\) gewählt.
+Falls der ungewöhnlichen Fall eintritt, dass \(a\) nicht teilerfremd zu \(N\) ist, entspricht \(a\) einem der Primfaktoren.
+Anschließend wird die Ordnung beziehungsweise Periode \(p\) der Funktion \({f(x) = a^x \mod N}\) mit einem Quantenalgorithmus bestimmt:
+
+Die Periode \(p\) beschreibt das kleinste ganzzahlige Element mit \({p > 0}\), für das gilt: \({f(p) = 1 \mod N}\).
+\[
+\begin{tabular}{l|llllll}
+    x     &     0     &     1       &     2      &      3   &  4 &  5  \\ \hline
+    \(7^x \mod 15\)    &      1     &        7     &       4     &     13     &  1 &  7 
+\end{tabular} \longmapsto p = 4
+\]
+
+Im Wesentlichen handelt es sich bei der quantenmechanischen Berechnung des Shor-Algorithmus um die Quanten-Phase-Estimation.
+Die Architektur dieser spezifischen Quanten-Phase-Estimation korrespondiert weitgehend mit der in Abschnitt~\ref{Quanten-Phase-Estimation} vorgestellten Struktur.
+Hierbei ersetzen speziell für die gegebene Anwendung definierte \(U\)-Gatter die allgemeinen.
+
+Für den konkreten Kontext der Periodenberechnung, realisieren die \(U\)-Gatter die Transformation:
+\[U\ket{y} = \ket{ay \mod N}\] 
+Die Ausführung der Quanten-Phase-Estimation erfordert die Erzeugung eines Eigenvektors der Transformation \(U\).
+Da die Quanten-Phase-Estimation \(\varphi\) aus dem Eigenwert extrahiert, 
+darf der Eigenvektor nicht den trivialen Eigenwert 1 besitzen.
+Stattdessen ist es notwendig, dass die Periode der Transformation im Eigenwert enthalten ist.
+
+Wie in~\cite*{nielsen_chuang_2010} gezeigt wird, gibt es zu \(U\) Eigenvektoren \(\ket{u_s}\), 
+mit \(0 \leq s \leq p-1\): 
+\[\ket{u_s} \equiv
+\frac{1}{\sqrt{p}}
+\sum_{k=0}^{p-1} e^{\frac{-2 \pi i s k}{p}\ket{a^k \mod N}} %ich soll die Formel mit der Summe sein
+\]
+Für \(a=7\) bei \(N=15\) entspricht \(r=4\).
+Ein Eigenvektor zu \(s=1\) lautet dann:
+\[
+    \ket{u_1}_4 =
+    \frac{1}{\sqrt{4}}(
+        \ket{1}_4 + 
+        e^{-\frac{2 \pi i}{4}}\ket{7}_4 + 
+        e^{-\frac{4 \pi i}{4}}\ket{4}_4+ 
+        e^{-\frac{6 \pi i}{4}}\ket{13}_4
+    )
+    \]
+\[
+    U\ket{u_1}_4 =
+    \frac{1}{\sqrt{4}}(
+        \ket{7}_4 + 
+        e^{-\frac{2 \pi i}{4}}\ket{4}_4 + 
+        e^{-\frac{4 \pi i}{4}}\ket{13}_4+ 
+        e^{-\frac{6 \pi i}{4}}\ket{1}_4
+    )
+    \]
+\[
+    U\ket{u_1}_4 =
+    e^{\frac{2 \pi i}{4}}
+    \cdot
+    \frac{1}{\sqrt{4}}(
+        e^{-\frac{2 \pi i}{4}}\ket{7}_4 + 
+        e^{-\frac{4 \pi i}{4}}\ket{4}_4 + 
+        e^{-\frac{6 \pi i}{4}}\ket{13}_4+ 
+        e^{-\frac{8 \pi i}{4}}\ket{1}_4
+    )
+    \]
+\[
+    U\ket{u_1}_4 =
+    e^{\frac{2 \pi i}{4}}
+    \cdot
+    \frac{1}{\sqrt{4}}(
+        e^{-\frac{8 \pi i}{4}}\ket{1}_4
+        e^{-\frac{2 \pi i}{4}}\ket{7}_4 + 
+        e^{-\frac{4 \pi i}{4}}\ket{4}_4 + 
+        e^{-\frac{6 \pi i}{4}}\ket{13}_4 )
+    =
+    e^{\frac{2 \pi i}{4}} \cdot
+    \ket{u_1}_4
+    \]
+Das kann verallgemeinert werden:
+\[U\ket{u_s} = e^{\frac{2 \pi i s}{p}}\ket{u_s}\]
+
+Wie man in der Definition von \(\ket{u_s}\) %ref zu Formel mit der Summe
+sieht, 
+benötigt die Initialisierung eines Eigenvektors \(\ket{u_s}\) mit einem konkreten \(s\) die Periode \(p\).
+Man kann diese Problematik jedoch umgehen indem man anstelle eines einzelnen Eigenvektors \(\ket{u_s}\)
+eine Superposition verwendet, die alle \(\ket{u_s}\) umfasst.
+Die Superposition entspricht~\cite*{nielsen_chuang_2010}:
+\[\frac{1}{\sqrt{p}} \sum_{s=0}^{r-1}\ket{u_s} = \ket{1}\] 
+Also werden die Qubits, die für den Eigenvektor bestimmt sind, mit dem Zustand \(\ket{1}\) initialisiert.
+
+Die Superposition der Eigenvektoren hat zur Folge, 
+dass nach der inversen Quanten-Fourier-Transformation, also am Ende der Quanten-Phase-Estimation,
+ebenfalls eine Superposition mit dem \(\varphi_s\) der Eigenwerte \(\lambda_{u_s}\) aller möglichen Eigenvektoren \(\ket{u_s}\) existiert.
+Sei \(k\) die Anzahl an Kontroll-Qubits dann:
+\[
+    \frac{1}{\sqrt{p}} \sum_{s=0}^{p-1}\ket{2^k \cdot \frac{s}{p}}  = 
+    \frac{1}{\sqrt{p}} (\ket{0} + \ket{2^k \cdot \frac{1}{p}} + \ket{2^k \cdot \frac{2}{p}} ... + \ket{2^k \cdot \frac{p-1}{p}})
+    \]
+
+
+Bei einer Messung wird also zufällig eines der \(\varphi_s \approx \frac{s}{p}\) gemessen.
+
+Die Genauigkeit von \(\frac{s}{p}\) gegenüber dem \(\varphi_s\) hängt davon ab,
+mit wie viele \(U^{2^x}\)-Gatter beziehungsweise mit wie viele Kontroll-Qubits,
+die Quanten-Phase-Estimation ausgeführt wurde.
+
+Mit einer ausreichenden Anzahl an verwendeten Kontroll-Qubits, 
+können die Zustände vollkommen beschrieben werden und 
+somit bei einer Messung die genauen \(\varphi_s\) gefunden.  
+
+Falls nicht ausreichend Kontroll-Qubits vorhanden sind,
+wird die Messung mit hoher Wahrscheinlichkeit, 
+in den Zustand kollabieren der dem genauen Ergebnis am nächsten ist. 
+Die Ergebnisse sind dann jedoch probabilistischer Natur, 
+vergleichbar mit dem Beispiel aus dem Quanten-Phase-Estimation Kapitel, 
+in Abbildung~\ref*{fig:3_qubit_qpe_measurment_uncertain}.
+
+Anhand des gemessenen \(\frac{s}{p}\) erfolgt die Primfaktorzerlegung in einer klassischen Nachberechnung.
+
+\subsection{Klassische Nachberechnung}
+%Detailierter bezüglich Wahrscheinlichkeiten die Periode bzw Faktoren zu finden
+Wie der Name dieses Abschnittes vermuten lässt, 
+wird die Nachberechnung in der Regel mit einem klassischen Algorithmus durchgeführt.
+
+Aus dem Messergebnis des Quanten-Phase-Estimation soll die Phase extrahiert werden.
+Anhand der Messung sind die ersten \(k\) Bits von \(\varphi_s\) bekannt.
+Dabei steht \(k\) für die Genauigkeit der Quanten-Phase-Estimation.
+Die Genauigkeit \(k\) wird durch die Anzahl an Kontroll-Qubits festgelegt.
+Sollten \(k\) Bits nicht vollständig ausreichen um \(\varphi_s\)  zu beschreiben, 
+wird man bei der Messung eine Kommazahl erhalten die nah von \(\varphi_s\) liegt,
+dieser aber nicht ganz entspricht.
+Wendet man den Kettenbruch-Algorithmus auf das Messergebnis an,
+wird von der Kommazahl aus, der nächste ganzzahlige Bruch gefunden.
+Man kann zeigen, dass die Verwendung von \(k = 2n+1\) Kontrollqubits eine ausreichende Genauigkeit liefert,
+so dass das Messergebnis unter Verwendung des Kettenbruch-Algorithmus zu einem Näherungsbruch \(\frac{s}{p}\) von \(\varphi_s\) führt~\cite*{nielsen_chuang_2010}.
+
+Nichtsdestotrotz kann selbst bei der Verwendung von ausreichend Kontroll-Qubits ein \(\frac{s'}{p'}\) berechnet werden,
+welches nicht die Periode \(p\) enthält.
+Dies tritt auf wenn \(s\) und \(p\) einen gemeinsamen Teiler haben der die Kürzung von \(\frac{s}{p}\) auf \(\frac{s'}{p'}\) ermöglicht.
+
+Findet man in der ersten Messung \(\frac{s'}{p'}\) und in einer zweiten \(\frac{s''}{p''}\), 
+wobei \(s'\) und \(s''\) keine Faktoren teilen,
+so kann aus dem kleinsten gemeinsamen Vielfachen von \(p'\) und \(p''\) \(p\) berechnen.
+
+Man kann zeigen, 
+dass bei \(2\log(N)\) Messungen, die Wahrscheinlichkeit sehr hoch ist, mindestens einmal ein \(\frac{s}{p}\)
+zu messen, bei dem \(s\) und \(p\) teilerfremd sind~\cite*{nielsen_chuang_2010}.
+
+Ob die korrekte Periode gefunden wurde, kann mit \(a^p = 1 \mod N\) geprüft werden.
+
+Nach einige fehlgeschlagenen Versuchen(z.B. \(2\log(N)\)) wiederholt man die Suche mit einem anderen \(a\).
+
+Sobald die korrekte Periode \(p\) gefunden wurde, 
+können die Primfaktoren von \(N\)mit dem gemeinsamen Teiler(gcd) berechnet werden:
+\[gcd(a^{\frac{p}{2}}-1, N), gcd(a^{\frac{p}{2}}+1, N)\]
+Dies schlägt nur fehl falls \(r\) ungerade ist
+oder falls \(a^{\frac{p}{2}} = -1 \mod N\) erfüllt~\cite*{Shor_1997}.
+Die Wahrscheinlichkeit dass einer der beiden genannten Fälle eintritt beträgt \(1-\frac{1}{2^k}\), 
+wobei \(k\) die Anzahl an unterschiedlicher Primfaktoren von \(N\) angibt~\cite*{Shor_1997}.
+In einem solchen Fall, wiederholt man die Periodenberechnung mit einem anderen \(a\).
+
+
+
+

@@ -1,0 +1,93 @@
+\documentclass[
+  12pt,
+  headsepline,
+]{scrartcl}
+\usepackage{graphicx}
+\usepackage{physics}
+\graphicspath{{./Bilder/}}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage[ngerman]{babel}
+\renewcommand{\listfigurename}{Abbildungsverzeichnis}
+\usepackage{csquotes}
+\usepackage{amsmath}
+
+
+\usepackage{url}
+\usepackage{hyperref}
+\hypersetup{
+  pdfauthor={},
+  pdftitle={},
+  pdfsubject={Bachelorarbeit},
+  pdfkeywords={Bachelorarbeit}
+}
+
+\bibliographystyle{IEEEtran}
+\usepackage[style=alphabetic]{biblatex}
+\addbibresource{BA_Bib.bib}
+
+% Bilder, Code-Blöcke, Farben, ...
+\usepackage{float}
+\usepackage{listings}
+\lstset{
+  showstringspaces=false,
+  frame=lines,
+  breaklines=true,
+  language=Python,
+  captionpos=b,
+  prebreak={\Righttorque},
+  basicstyle=\ttfamily
+}
+\usepackage{xcolor}
+
+% Logo auf der Titelseite
+\usepackage[absolute]{textpos}
+\setlength{\TPHorizModule}{1mm}
+\setlength{\TPVertModule}{\TPHorizModule}
+\textblockorigin{0mm}{0mm}
+
+\hyphenation{
+  Ad-mi-nis-tra-tor
+  Get-Re-quest
+  Get-Re-sponse
+  Get-Next-Request
+  Get-Bulk-Request
+  Pro-gram-mie-rung
+  fast-ether-net hexa-de-zi-mal-en
+}
+
+\DeclareMathOperator{\Landau}{\mathcal{O}}
+
+\begin{document}
+
+\input{Chapters/Deckblatt.tex}
+
+\input{Chapters/Kurzbeschreibung.tex}
+
+\tableofcontents			% Inhaltsverzeichnis
+%\listoftables				% Tabellenverzeichnis
+\listoffigures				% Abbildungsverzeichnis
+%\printnomenclature			% Abkürzungsverzeichnis
+
+\input{Chapters/Abkuerzungsverz.tex}
+\input{Chapters/Glossar.tex}
+
+\input{Chapters/Einleitung.tex}
+\input{Chapters/Schwerpunkt.tex}
+\input{Chapters/Quantencomputer.tex}
+\input{Chapters/Fundament.tex}
+\input{Chapters/Grundlagen.tex}
+\input{Chapters/Funktionsweise.tex}
+\input{Chapters/Implementierung.tex}
+\input{Chapters/Resultate.tex}
+\input{Chapters/Verlauf.tex}
+
+\appendix
+\input{Chapters/Anhang.tex}
+
+\printbibliography[title=Literaturverzeichnis]
+
+\input{Chapters/Erklaerung.tex}
+
+\end{document}
