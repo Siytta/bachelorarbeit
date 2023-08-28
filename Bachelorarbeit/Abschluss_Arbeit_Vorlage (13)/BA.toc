@@ -5,28 +5,30 @@
 \contentsline {subsection}{\numberline {1.3}Gliederung}{4}{subsection.1.3}%
 \contentsline {section}{\numberline {2}Schwerpunkt}{4}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Entschlüsselungsfunktion für RSA}{4}{subsection.2.1}%
-\contentsline {section}{\numberline {3}Quantencomputer}{5}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Entwicklung}{5}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Vorteile gegenüber klassischen Rechnern}{8}{subsection.3.2}%
+\contentsline {section}{\numberline {3}Quantencomputer}{6}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Entwicklung}{6}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Vorteile gegenüber klassischen Rechnern}{7}{subsection.3.2}%
 \contentsline {section}{\numberline {4}Fundament}{8}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Literatur}{8}{subsection.4.1}%
 \contentsline {section}{\numberline {5}Grundlagen}{9}{section.5}%
 \contentsline {subsection}{\numberline {5.1}Qubits}{9}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Quantengatter}{10}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Qiskit}{10}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5.4}RSA}{10}{subsection.5.4}%
-\contentsline {subsection}{\numberline {5.5}Quanten-Fourier-Transformation}{10}{subsection.5.5}%
+\contentsline {subsection}{\numberline {5.2}Quantengatter}{11}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Qiskit}{11}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}RSA}{11}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Quanten-Fourier-Transformation}{11}{subsection.5.5}%
 \contentsline {subsection}{\numberline {5.6}Quanten-Phase-Estimation}{14}{subsection.5.6}%
 \contentsline {section}{\numberline {6}Shor-Algorithmus}{20}{section.6}%
 \contentsline {subsection}{\numberline {6.1}Zweck}{20}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Funktionsweise}{20}{subsection.6.2}%
-\contentsline {subsection}{\numberline {6.3}Ordnungsbestimmung}{20}{subsection.6.3}%
-\contentsline {subsection}{\numberline {6.4}Klassische Nachberechnung}{22}{subsection.6.4}%
-\contentsline {section}{\numberline {7}Implementierung}{23}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Quantenalgorithmus}{23}{subsection.7.1}%
+\contentsline {subsection}{\numberline {6.2}Funktionsweise}{21}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Ordnungsbestimmung}{21}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Klassische Nachberechnung}{23}{subsection.6.4}%
+\contentsline {section}{\numberline {7}Implementierung}{24}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Quantenalgorithmus}{24}{subsection.7.1}%
 \contentsline {subsubsection}{\numberline {7.1.1}Addition}{24}{subsubsection.7.1.1}%
-\contentsline {section}{\numberline {8}Resultate}{28}{section.8}%
-\contentsline {section}{\numberline {9}Verlauf}{28}{section.9}%
-\contentsline {subsection}{\numberline {9.1}Rückblick}{28}{subsection.9.1}%
-\contentsline {subsection}{\numberline {9.2}Ausblick}{28}{subsection.9.2}%
+\contentsline {subsubsection}{\numberline {7.1.2}Subtraktion}{30}{subsubsection.7.1.2}%
+\contentsline {subsubsection}{\numberline {7.1.3}Modulare Addition}{30}{subsubsection.7.1.3}%
+\contentsline {section}{\numberline {8}Resultate}{36}{section.8}%
+\contentsline {section}{\numberline {9}Verlauf}{36}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Rückblick}{36}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Ausblick}{36}{subsection.9.2}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

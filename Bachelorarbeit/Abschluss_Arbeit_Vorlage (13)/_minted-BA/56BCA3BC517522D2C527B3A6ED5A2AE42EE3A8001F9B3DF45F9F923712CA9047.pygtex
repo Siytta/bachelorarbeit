@@ -1,0 +1,23 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{def} \PYG{n+nf}{Modular\PYGZus{}Adder\PYGZus{}Gate}\PYG{p}{(}\PYG{n}{a\PYGZus{}bin}\PYG{p}{:} \PYG{n+nb}{list}\PYG{p}{[}\PYG{n+nb}{int}\PYG{p}{],}\PYG{n}{N\PYGZus{}bin}\PYG{p}{:} \PYG{n+nb}{list}\PYG{p}{[}\PYG{n+nb}{int}\PYG{p}{])} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{qiskit}\PYG{o}{.}\PYG{n}{circuit}\PYG{o}{.}\PYG{n}{gate}\PYG{p}{:}
+  \PYG{n}{c\PYGZus{}qbits} \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{]}
+  \PYG{n}{b\PYGZus{}qbits} \PYG{o}{=} \PYG{n+nb}{list}\PYG{p}{(}\PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{a\PYGZus{}bin}\PYG{p}{)}\PYG{o}{+}\PYG{l+m+mi}{2}\PYG{p}{))}
+  \PYG{n}{cond\PYGZus{}qbit} \PYG{o}{=} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{a\PYGZus{}bin}\PYG{p}{)}\PYG{o}{+}\PYG{l+m+mi}{2}
+  \PYG{n}{m\PYGZus{}a\PYGZus{}g} \PYG{o}{=} \PYG{n}{qiskit}\PYG{o}{.}\PYG{n}{QuantumCircuit}\PYG{p}{(}\PYG{l+m+mi}{2} \PYG{o}{+} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{a\PYGZus{}bin}\PYG{p}{)} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{)}
+  \PYG{n}{m\PYGZus{}a\PYGZus{}g}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{A\PYGZus{}Gate}\PYG{p}{(}\PYG{n}{a\PYGZus{}bin}\PYG{p}{)}\PYG{o}{.}\PYG{n}{control}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{),} \PYG{n}{c\PYGZus{}qbits} \PYG{o}{+} \PYG{n}{b\PYGZus{}qbits}\PYG{p}{)}
+  \PYG{n}{m\PYGZus{}a\PYGZus{}g}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{S\PYGZus{}Gate}\PYG{p}{(}\PYG{n}{N\PYGZus{}bin}\PYG{p}{),}\PYG{n}{b\PYGZus{}qbits}\PYG{p}{)}
+  \PYG{n}{m\PYGZus{}a\PYGZus{}g}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{QFT\PYGZus{}Gate}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{a\PYGZus{}bin}\PYG{p}{),}\PYG{n}{inverse} \PYG{o}{=} \PYG{k+kc}{True}\PYG{p}{,} \PYG{n}{MSB\PYGZus{}first} \PYG{o}{=} \PYG{k+kc}{False}\PYG{p}{),} \PYG{n}{b\PYGZus{}qbits}\PYG{p}{)}
+  \PYG{n}{m\PYGZus{}a\PYGZus{}g}\PYG{o}{.}\PYG{n}{cnot}\PYG{p}{(}\PYG{n}{b\PYGZus{}qbits}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{],}\PYG{n}{cond\PYGZus{}qbit}\PYG{p}{)}
+  \PYG{n}{m\PYGZus{}a\PYGZus{}g}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{QFT\PYGZus{}Gate}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{a\PYGZus{}bin}\PYG{p}{),}\PYG{n}{inverse} \PYG{o}{=} \PYG{k+kc}{False}\PYG{p}{,} \PYG{n}{MSB\PYGZus{}first} \PYG{o}{=} \PYG{k+kc}{False}\PYG{p}{),} \PYG{n}{b\PYGZus{}qbits}\PYG{p}{)}
+  \PYG{n}{m\PYGZus{}a\PYGZus{}g}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{A\PYGZus{}Gate}\PYG{p}{(}\PYG{n}{N\PYGZus{}bin}\PYG{p}{)}\PYG{o}{.}\PYG{n}{control}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{),} \PYG{p}{[}\PYG{n}{cond\PYGZus{}qbit}\PYG{p}{]} \PYG{o}{+} \PYG{n}{b\PYGZus{}qbits}\PYG{p}{)}
+  \PYG{n}{m\PYGZus{}a\PYGZus{}g}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{S\PYGZus{}Gate}\PYG{p}{(}\PYG{n}{a\PYGZus{}bin}\PYG{p}{)}\PYG{o}{.}\PYG{n}{control}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{),} \PYG{n}{c\PYGZus{}qbits} \PYG{o}{+} \PYG{n}{b\PYGZus{}qbits}\PYG{p}{)}
+  \PYG{n}{m\PYGZus{}a\PYGZus{}g}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{QFT\PYGZus{}Gate}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{a\PYGZus{}bin}\PYG{p}{),}\PYG{n}{inverse} \PYG{o}{=} \PYG{k+kc}{True}\PYG{p}{,} \PYG{n}{MSB\PYGZus{}first} \PYG{o}{=} \PYG{k+kc}{False}\PYG{p}{),} \PYG{n}{b\PYGZus{}qbits}\PYG{p}{)}
+  \PYG{n}{m\PYGZus{}a\PYGZus{}g}\PYG{o}{.}\PYG{n}{x}\PYG{p}{(}\PYG{n}{b\PYGZus{}qbits}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{])}
+  \PYG{n}{m\PYGZus{}a\PYGZus{}g}\PYG{o}{.}\PYG{n}{cnot}\PYG{p}{(}\PYG{n}{b\PYGZus{}qbits}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{],}\PYG{n}{cond\PYGZus{}qbit}\PYG{p}{)}
+  \PYG{n}{m\PYGZus{}a\PYGZus{}g}\PYG{o}{.}\PYG{n}{x}\PYG{p}{(}\PYG{n}{b\PYGZus{}qbits}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{])}
+  \PYG{n}{m\PYGZus{}a\PYGZus{}g}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{QFT\PYGZus{}Gate}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{a\PYGZus{}bin}\PYG{p}{),}\PYG{n}{inverse} \PYG{o}{=} \PYG{k+kc}{False}\PYG{p}{,} \PYG{n}{MSB\PYGZus{}first} \PYG{o}{=} \PYG{k+kc}{False}\PYG{p}{),} \PYG{n}{b\PYGZus{}qbits}\PYG{p}{)}
+  \PYG{n}{m\PYGZus{}a\PYGZus{}g}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{A\PYGZus{}Gate}\PYG{p}{(}\PYG{n}{a\PYGZus{}bin}\PYG{p}{)}\PYG{o}{.}\PYG{n}{control}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{),} \PYG{n}{c\PYGZus{}qbits} \PYG{o}{+} \PYG{n}{b\PYGZus{}qbits}\PYG{p}{)}
+  \PYG{n}{m\PYGZus{}a\PYGZus{}g} \PYG{o}{=} \PYG{n}{m\PYGZus{}a\PYGZus{}g}\PYG{o}{.}\PYG{n}{to\PYGZus{}gate}\PYG{p}{()}
+  \PYG{n}{m\PYGZus{}a\PYGZus{}g}\PYG{o}{.}\PYG{n}{name} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}Add \PYGZdq{}} \PYG{o}{+} \PYG{n+nb}{str}\PYG{p}{(}\PYG{n}{binToDez}\PYG{p}{(}\PYG{n}{a\PYGZus{}bin}\PYG{p}{))} \PYG{o}{+} \PYG{l+s+s2}{\PYGZdq{} Mod \PYGZdq{}} \PYG{o}{+} \PYG{n+nb}{str}\PYG{p}{(}\PYG{n}{binToDez}\PYG{p}{(}\PYG{n}{N\PYGZus{}bin}\PYG{p}{))}
+  \PYG{k}{return} \PYG{n}{m\PYGZus{}a\PYGZus{}g}
+\end{Verbatim}

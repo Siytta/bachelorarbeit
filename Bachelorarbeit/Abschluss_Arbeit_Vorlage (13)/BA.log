@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.7.31)  23 AUG 2023 17:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.7.31)  28 AUG 2023 23:49
 entering extended mode
- restricted \write18 enabled.
+ \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/Users/skalytta/Documents/QC/Bachelorarbeit/Abschluss_Arbeit_Vorlage (13)/BA.tex"
-(c:/Users/skalytta/Documents/QC/Bachelorarbeit/Abschluss_Arbeit_Vorlage (13)/BA.tex
+**"c:/Users/skalytta/Documents/QC/QC-BA/bachelorarbeitskalytta/Bachelorarbeit/Abschluss_Arbeit_Vorlage (13)/BA"
+(c:/Users/skalytta/Documents/QC/QC-BA/bachelorarbeitskalytta/Bachelorarbeit/Abschluss_Arbeit_Vorlage (13)/BA.tex
 LaTeX2e <2023-11-01> pre-release-0 (develop 2023-7-31 branch)
 L3 programming layer <2023-06-30>
 (c:/texlive/2023/texmf-dist/tex/latex/koma-script/scrartcl.cls
@@ -257,26 +257,149 @@ Package csquotes Info: Trying to load configuration file 'csquotes.cfg'...
 Package csquotes Info: ... configuration file loaded successfully.
  (c:/texlive/2023/texmf-dist/tex/latex/csquotes/csquotes.cfg
 File: csquotes.cfg 
-)) (c:/texlive/2023/texmf-dist/tex/latex/url/url.sty
-\Urlmuskip=\muskip17
-Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
-) (c:/texlive/2023/texmf-dist/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2023-07-08 v7.01b Hypertext links for LaTeX
+)) (c:/texlive/2023/texmf-dist/tex/latex/minted/minted.sty
+Package: minted 2022/12/12 v2.7 Yet another Pygments shim for LaTeX
+ (c:/texlive/2023/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
  (c:/texlive/2023/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
 Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
-) (c:/texlive/2023/texmf-dist/tex/generic/iftex/iftex.sty
-Package: iftex 2022/02/03 v1.0f TeX engine tests
-) (c:/texlive/2023/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+) (c:/texlive/2023/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+)) (c:/texlive/2023/texmf-dist/tex/latex/fvextra/fvextra.sty
+Package: fvextra 2022/11/30 v1.5 fvextra - extensions and patches for fancyvrb
+ (c:/texlive/2023/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Package: fancyvrb 2023/01/19 4.5a verbatim text (tvz,hv)
+\FV@CodeLineNo=\count282
+\FV@InFile=\read3
+\FV@TabBox=\box56
+\c@FancyVerbLine=\count283
+\FV@StepNumber=\count284
+\FV@OutFile=\write3
+) (c:/texlive/2023/texmf-dist/tex/latex/upquote/upquote.sty
+Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verbatim
+ (c:/texlive/2023/texmf-dist/tex/latex-dev/base/textcomp.sty
+Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
+)) (c:/texlive/2023/texmf-dist/tex/latex/lineno/lineno.sty
+Package: lineno 2023/05/20 line numbers on paragraphs v5.3
+\linenopenalty=\count285
+\output=\toks26
+\linenoprevgraf=\count286
+\linenumbersep=\dimen153
+\linenumberwidth=\dimen154
+\c@linenumber=\count287
+\c@pagewiselinenumber=\count288
+\c@LN@truepage=\count289
+\c@internallinenumber=\count290
+\c@internallinenumbers=\count291
+\quotelinenumbersep=\dimen155
+\bframerule=\dimen156
+\bframesep=\dimen157
+\bframebox=\box57
+\linenoamsmath@ams@eqpen=\count292
+
+
+LaTeX Warning: Command \@parboxrestore  has changed.
+               Check if current package is valid.
+
+LaTeX Info: Redefining \\ on input line 3180.
+)
+
+Package fvextra Warning: csquotes should be loaded after fvextra, to avoid a warning from the lineno package on input line 36.
+
+\c@FV@TrueTabGroupLevel=\count293
+\c@FV@TrueTabCounter=\count294
+\FV@TabBox@Group=\box58
+\FV@TmpLength=\skip67
+\c@FV@HighlightLinesStart=\count295
+\c@FV@HighlightLinesStop=\count296
+\FV@LoopCount=\count297
+\FV@NCharsBox=\box59
+\FV@BreakIndent=\dimen158
+\FV@BreakIndentNChars=\count298
+\FV@BreakSymbolSepLeft=\dimen159
+\FV@BreakSymbolSepLeftNChars=\count299
+\FV@BreakSymbolSepRight=\dimen160
+\FV@BreakSymbolSepRightNChars=\count300
+\FV@BreakSymbolIndentLeft=\dimen161
+\FV@BreakSymbolIndentLeftNChars=\count301
+\FV@BreakSymbolIndentRight=\dimen162
+\FV@BreakSymbolIndentRightNChars=\count302
+\c@FancyVerbLineBreakLast=\count303
+\FV@LineBox=\box60
+\FV@LineIndentBox=\box61
+\c@FV@BreakBufferDepth=\count304
+\FV@LineWidth=\dimen163
+) (c:/texlive/2023/texmf-dist/tex/latex-dev/base/ifthen.sty
+Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
+) (c:/texlive/2023/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count305
+\calc@Bcount=\count306
+\calc@Adimen=\dimen164
+\calc@Bdimen=\dimen165
+\calc@Askip=\skip68
+\calc@Bskip=\skip69
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count307
+\calc@Cskip=\skip70
+) (c:/texlive/2023/texmf-dist/tex/latex/tools/shellesc.sty
+Package: shellesc 2023/04/15 v1.0d unified shell escape interface for LaTeX
+Package shellesc Info: Unrestricted shell escape enabled on input line 75.
+) (c:/texlive/2023/texmf-dist/tex/latex/ifplatform/ifplatform.sty
+Package: ifplatform 2017/10/13 v0.4a Testing for the operating system
+ (c:/texlive/2023/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
 Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
  (c:/texlive/2023/texmf-dist/tex/generic/infwarerr/infwarerr.sty
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+) (c:/texlive/2023/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2022/02/03 v1.0f TeX engine tests
 )
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
-) (c:/texlive/2023/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
-Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
-) (c:/texlive/2023/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+) (c:/texlive/2023/texmf-dist/tex/generic/catchfile/catchfile.sty
+Package: catchfile 2019/12/09 v1.8 Catch the contents of a file (HO)
+ (c:/texlive/2023/texmf-dist/tex/generic/etexcmds/etexcmds.sty
+Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
+)) (c:/texlive/2023/texmf-dist/tex/generic/iftex/ifluatex.sty
+Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
+)) (c:/texlive/2023/texmf-dist/tex/generic/xstring/xstring.sty (c:/texlive/2023/texmf-dist/tex/generic/xstring/xstring.tex
+\integerpart=\count308
+\decimalpart=\count309
+)
+Package: xstring 2023/01/14 v1.85 String manipulations (CT)
+) (c:/texlive/2023/texmf-dist/tex/latex/framed/framed.sty
+Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
+\OuterFrameSep=\skip71
+\fb@frw=\dimen166
+\fb@frh=\dimen167
+\FrameRule=\dimen168
+\FrameSep=\dimen169
+) (c:/texlive/2023/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count310
+\float@exts=\toks27
+\float@box=\box62
+\@float@everytoks=\toks28
+\@floatcapt=\box63
+)
+\minted@appexistsfile=\read4
+\minted@bgbox=\box64
+\minted@code=\write4
+\c@minted@FancyVerbLineTemp=\count311
+\c@minted@pygmentizecounter=\count312
+\@float@every@listing=\toks29
+\c@listing=\count313
+)
+runsystem(if not exist _minted-BA mkdir _minted-BA)...executed.
+
+ (c:/texlive/2023/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip17
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+) (c:/texlive/2023/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2023-07-08 v7.01b Hypertext links for LaTeX
+ (c:/texlive/2023/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
 ) (c:/texlive/2023/texmf-dist/tex/generic/pdfescape/pdfescape.sty
 Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
@@ -292,14 +415,12 @@ Package: nameref 2023-08-07 v2.53 Cross-referencing by name of section
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (c:/texlive/2023/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
- (c:/texlive/2023/texmf-dist/tex/latex/kvoptions/kvoptions.sty
-Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
-))
-\c@section@level=\count282
 )
-\@linkdim=\dimen153
-\Hy@linkcounter=\count283
-\Hy@pagecounter=\count284
+\c@section@level=\count314
+)
+\@linkdim=\dimen170
+\Hy@linkcounter=\count315
+\Hy@pagecounter=\count316
  (c:/texlive/2023/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2023-07-08 v7.01b Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
@@ -307,7 +428,7 @@ Now handling font encoding PD1 ...
 ) (c:/texlive/2023/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count285
+\Hy@SavedSpaceFactor=\count317
  (c:/texlive/2023/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2023-07-08 v7.01b Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
@@ -320,17 +441,17 @@ Package hyperref Info: Plain pages OFF on input line 4182.
 Package hyperref Info: Backreferencing OFF on input line 4187.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4434.
-\c@Hy@tempcnt=\count286
+\c@Hy@tempcnt=\count318
 LaTeX Info: Redefining \url on input line 4772.
-\XeTeXLinkMargin=\dimen154
+\XeTeXLinkMargin=\dimen171
  (c:/texlive/2023/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
  (c:/texlive/2023/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 ))
-\Fld@menulength=\count287
-\Field@Width=\dimen155
-\Fld@charsize=\dimen156
+\Fld@menulength=\count319
+\Field@Width=\dimen172
+\Fld@charsize=\dimen173
 Package hyperref Info: Hyper figures OFF on input line 6051.
 Package hyperref Info: Link nesting OFF on input line 6056.
 Package hyperref Info: Hyper index ON on input line 6059.
@@ -342,9 +463,9 @@ Package hyperref Info: PDF/A mode OFF on input line 6081.
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
-\Hy@abspage=\count288
-\c@Item=\count289
-\c@Hfootnote=\count290
+\Hy@abspage=\count320
+\c@Item=\count321
+\c@Hfootnote=\count322
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
  (c:/texlive/2023/texmf-dist/tex/latex/hyperref/hpdftex.def
@@ -353,8 +474,8 @@ File: hpdftex.def 2023-07-08 v7.01b Hyperref driver for pdfTeX
 Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend package
 with kernel methods
 )
-\Fld@listcount=\count291
-\c@bookmark@seq@number=\count292
+\Fld@listcount=\count323
+\c@bookmark@seq@number=\count324
  (c:/texlive/2023/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
  (c:/texlive/2023/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
@@ -362,74 +483,72 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 285.
 )
-\Hy@SectionHShift=\skip67
+\Hy@SectionHShift=\skip72
 ) (c:/texlive/2023/texmf-dist/tex/latex/biblatex/biblatex.sty
 Package: biblatex 2023/03/05 v3.19 programmable bibliographies (PK/MW)
  (c:/texlive/2023/texmf-dist/tex/latex/logreq/logreq.sty
 Package: logreq 2010/08/04 v1.0 xml request logger
-\lrq@indent=\count293
+\lrq@indent=\count325
  (c:/texlive/2023/texmf-dist/tex/latex/logreq/logreq.def
 File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
-)) (c:/texlive/2023/texmf-dist/tex/latex-dev/base/ifthen.sty
-Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
-)
-\c@tabx@nest=\count294
-\c@listtotal=\count295
-\c@listcount=\count296
-\c@liststart=\count297
-\c@liststop=\count298
-\c@citecount=\count299
-\c@citetotal=\count300
-\c@multicitecount=\count301
-\c@multicitetotal=\count302
-\c@instcount=\count303
-\c@maxnames=\count304
-\c@minnames=\count305
-\c@maxitems=\count306
-\c@minitems=\count307
-\c@citecounter=\count308
-\c@maxcitecounter=\count309
-\c@savedcitecounter=\count310
-\c@uniquelist=\count311
-\c@uniquename=\count312
-\c@refsection=\count313
-\c@refsegment=\count314
-\c@maxextratitle=\count315
-\c@maxextratitleyear=\count316
-\c@maxextraname=\count317
-\c@maxextradate=\count318
-\c@maxextraalpha=\count319
-\c@abbrvpenalty=\count320
-\c@highnamepenalty=\count321
-\c@lownamepenalty=\count322
-\c@maxparens=\count323
-\c@parenlevel=\count324
-\blx@tempcnta=\count325
-\blx@tempcntb=\count326
-\blx@tempcntc=\count327
-\c@blx@maxsection=\count328
-\blx@maxsegment@0=\count329
-\blx@notetype=\count330
-\blx@parenlevel@text=\count331
-\blx@parenlevel@foot=\count332
-\blx@sectionciteorder@0=\count333
-\blx@sectionciteorderinternal@0=\count334
-\blx@entrysetcounter=\count335
-\blx@biblioinstance=\count336
-\labelnumberwidth=\skip68
-\labelalphawidth=\skip69
-\biblabelsep=\skip70
-\bibitemsep=\skip71
-\bibnamesep=\skip72
-\bibinitsep=\skip73
-\bibparsep=\skip74
-\bibhang=\skip75
-\blx@bcfin=\read3
-\blx@bcfout=\write3
+))
+\c@tabx@nest=\count326
+\c@listtotal=\count327
+\c@listcount=\count328
+\c@liststart=\count329
+\c@liststop=\count330
+\c@citecount=\count331
+\c@citetotal=\count332
+\c@multicitecount=\count333
+\c@multicitetotal=\count334
+\c@instcount=\count335
+\c@maxnames=\count336
+\c@minnames=\count337
+\c@maxitems=\count338
+\c@minitems=\count339
+\c@citecounter=\count340
+\c@maxcitecounter=\count341
+\c@savedcitecounter=\count342
+\c@uniquelist=\count343
+\c@uniquename=\count344
+\c@refsection=\count345
+\c@refsegment=\count346
+\c@maxextratitle=\count347
+\c@maxextratitleyear=\count348
+\c@maxextraname=\count349
+\c@maxextradate=\count350
+\c@maxextraalpha=\count351
+\c@abbrvpenalty=\count352
+\c@highnamepenalty=\count353
+\c@lownamepenalty=\count354
+\c@maxparens=\count355
+\c@parenlevel=\count356
+\blx@tempcnta=\count357
+\blx@tempcntb=\count358
+\blx@tempcntc=\count359
+\c@blx@maxsection=\count360
+\blx@maxsegment@0=\count361
+\blx@notetype=\count362
+\blx@parenlevel@text=\count363
+\blx@parenlevel@foot=\count364
+\blx@sectionciteorder@0=\count365
+\blx@sectionciteorderinternal@0=\count366
+\blx@entrysetcounter=\count367
+\blx@biblioinstance=\count368
+\labelnumberwidth=\skip73
+\labelalphawidth=\skip74
+\biblabelsep=\skip75
+\bibitemsep=\skip76
+\bibnamesep=\skip77
+\bibinitsep=\skip78
+\bibparsep=\skip79
+\bibhang=\skip80
+\blx@bcfin=\read5
+\blx@bcfout=\write5
 \blx@langwohyphens=\language88
-\c@mincomprange=\count337
-\c@maxcomprange=\count338
-\c@mincompwidth=\count339
+\c@mincomprange=\count369
+\c@maxcomprange=\count370
+\c@mincompwidth=\count371
 Package biblatex Info: Trying to load biblatex default data model...
 Package biblatex Info: ... file 'blx-dm.def' found.
  (c:/texlive/2023/texmf-dist/tex/latex/biblatex/blx-dm.def
@@ -439,88 +558,88 @@ Package biblatex Info: Trying to load biblatex style data model...
 Package biblatex Info: ... file 'alphabetic.dbx' not found.
 Package biblatex Info: Trying to load biblatex custom data model...
 Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
-\c@afterword=\count340
-\c@savedafterword=\count341
-\c@annotator=\count342
-\c@savedannotator=\count343
-\c@author=\count344
-\c@savedauthor=\count345
-\c@bookauthor=\count346
-\c@savedbookauthor=\count347
-\c@commentator=\count348
-\c@savedcommentator=\count349
-\c@editor=\count350
-\c@savededitor=\count351
-\c@editora=\count352
-\c@savededitora=\count353
-\c@editorb=\count354
-\c@savededitorb=\count355
-\c@editorc=\count356
-\c@savededitorc=\count357
-\c@foreword=\count358
-\c@savedforeword=\count359
-\c@holder=\count360
-\c@savedholder=\count361
-\c@introduction=\count362
-\c@savedintroduction=\count363
-\c@namea=\count364
-\c@savednamea=\count365
-\c@nameb=\count366
-\c@savednameb=\count367
-\c@namec=\count368
-\c@savednamec=\count369
-\c@translator=\count370
-\c@savedtranslator=\count371
-\c@shortauthor=\count372
-\c@savedshortauthor=\count373
-\c@shorteditor=\count374
-\c@savedshorteditor=\count375
-\c@labelname=\count376
-\c@savedlabelname=\count377
-\c@institution=\count378
-\c@savedinstitution=\count379
-\c@lista=\count380
-\c@savedlista=\count381
-\c@listb=\count382
-\c@savedlistb=\count383
-\c@listc=\count384
-\c@savedlistc=\count385
-\c@listd=\count386
-\c@savedlistd=\count387
-\c@liste=\count388
-\c@savedliste=\count389
-\c@listf=\count390
-\c@savedlistf=\count391
-\c@location=\count392
-\c@savedlocation=\count393
-\c@organization=\count394
-\c@savedorganization=\count395
-\c@origlocation=\count396
-\c@savedoriglocation=\count397
-\c@origpublisher=\count398
-\c@savedorigpublisher=\count399
-\c@publisher=\count400
-\c@savedpublisher=\count401
-\c@language=\count402
-\c@savedlanguage=\count403
-\c@origlanguage=\count404
-\c@savedoriglanguage=\count405
-\c@pageref=\count406
-\c@savedpageref=\count407
-\shorthandwidth=\skip76
-\shortjournalwidth=\skip77
-\shortserieswidth=\skip78
-\shorttitlewidth=\skip79
-\shortauthorwidth=\skip80
-\shorteditorwidth=\skip81
-\locallabelnumberwidth=\skip82
-\locallabelalphawidth=\skip83
-\localshorthandwidth=\skip84
-\localshortjournalwidth=\skip85
-\localshortserieswidth=\skip86
-\localshorttitlewidth=\skip87
-\localshortauthorwidth=\skip88
-\localshorteditorwidth=\skip89
+\c@afterword=\count372
+\c@savedafterword=\count373
+\c@annotator=\count374
+\c@savedannotator=\count375
+\c@author=\count376
+\c@savedauthor=\count377
+\c@bookauthor=\count378
+\c@savedbookauthor=\count379
+\c@commentator=\count380
+\c@savedcommentator=\count381
+\c@editor=\count382
+\c@savededitor=\count383
+\c@editora=\count384
+\c@savededitora=\count385
+\c@editorb=\count386
+\c@savededitorb=\count387
+\c@editorc=\count388
+\c@savededitorc=\count389
+\c@foreword=\count390
+\c@savedforeword=\count391
+\c@holder=\count392
+\c@savedholder=\count393
+\c@introduction=\count394
+\c@savedintroduction=\count395
+\c@namea=\count396
+\c@savednamea=\count397
+\c@nameb=\count398
+\c@savednameb=\count399
+\c@namec=\count400
+\c@savednamec=\count401
+\c@translator=\count402
+\c@savedtranslator=\count403
+\c@shortauthor=\count404
+\c@savedshortauthor=\count405
+\c@shorteditor=\count406
+\c@savedshorteditor=\count407
+\c@labelname=\count408
+\c@savedlabelname=\count409
+\c@institution=\count410
+\c@savedinstitution=\count411
+\c@lista=\count412
+\c@savedlista=\count413
+\c@listb=\count414
+\c@savedlistb=\count415
+\c@listc=\count416
+\c@savedlistc=\count417
+\c@listd=\count418
+\c@savedlistd=\count419
+\c@liste=\count420
+\c@savedliste=\count421
+\c@listf=\count422
+\c@savedlistf=\count423
+\c@location=\count424
+\c@savedlocation=\count425
+\c@organization=\count426
+\c@savedorganization=\count427
+\c@origlocation=\count428
+\c@savedoriglocation=\count429
+\c@origpublisher=\count430
+\c@savedorigpublisher=\count431
+\c@publisher=\count432
+\c@savedpublisher=\count433
+\c@language=\count434
+\c@savedlanguage=\count435
+\c@origlanguage=\count436
+\c@savedoriglanguage=\count437
+\c@pageref=\count438
+\c@savedpageref=\count439
+\shorthandwidth=\skip81
+\shortjournalwidth=\skip82
+\shortserieswidth=\skip83
+\shorttitlewidth=\skip84
+\shortauthorwidth=\skip85
+\shorteditorwidth=\skip86
+\locallabelnumberwidth=\skip87
+\locallabelalphawidth=\skip88
+\localshorthandwidth=\skip89
+\localshortjournalwidth=\skip90
+\localshortserieswidth=\skip91
+\localshorttitlewidth=\skip92
+\localshortauthorwidth=\skip93
+\localshorteditorwidth=\skip94
 Package biblatex Info: Trying to load compatibility code...
 Package biblatex Info: ... file 'blx-compat.def' found.
  (c:/texlive/2023/texmf-dist/tex/latex/biblatex/blx-compat.def
@@ -530,19 +649,19 @@ Package biblatex Info: Trying to load generic definitions...
 Package biblatex Info: ... file 'biblatex.def' found.
  (c:/texlive/2023/texmf-dist/tex/latex/biblatex/biblatex.def
 File: biblatex.def 2023/03/05 v3.19 biblatex compatibility (PK/MW)
-\c@textcitecount=\count408
-\c@textcitetotal=\count409
-\c@textcitemaxnames=\count410
-\c@biburlbigbreakpenalty=\count411
-\c@biburlbreakpenalty=\count412
-\c@biburlnumpenalty=\count413
-\c@biburlucpenalty=\count414
-\c@biburllcpenalty=\count415
+\c@textcitecount=\count440
+\c@textcitetotal=\count441
+\c@textcitemaxnames=\count442
+\c@biburlbigbreakpenalty=\count443
+\c@biburlbreakpenalty=\count444
+\c@biburlnumpenalty=\count445
+\c@biburlucpenalty=\count446
+\c@biburllcpenalty=\count447
 \biburlbigskip=\muskip18
 \biburlnumskip=\muskip19
 \biburlucskip=\muskip20
 \biburllcskip=\muskip21
-\c@smartand=\count416
+\c@smartand=\count448
 )
 Package biblatex Info: Trying to load bibliography style 'alphabetic'...
 Package biblatex Info: ... file 'alphabetic.bbx' found.
@@ -552,8 +671,8 @@ Package biblatex Info: Trying to load bibliography style 'standard'...
 Package biblatex Info: ... file 'standard.bbx' found.
  (c:/texlive/2023/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
 File: standard.bbx 2023/03/05 v3.19 biblatex bibliography style (PK/MW)
-\c@bbx:relatedcount=\count417
-\c@bbx:relatedtotal=\count418
+\c@bbx:relatedcount=\count449
+\c@bbx:relatedtotal=\count450
 ))
 Package biblatex Info: Trying to load citation style 'alphabetic'...
 Package biblatex Info: ... file 'alphabetic.cbx' found.
@@ -583,31 +702,24 @@ Package biblatex Info: ... and expl3
 (biblatex)             setting 'casechanger=expl3'.
  (c:/texlive/2023/texmf-dist/tex/latex/biblatex/blx-case-expl3.sty
 Package: blx-case-expl3 2023/03/05 v3.19 expl3 case changing code for biblatex
-)) (c:/texlive/2023/texmf-dist/tex/latex/float/float.sty
-Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count419
-\float@exts=\toks26
-\float@box=\box56
-\@float@everytoks=\toks27
-\@floatcapt=\box57
-) (c:/texlive/2023/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count420
-\lst@gtempboxa=\box58
-\lst@token=\toks28
-\lst@length=\count421
-\lst@currlwidth=\dimen157
-\lst@column=\count422
-\lst@pos=\count423
-\lst@lostspace=\dimen158
-\lst@width=\dimen159
-\lst@newlines=\count424
-\lst@lineno=\count425
-\lst@maxwidth=\dimen160
+)) (c:/texlive/2023/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count451
+\lst@gtempboxa=\box65
+\lst@token=\toks30
+\lst@length=\count452
+\lst@currlwidth=\dimen174
+\lst@column=\count453
+\lst@pos=\count454
+\lst@lostspace=\dimen175
+\lst@width=\dimen176
+\lst@newlines=\count455
+\lst@lineno=\count456
+\lst@maxwidth=\dimen177
  (c:/texlive/2023/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
-\c@lstnumber=\count426
-\lst@skipnumbers=\count427
-\lst@framebox=\box59
+\c@lstnumber=\count457
+\lst@skipnumbers=\count458
+\lst@framebox=\box66
 ) (c:/texlive/2023/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2023/02/27 1.9 listings configuration
 ))
@@ -633,18 +745,18 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1376.
 ) (c:/texlive/2023/texmf-dist/tex/latex/textpos/textpos.sty
 Package: textpos 2022/07/23 v1.10.1
 Package textpos Info: choosing support for LaTeX3 on input line 60.
-\TP@textbox=\box60
-\TP@holdbox=\box61
-\TPHorizModule=\dimen161
-\TPVertModule=\dimen162
-\TP@margin=\dimen163
-\TP@absmargin=\dimen164
+\TP@textbox=\box67
+\TP@holdbox=\box68
+\TPHorizModule=\dimen178
+\TPVertModule=\dimen179
+\TP@margin=\dimen180
+\TP@absmargin=\dimen181
 
 Grid set 16 x 16 = 37.34424pt x 52.81543pt
-\TPboxrulesize=\dimen165
-\TP@ox=\dimen166
-\TP@oy=\dimen167
-\TP@tbargs=\toks29
+\TPboxrulesize=\dimen182
+\TP@ox=\dimen183
+\TP@oy=\dimen184
+\TP@tbargs=\toks31
 TextBlockOrigin set to 0pt x 0pt
 )
 TextBlockOrigin set to 0mm x 0mm
@@ -652,40 +764,44 @@ Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
 Package csquotes Info: Redefining alias 'default' -> 'ngerman'.
+runsystem(for ^%i in (pygmentize.exe pygmentize.bat pygmentize.cmd) do set > BA.aex <nul: /p x=^%~$PATH:i>> BA.aex)...executed.
+
+runsystem(del BA.aex)...executed.
+
 (./BA.aux)
 \openout1 = `BA.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for IL2/cmr/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 61.
+LaTeX Font Info:    ... okay on input line 61.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 61.
+LaTeX Font Info:    ... okay on input line 61.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 61.
+LaTeX Font Info:    ... okay on input line 61.
+LaTeX Font Info:    Checking defaults for IL2/cmr/m/n on input line 61.
+LaTeX Font Info:    ... okay on input line 61.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 61.
+LaTeX Font Info:    ... okay on input line 61.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 61.
+LaTeX Font Info:    ... okay on input line 61.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 61.
+LaTeX Font Info:    ... okay on input line 61.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 61.
+LaTeX Font Info:    ... okay on input line 61.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 61.
+LaTeX Font Info:    ... okay on input line 61.
  (c:/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count428
-\scratchdimen=\dimen168
-\scratchbox=\box62
-\nofMPsegments=\count429
-\nofMParguments=\count430
-\everyMPshowfont=\toks30
-\MPscratchCnt=\count431
-\MPscratchDim=\dimen169
-\MPnumerator=\count432
-\makeMPintoPDFobject=\count433
-\everyMPtoPDFconversion=\toks31
+\scratchcounter=\count459
+\scratchdimen=\dimen185
+\scratchbox=\box69
+\nofMPsegments=\count460
+\nofMParguments=\count461
+\everyMPshowfont=\toks32
+\MPscratchCnt=\count462
+\MPscratchDim=\dimen186
+\MPnumerator=\count463
+\makeMPintoPDFobject=\count464
+\everyMPtoPDFconversion=\toks33
 ) (c:/texlive/2023/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
  (c:/texlive/2023/texmf-dist/tex/latex/grfext/grfext.sty
@@ -698,10 +814,10 @@ Package grfext Info: Graphics extension search list:
  (c:/texlive/2023/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring OFF on input line 62.
+Package hyperref Info: Link coloring OFF on input line 61.
  (./BA.out) (./BA.out)
-\@outlinefile=\write4
-\openout4 = `BA.out'.
+\@outlinefile=\write6
+\openout6 = `BA.out'.
 
 Class scrartcl Info: loading recommended package `bookmark'.
 (scrartcl)           Using `bookmark' together with `hyperref' is recommended,
@@ -710,12 +826,12 @@ Class scrartcl Info: loading recommended package `bookmark'.
 (scrartcl)           `bookmarkpackage=false' before \begin{document} and
 (scrartcl)           you can avoid this message adding:
 (scrartcl)             \usepackage{bookmark}
-(scrartcl)           before \begin{document} on input line 62.
+(scrartcl)           before \begin{document} on input line 61.
  (c:/texlive/2023/texmf-dist/tex/latex/bookmark/bookmark.sty
 Package: bookmark 2020-11-06 v1.29 PDF bookmarks (HO)
  (c:/texlive/2023/texmf-dist/tex/latex/bookmark/bkm-pdftex.def
 File: bkm-pdftex.def 2020-11-06 v1.29 bookmark driver for pdfTeX (HO)
-\BKM@id=\count434
+\BKM@id=\count465
 ))
 Package biblatex Info: Trying to load language 'ngerman'...
 Package biblatex Info: ... file 'ngerman.lbx' found.
@@ -734,14 +850,14 @@ File: german.lbx 2023/03/05 v3.19 biblatex localization (PK/MW)
 Package biblatex Info: Input encoding 'utf8' detected.
 Package biblatex Info: Automatic encoding selection.
 (biblatex)             Assuming data encoding 'utf8'.
-\openout3 = `BA.bcf'.
+\openout5 = `BA.bcf'.
 
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'BA.bbl' found.
  (./BA.bbl)
-Package biblatex Info: Reference section=0 on input line 62.
-Package biblatex Info: Reference segment=0 on input line 62.
-\c@lstlisting=\count435
+Package biblatex Info: Reference section=0 on input line 61.
+Package biblatex Info: Reference segment=0 on input line 61.
+\c@lstlisting=\count466
  (./Chapters/Deckblatt.tex
 <./Bilder/fh_logo_rechts.png, id=4, 45.5301pt x 136.5903pt>
 File: ./Bilder/fh_logo_rechts.png Graphic file (type png)
@@ -768,25 +884,20 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 3.
  (c:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [2])
-\tf@toc=\write5
-\openout5 = `BA.toc'.
+\tf@toc=\write7
+\openout7 = `BA.toc'.
 
  (./BA.lof)
-\tf@lof=\write6
-\openout6 = `BA.lof'.
+\tf@lof=\write8
+\openout8 = `BA.lof'.
 
  (./Chapters/Abkuerzungsverz.tex) (./Chapters/Glossar.tex) (./Chapters/Einleitung.tex [3]) (./Chapters/Schwerpunkt.tex [4]) (./Chapters/Quantencomputer.tex [5] [6]
-<./Bilder/IBM-Quantum-DevRoadmap2022_Light.jpeg, id=153, 2509.375pt x 1411.2725pt>
+<./Bilder/IBM-Quantum-DevRoadmap2022_Light.jpeg, id=172, 2509.375pt x 1411.2725pt>
 File: ./Bilder/IBM-Quantum-DevRoadmap2022_Light.jpeg Graphic file (type jpg)
 <use ./Bilder/IBM-Quantum-DevRoadmap2022_Light.jpeg>
 Package pdftex.def Info: ./Bilder/IBM-Quantum-DevRoadmap2022_Light.jpeg  used on input line 59.
 (pdftex.def)             Requested size: 448.13095pt x 252.0154pt.
-) (./Chapters/Fundament.tex [7
-pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1 \section
-            {Fundament} <./Bilder/IBM-Quantum-DevRoadmap2022_Light.jpeg>] [8]) (./Chapters/Grundlagen.tex [9] [10] [11]
+) (./Chapters/Fundament.tex [7] [8 <./Bilder/IBM-Quantum-DevRoadmap2022_Light.jpeg>]) (./Chapters/Grundlagen.tex [9] [10] [11]
 Overfull \hbox (62.50595pt too wide) detected at line 146
 []\OT1/cmr/m/n/12 ([] + [] []) [] [] + [] [] \OML/cmm/m/it/12 ::: [] \OT1/cmr/m/n/12 + [] []
  []
@@ -801,7 +912,7 @@ Overfull \hbox (33.47496pt too wide) detected at line 160
 \OML/cmm/m/it/12 QFT[] [][] \OT1/cmr/m/n/12 = []([] + [] []) []([] + [] [])\OML/cmm/m/it/12 :::\OT1/cmr/m/n/12 ([] + [] [])
  []
 
-
+[12]
 Overfull \hbox (17.50943pt too wide) detected at line 173
 \OML/cmm/m/it/12 QFT[] [][] \OT1/cmr/m/n/12 = [][([] + [] []) []([] + [] []) []([] + [] [])]
  []
@@ -811,27 +922,17 @@ Overfull \hbox (20.85312pt too wide) detected at line 178
 \OT1/cmr/m/n/12 = [][([] + [] []) []([] + [] []) []([] + [] [])]
  []
 
-[12]
+
 Overfull \hbox (17.67053pt too wide) in paragraph at lines 182--186
 \T1/cmr/m/n/12 zel-nen Ten-so-ren, be-zie-hungs-wei-se Qubits an die Form die bei ei-ne Hadamard-Transformation
  []
 
-
+[13]
 Overfull \hbox (7.48543pt too wide) in paragraph at lines 225--229
 []\T1/cmr/m/n/12 Anhand der Im-ple-men-tie-rung wird er-sicht-lich, dass die Quanten-Fourier-Transformation
  []
 
-[13] [14
-pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.276 
-      
-pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.276 
-      ]
+[14] [15]
 Overfull \hbox (6.83636pt too wide) in paragraph at lines 346--347
 []\T1/cmr/m/n/12 Ein zu-ge-hö-ri-ger Ei-gen-vek-tor die-ser Trans-for-ma-ti-on ist $[][]$ den $\OML/cmm/m/it/12 P\OT1/cmr/m/n/12 (2\OML/cmm/m/it/12 i^^Y'\OT1/cmr/m/n/12 ) [][] = \OML/cmm/m/it/12 e[] [][]$\T1/cmr/m/n/12 . 
  []
@@ -841,7 +942,6 @@ Overfull \hbox (17.92024pt too wide) detected at line 418
 [] [] [] [] \OMS/cmsy/m/n/12 ^^A [] [] \OT1/cmr/m/n/12 = [] [] = [] [] [] []
  []
 
-[15]
 
 LaTeX Warning: Reference `fig:qpe_1qubit' on page 16 undefined on input line 452.
 
@@ -851,13 +951,14 @@ LaTeX Warning: Reference `fig:qpe_1qubit_Messung' on page 16 undefined on input 
 
 LaTeX Warning: Reference `fig:qpe_1qubit_Messung' on page 16 undefined on input line 456.
 
-
-LaTeX Warning: Reference `fig:qpe_n_qubit' on page 16 undefined on input line 474.
-
-
-LaTeX Warning: Reference `fig:qpe_n_qubit' on page 16 undefined on input line 476.
-
 [16]
+
+LaTeX Warning: Reference `fig:qpe_n_qubit' on page 17 undefined on input line 474.
+
+
+LaTeX Warning: Reference `fig:qpe_n_qubit' on page 17 undefined on input line 476.
+
+
 Overfull \hbox (34.63754pt too wide) detected at line 503
 \OML/cmm/m/it/12 QFT[] [][] \OT1/cmr/m/n/12 = []([] + [] []) []([] + [] [])\OML/cmm/m/it/12 :::\OT1/cmr/m/n/12 ([] + \OML/cmm/m/it/12 e[]:::e[]e[] []\OT1/cmr/m/n/12 )
  []
@@ -867,48 +968,33 @@ Overfull \hbox (11.27061pt too wide) in paragraph at lines 507--511
 []\T1/cmr/m/n/12 Wie im Ka-pi-tell zur Quanten-Fourier-Transformation er-klärt, trans-for-miert die Quanten-
  []
 
-
+[17]
 Overfull \hbox (33.44336pt too wide) detected at line 517
 \OML/cmm/m/it/12 iQFT\OT1/cmr/m/n/12 ([][([] + \OML/cmm/m/it/12 e[]:::e[]e[] []\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 :::\OT1/cmr/m/n/12 ([] + \OML/cmm/m/it/12 e[]e[] []\OT1/cmr/m/n/12 ) []([] + \OML/cmm/m/it/12 e[] []\OT1/cmr/m/n/12 )])
  []
 
-<./Bilder/3_qubit_qpe.png, id=236, 873.2625pt x 215.80624pt>
+<./Bilder/3_qubit_qpe.png, id=260, 873.2625pt x 215.80624pt>
 File: ./Bilder/3_qubit_qpe.png Graphic file (type png)
 <use ./Bilder/3_qubit_qpe.png>
 Package pdftex.def Info: ./Bilder/3_qubit_qpe.png  used on input line 529.
 (pdftex.def)             Requested size: 448.13095pt x 110.74464pt.
-<./Bilder/3_qubit_qpe_measurement.PNG, id=238, 933.4875pt x 595.47469pt>
+<./Bilder/3_qubit_qpe_measurement.PNG, id=262, 933.4875pt x 595.47469pt>
 File: ./Bilder/3_qubit_qpe_measurement.PNG Graphic file (type png)
 <use ./Bilder/3_qubit_qpe_measurement.PNG>
 Package pdftex.def Info: ./Bilder/3_qubit_qpe_measurement.PNG  used on input line 540.
 (pdftex.def)             Requested size: 448.13095pt x 285.86095pt.
-[17] [18
-pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.560 
-      
-pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.560 
-       <./Bilder/3_qubit_qpe.png> <./Bilder/3_qubit_qpe_measurement.PNG>]
-<./Bilder/3_qubit_qpe_measurment_uncertain.PNG, id=249, 761.09344pt x 402.00188pt>
+[18 <./Bilder/3_qubit_qpe.png>] [19 <./Bilder/3_qubit_qpe_measurement.PNG>]
+<./Bilder/3_qubit_qpe_measurment_uncertain.PNG, id=274, 761.09344pt x 402.00188pt>
 File: ./Bilder/3_qubit_qpe_measurment_uncertain.PNG Graphic file (type png)
 <use ./Bilder/3_qubit_qpe_measurment_uncertain.PNG>
 Package pdftex.def Info: ./Bilder/3_qubit_qpe_measurment_uncertain.PNG  used on input line 565.
 (pdftex.def)             Requested size: 448.13095pt x 236.70673pt.
-) (./Chapters/Funktionsweise.tex [19
-pdfTeX warning (ext4): destination with the same identifier (name{figure.6}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.6 
-     <./Bilder/3_qubit_qpe_measurment_uncertain.PNG>]
+) (./Chapters/Funktionsweise.tex
 Overfull \hbox (8.84059pt too wide) in paragraph at lines 8--16
 \T1/cmr/m/n/12 Ge-gen-satz zu klas-si-schen Fak-to-ri-sie-rungs-ver-fah-ren, die ex-po-nen-ti-el-le Zeit er-for-dern [[]KL23[]],
  []
 
-[20]
+[20 <./Bilder/3_qubit_qpe_measurment_uncertain.PNG>]
 Overfull \hbox (23.2811pt too wide) in paragraph at lines 46--49
 \T1/cmr/m/n/12 Algorithmus um die Quanten-Phase-Estimation. Die Ar-chi-tek-tur die-ser spe-zi-fi-schen Quanten-
  []
@@ -918,8 +1004,14 @@ Overfull \hbox (3.14633pt too wide) in paragraph at lines 46--49
 \T1/cmr/m/n/12 Phase-Estimation kor-re-spon-diert weit-ge-hend mit der in Ab-schnitt []5.6[] vor-ge-stell-ten Struk-
  []
 
-[21] [22]) (./Chapters/Implementierung.tex
-<./Bilder/shor_n_qubit.png, id=279, 542.025pt x 255.20343pt>
+[21] [22]) (./Chapters/Implementierung.tex [23]
+
+LaTeX Warning: Citation 'anonymousket' on page 24 undefined on input line 12.
+
+
+LaTeX Warning: Citation 'anonymousket' on page 24 undefined on input line 12.
+
+<./Bilder/shor_n_qubit.png, id=303, 542.025pt x 255.20343pt>
 File: ./Bilder/shor_n_qubit.png Graphic file (type png)
 <use ./Bilder/shor_n_qubit.png>
 Package pdftex.def Info: ./Bilder/shor_n_qubit.png  used on input line 14.
@@ -929,32 +1021,22 @@ Overfull \hbox (5.35828pt too wide) in paragraph at lines 7--17
 \T1/cmr/m/n/12 zen, be-nö-tigt man ein Gat-ter $\OML/cmm/m/it/12 U$ \T1/cmr/m/n/12 wel-ches die mo-du-la-re Mul-ti-pli-ka-ti-on $\OML/cmm/m/it/12 U [] \OT1/cmr/m/n/12 = []$\T1/cmr/m/n/12 ,
  []
 
-[23]
+[24 <./Bilder/shor_n_qubit.png>]
 Overfull \hbox (27.22221pt too wide) in paragraph at lines 38--42
 []\T1/cmr/m/n/12 Eine ef-fi-zi-en-te-re Me-tho-de, die oh-ne Hilfs-qubits aus-kommt, ist die Quanten-Addition [[]Dra00[]].
  []
 
-<./Bilder/3_qubit_quantum_add.png, id=287, 784.43062pt x 233.37187pt>
+<./Bilder/3_qubit_quantum_add.png, id=312, 784.43062pt x 233.37187pt>
 File: ./Bilder/3_qubit_quantum_add.png Graphic file (type png)
 <use ./Bilder/3_qubit_quantum_add.png>
 Package pdftex.def Info: ./Bilder/3_qubit_quantum_add.png  used on input line 48.
 (pdftex.def)             Requested size: 448.13095pt x 133.32246pt.
-[24
-pdfTeX warning (ext4): destination with the same identifier (name{figure.7}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.51 D
-      ie Registermarkierungen in der Mitte von Abbildung~\ref*{fig:3_qubit_q... <./Bilder/shor_n_qubit.png>]
+[25 <./Bilder/3_qubit_quantum_add.png>]
 Overfull \hbox (1.61519pt too wide) detected at line 80
 [][] \OT1/cmr/m/n/12 = [][([] + [] []) []([] + [] []) []([] + [] [])]
  []
 
-[25
-pdfTeX warning (ext4): destination with the same identifier (name{figure.8}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.97 \[
-       \frac{1}{\sqrt{2}}( \ket{0} + { e^{\frac{2 \pi i (2^{2}a_3 +2^1a_2+2^... <./Bilder/3_qubit_quantum_add.png>]
+
 Overfull \hbox (47.4755pt too wide) detected at line 170
 [] \OMS/cmsy/m/n/12 ^^A [] ^^A [] [] \OT1/cmr/m/n/12 = [] []
  []
@@ -964,7 +1046,7 @@ Overfull \hbox (62.3159pt too wide) detected at line 177
 []\OT1/cmr/m/n/12 [([] + [] []) []([] + [] []) []([] + [] [])]
  []
 
-
+[26]
 Overfull \hbox (12.30339pt too wide) detected at line 187
 []\OT1/cmr/m/n/12 [([] + [] []) []([] + [] []) []([] + [] [])]
  []
@@ -979,27 +1061,79 @@ Overfull \hbox (11.46402pt too wide) detected at line 207
 \OML/cmm/m/it/12 QFT\OT1/cmr/m/n/12 ([][])[][([] + [] []) []([] + [] []) []([] + [] [])]
  []
 
-[26]
-<./Bilder/3_qubit_fixed_quantum_addition.png, id=304, 688.82344pt x 161.10187pt>
+[27]
+<./Bilder/3_qubit_fixed_quantum_addition.png, id=330, 688.82344pt x 161.10187pt>
 File: ./Bilder/3_qubit_fixed_quantum_addition.png Graphic file (type png)
 <use ./Bilder/3_qubit_fixed_quantum_addition.png>
-Package pdftex.def Info: ./Bilder/3_qubit_fixed_quantum_addition.png  used on input line 255.
+Package pdftex.def Info: ./Bilder/3_qubit_fixed_quantum_addition.png  used on input line 260.
 (pdftex.def)             Requested size: 448.13095pt x 104.80838pt.
- [27
-pdfTeX warning (ext4): destination with the same identifier (name{figure.9}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.265 
-       <./Bilder/3_qubit_fixed_quantum_addition.png>]) (./Chapters/Resultate.tex) (./Chapters/Verlauf.tex) (./Chapters/Anhang.tex)
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 89.
+<./Bilder/3_qubit_fixed_quantum_addition_opt.png, id=336, 595.47469pt x 170.13562pt>
+File: ./Bilder/3_qubit_fixed_quantum_addition_opt.png Graphic file (type png)
+<use ./Bilder/3_qubit_fixed_quantum_addition_opt.png>
+Package pdftex.def Info: ./Bilder/3_qubit_fixed_quantum_addition_opt.png  used on input line 283.
+(pdftex.def)             Requested size: 448.13095pt x 128.03752pt.
+ [28 <./Bilder/3_qubit_fixed_quantum_addition.png>]
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 291.
  (c:/texlive/2023/texmf-dist/tex/latex-dev/base/t1cmtt.fd
 File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
-) [28]
-Overfull \hbox (1.37798pt too wide) in paragraph at lines 89--89
+)
+\openout3 = `BA.pyg'.
+
+ (./_minted-BA/default.pygstyle) (./_minted-BA/E951442412E8B7B7C2A3878F6B4D58E92EE3A8001F9B3DF45F9F923712CA9047.pygtex
+LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <12> not available
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 2.
+) [29 <./Bilder/3_qubit_fixed_quantum_addition_opt.png>]
+\openout3 = `BA.pyg'.
+
+ (./_minted-BA/7A3DF323F1CE55F209D885344703C7DA2EE3A8001F9B3DF45F9F923712CA9047.pygtex) [30]
+<./Bilder/Modular_adder_Paper.PNG, id=358, 489.32813pt x 137.7647pt>
+File: ./Bilder/Modular_adder_Paper.PNG Graphic file (type png)
+<use ./Bilder/Modular_adder_Paper.PNG>
+Package pdftex.def Info: ./Bilder/Modular_adder_Paper.PNG  used on input line 373.
+(pdftex.def)             Requested size: 448.13095pt x 126.16905pt.
+ [31 <./Bilder/Modular_adder_Paper.PNG>] [32]
+Overfull \hbox (3.21112pt too wide) in paragraph at lines 460--467
+\T1/cmr/m/n/12 Gat-ter bis zur Quanten-Subtraktion mit $\OML/cmm/m/it/12 a$ \T1/cmr/m/n/12 in-ver-se an-ge-wen-det. Zu-nächst wird ein selbstin-
+ []
+
+
+Overfull \hbox (10.03352pt too wide) in paragraph at lines 460--467
+\T1/cmr/m/n/12 Ab-schlie-ÿend folgt die Quanten-Addition mit $\OML/cmm/m/it/12 a$\T1/cmr/m/n/12 , um die zu-vor er-folg-te Quanten-Subtraktion
+ []
+
+
+LaTeX Warning: Citation 'ibmqx5' on page 33 undefined on input line 490.
+
+
+LaTeX Warning: Citation 'ibmqx5' on page 33 undefined on input line 490.
+
+<./Bilder/gatedef_U1U2U3_CNOT.png, id=374, 591.03662pt x 366.50064pt>
+File: ./Bilder/gatedef_U1U2U3_CNOT.png Graphic file (type png)
+<use ./Bilder/gatedef_U1U2U3_CNOT.png>
+Package pdftex.def Info: ./Bilder/gatedef_U1U2U3_CNOT.png  used on input line 492.
+(pdftex.def)             Requested size: 448.12833pt x 284.54955pt.
+[33]
+Overfull \hbox (8.07573pt too wide) in paragraph at lines 496--501
+\T1/cmr/m/n/12 Quanten-Subtraktionen so-wie die Hälf-te der (in-ver-sen) Quanten-Fourier-Transformationen
+ []
+
+
+LaTeX Warning: Citation 'qiskitReset' on page 34 undefined on input line 503.
+
+<./Bilder/modulareAddition.png, id=379, 901.11656pt x 297.36093pt>
+File: ./Bilder/modulareAddition.png Graphic file (type png)
+<use ./Bilder/modulareAddition.png>
+Package pdftex.def Info: ./Bilder/modulareAddition.png  used on input line 514.
+(pdftex.def)             Requested size: 448.13095pt x 147.88152pt.
+[34 <./Bilder/gatedef_U1U2U3_CNOT.png>]
+\openout3 = `BA.pyg'.
+
+ (./_minted-BA/56BCA3BC517522D2C527B3A6ED5A2AE42EE3A8001F9B3DF45F9F923712CA9047.pygtex) [35 <./Bilder/modulareAddition.png>]) (./Chapters/Resultate.tex) (./Chapters/Verlauf.tex) (./Chapters/Anhang.tex) [36] [37]
+Overfull \hbox (1.37798pt too wide) in paragraph at lines 88--88
 []\T1/cmr/m/n/12 Matthias Ho-meis-ter. \T1/cmr/m/it/12 Quan-tum Com-pu-ting ver-ste-hen\T1/cmr/m/n/12 . 5. Aufl. Sprin-ger, S. 215. 
  []
 
-[29] (./Chapters/Erklaerung.tex) [30] (./BA.aux)
+(./Chapters/Erklaerung.tex) [38] (./BA.aux)
  ***********
 LaTeX2e <2023-11-01> pre-release-0 (develop 2023-7-31 branch)
 L3 programming layer <2023-06-30>
@@ -1010,23 +1144,30 @@ LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `BA.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+runsystem(del BA.pyg)...executed.
+
+
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                BA
+(biblatex)                and rerun LaTeX afterwards.
+
 Package logreq Info: Writing requests to 'BA.run.xml'.
 \openout1 = `BA.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 24992 strings out of 475329
- 445909 string characters out of 5770278
- 1943280 words of memory out of 5000000
- 45700 multiletter control sequences out of 15000+600000
- 572865 words of font info for 68 fonts, out of 8000000 for 9000
+ 28098 strings out of 475329
+ 515232 string characters out of 5770278
+ 1941280 words of memory out of 5000000
+ 48717 multiletter control sequences out of 15000+600000
+ 574395 words of font info for 70 fonts, out of 8000000 for 9000
  1151 hyphenation exceptions out of 8191
- 108i,13n,107p,10996b,3159s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfcc1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm2074.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfsx1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfsx1440.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfsx1728.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on BA.pdf (30 pages, 1035687 bytes).
+ 108i,13n,107p,11021b,3169s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfcc1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm2074.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfsx1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfsx1440.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfsx1728.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
+Output written on BA.pdf (38 pages, 1333733 bytes).
 PDF statistics:
- 574 PDF objects out of 1000 (max. 8388607)
- 477 compressed objects within 5 object streams
- 103 named destinations out of 1000 (max. 500000)
- 281 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 672 PDF objects out of 1000 (max. 8388607)
+ 556 compressed objects within 6 object streams
+ 120 named destinations out of 1000 (max. 500000)
+ 317 words of extra memory for PDF output out of 10000 (max. 10000000)
 
