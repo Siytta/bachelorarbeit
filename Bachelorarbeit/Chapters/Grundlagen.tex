@@ -149,11 +149,11 @@ Schreibt man das Tensorprodukt voll aus und notiert \(x\) in Binärschreibweise,
 Die komplexe Exponentialfunktion ergibt für eine natürliche Zahl \(k\): \(e^{2\pi i k} = 1\).
 Mit dieser Eigenschaft kann man beispielsweise die Phasenverschiebung des ersten Tensors vereinfachen:
 \begin{align*} 
-  e^{\frac{2 \pi i (2^{n-1}x_n+~...~+2^1x_2+2^0x_1)}{2^1}}
+  e^{\frac{2 \pi i (2^{n-1}x_n+ \dotsb +2^1x_2+2^0x_1)}{2^1}}
   &\equiv
-  e^{\frac{2 \pi i (2^{n-1}x_n)}{2^1}}~...~e^{\frac{2 \pi i (2^1x_2)}{2^1}} e^{\frac{2 \pi i (2^0x_1)}{2^1}} \\
+  e^{\frac{2 \pi i (2^{n-1}x_n)}{2^1}} \dotsb e^{\frac{2 \pi i (2^1x_2)}{2^1}} e^{\frac{2 \pi i (2^0x_1)}{2^1}} \\
   &\equiv 
-  e^{{2 \pi i (2^{n-2}x_n)}}~...~e^{{2 \pi i (2^0x_2)}} e^{{2 \pi i (2^{-1}x_1)}}
+  e^{{2 \pi i (2^{n-2}x_n)}} \dotsb e^{{2 \pi i (2^0x_2)}} e^{{2 \pi i (2^{-1}x_1)}}
 \end{align*}
 Dabei ergibt nur der Term \(e^{{2 \pi i (2^{-1}x_1)}} \neq 1 \)  
 und verursacht somit eine relevante Phasenverschiebung.
