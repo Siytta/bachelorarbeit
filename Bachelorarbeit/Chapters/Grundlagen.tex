@@ -136,14 +136,16 @@ Der Ausdruck kann weiter vereinfacht werden indem das Tensorprodukt vorgezogen w
 \[QFT_{N}\ket{x}_{n} = \frac{1}{\sqrt{N}}\bigotimes_{k=1}^n [  \sum_{y_k=0}^{1}{ e^{\frac{2 \pi i x y_k}{2^k}}}\ket{y_{k}}]\]
 \[QFT_{N}\ket{x}_{n} = \frac{1}{\sqrt{N}}\bigotimes_{k=1}^n [  \ket{0} + { e^{\frac{2 \pi i x}{2^k}}}\ket{1}]\] 
 Schreibt man das Tensorprodukt voll aus und notiert \(x\) in Binärschreibweise, erhält man:
-\[ 
-\frac{1}{\sqrt{N}}
-(\ket{0} + 
-{ e^{\frac{2 \pi i (2^{n-1}x_n+...+2^1x_2+2^0x_1)}{2^1}}}\ket{1}) \bigotimes
-\ket{0} + 
-{ e^{\frac{2 \pi i (2^{n-1}x_n+...+2^1x_2+2^0x_1)}{2^2}}}\ket{1}...
-\ket{0} + 
-{ e^{\frac{2 \pi i (2^{n-1}x_n+...+2^1x_2+2^0x_1)}{2^n}}}\ket{1}\]
+\begin{align*}
+\frac{1}{\sqrt{N}}\Bigg(
+  \ket{0} + { e^{\frac{2 \pi i (2^{n-1}x_n+...+2^1x_2+2^0x_1)}{2^1}}}\ket{1}
+  \Bigg)
+  &\otimes
+  \ket{0} + { e^{\frac{2 \pi i (2^{n-1}x_n+...+2^1x_2+2^0x_1)}{2^2}}}\ket{1} \\
+  &\vdotswithin{\otimes} \\
+  &\otimes
+  \ket{0} + { e^{\frac{2 \pi i (2^{n-1}x_n+...+2^1x_2+2^0x_1)}{2^n}}}\ket{1}
+\end{align*}
 Die komplexe Exponentialfunktion ergibt für eine natürliche Zahl \(k\): \(e^{2\pi i k} = 1\).
 Mit dieser Eigenschaft kann man beispielsweise die Phasenverschiebung des ersten Tensors vereinfachen:
 \[ 
