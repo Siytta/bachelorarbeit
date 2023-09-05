@@ -203,11 +203,14 @@ Da auch alle anderen Tensoren den Ausdruck \(e^{\pi i x_k}\) und den Vorfaktor \
 
 Die weiteren Tensoren des Tensorproduktes beinhalten zunehmend mehr Ausdrücke die für unterschiedliche Phasenverschiebungen sorgen.
 Die Phasenverschiebung von einem einzelnen Ausdruck kann mit einem Phasen-Gatter realisiert werden.
-Das Phasen-gatter entspricht einer Rotation mit \(P(\lambda) = 
-\begin{pmatrix}
-  1 & 0 \\
-  0 & e^{i \lambda}
-\end{pmatrix}\).
+Das Phasen-gatter entspricht der Rotation:
+\[
+  P(\lambda) = 
+  \begin{pmatrix}
+    1 & 0 \\
+    0 & e^{i \lambda}
+  \end{pmatrix}
+\]
 
 Beispielsweise wirkt auf dem zweiten Qubit noch ein Phase-Gatter mit \(P(\frac{\pi i}{2} )\).
 Diese Phasenverschiebung soll aber nur angewendet werden wenn \(x_1 = 1\) ist.
