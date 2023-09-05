@@ -168,7 +168,7 @@ Somit sind die Phasenverschiebungen erkenntlich die auf ein Qubit wirken.
 Ausserdem verdeutlicht die Binärschreibweise, dass die angewendete Phasenverschiebung vom Zustand anderer Qubits abhängt.
 
 Für die Implementierung der Quanten-Fourier-Transformation sind nur die Terme relevant
-welche eine Phasenverschiebung von \(\neq 1\) bewirken.
+welche eine Phasenverschiebung von ungleich \(1\) bewirken.
 Dies kann man mit folgender Formel beschreiben:
 \[QFT_{N}\ket{x}_{n} = \frac{1}{\sqrt{N}}\bigotimes_{k=1}^n [  \ket{0} + { e^{\frac{2 \pi i \sum_{b=0}^{k-1}2^b x_{b+1} }{2^k}}}\ket{1}]\] 
 Im weiteren wird die Formel verwendet um ein Quantenschaltkreis der Quanten-Fourier-Transformation für drei Qubits zu implementieren:
