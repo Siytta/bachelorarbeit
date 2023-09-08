@@ -75,8 +75,8 @@ Die Wirkung der Quanten-Addition wird anhand der Abbildung~\ref*{fig:3_qubit_qua
 Am Anfang der linken Hälfte befinden sich beide Register in der Standardbasis.
 Auf das Zielregister \(\ket{a}_3\) wirkt die Quanten-Fourier-Transformation ohne Swap Gatter.
 Dadurch befindet sich \(\ket{a}_3\) nun in der Fourier-Basis \(\Phi\), also \(\ket{\Phi(a)}_3\):
-\[\ket{\Phi(a)}_3 = \frac{1}{\sqrt{8}} [ (\ket{0} + { e^{\frac{2 \pi i (2^0a_1)}{2^1}}}\ket{1} ) \bigotimes
-( \ket{0} + { e^{\frac{2 \pi i (2^1a_2+2^0a_1)}{2^2}}}\ket{1} ) \bigotimes
+\[\ket{\Phi(a)}_3 = \frac{1}{\sqrt{8}} [ (\ket{0} + { e^{\frac{2 \pi i (2^0a_1)}{2^1}}}\ket{1} ) \Tensor
+( \ket{0} + { e^{\frac{2 \pi i (2^1a_2+2^0a_1)}{2^2}}}\ket{1} ) \Tensor
 ( \ket{0} + { e^{\frac{2 \pi i (2^{2}a_3 +2^1a_2+2^0a_1)}{2^3}}}\ket{1} ) ] \]
 Anschließend wirkt auf das hinterste Tensorprodukt ein \(P(\pi)\) Phasen-Gatter,
 welches durch \(\ket{b_3}_1\) kontrolliert wird.
@@ -171,8 +171,8 @@ P(\frac{\pi}{4}) =
 Wendet man alle weiteren Phasen-Gatter auf das vollstände Tensorprodukt an, 
 erhält man:
 \[
-    \frac{1}{\sqrt{8}} [ (\ket{0} + { e^{\frac{2 \pi i (2^0(a_1+b_1))}{2^1}}}\ket{1} ) \bigotimes
-( \ket{0} + { e^{\frac{2 \pi i (2^1(a_2+b_2)+2^0(a_1+b_1))}{2^2}}}\ket{1} ) \bigotimes
+    \frac{1}{\sqrt{8}} [ (\ket{0} + { e^{\frac{2 \pi i (2^0(a_1+b_1))}{2^1}}}\ket{1} ) \Tensor
+( \ket{0} + { e^{\frac{2 \pi i (2^1(a_2+b_2)+2^0(a_1+b_1))}{2^2}}}\ket{1} ) \Tensor
 ( \ket{0} + { e^{\frac{2 \pi i (2^{2}(a_3+b_3) +2^1(a_2+b_2)+2^0(a_1+b_1))}{2^3}}}\ket{1} ) ]
 \]
 Setzt man in diese Formel zwei Zahlen in Binärschreibweise ein, 
@@ -181,39 +181,39 @@ wie wenn man die Summe der beiden Zahlen in die Formel der Quanten-Fourier-Trans
 Beispielsweise sei \(a = 3\) also binär \(a_3 = 0\), \(a_2 = 1\),\(a_1 = 1\) und 
 \(b = 1\) also \(b_3 = 0\), \(b_2 = 0\),\(b_1 = 1\):
 \[
-\frac{1}{\sqrt{8}} [ (\ket{0} + { e^{\frac{2 \pi i (2^0(1+1))}{2^1}}}\ket{1} ) \bigotimes
-( \ket{0} + { e^{\frac{2 \pi i (2^1(1+0)+2^0(1+1))}{2^2}}}\ket{1} ) \bigotimes
+\frac{1}{\sqrt{8}} [ (\ket{0} + { e^{\frac{2 \pi i (2^0(1+1))}{2^1}}}\ket{1} ) \Tensor
+( \ket{0} + { e^{\frac{2 \pi i (2^1(1+0)+2^0(1+1))}{2^2}}}\ket{1} ) \Tensor
 ( \ket{0} + { e^{\frac{2 \pi i (2^{2}(0+0) +2^1(1+0)+2^0(1+1))}{2^3}}}\ket{1} ) ]
 \]
 \[
-=\frac{1}{\sqrt{8}} [ (\ket{0} + \ket{1} ) \bigotimes
-( \ket{0} +   \ket{1} ) \bigotimes
+=\frac{1}{\sqrt{8}} [ (\ket{0} + \ket{1} ) \Tensor
+( \ket{0} +   \ket{1} ) \Tensor
 ( \ket{0} +  e^{\pi i }\ket{1} ) ]
 \]
 Das dies tatsächlich die Summe in Fourier-Basis entspricht, 
 wird deutlich wenn man das selbe Tensorprodukt aus der Quanten-Fourier-Transformation bildet:
 \[
     QFT(\ket{c}_3)
-    \frac{1}{\sqrt{8}} [ (\ket{0} + { e^{\frac{2 \pi i (2^0(c_1))}{2^1}}}\ket{1} ) \bigotimes
-( \ket{0} + { e^{\frac{2 \pi i (2^1(c_2)+2^0(c_1))}{2^2}}}\ket{1} ) \bigotimes
+    \frac{1}{\sqrt{8}} [ (\ket{0} + { e^{\frac{2 \pi i (2^0(c_1))}{2^1}}}\ket{1} ) \Tensor
+( \ket{0} + { e^{\frac{2 \pi i (2^1(c_2)+2^0(c_1))}{2^2}}}\ket{1} ) \Tensor
 ( \ket{0} + { e^{\frac{2 \pi i (2^{2}(c_3) +2^1(c_2)+2^0(c_1))}{2^3}}}\ket{1} ) ]
 \]
 Die Summe von \(a\) und \(b\) entspricht \(c = 4\) also \(c_3 = 1,~c_2 = 0,~c_1=0\):
 \[
     QFT(\ket{4}_3)
-    \frac{1}{\sqrt{8}} [ (\ket{0} + { e^{\frac{2 \pi i (2^0(0))}{2^1}}}\ket{1} ) \bigotimes
-( \ket{0} + { e^{\frac{2 \pi i (2^1(0)+2^0(0))}{2^2}}}\ket{1} ) \bigotimes
+    \frac{1}{\sqrt{8}} [ (\ket{0} + { e^{\frac{2 \pi i (2^0(0))}{2^1}}}\ket{1} ) \Tensor
+( \ket{0} + { e^{\frac{2 \pi i (2^1(0)+2^0(0))}{2^2}}}\ket{1} ) \Tensor
 ( \ket{0} + { e^{\frac{2 \pi i (2^{2}(1) +2^1(0)+2^0(0))}{2^3}}}\ket{1} ) ]
 \]
 \[
     = 
-    \frac{1}{\sqrt{8}} [ (\ket{0} + { e^{\frac{2 \pi i (0)}{2^1}}}\ket{1} ) \bigotimes
-( \ket{0} + { e^{\frac{2 \pi i (0)}{2^2}}}\ket{1} ) \bigotimes
+    \frac{1}{\sqrt{8}} [ (\ket{0} + { e^{\frac{2 \pi i (0)}{2^1}}}\ket{1} ) \Tensor
+( \ket{0} + { e^{\frac{2 \pi i (0)}{2^2}}}\ket{1} ) \Tensor
 ( \ket{0} + { e^{\frac{2 \pi i (2^{2}(1))}{2^3}}}\ket{1} ) ]
 \]
 \[
-=\frac{1}{\sqrt{8}} [ (\ket{0} + \ket{1} ) \bigotimes
-( \ket{0} +   \ket{1} ) \bigotimes
+=\frac{1}{\sqrt{8}} [ (\ket{0} + \ket{1} ) \Tensor
+( \ket{0} +   \ket{1} ) \Tensor
 ( \ket{0} +  e^{\pi i }\ket{1} ) ]
 \]
 Das Ergebnis der Quanten-Addition zweier Summanden \(a=3,~b=1\), 
@@ -227,8 +227,8 @@ kann die Summe in die Standardbasis und somit in einen Messbaren Zustand transfo
 \[
 iQFT(\ket{\Phi(4)_3})
 \equiv
- iQFT(\frac{1}{\sqrt{8}} [ (\ket{0} + \ket{1} ) \bigotimes
-( \ket{0} +   \ket{1} ) \bigotimes
+ iQFT(\frac{1}{\sqrt{8}} [ (\ket{0} + \ket{1} ) \Tensor
+( \ket{0} +   \ket{1} ) \Tensor
 ( \ket{0} +  e^{\pi i }\ket{1} ) ]) 
 =
 \ket{4}_3

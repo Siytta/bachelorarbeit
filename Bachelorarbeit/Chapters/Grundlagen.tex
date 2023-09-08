@@ -130,19 +130,19 @@ Mit \(N\) = \(2^n\) kann der Bruch im Exponenten gekürzt werden:
 Anschließend kann der Ausdruck \(2^{-k}\) zu \(\frac{1}{2^k}\) umgeformt werden: 
 \[QFT_{N}\ket{x}_{n} = \frac{1}{\sqrt{N}}\sum_{y_n=0}^{1}...\sum_{y_1=0}^{1}  e^{\frac{2 \pi i x \sum_{k=1}^{n} y_{n-k+1}}{2^k}}\ket{y_n ... y_{2}y_{1}}\]
 Die Summe im Exponenten der Basis \(e\) kann als Produkt umgeschrieben werden.
-Anstatt dem Produktzeichen \(\prod\) wird das Tensorprodukt \(\bigotimes\) verwendet, da es sich um Qubits handelt:
-\[QFT_{N}\ket{x}_{n} = \frac{1}{\sqrt{N}}\sum_{y_n=0}^{1}...\sum_{y_1=0}^{1} \bigotimes_{k=1}^n{ e^{\frac{2 \pi i x y_k}{2^k}}}\ket{y_{k}}\]
+Anstatt dem Produktzeichen \(\prod\) wird das Tensorprodukt \(\Tensor\) verwendet, da es sich um Qubits handelt:
+\[QFT_{N}\ket{x}_{n} = \frac{1}{\sqrt{N}}\sum_{y_n=0}^{1}...\sum_{y_1=0}^{1} \Tensor_{k=1}^n{ e^{\frac{2 \pi i x y_k}{2^k}}}\ket{y_{k}}\]
 Der Ausdruck kann weiter vereinfacht werden indem das Tensorprodukt vorgezogen wird:
-\[QFT_{N}\ket{x}_{n} = \frac{1}{\sqrt{N}}\bigotimes_{k=1}^n [  \sum_{y_k=0}^{1}{ e^{\frac{2 \pi i x y_k}{2^k}}}\ket{y_{k}}]\]
-\[QFT_{N}\ket{x}_{n} = \frac{1}{\sqrt{N}}\bigotimes_{k=1}^n [  \ket{0} + { e^{\frac{2 \pi i x}{2^k}}}\ket{1}]\] 
+\[QFT_{N}\ket{x}_{n} = \frac{1}{\sqrt{N}}\Tensor_{k=1}^n [  \sum_{y_k=0}^{1}{ e^{\frac{2 \pi i x y_k}{2^k}}}\ket{y_{k}}]\]
+\[QFT_{N}\ket{x}_{n} = \frac{1}{\sqrt{N}}\Tensor_{k=1}^n [  \ket{0} + { e^{\frac{2 \pi i x}{2^k}}}\ket{1}]\] 
 Schreibt man das Tensorprodukt voll aus und notiert \(x\) in Binärschreibweise, erhält man:
 \begin{align*}
 \frac{1}{\sqrt{N}}\Bigg(
   \ket{0} + { e^{\frac{2 \pi i (2^{n-1}x_n+...+2^1x_2+2^0x_1)}{2^1}}}\ket{1}
-  &\otimes
+  &\tensor
   \ket{0} + { e^{\frac{2 \pi i (2^{n-1}x_n+...+2^1x_2+2^0x_1)}{2^2}}}\ket{1} \\
-  &\vdotswithin{\otimes} \\
-  &\otimes
+  &\vdotswithin{\tensor} \\
+  &\tensor
   \ket{0} + { e^{\frac{2 \pi i (2^{n-1}x_n+...+2^1x_2+2^0x_1)}{2^n}}}\ket{1}
   \Bigg)
 \end{align*}
@@ -159,7 +159,7 @@ Dabei ergibt nur der Term \(e^{{2 \pi i (2^{-1}x_1)}} \neq 1 \)
 und verursacht somit eine relevante Phasenverschiebung.
 
 Abschließend lässt sich das gesamte Tensorprodukt vereinfachen:
-\[QFT_{N}\ket{x}_{n} = \frac{1}{\sqrt{N}}(\ket{0} + { e^{\frac{2 \pi i (2^0x_1)}{2^1}}}\ket{1}) \bigotimes
+\[QFT_{N}\ket{x}_{n} = \frac{1}{\sqrt{N}}(\ket{0} + { e^{\frac{2 \pi i (2^0x_1)}{2^1}}}\ket{1}) \Tensor
 ( \ket{0} + { e^{\frac{2 \pi i (2^1x_2+2^0x_1)}{2^2}}}\ket{1})...
 ( \ket{0} + { e^{\frac{2 \pi i (2^{n-1}x_n+ ... +2^1x_2+2^0x_1)}{2^n}}}\ket{1})\]
 
@@ -170,25 +170,25 @@ Ausserdem verdeutlicht die Binärschreibweise, dass die angewendete Phasenversch
 Für die Implementierung der Quanten-Fourier-Transformation sind nur die Terme relevant
 welche eine Phasenverschiebung von ungleich \(1\) bewirken.
 Dies kann man mit folgender Formel beschreiben:
-\[QFT_{N}\ket{x}_{n} = \frac{1}{\sqrt{N}}\bigotimes_{k=1}^n [  \ket{0} + { e^{\frac{2 \pi i \sum_{b=0}^{k-1}2^b x_{b+1} }{2^k}}}\ket{1}]\] 
+\[QFT_{N}\ket{x}_{n} = \frac{1}{\sqrt{N}}\Tensor_{k=1}^n [  \ket{0} + { e^{\frac{2 \pi i \sum_{b=0}^{k-1}2^b x_{b+1} }{2^k}}}\ket{1}]\] 
 Im weiteren wird die Formel verwendet um ein Quantenschaltkreis der Quanten-Fourier-Transformation für drei Qubits zu implementieren:
-\[QFT_{8}\ket{x}_{3} = \frac{1}{\sqrt{8}} [ (\ket{0} + { e^{\frac{2 \pi i (2^0x_1)}{2^1}}}\ket{1} ) \bigotimes
-( \ket{0} + { e^{\frac{2 \pi i (2^1x_2+2^0x_1)}{2^2}}}\ket{1} ) \bigotimes
+\[QFT_{8}\ket{x}_{3} = \frac{1}{\sqrt{8}} [ (\ket{0} + { e^{\frac{2 \pi i (2^0x_1)}{2^1}}}\ket{1} ) \Tensor
+( \ket{0} + { e^{\frac{2 \pi i (2^1x_2+2^0x_1)}{2^2}}}\ket{1} ) \Tensor
 ( \ket{0} + { e^{\frac{2 \pi i (2^{2}x_3 +2^1x_2+2^0x_1)}{2^3}}}\ket{1} ) ] \]
 Man kann die Phasenverschiebung die durch den Zustand eines einzelnen Qubits erzeugt wird verdeutlichen,
 indem man die Addition im Exponenten zu einer Multiplikation der gleichen Basen umformt:
-\[ = \frac{1}{\sqrt{8}} [ (\ket{0} + { e^{\frac{2 \pi i (2^0x_1)}{2^1}}}\ket{1}) \bigotimes
-( \ket{0} + { e^{\frac{2 \pi i (2^1x_2)}{2^2}} e^{\frac{2 \pi i (2^0x_1)}{2^2}} }\ket{1} ) \bigotimes
+\[ = \frac{1}{\sqrt{8}} [ (\ket{0} + { e^{\frac{2 \pi i (2^0x_1)}{2^1}}}\ket{1}) \Tensor
+( \ket{0} + { e^{\frac{2 \pi i (2^1x_2)}{2^2}} e^{\frac{2 \pi i (2^0x_1)}{2^2}} }\ket{1} ) \Tensor
 ( \ket{0} + { e^{\frac{2 \pi i (2^{2}x_3)}{2^3}} e^{\frac{2 \pi i (2^1x_2)}{2^3}} e^{\frac{2 \pi i (2^0x_1)}{2^3}}  }\ket{1} ) ] \]
 Die Phasenverschiebung wird eindeutiger indem man die Brüche kürzt:
-\[ = \frac{1}{\sqrt{8}} [ ( \ket{0} + e^{\pi i x_1}\ket{1} ) \bigotimes
-( \ket{0} + { e^{\pi i x_2} e^{ \frac{ \pi i x_1}{2}} }\ket{1} ) \bigotimes
+\[ = \frac{1}{\sqrt{8}} [ ( \ket{0} + e^{\pi i x_1}\ket{1} ) \Tensor
+( \ket{0} + { e^{\pi i x_2} e^{ \frac{ \pi i x_1}{2}} }\ket{1} ) \Tensor
 ( \ket{0} + { e^{\pi i x_3} e^{\frac{\pi i x_2}{2}} e^{ \frac{ \pi i x_1}{4}} }\ket{1} ) ] \]
 In einer abschließenden Umformung lässt sich die \(\frac{1}{\sqrt8}\) aufteilen.
 Dadurch erinnern die einzelnen Tensoren,
 beziehungsweise Qubits an die Form die bei eine Hadamard-Transformation entsteht:
-\[ = \frac{1}{\sqrt{2}}( \ket{0} + e^{\pi i x_1}\ket{1} ) \bigotimes
-\frac{1}{\sqrt{2}}( \ket{0} + { e^{\pi i x_2} e^{ \frac{ \pi i x_1}{2}} }\ket{1} ) \bigotimes
+\[ = \frac{1}{\sqrt{2}}( \ket{0} + e^{\pi i x_1}\ket{1} ) \Tensor
+\frac{1}{\sqrt{2}}( \ket{0} + { e^{\pi i x_2} e^{ \frac{ \pi i x_1}{2}} }\ket{1} ) \Tensor
 \frac{1}{\sqrt{2}}( \ket{0} + { e^{\pi i x_3} e^{\frac{\pi i x_2}{2}} e^{ \frac{ \pi i x_1}{4}} }\ket{1} )  \]
 Der Ausdruck \(e^{\pi i x_k}\) ist in jedem der einzelnen Qubits vorhanden.
 Des weiteren ist an dem \(x_k\) erkennbar das die angewendete Phasenverschiebung von dem Zustand des Qubits abhängig ist,
@@ -290,15 +290,15 @@ Dabei wird der Eigenwert, beziehungsweise \(\lambda_x\), auf den \(\ket{1}\)-Ant
 Sei: \(\ket{y}_1 \equiv \alpha\ket{0} + \beta\ket{1}\) mit \(\alpha,\beta \neq 0\), 
 dann:
 
-\(CU^{(n+1)\times (n+1)}(\ket{y}_1\bigotimes\ket{x}_n)=(\alpha\ket{0} + \lambda_x\beta\ket{1})\bigotimes\ket{x}_n\).
+\(CU^{(n+1)\times (n+1)}(\ket{y}_1\Tensor\ket{x}_n)=(\alpha\ket{0} + \lambda_x\beta\ket{1})\Tensor\ket{x}_n\).
 
 Es folgt ein Beispiel welches den Effekt verdeutlicht:
-Beachtet werden zwei Qubits im Zustand \(\ket{+}_1 \bigotimes \ket{-}_1\) auf die ein kontrolliertes X-Gatter angewendet wird.
+Beachtet werden zwei Qubits im Zustand \(\ket{+}_1 \Tensor \ket{-}_1\) auf die ein kontrolliertes X-Gatter angewendet wird.
 Dabei ist \(\ket{-}_1\) der Eigenvektor einer X-Transformation mit zugehörigen Eigenwert \(-\), also \(X^{1\times 1}\ket{-}_1=-\ket{-}_1\).
 
 Auf das zweite Qubit \(\ket{-}_1\) wirkt ein \(CX^{2\times 2}\) Gatter welches durch das erste Qubit \(\ket{+}_1\) kontrolliert wird:
 \[
-  CX^{2\times 2}( \ket{+}_1\ \bigotimes \ket{-}_1) =
+  CX^{2\times 2}( \ket{+}_1\ \Tensor \ket{-}_1) =
   \begin{pmatrix}
     1 & 0 & 0 & 0\\
     0 & 1 & 0 & 0\\
@@ -329,14 +329,14 @@ Auf das zweite Qubit \(\ket{-}_1\) wirkt ein \(CX^{2\times 2}\) Gatter welches d
     1 \\
     -1 
   \end{pmatrix}
-  \bigotimes
+  \Tensor
   \frac{1}{{\sqrt{2}}}
   \begin{pmatrix}
     1 \\
     -1 
   \end{pmatrix}
   =
-  \ket{-}_1 \bigotimes \ket{-}_1
+  \ket{-}_1 \Tensor \ket{-}_1
   \]
 Mithilfe des Phase-Kickback kann man also den Eigenwert einer unitären Transformation in die Phase eines Kontrollqubits verschieben.
 Der Vorteil davon ist, dass diese Phasenverschiebung nur den Vorfaktor von \(\ket{1}\) des Kontrollqubits betrifft und keine globale Phase darstellt.
@@ -355,16 +355,16 @@ Ein zugehöriger Eigenvektor dieser Transformation ist \(\ket{1}_1\) den \(P(2 i
 Um den Effekt das Phase-Kickback nutzen zu können, muss sich das Kontrollqubit in einer Superposition befinden.
 Dafür wird das Kontrollqubit im Zustand \(\ket{0}_1\) initialisiert und
 anschließend mit einem Hadamard-Gatter(H) in die gleichmäßige Superposition \(\ket{+}_1\) versetzt.
-\[\ket{0}_1 \bigotimes \ket{1}_1 
-\underrightarrow{H^{\bigotimes 1}}
- \ket{+}_1 \bigotimes \ket{1}_1
+\[\ket{0}_1 \Tensor \ket{1}_1 
+\underrightarrow{H^{\Tensor 1}}
+ \ket{+}_1 \Tensor \ket{1}_1
 =
 \frac{1}{\sqrt{2}}
 \begin{pmatrix}
   1 \\
   1
  \end{pmatrix}
- \bigotimes
+ \Tensor
  \begin{pmatrix}
   0 \\
   1 
@@ -417,7 +417,7 @@ befindet sich deswegen nicht mehr im Zustand \(\ket{+}_1\) :
     1 \\
     e^{2 i \pi \varphi}
    \end{pmatrix}
-   \bigotimes
+   \Tensor
    \begin{pmatrix}
     0 \\
     1 
@@ -435,7 +435,7 @@ Im Beispiel entspricht die inverse Quanten-Fourier-Transformation einem Hadamard
   1 \\
   e^{2 i \pi \varphi}
  \end{pmatrix}
- \underrightarrow{H^{\bigotimes 1}}
+ \underrightarrow{H^{\Tensor 1}}
  \frac{1}{\sqrt{2}}
  \begin{pmatrix}
   1 & 1\\
@@ -483,17 +483,17 @@ Der Aufbau der Schaltung ist in Abbildung~\ref{fig:qpe_n_qubit} abgebildet.
 Wird die Quanten-Fourier-Transformation wie in Abbildung~\ref{fig:qpe_n_qubit} realisiert,
 kann man den Zustand der Kontrollqubits vor der inversen Quanten-Fourier-Transformation wie folgt beschreiben:
 \[\frac{1}{\sqrt{N}}[
-  (\ket{0} + CU^{2^0}\ket{1}) \bigotimes
-  (\ket{0} + CU^{2^1}\ket{1}) \bigotimes 
-  ... \bigotimes
+  (\ket{0} + CU^{2^0}\ket{1}) \Tensor
+  (\ket{0} + CU^{2^1}\ket{1}) \Tensor 
+  ... \Tensor
   (\ket{0} + CU^{2^{n-1}}\ket{1}) 
 ]\]
 Mit \(U^{n\times n}\ket{x}_n=e^{2\pi i \varphi}\ket{x}_n\) wird der Eigenwert \(e^{2\pi i \varphi}\) wegen des Phase-Kickbacks
 über die \(CU\)-Gatter auf die Kontrollqubits übertragen:
 \[\frac{1}{\sqrt{N}}[
-  (\ket{0} + e^{2\pi i 2^0 \varphi}\ket{1}) \bigotimes
-  (\ket{0} + e^{2\pi i 2^1 \varphi}\ket{1}) \bigotimes 
-  ... \bigotimes
+  (\ket{0} + e^{2\pi i 2^0 \varphi}\ket{1}) \Tensor
+  (\ket{0} + e^{2\pi i 2^1 \varphi}\ket{1}) \Tensor 
+  ... \Tensor
   (\ket{0} + e^{2\pi i 2^{n-1} \varphi}\ket{1}) 
 ]\]
 Schreibt man \(\varphi\) als Binärbruch:
@@ -501,11 +501,11 @@ Schreibt man \(\varphi\) als Binärbruch:
 Kann die Formel in einer ähnlichen Form wie die Quanten-Fourier-Transformation umgeformt werden~\cite{nielsen_chuang_2010}:
 \[\frac{1}{\sqrt{N}}[
   (\ket{0} + e^{2\pi i (\frac{\varphi_n}{2})} ... e^{2\pi i (\frac{\varphi_2}{2^{n-1}})}e^{2\pi i (\frac{\varphi_1}{2^{n}})}\ket{1})  ... 
-  (\ket{0} +  e^{2\pi i (\frac{\varphi_2}{2})}e^{2\pi i (\frac{\varphi_1}{4})}\ket{1}) \bigotimes 
+  (\ket{0} +  e^{2\pi i (\frac{\varphi_2}{2})}e^{2\pi i (\frac{\varphi_1}{4})}\ket{1}) \Tensor 
   (\ket{0} + e^{2\pi i (\frac{\varphi_1}{2})}\ket{1}) 
 ]\]
 Die Formel besitzt die gespiegelte Struktur wie die Quanten-Fourier-Transformation ohne Swap-Gatter:
-\[QFT_{N}\ket{x}_{n} = \frac{1}{\sqrt{N}}(\ket{0} + { e^{2 \pi i \frac{(x_1)}{2}}}\ket{1}) \bigotimes
+\[QFT_{N}\ket{x}_{n} = \frac{1}{\sqrt{N}}(\ket{0} + { e^{2 \pi i \frac{(x_1)}{2}}}\ket{1}) \Tensor
 ( \ket{0} + { e^{2 \pi i \frac{(x_2)}{2}\frac{(x_1)}{4}}}\ket{1})...
 (\ket{0} + e^{2\pi i (\frac{x_n}{2})} ... e^{2\pi i (\frac{x_2}{2^{n-1}})}e^{2\pi i (\frac{x_1}{2^{n}})}\ket{1})\]
 Durch die Verwendung der Swap Gatter kann die Reihenfolge der quanten-Fourier-Transformation gespiegelt werden, 
@@ -519,7 +519,7 @@ indem die Phaseninformationen der Eingangsqubits in Zustände der Standartbasis 
 Die Anwendung der inversen Quanten-Fourier-Transformation, inklusive Swap-Gatter, bewirkt also:
 \[iQFT(\frac{1}{\sqrt{N}}[
   (\ket{0} + e^{2\pi i (\frac{\varphi_n}{2})} ... e^{2\pi i (\frac{\varphi_2}{2^{n-1}})}e^{2\pi i (\frac{\varphi_1}{2^{n}})}\ket{1})  ... 
-  (\ket{0} +  e^{2\pi i (\frac{\varphi_2}{2})}e^{2\pi i (\frac{\varphi_1}{4})}\ket{1}) \bigotimes 
+  (\ket{0} +  e^{2\pi i (\frac{\varphi_2}{2})}e^{2\pi i (\frac{\varphi_1}{4})}\ket{1}) \Tensor 
   (\ket{0} + e^{2\pi i (\frac{\varphi_1}{2})}\ket{1}) 
 ])\]
 \[ = \ket{\varphi_1 \varphi_{2}...\varphi_n}_n = \ket{2^n\varphi}_n\]
