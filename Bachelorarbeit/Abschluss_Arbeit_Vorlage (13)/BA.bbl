@@ -76,6 +76,33 @@
       \verb https://blog.google/technology/ai/unveiling-our-new-quantum-ai-campus/
       \endverb
     \endentry
+    \entry{anonymousket}{online}{}
+      \name{author}{1}{}{%
+        {{hash=59291d1ac747f496d8eb3a817d8d907b}{%
+           family={AnonymousKet},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{59291d1ac747f496d8eb3a817d8d907b}
+      \strng{fullhash}{59291d1ac747f496d8eb3a817d8d907b}
+      \strng{bibnamehash}{59291d1ac747f496d8eb3a817d8d907b}
+      \strng{authorbibnamehash}{59291d1ac747f496d8eb3a817d8d907b}
+      \strng{authornamehash}{59291d1ac747f496d8eb3a817d8d907b}
+      \strng{authorfullhash}{59291d1ac747f496d8eb3a817d8d907b}
+      \field{labelalpha}{Ano23}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Zugriff am: 14.08.2023}
+      \field{title}{Quantum Phase Estimation}
+      \field{year}{2023}
+      \verb{urlraw}
+      \verb https://anonymousket.medium.com/quantum-phase-estimation-e2910e8ef8ec
+      \endverb
+      \verb{url}
+      \verb https://anonymousket.medium.com/quantum-phase-estimation-e2910e8ef8ec
+      \endverb
+    \endentry
     \entry{beauregard2003circuit}{misc}{}
       \name{author}{1}{}{%
         {{hash=01ca83caaed70864ec51bf66982928f8}{%
@@ -511,6 +538,33 @@
       \field{pages}{215}
       \range{pages}{1}
     \endentry
+    \entry{ibmqx5}{online}{}
+      \name{author}{1}{}{%
+        {{hash=cbf44511d041dc6d1dd73cc0c033122c}{%
+           family={IBM},
+           familyi={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{fullhash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{bibnamehash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{authorbibnamehash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{authornamehash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{authorfullhash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \field{labelalpha}{IBM23}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Zugriff am: 14.08.2023}
+      \field{title}{IBM Q 16 Rueschlikon Backend Information}
+      \field{year}{2023}
+      \verb{urlraw}
+      \verb https://github.com/Qiskit/ibmq-device-information/tree/master/backends/rueschlikon/V1
+      \endverb
+      \verb{url}
+      \verb https://github.com/Qiskit/ibmq-device-information/tree/master/backends/rueschlikon/V1
+      \endverb
+    \endentry
     \entry{Jones_1998}{article}{}
       \name{author}{2}{}{%
         {{hash=ab7487651c91d82c7feba1a0fe5e0978}{%
@@ -590,6 +644,69 @@
       \field{isbn}{9781466570269}
       \field{title}{Introduction to modern cryptography}
       \field{year}{2023}
+    \endentry
+    \entry{koepf_modular_2021}{online}{}
+      \name{author}{1}{}{%
+        {{hash=3a30bf002651b2931b50d69a02712379}{%
+           family={Koepf},
+           familyi={K\bibinitperiod},
+           given={Wolfram},
+           giveni={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{3a30bf002651b2931b50d69a02712379}
+      \strng{fullhash}{3a30bf002651b2931b50d69a02712379}
+      \strng{bibnamehash}{3a30bf002651b2931b50d69a02712379}
+      \strng{authorbibnamehash}{3a30bf002651b2931b50d69a02712379}
+      \strng{authornamehash}{3a30bf002651b2931b50d69a02712379}
+      \strng{authorfullhash}{3a30bf002651b2931b50d69a02712379}
+      \field{labelalpha}{Koe21}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Abgerufen am: 20.08.2023}
+      \field{pagetotal}{78}
+      \field{subtitle}{Modulare Arithmetik}
+      \field{title}{Elementare Arithmetik und Algebra}
+      \field{year}{2021}
+      \verb{urlraw}
+      \verb https://www.mathematik.uni-kassel.de/~koepf/ElAriAl/modular.pdf
+      \endverb
+      \verb{url}
+      \verb https://www.mathematik.uni-kassel.de/~koepf/ElAriAl/modular.pdf
+      \endverb
+    \endentry
+    \entry{mosca1999hidden}{misc}{}
+      \name{author}{2}{}{%
+        {{hash=cac498e264a2fdb0a8c4dd3e95c92055}{%
+           family={Mosca},
+           familyi={M\bibinitperiod},
+           given={Michele},
+           giveni={M\bibinitperiod}}}%
+        {{hash=9599686a46cdec383dc84e5c2a0fe7e5}{%
+           family={Ekert},
+           familyi={E\bibinitperiod},
+           given={Artur},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{bfa6c6f3a70f2d6bc00135c6e3c1fd17}
+      \strng{fullhash}{bfa6c6f3a70f2d6bc00135c6e3c1fd17}
+      \strng{bibnamehash}{bfa6c6f3a70f2d6bc00135c6e3c1fd17}
+      \strng{authorbibnamehash}{bfa6c6f3a70f2d6bc00135c6e3c1fd17}
+      \strng{authornamehash}{bfa6c6f3a70f2d6bc00135c6e3c1fd17}
+      \strng{authorfullhash}{bfa6c6f3a70f2d6bc00135c6e3c1fd17}
+      \field{labelalpha}{ME99}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{quant-ph}
+      \field{eprinttype}{arXiv}
+      \field{title}{The Hidden Subgroup Problem and Eigenvalue Estimation on a Quantum Computer}
+      \field{year}{1999}
+      \verb{eprint}
+      \verb quant-ph/9903071
+      \endverb
     \endentry
     \entry{nielsen_chuang_2010}{book}{}
       \name{author}{2}{}{%
@@ -704,6 +821,35 @@
       \endverb
       \verb{url}
       \verb https://doi.org/10.1137%2Fs0097539795293172
+      \endverb
+    \endentry
+    \entry{qiskitReset}{online}{}
+      \name{author}{1}{}{%
+        {{hash=27e654e64d3c098764c18534a17f6565}{%
+           family={Team},
+           familyi={T\bibinitperiod},
+           given={Qiskit\bibnamedelima Development},
+           giveni={Q\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \strng{namehash}{27e654e64d3c098764c18534a17f6565}
+      \strng{fullhash}{27e654e64d3c098764c18534a17f6565}
+      \strng{bibnamehash}{27e654e64d3c098764c18534a17f6565}
+      \strng{authorbibnamehash}{27e654e64d3c098764c18534a17f6565}
+      \strng{authornamehash}{27e654e64d3c098764c18534a17f6565}
+      \strng{authorfullhash}{27e654e64d3c098764c18534a17f6565}
+      \field{labelalpha}{Tea23}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Accessed: 19.08.2023}
+      \field{title}{Reset — Qiskit 0.x documentation}
+      \field{year}{2023}
+      \verb{urlraw}
+      \verb https://qiskit.org/documentation/stubs/qiskit.circuit.library.Reset.html
+      \endverb
+      \verb{url}
+      \verb https://qiskit.org/documentation/stubs/qiskit.circuit.library.Reset.html
       \endverb
     \endentry
     \entry{zalka1998fast}{misc}{}

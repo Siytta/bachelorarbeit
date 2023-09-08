@@ -294,7 +294,7 @@ Der Code zur Funktion ist in Abbildung~\ref{code:QuantumAdd} dargestellt.
 \begin{figure}[H]
   \caption{Quantum-Addition in Qiskit}
   \label{code:QuantumAdd}
-\begin{minted}[linenos]{python}    
+\begin{minted}[linenos,fontsize=\footnotesize]{python}    
 def A_Gate(a_bin: list[int]) -> qiskit.circuit.gate:
     A_Gate = qiskit.QuantumCircuit(len(a_bin))
     theta_list = [0.0]*len(a_bin)
@@ -353,7 +353,7 @@ Der Code davon ist in~\ref{code:QuantumSub} abgebildet.
 \begin{figure}[H]
   \caption{Quantum-Subtraktion in Qiskit}
   \label{code:QuantumSub}
-\begin{minted}[linenos]{python}    
+\begin{minted}[linenos,fontsize=\footnotesize]{python}    
 def S_Gate(subtrahend_bin: list[int]) -> qiskit.circuit.gate:
     S_Gate = A_Gate(subtrahend_bin).inverse()
     S_Gate.name = "  Sub(" + str (binToDez(subtrahend_bin) )+ ")"
@@ -361,7 +361,7 @@ def S_Gate(subtrahend_bin: list[int]) -> qiskit.circuit.gate:
   \end{minted}
 \end{figure}
 
-\subsubsection{Modulare Addition}
+\subsubsection{Modulare Addition} \label{sub:modulareAddition}
 Die Gatter der Quanten-Addition und der Quanten-Subtraktion ermöglichen die Konstruktion einer unitären Transformation, 
 die die Berechnung der modularen Addition realisiert.
 Gemeinsam bilden sie einen Quantenschaltkreis, 
@@ -471,7 +471,7 @@ Des weiteren befindet sich das Bedingungs-Qubit wieder im initialen Zustand und 
 \vspace{1em}
 
 Wenn man den Quantenschaltkreis in Abbildung~\ref{fig:modulare_addition_paper} betrachtet,
-fällt auf, fällt auf, 
+fällt auf, 
 dass nicht alle Quanten-Additionen und Quanten-Subtraktionen kontrolliert durchgeführt werden.
 Die modulare Addition soll nur dann ausgeführt werden, wenn die Kontroll-Qubits \(\ket{c_1}\) und \(\ket{c_2}\) gesetzt sind.
 Dies ist zurückzuführen auf die Bedingung \(b < N\), 
@@ -486,10 +486,11 @@ Wie aus der Abbildung erkennbar,
 benötigt das kontrollierte Gatter mehr Hardware-Elemente als die drei Single-Qubit-Gatter.
 Somit ist es nicht möglich die Komplexität des Quantenschaltkreis zu verringern, 
 indem zusätzliche Gatter kontrolliert angewendet werden.
+
 \begin{figure} [H]
   \caption{Physikalische Implementierung~\cite{ibmqx5}}
   \label{fig:gatedef_U1U2U3_CNOT}
-  \includegraphics[width=\columnwidth,height=10cm]{gatedef_U1U2U3_CNOT.png}
+  \includegraphics[scale=0.5]{gatedef_U1U2U3_CNOT.png}
   \centering
   \end{figure}
 
@@ -500,7 +501,7 @@ Wäre es möglich, diesen Teil auszulassen, könnten zwei der insgesamt fünf Qu
 Quanten-Subtraktionen sowie die Hälfte der (inversen) Quanten-Fourier-Transformationen eingespart werden.
 
 Es gibt die Möglichkeit, bei einem Qubit einen Reset durchzuführen, wodurch dieses den Zustand \(\ket{0}\) annimmt.
-In Qiskit kann dies mit der Funktion \texttt(Reset)~\cite{qiskitReset} realisiert werden.
+In Qiskit kann dies mit der Funktion \texttt{Reset}~\cite{qiskitReset} realisiert werden.
 Die Verwendung ist jedoch nicht zielführend, da diese durch keine unitäre Abbildungsmatrix
 beschrieben werden kann.
 Somit ist die Reset Transformation nicht unitär und würde deswegen dazu führen, dass alle Quantenalgorithmen, 
@@ -515,27 +516,42 @@ ist diese Funktion für die Anwendung im Shor-Algorithmus ungeeignet.
   \centering
   \end{figure}
 
-Abbildung~\ref{fig:ModularAddition} zeigt die Implementierung in Qiskit, 
-die durch den Code der Funktion \texttt{Modular\_Adder\_Gate}~\ref{code:ModularAddition} beschrieben wird.
-Die Funktion \texttt{Modular\_Adder\_Gate} erwartet als Parameter den Summand \(a\) und die Zahl \(N\) jeweils als eine 
-Liste, welche die Zahl in Binärdarstellung beschreibt.
+Abbildung~\ref{fig:ModularAddition} zeigt die Implementierung eines Gatters für die modulare Addition 
+mit \(a = 6\) und \(N = 15\) in Qiskit.
+Der zugehörige Code, der ein Gatter wie in Abbildung~\ref{fig:ModularAddition} generiert, 
+ist in der Funktion \texttt{Modular\_Adder\_Gate}~\ref{code:ModularAddition} enthalten.
+
+Die Funktion \texttt{Modular\_Adder\_Gate} erwartet den Summand \(a\) und die Zahl \(N\) als Parameter, 
+jeweils in der Form einer Liste, 
+welche die Zahl in Binärdarstellung beschreibt.
 Dabei repräsentiert der erste Index beider Listen das Least-Significant-Bit.
 Wenn \(N\) der Größenordnung \(2^n\) entspricht, 
-müssen die Listen jeweils von der Länge \(n+1\) sein wobei das Most-Significant-Bit der \(0\) entspricht.
+müssen die Listen jeweils von der Länge \(n+1\) sein wobei das Most-Significant-Bit immer der \(0\) entspricht.
+
 Die Funktion definiert drei Wertebereiche, die die Positionen der Qubits beschreiben.
-\textit{c\_qbits} definiert die beiden Kontroll-Qubits, \textit{b\_qbits} die Qubits, welche den Summanden  \(b\) 
-in der Fourier-Basis enthalten und textit{cond\_qbit} repräsentiert die Position des Bedingungs-Qubit.
+\textit{c\_qbits} definiert die Position der beiden Kontroll-Qubits, 
+\textit{b\_qbits} die Qubits, welche den Summanden \(b\) 
+in der Fourier-Basis enthalten 
+und \textit{cond\_qbit} repräsentiert die Position des Bedingungs-Qubit.
 Dadurch das \textit{b\_qbits} genau so groß definiert wird, 
 wie die Liste des Summand \(a\) lang ist, wird sichergestellt, 
-dass das \textit{b\_qbits} Register ein extra Qubit enthält für das Borrow-Bit.
+dass das \textit{b\_qbits} Register ein extra Qubit für das Borrow-Bit enthält.
+In Zeile 5 der Funktion, wird ein Quantenschaltkreis definiert, 
+der aus so viele Qubits besteht, wie es insgesamt an Positionen in 
+\textit{c\_qbits}, \textit{b\_qbits} und \textit{cond\_qbit} gibt.
 
+In den Zeilen 6 bis 18 werden alle benötigten Gatter, 
+in der selben Reihenfolge wie in Abbildung~\ref{fig:modulare_addition_paper} angewendet.
+Zum hinzufügen eines eigens programmierten Gatters, 
+also für die Quanten-Addition, Quanten-Subtraktion und die Quanten-Fourier-Transformation,
+wird die Qiskit Methode \texttt{append} genutzt.
 
- 
+Abschließend wird der Quantenschaltkreis in Zeile 19 in ein Gatter umgewandelt.
 
 \begin{figure}[H]
   \caption{Modulare Addition in Qiskit}
   \label{code:ModularAddition}
-\begin{minted}[linenos]{python}    
+\begin{minted}[linenos,fontsize=\footnotesize]{python}    
 def Modular_Adder_Gate(a_bin: list[int],N_bin: list[int]) -> qiskit.circuit.gate:
   c_qbits = [0,1]
   b_qbits = list(range(2, len(a_bin)+2))
@@ -560,22 +576,442 @@ def Modular_Adder_Gate(a_bin: list[int],N_bin: list[int]) -> qiskit.circuit.gate
   \end{minted}
 \end{figure}
 
+\subsubsection{Kontrollierte Multiplikation}
+Als nächstes wird ein Gatter konstruiert, welches auf vier Quantenregister \(\ket{c}_1\ket{x}_{n}\ket{b}_{n+1}\ket{0}_1\)
+eine Transformation nach \(\ket{c}_1\ket{x}_{n}\ket{b + (ax)\mod N}_{n+1}\ket{0}_1\) durchführt.
+Das Gatter umfasst ein Kontroll-Qubit \(\ket{c}_1\), 
+ein Quantenregister \(\ket{x}_{n}\) mit dem Faktor \(x\),
+das Zielregister \(\ket{b}_{n+1}\) mit initialem Wert \(b\) und 
+ein Hilfsqubit \(\ket{0}_1\) welches als Bedingungs-Qubit dient.
+
+Die Spezifikation dieses Gatters besteht darin, 
+auf den Registerinhalt des Zielregisters \(\ket{b}_{n+1}\) mit initialen Wert \(b\) , 
+das Produkt der Faktoren \(x\) und \(a\) modulare aufzuaddieren.
+
+Dabei handelt es sich bei dem Faktor \(a\) um eine vorab bekannte Zahl die während der Berechnung nicht variiert.
+Anders sieht dies bei \(x\) aus, da es sich bei dieser Zahl um den Registerinhalt von \(\ket{x}_{n}\) handelt.
+Das Gatter berechnet also das Produkt einer klassischen Zahl \(a\) und dem Inhalt eines Quantenregisters \(x\).
+Das Register \(\ket{x}_{n}\) umfasst mehrere Qubits die \(x\) im Binärsystem beschreiben, 
+also zum Beispiel in Binärschreibweise für drei Qubits \(\ket{x}_{3} = 2^0x_0+2^1x_1+2^2x_2\).
+Das Produkt kann dementsprechend umgeformt werden: 
+\[(x\cdot a)  = (2^0x_0\cdot a+2^1x_1\cdot a+2^2x_2\cdot a) \]
+Beziehungsweise bezogen auf die Transformation des \(\ket{b}_{n+1}\) Registers:
+\[\ket{b + (x\cdot a) \mod N}_{4} = \ket{b + (2^0x_0\cdot a+2^1x_1\cdot a+2^2x_2\cdot a) \mod N}_{4}\]
+Bedeutet, dass die Transformation realisiert werden kann, 
+indem die einzelnen Produkte \(2^ix_i\cdot a\) einzeln auf \(\ket{b}_{n+1}\) addiert werden.
+Um große Zwischenergebnisse zu vermeiden, die gegebenenfalls für einen Overflow im \(\ket{b}_{n+1}\) Register sorgen, 
+kann man die Berechnung weiter umformen~\cite{beauregard2003circuit}:
+\[= \ket{(((b + 2^0x_0\cdot a)\mod N+2^1x_1\cdot a)\mod N+2^2x_2\cdot a) \mod N}_{4}\]
+Dies wird als Quantenschaltkreis realisiert, 
+indem eine Gatter zur modularen Addition verwendet wird, 
+um \((b + 2^ix_i\cdot a)\mod N\) zu berechnet.
+Dafür wird das modulare Addition Gatter mit dem Summanden beziehungsweise Parameter \(2^i\cdot a\) versehen 
+und für die Abhängigkeit von \(x_i\) durch das Qubit \(\ket{x_i}_1\) kontrolliert.
+Für die gesamte Summe muss jedes Qubit des \(\ket{x}_{n}\) Registers ein Gatter zur modularen Addition kontrollieren, 
+welche auf das Register \(\ket{b}_{n+1}\) wirken.
+Jedes Gatter zur modularen Addition bekommt die zugehörigen Potenz von \(2^i\) zugewiesen, 
+die auch der Wertigkeit des zugehörigen Kontroll-Qubits \(\ket{x_i}_1\) entspricht.
+Also wirken alle Gatter zur modularen Addition nacheinander auf das \(\ket{b}_{n+1}\) Register und 
+Transformieren dies so sukzessiv nach \(\ket{b + (x\cdot a) \mod N}_{n+1}\).
+
+Die verwendeten Gatter zur modularen Addition führen alle Berechnungen in der Fourier-Basis durch.
+Deswegen muss sich das \(\ket{b}_{n+1}\) Register auch in der Fourier-Basis befinden.
+Das Gatter für die kontrollierte Multiplikation wirkt dazu als erste Operation eine Quanten-Fourier-Transformation auf 
+das Zielregister \(\ket{b}_{n+1}\) und als letzte Operation die inverse Quanten-Fourier-Transformation.
+
+Zusätzlich verfügt das Gatter zur kontrollierten Multiplikation noch über das Kontroll-Qubit \(\ket{c}_1\).
+Dieses Kontroll-Qubit kontrolliert alle der verwendeten modularen Addition Gatter.
+Das Kontroll-Qubit \(\ket{c}_1\) findet beim nächsten Gatter Gebrauch.
+
+Alles zusammen führt zu einem Quantenschaltkreis wie in Abbildung~\ref{fig:cmult}.
+\begin{figure} [H]
+  \caption{Kontrollierte Multiplikation nach Beauregard~\cite{beauregard2003circuit}}
+  \label{fig:cmult}
+  \includegraphics[scale = 0.6]{cmult.png}
+  \centering
+  \end{figure}
 
 
 
+\vspace{1em}
 
+Der Code der einen Quantenschaltkreis als Gatter nach dem Konzept in Abbildung~\ref{fig:cmult} generiert, 
+wird in der Funktion \texttt{cmult\_gate}~\ref{code:ModularMultiplication} definiert.
+Die Funktion erwartet sowohl \(a\) als auch \(N\) als Parameter, 
+jeweils in der Form einer Liste, welche die Zahl in Binärdarstellung beschreibt.
+Dabei repräsentiert der erste Index beider Listen das Least-Significant-Bit.
+Damit die unterliegenden modularen Addition Gatter für die korrekte Anzahl an Qubits gebildet werden, 
+müssen die Listen jeweils von der Länge n + 1 sein, wenn \(N\) der Größenordnung \(2^n\) entspricht.
+Das Most-Significant-Bit ist dementsprechend für beide Listen \(0\).
+Des Weiteren erwartet die Funktion den Parameter \textit{x\_bits\_amount}, welcher angibt, 
+wie viele Qubits das Register \(\ket{x}_n\) umfasst 
+und somit also \(n\) entspricht. 
 
+Um die Position der Qubits zu beschreiben, 
+werden in der Funktion vier Wertebereiche definiert.
+\textit{c\_qbit} liegt an der ersten Stelle des kontrollierten Multiplikation Gatters und 
+ist für das Kontroll-Qubit \(\ket{c}_1\) vorhergesehen.
+Die darauffolgenden Qubits umfassen das \(\ket{x}_n\) Register und bestehen aus insgesamt \(n\) Qubits, 
+deren Position in \textit{c\_qbit} definiert ist.
+Die Position des \(\ket{b}_{n+1}\) Registers wird in \textit{b\_qbits} beschrieben.
+Aufgrund der unterliegenden Gatter umfasst das \(\ket{b}_{n+1}\) Register ein extra Qubit, 
+welches als Borrow-Bit dient.
+Die Position des letzten Qubit \(\ket{0}_1\) wird mit \textit{cond\_qbit} definiert.
+Dieses Qubit ist das Bedingungs-Qubit für die unterliegenden modularen Addition Gatter.
 
+Im Code~\ref{code:ModularMultiplication} wird in Zeile 9 die Quanten-Fourier-Transformation auf 
+das \(\ket{b}_{n+1}\) Register anwendet.
+In Zeile 10 bis 13 folgen die Gatter zur modularen Addition.
+Da \((b + a \cdot x) \mod N\) äquivalent ist zu \((b + (a \cdot x)\mod N) \mod N\)~\cite{koepf_modular_2021}, 
+wird einem Gatter der modularen Addition nicht der Parameter \(2^i\cdot a\) übergeben, 
+sondern \((2^i\cdot a)\mod N\).
+Andernfalls wäre es nötig, 
+zusätzliche Qubits zu verwendet, 
+damit \(2^i\cdot a\) gespeichert werden kann.
+Wie man in Zeile 13 sieht, teilen sich alle modularen Additions Gatter das selbe Bedingungs-Qubit \(\ket{0}_1\), 
+welches sich auf der Position von \textit{cond\_qbit} befindet.
+Genau aus diesem Grund, wird bei dem Gatter zur modularen Addition des Bedingungs-Qubit zurückgesetzt.
+Abschließend wird noch die inverse Quanten-Fourier-Transformation auf das \(\ket{b}_{n+1}\) Register anwendet und 
+von einem Quantenschaltkreis in ein Quantengatter umgeformt.
 
+\begin{figure}[H]
+  \caption{Kontrollierte Multiplikation in Qiskit}
+  \label{code:ModularMultiplication}
+\begin{minted}[linenos,fontsize=\footnotesize]{python}  
+def cmult_gate(x_bits_amount: int,a_bin: list[int],N_bin: list[int]) -> qiskit.circuit.gate:  
+  a_dez = binToDez(a_bin)
+  N_dez = binToDez(N_bin)
+  c_qbit = [0]
+  x_qbits =  list(range(1, x_bits_amount + 1))
+  b_qbits = list(range(1+x_bits_amount, 1 + x_bits_amount + len(a_bin)))
+  cond_qbit = [1 + x_bits_amount + len(a_bin)]
+  cmult_gate = qiskit.QuantumCircuit(1 + x_bits_amount + len(a_bin) + 1)
+  cmult_gate.append(QFT_Gate(len(b_qbits),inverse = False, MSB_first = False), b_qbits)
+  for i in range(0, len(x_qbits)):
+      a_i = ((2**(i)) *  a_dez) % N_dez
+      a_i_bin = dezToBin(a_i, len(a_bin))
+      cmult_gate.append(modular_adder_gate(a_i_bin, N_bin),c_qbit+[x_qbits[i]]+b_qbits+cond_qbit)
+  cmult_gate.append(QFT_Gate(len(b_qbits),inverse = True, MSB_first = False), b_qbits)
+  cmult_gate = cmult_gate.to_gate()
+  cmult_gate.name = "cmult " + str(a_dez) + " Mod " + str(N_dez)
+  return cmult_gate
+  \end{minted}
+\end{figure}
 
+In Qiskit wird der durch den Code gebildete Quantenschaltkreis wie in Abbildung~\ref{fig:cmult_qiskit} in Qiskit dargestellt.
+Die Visualisierung der Kontroll-Abzweigungen ist anders als in den vorherigen Abbildungen dargestellt.
+Dies liegt daran, dass die Kontroll-Qubits bereits in den unterliegenden Gattern, 
+also der modularen Addition, 
+definiert wurden.
+Es ist möglich, die Kontroll-Qubits bei der Definition der modularen Adder Gatter auszulassen und 
+stattdessen erst bei der Anwendung im kontrollierten Multiplikation Gatter anzuwenden, 
+indem die Qiskit Funktion \textit{control} verwendet wird.
+Dadurch wird der Kontrolleffekt auf das gesamte Gatter zur modularen Addition angewendet, 
+wodurch man einen ineffizientere Quantenschaltkreis erhält, 
+wie bereits im Abschnitt~\ref{sub:modulareAddition} zur modularen Addition erwähnt.
 
+Es ist zu beachten, dass die Gatter zur modularen Addition in Abbildung~\ref{fig:cmult_qiskit} zwar über 
+alle Qubits des \(\ket{x}_n\) Registers verlaufen, 
+jedoch ausschließlich durch das Qubit kontrolliert werden, 
+bei dem das modularen Additions Gatter den Index 1 verzeichnet.
+Die Abbildung repräsentiert den Quantenschaltkreis für \(a = 11;~N = 15\).
 
+\begin{figure} [H]
+  \caption{Schaltkreis der kontrollierten Multiplikation in Qiskit}
+  \label{fig:cmult_qiskit}
+  \includegraphics[scale = 0.5]{cmult_qiskit.PNG}
+  \centering
+  \end{figure}
 
+Insgesamt wirkt das Gatter auf \(2n+3\) Qubits.
+Diese setzen sich aus dem Kontroll-Qubit \(\ket{c}_1\), den \(n\) Qubits von \(\ket{x}_n\), 
+den \(n+1\) Qubits von \(\ket{b}_{n+1}\) und dem Bedingungs-Qubit \(\ket{0}_1\)zusammen.
 
+Damit die Inverse des kontrollierten Multiplikation Gatters eine Eindeutige Benennung hat, 
+wird dafür eine zusätzliche Funktion \texttt{inv\_cmult\_gate} definiert.
+\begin{figure}[H]
+  \caption{Inverse kontrollierte Multiplikation in Qiskit}
+  \label{code:InverseModularMultiplication}
+\begin{minted}[linenos,fontsize=\footnotesize]{python}  
+def inv_cmult_gate(x_bits_amount: int,a_bin: list[int],N_bin: list[int]) -> qiskit.circuit.gate:  
+  inv_cmult_gate = cmult_gate(x_bits_amount,a_bin,N_bin).inverse()
+  inv_cmult_gate.name = "inv cmult " + str(binToDez(a_bin)) + " Mod " + str(binToDez(N_bin))
+  return inv_cmult_gate
+  \end{minted}
+\end{figure}
 
+\subsubsection{Vollstände Transformation}
 
+Das letzte zu konstruierende Gatter realisiert die benötigte Transformation \(U\ket{y} = \ket{ay \mod N}\) und 
+wird im weiteren als \(U_a\)-Gatter bezeichnet.
+Mit dem \(U_a\)-Gatter wird die Quanten-Phase-Estimation, 
+wie in Abbildung~\ref{fig:shor_n_qubit}, für den Shor-Algorithmus gebildet.
+Dafür nimmt das \(U_a\)-Gatter die Quantenregister \(\ket{c}_1\ket{x}_{n}\ket{0}_{n+1}\ket{0}_1\) entgegen und 
+führt eine Transformation nach \(\ket{c}_1\ket{(a \cdot x) \mod N}_{n}\ket{0}_{n+1}\ket{0}_1\) durch.
 
+Um ein \(U_a\)-Gatter zu realisieren, benötigt man im Grunde lediglich zwei Gatter zur kontrollierten Multiplikation und 
+kontrollierte Swap-Gatter. 
 
+Im folgenden wird die Auswirkung der einzelnen Bestandteile des \(U_a\)-Gatter erklärt.
+Dabei werden von den Quantenregistern \(\ket{c}_1\ket{x}_{n}\ket{0}_{n+1}\ket{0}_1\) nur die beiden 
+Quantenregister \(\ket{x}_{n}\ket{0}_{n+1}\) beachtet.
+Sowohl \(\ket{c}_1\) also auch \(\ket{0}_1\) verzeichnen während der Transformation keine Veränderung, 
+welche für das Verständnis des \(U_a\)-Gatters relevant ist.
+Der Ablauf des \(U_a\)-Gatter ist der folgende~\cite{beauregard2003circuit}:
+Initial befindet sich die beiden Quantenregistern in dem Zustand \(\ket{x}_{n}\ket{0}_{n+1}\), 
+anschließend wird ein Gatter zur kontrollierten Multiplikation mit \(a\) ausgeführt, 
+welches den Zustand zu \(\ket{x}_{n}\ket{(ax)\mod N}_{n+1}\) transformiert.
+Darauf folgen kontrollierte Swap-Gatter die beide Zustände zu \(\ket{(ax)\mod N}_{n}\ket{x}_{n+1}\) vertauschen.
+Dabei ist zu beachten, 
+dass das zweite Quantenregister aus \(n+1\) Gattern besteht, 
+also ein Qubit mehr besitzt, als das erste Quantenregister.
+Da das Most-Significant-Bit des zweiten Quantenregisters, zu dem Zeitpunkt, garantiert dem Zustand \(\ket{0}\) entspricht, 
+kann dieses Vernachlässigt werden und wird keiner Swap-Operation unterzogen.
+Nach dem Swap wird ein inverses Gatter zur kontrollierten Multiplikation angewendet.
+Des Weiteren wird dem inverses Gatter zur kontrollierten Multiplikation statt dem Element \(a\), 
+das inverse von \(a\) sein multiplikatives Inverses in den Einheiten des Restklassenrings \(N\) übergeben, 
+also \(a^{-1} \mod N\).
+Als Folge davon, verändert sich der Zustand der Quantenregister von \(\ket{(ax)\mod N}_{n}\ket{x}_{n+1}\) 
+zu \(\ket{(ax)\mod N}_{n}\ket{(x-a^{-1}ax)\mod N}_{n+1}\).
+Der Ausdruck \((a^{-1}a)\mod N\) entspricht dem neutralen Element 1, 
+weswegen der Zustand der Quantenregister zu \(\ket{(ax)\mod N}_{n}\ket{0}_{n+1}\) vereinfacht werden kann.
 
+Beachtet man also den ersten und letzten Zustand der beiden Quantenregister, 
+so bewirkt das \(U\)-Gatter also eine Transformation von \(\ket{x}_{n}\ket{0}_{n+1}\) zu \(\ket{(ax)\mod N}_{n}\ket{0}_{n+1}\).
+Das Konzept des Aufbaus des Quantenschaltkreises ist in Abbildung~\ref{fig:u_gatter} dargestellt.
+\begin{figure} [H]
+  \caption{\(U_a\)-Gatter~\cite{beauregard2003circuit}}
+  \label{fig:u_gatter}
+  \includegraphics[scale = 0.8]{u_gatter.png}
+  \centering
+  \end{figure}
+
+Die Funktion \texttt{U\_gate}~\ref{code:UGatter} enthält den Code um ein \(U_a\)-Gatter zu generieren.
+Dazu benötigt die Funktion die selben Parameter wie die Funktion \texttt{cmult\_gate}, 
+also \textit{a\_bin} und \textit{N\_bin}, welche jeweils \(a\) und \(N\) binär im Listenformat beschreibt und 
+\textit{x\_bits\_amount}, die im Grunde \(n\) repräsentiert.
+
+Im Code~\ref{code:UGatter} werden insgesamt fünf Wertebereiche definiert.
+Das Kontroll-Qubit \(\ket{c}_1\) befindet sich auf der Position \textit{c\_qbit}.
+Das \(\ket{x}_{n}\) Quantenregister wird durch \textit{x\_qbits} beschrieben, 
+gefolgt von \textit{b\_qbits} für die Qubits von \(\ket{0}_{n+1}\).
+Das Bedingungs-Qubit wird auf der letzten Position des Gatters platziert, die in \textit{cond\_qbit} festgelegt ist.
+Des Weiteren wird noch \textit{full\_range} verwendet,
+in welcher alle der vier vorherigen Quantenregister umfasst sind.
+
+Wie im Code in Zeile 7 zu sehen ist, wird zuerst ein Gatter zur kontrollierten Multiplikation eingesetzt.
+Dazu bekommt die Funktion \texttt{cmult\_gate} die Parameter \textit{a\_bin}, \textit{N\_bin} und \textit{x\_bits\_amount} übergeben.
+Das Gatter zur kontrollierten Multiplikation wird über den Bereich \textit{full\_range} angewendet, 
+somit umfasst das \(U_a\)-Gatter auch \(2n+3\) Qubits.
+In Zeile 9 und 10 werden die kontrollierten Swap-Gatter eingesetzt.
+Wie man in Zeile 10 erkennt, bezieht sich die Wirkung eines Swap-Gatters auf den selben index von \textit{x\_qbits} und \textit{b\_qbits}.
+Somit werden die Qubits beider Quantenregister vertauscht, die die identische Wertigkeit besitzen.
+In Zeile 11 wird \(a^{-1}\mod N\) mit dem erweiterte euklidische Algorithmus Berechnet.
+Anschließend wird das Berechnete \(a^{-1}\mod N\) als Parameter an ein inverses kontrolliertes Multiplikation Gatter übergeben.
+Abschließend wird der Quantenschaltkreis zu einem Gatter umgeformt und passend benannt.
+
+\begin{figure}[H]
+  \caption{\(U\)-Gatter in Qiskit}
+  \label{code:UGatter}
+\begin{minted}[linenos,fontsize=\footnotesize]{python}  
+def U_gate(x_bits_amount: int,a_bin: list[int],N_bin: list[int]) -> qiskit.circuit.gate:  
+  c_qbit = [0]
+  x_qbits =  list(range(1, x_bits_amount + 1))
+  b_qbits = list(range(1+x_bits_amount, 1 + x_bits_amount + len(a_bin)))
+  cond_qbit = [1 + x_bits_amount + len(a_bin)]
+  full_range = c_qbit + x_qbits + b_qbits + cond_qbit
+  U_a_gate = qiskit.QuantumCircuit(len(full_range))
+  U_a_gate.append(cmult_gate(x_bits_amount,a_bin ,N_bin), full_range)
+  for i in (range(x_bits_amount)):
+      U_a_gate.cswap(c_qbit,x_qbits[i],b_qbits[i])
+  a_inv_bin = dezToBin(gcd(binToDez(a_bin),binToDez(N_bin)),len(a_bin))
+  U_a_gate.append(inv_cmult_gate(x_bits_amount,a_inv_bin ,N_bin), full_range)
+  U_a_gate = U_a_gate.to_gate()
+  U_a_gate.name = "  U_" + str(binToDez(a_bin))
+  return U_a_gate
+  \end{minted}
+\end{figure}
+
+Der Quantenschaltkreis der durch den Code~\ref{code:UGatter} gebildet wird, 
+wird in Qiskit wie in Abbildung dargestellt. 
+Die Abbildung~\ref{fig:u_gatter_qiskit} zeigt ein Beispiel für \(a=7\) und \(N=15\).
+
+\begin{figure} [H]
+  \caption{\(U_a\)-Gatter in Qiskit}
+  \label{fig:u_gatter_qiskit}
+  \includegraphics[scale = 0.5]{u_gatter_qiskit.PNG}
+  \centering
+  \end{figure}
+
+\subsubsection{QPE für Shor}
+Das \(U_a\)-Gatter führt die benötigte unitäre Transformation von \(U\ket{y} = \ket{ay \mod N}\) aus.
+Der letzte Schritt, um den Quantenschaltkreis des Quantenalgorithmus zu bilden, 
+der in der Lage, ist die Periode zu bestimmen, 
+besteht darin, 
+die Quanten-Phase-Estimation wie in Abbildung~\ref{fig:shor_n_qubit} mit den \(U_a\)-Gatter nachzubauen.
+
+In Abbildung~\ref{fig:shor_n_qubit} werden unter anderem \({U_a}^{2^x}\)-Gatter eingesetzt.
+Diese können realisiert werden, 
+indem ein \({U_a}\)-Gatter insgesamt \(2^x\) mal hintereinander geschaltet wird oder 
+indem anstelle von \(a\) den Parameter \(a^{2^x}\) an ein einzelnes \(U_a\)-Gatter übergibt.
+Die zweite Variante ist möglich wegen~\cite{beauregard2003circuit}:
+\[(a^nx)\mod N = \underbrace{(a...(((a(ax)\mod N)\mod N)...)\mod N)}_{\text{\(n\) mal}}\]
+
+Bei der Wahl zwischen den beiden Varianten ist das entscheidende Kriterium bei der Ressourceneffizienz. 
+Die zweite Variante schneidet dabei deutlich besser ab, da sie lediglich \(2n\) \(U_a\)-Gatter benötigt, 
+im Gegensatz zur ersten Variante, die \(2^n-1\) \(U_a\)-Gatter erfordert.
+
+Ein weiterer wichtiger Aspekt für den Aufbau der Quantenschaltung betrifft die Anzahl der benötigten Kontroll-Qubits.
+Beauregard erklärt in seinem Paper~\cite{beauregard2003circuit} nicht, 
+warum er eine Konstruktion mit insgesamt \(2n\) Kontroll-Qubits beziehungsweise \({U_a}^{2^x}\)-Gatter wählt.
+Es gibt Quellen, die mehr als \(2n\) \({U_a}^{2^x}\)-Gatter verwendeten~\cite{nielsen_chuang_2010}.
+Nach dem Paper von Peter Shor~\cite{Shor_1997} sind jedoch \(2n\) \({U_a}^{2^x}\)-Gatter ausreichen,
+wie auch im Abschnitt~\ref{Funktionsweise:klassisch} erläutert wird.
+Deswegen verwendet die hier implementierte Variante \(2n\) Kontroll-Qubits.
+
+\vspace{1em}
+
+Der Code für einen Quantenschaltkreis wie in Abbildung~\ref{fig:shor_n_qubit} ist in der Funktion 
+\texttt{Shor}~\ref{code:Periodenbestimmung} enthalten.
+Die Funktion erwartet die beiden Zahlen \(a\) und \(N\) als Parameter.
+Des Weiteren kann der Funktion über den Parameter \textit{number\_shots} mitgeteilt werden, 
+mit wie vielen Durchläufen der Quantenalgorithmus ausgeführt werden soll.
+Jeder Durchlauf gewährt ein weiteres Messergebnis.
+Der Parameter \textit{backend} ist dazu da, 
+um Festzulegen auf welchem System der Quantenalgorithmus ausgeführt werden soll.
+Standardmäßig wird der Simulator von Qiskit genommen, 
+falls Zugang zu einem Quantensystem von IBM besteht, 
+würde man hier die Bezeichnung des entsprechenden Quantum-Backend verwenden.
+Die Funktion \texttt{Shor} definiert die beiden Wertebereiche \textit{c\_qbits} und 
+\textit{ev\_qbits} um die Positionen der beiden Quantenregister zu beschreiben.
+Der Wertebereich \textit{c\_qbits} enthält die insgesamt \(2n\) Positionen der Kontroll-Qubits.
+Der Eigenvektor wird in den Qubits gespeichert, 
+deren Position in \textit{ev\_qbits} definiert ist.
+Der Quantenschaltkreis wird in der 5 Zeile definiert und umfasst \(4n+2\) Qubits und 
+\(2n\) klassische Bits, welche zum Messen verwendet werden.
+In Zeile 6 und 7 wird auf jedes Kontroll-Qubit mit ein Hadamard-Gatter angewendet.
+In Zeile 8 wird der Eigenvektor gebildet. 
+Da dieser dem Zustand \(\ket{1}\) entspricht,
+genügt es, wenn das Least-Significant-Qubit mit einem X-Gatter versehen wird.
+Die Zeile 9 und 10 wendet das Zugehörige \({U_a}^{2^x}\)-Gatter mit dem passenden \(x\) auf das Register mit dem Eigenvektor an.
+Die Funktion \texttt{mod\_exp} berechnet \((a^{2^x})\mod N\).
+In Zeile 11 wird die inverse Quanten-Fourier-Transformation auf die Kontroll-Qubits angewendet.
+Da die Funktion \texttt{Shor} Messungen durchführen soll, 
+wird in Zeile 12 definiert, welche Qubits gemessen werden. 
+Anschließend werden in Zeile 13-14 \textit{number\_shots} viele Messungen durchgeführt und 
+das Ergebnis als Rückgabewert der Funktion zurückgeben.
+
+Wie bei der Definition des Quantenschaltkreis in Zeil 5 erkennbar, 
+benötigt der Quantenschaltkreis \(4n+2\) Qubits anstatt \(2n+3\).
+Die Reduktion der benötigten Qubits wird in der Sektion~\ref{Optimierung} thematisiert. 
+
+\begin{figure}[H]
+  \caption{Periodenbestimmung in Qiskit}
+  \label{code:Periodenbestimmung}
+\begin{minted}[linenos,fontsize=\footnotesize]{python}  
+def Shor(a: int, N: int,number_shots: int = 1000, backend: str = "aer_simulator"):
+  n = N.bit_length()
+  c_qbits = range(2*n)
+  ev_qbits = list(range(len(c_qbits),4*n+2))
+  qc = qiskit.QuantumCircuit(4*n+2,len(c_qbits)) 
+  for c_bit in c_qbits:
+    qc.h(c_bit)
+  qc.x(ev_qbits[0])
+  for c_bit in c_qbits:
+    qc.append(U_gate(n,dezToBin(mod_exp(a,2**c_bit,N),n+1),dezToBin(N,n+1)),[c_bit]+ev_qbits)
+  qc.append(QFT_Gate(len(c_qbits),inverse = True, MSB_first = False,swaps = True), c_qbits)
+  qc.measure(c_qbits,c_qbits)
+  simulator = qiskit.Aer.get_backend(backend)
+  sim_result = qiskit.execute(qc, backend=simulator, shots=number_shots).result()
+  return sim_result.get_counts(qc)
+  \end{minted}
+\end{figure}
+
+In Abbildung~\ref{fig:shor_qiskit} ist der Quantenschaltkreis zu sehen, 
+welcher durch die Funktion \texttt{Shor} mit \(a=7;~N=15\) generiert wird.
+Bei \(N=15\) tritt der Effekt auf, das für \(x>1\) die Rechnung \((a^{2^x})\mod N = 1\) ergibt, 
+weswegen auch die \({U_a}^{2^x}\)-Gatter zu \(U_1\) werden.
+
+\begin{figure} [H]
+  \caption{Quantenalgorithmus von Shor in Qiskit}
+  \label{fig:shor_qiskit}
+  \includegraphics[scale = 0.6]{shor_qiskit.PNG}
+  \centering
+  \end{figure}
+
+\subsection{Faktorisierungsalgorithmus}
+Der Faktorisierungsalgorithmus kombiniert die Quanten-Phase-Estimation zur Periodenberechnung mit  
+der klassischen Nachberechnung. 
+Der Hauptfokus der Implementierung liegt darauf, 
+die Schwächen der Messergebnisse der Quanten-Phase-Estimation mithilfe klassischer Methoden zu kompensieren.
+Es ist zu erwarten, 
+dass die Ausführung von Quantenberechnungen auch mit zukünftig fortschrittlichen Quantencomputern kostenintensiv sein wird~\cite{Shor_1997}.
+Daher wäre es ineffizient, 
+die die Quanten-Phase-Estimation so oft zu wiederholen, 
+bis ein Ergebnis erzielt wird, das die Periode direkt offenbart.
+Stattdessen ist es ressourcensparender, ein erhaltenes Messergebnis 
+unter Berücksichtigung der drei möglichen Szenarien 
+die in Abschnitt~\ref{Funktionsweise:klassisch} erklärt werden,
+mit klassischen Methoden aufzubereiten. 
+Als Resultat können so weitere Durchläufe der Quanten-Phase-Estimation eingespart und 
+durch klassische Rechenleistung ersetzt werden.
+
+\vspace{1em}
+
+Die Grafik~\ref{fig:shor_measure} repräsentiert insgesamt 512 Messungen für \(a=19;~N=119\), 
+mit einer Genauigkeit \(k\) von \(2\text{ld}(119) \approx 14 \) und soll die Besonderheiten, 
+welche bei Messergebnissen auftreten können, hervorheben.
+Zur Verdeutlichung sind die Messergebnisse in Abbildung~\ref{fig:shor_measure} in vier Kategorien eingeteilt.
+Die Kriterien für die Einteilung in diese Kategorien basieren darauf, 
+ob nach der Division durch \(2^k\) und 
+der Anwendung des Kettenbruch-Algorithmus mit einem Limit von \(N\), 
+die Periode erfolgreich extrahiert werden kann.
+
+Die grünen Ergebnisse offenbaren direkt die gesuchte Periode von \(p = 24\).
+Ein Faktorisierungsalgorithmus der solange die Quanten-Phase-Estimation wiederholt, 
+bis ein Messergebnis die ungekürzte Periode enthält, 
+wird ausschließlich bei den grünen Ergebnissen erfolgreich sein.
+
+Anhand der gelben Ergebnisse kann die gesuchte Periode nicht direkt extrahiert werden.
+Dabei ist der Fall eingetreten, dass der Zähler und Nenner des Bruches einen gemeinsamen Teiler hatte, 
+wodurch der Bruch gekürzt werden konnte.
+Gegebenenfalls kann die Periode mit klassisch ausführbaren Methoden rekonstruiert werden.
+
+Die hellroten Ergebnisse sind zu weit vom Peak entfernt,
+weswegen diese die gesuchte Periode weder vollständig noch gekürzt enthalten.
+Womöglich kann von diesem Messergebnis die Periode gefunden werden, 
+wenn man die benachbarten Zustände überprüft.
+
+Die beiden dunkelroten Zustände sind die beiden Zustände der finale Superposition
+\(\ket{2^k \cdot \frac{0}{p}}_k\) und \(\ket{2^k \cdot \frac{p/2}{p}}_k\).
+Der Zustand \(\ket{2^k \cdot \frac{0}{p}}_k\) existiert für jede Zahl und erlaubt keine 
+Rückschlüsse auf die Periode.
+Der andere Zustand \(\ket{2^k \cdot \frac{p/2}{p}}_k\) existiert ausschließlich wenn \(p\) gerade ist.
+Auch dieser Zustand gewehrt keine hilfreichen Rückschlüsse auf die Phase, 
+da \(\frac{p/2}{p}\) immer zu \(\frac{1}{2}\) gekürzt wird.
+Eine notwendige Bedingung um die Faktoren aus \(p\) herleiten zu können, 
+ist, das \(p\) gerade ist~\cite*{Shor_1997}, 
+dies wird zwar durch die Messung von \(\ket{2^k \cdot \frac{p/2}{p}}_k\) bestätigt, 
+jedoch kann aus dieser Information keine hilfreiche Konsequenz gezogen werden.
+
+\begin{figure} [H]
+\caption{Beispiel Messung}
+\label{fig:shor_measure}
+\includegraphics[scale = 0.5]{Messung_beispiel.PNG}
+\centering
+\end{figure}
+
+\vspace{1em}
+
+Das Flussdiagramm in Abbildung~\ref{fig:Flussdiagramm} beschreibt den 
+
+\begin{figure} [H]
+\caption{Flussdiagramm Faktorisierung}
+\label{fig:Flussdiagramm}
+\includegraphics[scale = 0.5]{FlussdiagramFaktorisierung.png}
+\centering
+\end{figure}
+
+\subsection{Optimierung} \label{Optimierung}
 
 

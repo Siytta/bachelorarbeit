@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.7.31)  28 AUG 2023 23:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.7.31)  8 SEP 2023 08:29
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -887,17 +887,17 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 \tf@toc=\write7
 \openout7 = `BA.toc'.
 
- (./BA.lof)
+ (./BA.lof [3])
 \tf@lof=\write8
 \openout8 = `BA.lof'.
 
- (./Chapters/Abkuerzungsverz.tex) (./Chapters/Glossar.tex) (./Chapters/Einleitung.tex [3]) (./Chapters/Schwerpunkt.tex [4]) (./Chapters/Quantencomputer.tex [5] [6]
-<./Bilder/IBM-Quantum-DevRoadmap2022_Light.jpeg, id=172, 2509.375pt x 1411.2725pt>
+ (./Chapters/Abkuerzungsverz.tex) (./Chapters/Glossar.tex) (./Chapters/Einleitung.tex [4]) (./Chapters/Schwerpunkt.tex [5]) (./Chapters/Quantencomputer.tex [6]
+<./Bilder/IBM-Quantum-DevRoadmap2022_Light.jpeg, id=212, 2509.375pt x 1411.2725pt>
 File: ./Bilder/IBM-Quantum-DevRoadmap2022_Light.jpeg Graphic file (type jpg)
 <use ./Bilder/IBM-Quantum-DevRoadmap2022_Light.jpeg>
 Package pdftex.def Info: ./Bilder/IBM-Quantum-DevRoadmap2022_Light.jpeg  used on input line 59.
 (pdftex.def)             Requested size: 448.13095pt x 252.0154pt.
-) (./Chapters/Fundament.tex [7] [8 <./Bilder/IBM-Quantum-DevRoadmap2022_Light.jpeg>]) (./Chapters/Grundlagen.tex [9] [10] [11]
+ [7]) (./Chapters/Fundament.tex [8 <./Bilder/IBM-Quantum-DevRoadmap2022_Light.jpeg>]) (./Chapters/Grundlagen.tex [9] [10] [11]
 Overfull \hbox (62.50595pt too wide) detected at line 146
 []\OT1/cmr/m/n/12 ([] + [] []) [] [] + [] [] \OML/cmm/m/it/12 ::: [] \OT1/cmr/m/n/12 + [] []
  []
@@ -942,16 +942,16 @@ Overfull \hbox (17.92024pt too wide) detected at line 418
 [] [] [] [] \OMS/cmsy/m/n/12 ^^A [] [] \OT1/cmr/m/n/12 = [] [] = [] [] [] []
  []
 
-
-LaTeX Warning: Reference `fig:qpe_1qubit' on page 16 undefined on input line 452.
-
-
-LaTeX Warning: Reference `fig:qpe_1qubit_Messung' on page 16 undefined on input line 455.
-
-
-LaTeX Warning: Reference `fig:qpe_1qubit_Messung' on page 16 undefined on input line 456.
-
 [16]
+
+LaTeX Warning: Reference `fig:qpe_1qubit' on page 17 undefined on input line 452.
+
+
+LaTeX Warning: Reference `fig:qpe_1qubit_Messung' on page 17 undefined on input line 455.
+
+
+LaTeX Warning: Reference `fig:qpe_1qubit_Messung' on page 17 undefined on input line 456.
+
 
 LaTeX Warning: Reference `fig:qpe_n_qubit' on page 17 undefined on input line 474.
 
@@ -963,28 +963,28 @@ Overfull \hbox (34.63754pt too wide) detected at line 503
 \OML/cmm/m/it/12 QFT[] [][] \OT1/cmr/m/n/12 = []([] + [] []) []([] + [] [])\OML/cmm/m/it/12 :::\OT1/cmr/m/n/12 ([] + \OML/cmm/m/it/12 e[]:::e[]e[] []\OT1/cmr/m/n/12 )
  []
 
-
+[17]
 Overfull \hbox (11.27061pt too wide) in paragraph at lines 507--511
 []\T1/cmr/m/n/12 Wie im Ka-pi-tell zur Quanten-Fourier-Transformation er-klärt, trans-for-miert die Quanten-
  []
 
-[17]
+
 Overfull \hbox (33.44336pt too wide) detected at line 517
 \OML/cmm/m/it/12 iQFT\OT1/cmr/m/n/12 ([][([] + \OML/cmm/m/it/12 e[]:::e[]e[] []\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 :::\OT1/cmr/m/n/12 ([] + \OML/cmm/m/it/12 e[]e[] []\OT1/cmr/m/n/12 ) []([] + \OML/cmm/m/it/12 e[] []\OT1/cmr/m/n/12 )])
  []
 
-<./Bilder/3_qubit_qpe.png, id=260, 873.2625pt x 215.80624pt>
+<./Bilder/3_qubit_qpe.png, id=302, 873.2625pt x 215.80624pt>
 File: ./Bilder/3_qubit_qpe.png Graphic file (type png)
 <use ./Bilder/3_qubit_qpe.png>
 Package pdftex.def Info: ./Bilder/3_qubit_qpe.png  used on input line 529.
 (pdftex.def)             Requested size: 448.13095pt x 110.74464pt.
-<./Bilder/3_qubit_qpe_measurement.PNG, id=262, 933.4875pt x 595.47469pt>
+<./Bilder/3_qubit_qpe_measurement.PNG, id=304, 933.4875pt x 595.47469pt>
 File: ./Bilder/3_qubit_qpe_measurement.PNG Graphic file (type png)
 <use ./Bilder/3_qubit_qpe_measurement.PNG>
 Package pdftex.def Info: ./Bilder/3_qubit_qpe_measurement.PNG  used on input line 540.
 (pdftex.def)             Requested size: 448.13095pt x 285.86095pt.
 [18 <./Bilder/3_qubit_qpe.png>] [19 <./Bilder/3_qubit_qpe_measurement.PNG>]
-<./Bilder/3_qubit_qpe_measurment_uncertain.PNG, id=274, 761.09344pt x 402.00188pt>
+<./Bilder/3_qubit_qpe_measurment_uncertain.PNG, id=316, 761.09344pt x 402.00188pt>
 File: ./Bilder/3_qubit_qpe_measurment_uncertain.PNG Graphic file (type png)
 <use ./Bilder/3_qubit_qpe_measurment_uncertain.PNG>
 Package pdftex.def Info: ./Bilder/3_qubit_qpe_measurment_uncertain.PNG  used on input line 565.
@@ -1004,14 +1004,19 @@ Overfull \hbox (3.14633pt too wide) in paragraph at lines 46--49
 \T1/cmr/m/n/12 Phase-Estimation kor-re-spon-diert weit-ge-hend mit der in Ab-schnitt []5.6[] vor-ge-stell-ten Struk-
  []
 
-[21] [22]) (./Chapters/Implementierung.tex [23]
-
-LaTeX Warning: Citation 'anonymousket' on page 24 undefined on input line 12.
-
-
-LaTeX Warning: Citation 'anonymousket' on page 24 undefined on input line 12.
-
-<./Bilder/shor_n_qubit.png, id=303, 542.025pt x 255.20343pt>
+[21] [22] [23] [24]
+<./Bilder/wahrscheinlichkeit_k7.PNG, id=351, 772.38562pt x 237.13594pt>
+File: ./Bilder/wahrscheinlichkeit_k7.PNG Graphic file (type png)
+<use ./Bilder/wahrscheinlichkeit_k7.PNG>
+Package pdftex.def Info: ./Bilder/wahrscheinlichkeit_k7.PNG  used on input line 243.
+(pdftex.def)             Requested size: 424.8134pt x 130.42516pt.
+<./Bilder/wahrscheinlichkeit_k10.PNG, id=352, 775.39688pt x 240.9pt>
+File: ./Bilder/wahrscheinlichkeit_k10.PNG Graphic file (type png)
+<use ./Bilder/wahrscheinlichkeit_k10.PNG>
+Package pdftex.def Info: ./Bilder/wahrscheinlichkeit_k10.PNG  used on input line 249.
+(pdftex.def)             Requested size: 426.4696pt x 132.49539pt.
+ [25 <./Bilder/wahrscheinlichkeit_k7.PNG> <./Bilder/wahrscheinlichkeit_k10.PNG>] [26]) (./Chapters/Implementierung.tex
+<./Bilder/shor_n_qubit.png, id=380, 542.025pt x 255.20343pt>
 File: ./Bilder/shor_n_qubit.png Graphic file (type png)
 <use ./Bilder/shor_n_qubit.png>
 Package pdftex.def Info: ./Bilder/shor_n_qubit.png  used on input line 14.
@@ -1021,17 +1026,17 @@ Overfull \hbox (5.35828pt too wide) in paragraph at lines 7--17
 \T1/cmr/m/n/12 zen, be-nö-tigt man ein Gat-ter $\OML/cmm/m/it/12 U$ \T1/cmr/m/n/12 wel-ches die mo-du-la-re Mul-ti-pli-ka-ti-on $\OML/cmm/m/it/12 U [] \OT1/cmr/m/n/12 = []$\T1/cmr/m/n/12 ,
  []
 
-[24 <./Bilder/shor_n_qubit.png>]
+[27 <./Bilder/shor_n_qubit.png>]
 Overfull \hbox (27.22221pt too wide) in paragraph at lines 38--42
 []\T1/cmr/m/n/12 Eine ef-fi-zi-en-te-re Me-tho-de, die oh-ne Hilfs-qubits aus-kommt, ist die Quanten-Addition [[]Dra00[]].
  []
 
-<./Bilder/3_qubit_quantum_add.png, id=312, 784.43062pt x 233.37187pt>
+<./Bilder/3_qubit_quantum_add.png, id=388, 784.43062pt x 233.37187pt>
 File: ./Bilder/3_qubit_quantum_add.png Graphic file (type png)
 <use ./Bilder/3_qubit_quantum_add.png>
 Package pdftex.def Info: ./Bilder/3_qubit_quantum_add.png  used on input line 48.
 (pdftex.def)             Requested size: 448.13095pt x 133.32246pt.
-[25 <./Bilder/3_qubit_quantum_add.png>]
+[28 <./Bilder/3_qubit_quantum_add.png>]
 Overfull \hbox (1.61519pt too wide) detected at line 80
 [][] \OT1/cmr/m/n/12 = [][([] + [] []) []([] + [] []) []([] + [] [])]
  []
@@ -1041,12 +1046,12 @@ Overfull \hbox (47.4755pt too wide) detected at line 170
 [] \OMS/cmsy/m/n/12 ^^A [] ^^A [] [] \OT1/cmr/m/n/12 = [] []
  []
 
-
+[29]
 Overfull \hbox (62.3159pt too wide) detected at line 177
 []\OT1/cmr/m/n/12 [([] + [] []) []([] + [] []) []([] + [] [])]
  []
 
-[26]
+
 Overfull \hbox (12.30339pt too wide) detected at line 187
 []\OT1/cmr/m/n/12 [([] + [] []) []([] + [] []) []([] + [] [])]
  []
@@ -1061,18 +1066,18 @@ Overfull \hbox (11.46402pt too wide) detected at line 207
 \OML/cmm/m/it/12 QFT\OT1/cmr/m/n/12 ([][])[][([] + [] []) []([] + [] []) []([] + [] [])]
  []
 
-[27]
-<./Bilder/3_qubit_fixed_quantum_addition.png, id=330, 688.82344pt x 161.10187pt>
+[30]
+<./Bilder/3_qubit_fixed_quantum_addition.png, id=405, 688.82344pt x 161.10187pt>
 File: ./Bilder/3_qubit_fixed_quantum_addition.png Graphic file (type png)
 <use ./Bilder/3_qubit_fixed_quantum_addition.png>
 Package pdftex.def Info: ./Bilder/3_qubit_fixed_quantum_addition.png  used on input line 260.
 (pdftex.def)             Requested size: 448.13095pt x 104.80838pt.
-<./Bilder/3_qubit_fixed_quantum_addition_opt.png, id=336, 595.47469pt x 170.13562pt>
+<./Bilder/3_qubit_fixed_quantum_addition_opt.png, id=411, 595.47469pt x 170.13562pt>
 File: ./Bilder/3_qubit_fixed_quantum_addition_opt.png Graphic file (type png)
 <use ./Bilder/3_qubit_fixed_quantum_addition_opt.png>
 Package pdftex.def Info: ./Bilder/3_qubit_fixed_quantum_addition_opt.png  used on input line 283.
 (pdftex.def)             Requested size: 448.13095pt x 128.03752pt.
- [28 <./Bilder/3_qubit_fixed_quantum_addition.png>]
+ [31 <./Bilder/3_qubit_fixed_quantum_addition.png>]
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 291.
  (c:/texlive/2023/texmf-dist/tex/latex-dev/base/t1cmtt.fd
 File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
@@ -1080,18 +1085,18 @@ File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 \openout3 = `BA.pyg'.
 
  (./_minted-BA/default.pygstyle) (./_minted-BA/E951442412E8B7B7C2A3878F6B4D58E92EE3A8001F9B3DF45F9F923712CA9047.pygtex
-LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <12> not available
+LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10> not available
 (Font)              Font shape `T1/cmtt/m/n' tried instead on input line 2.
-) [29 <./Bilder/3_qubit_fixed_quantum_addition_opt.png>]
+) [32 <./Bilder/3_qubit_fixed_quantum_addition_opt.png>]
 \openout3 = `BA.pyg'.
 
- (./_minted-BA/7A3DF323F1CE55F209D885344703C7DA2EE3A8001F9B3DF45F9F923712CA9047.pygtex) [30]
-<./Bilder/Modular_adder_Paper.PNG, id=358, 489.32813pt x 137.7647pt>
+ (./_minted-BA/7A3DF323F1CE55F209D885344703C7DA2EE3A8001F9B3DF45F9F923712CA9047.pygtex) [33]
+<./Bilder/Modular_adder_Paper.PNG, id=435, 489.32813pt x 137.7647pt>
 File: ./Bilder/Modular_adder_Paper.PNG Graphic file (type png)
 <use ./Bilder/Modular_adder_Paper.PNG>
 Package pdftex.def Info: ./Bilder/Modular_adder_Paper.PNG  used on input line 373.
 (pdftex.def)             Requested size: 448.13095pt x 126.16905pt.
- [31 <./Bilder/Modular_adder_Paper.PNG>] [32]
+ [34 <./Bilder/Modular_adder_Paper.PNG>] [35]
 Overfull \hbox (3.21112pt too wide) in paragraph at lines 460--467
 \T1/cmr/m/n/12 Gat-ter bis zur Quanten-Subtraktion mit $\OML/cmm/m/it/12 a$ \T1/cmr/m/n/12 in-ver-se an-ge-wen-det. Zu-nächst wird ein selbstin-
  []
@@ -1101,39 +1106,93 @@ Overfull \hbox (10.03352pt too wide) in paragraph at lines 460--467
 \T1/cmr/m/n/12 Ab-schlie-ÿend folgt die Quanten-Addition mit $\OML/cmm/m/it/12 a$\T1/cmr/m/n/12 , um die zu-vor er-folg-te Quanten-Subtraktion
  []
 
-
-LaTeX Warning: Citation 'ibmqx5' on page 33 undefined on input line 490.
-
-
-LaTeX Warning: Citation 'ibmqx5' on page 33 undefined on input line 490.
-
-<./Bilder/gatedef_U1U2U3_CNOT.png, id=374, 591.03662pt x 366.50064pt>
+<./Bilder/gatedef_U1U2U3_CNOT.png, id=453, 591.03662pt x 366.50064pt>
 File: ./Bilder/gatedef_U1U2U3_CNOT.png Graphic file (type png)
 <use ./Bilder/gatedef_U1U2U3_CNOT.png>
-Package pdftex.def Info: ./Bilder/gatedef_U1U2U3_CNOT.png  used on input line 492.
-(pdftex.def)             Requested size: 448.12833pt x 284.54955pt.
-[33]
-Overfull \hbox (8.07573pt too wide) in paragraph at lines 496--501
+Package pdftex.def Info: ./Bilder/gatedef_U1U2U3_CNOT.png  used on input line 493.
+(pdftex.def)             Requested size: 295.5176pt x 183.24986pt.
+[36]
+Overfull \hbox (8.07573pt too wide) in paragraph at lines 497--502
 \T1/cmr/m/n/12 Quanten-Subtraktionen so-wie die Hälf-te der (in-ver-sen) Quanten-Fourier-Transformationen
  []
 
-
-LaTeX Warning: Citation 'qiskitReset' on page 34 undefined on input line 503.
-
-<./Bilder/modulareAddition.png, id=379, 901.11656pt x 297.36093pt>
+<./Bilder/modulareAddition.png, id=459, 901.11656pt x 297.36093pt>
 File: ./Bilder/modulareAddition.png Graphic file (type png)
 <use ./Bilder/modulareAddition.png>
-Package pdftex.def Info: ./Bilder/modulareAddition.png  used on input line 514.
+Package pdftex.def Info: ./Bilder/modulareAddition.png  used on input line 515.
 (pdftex.def)             Requested size: 448.13095pt x 147.88152pt.
-[34 <./Bilder/gatedef_U1U2U3_CNOT.png>]
+[37 <./Bilder/gatedef_U1U2U3_CNOT.png> <./Bilder/modulareAddition.png>]
 \openout3 = `BA.pyg'.
 
- (./_minted-BA/56BCA3BC517522D2C527B3A6ED5A2AE42EE3A8001F9B3DF45F9F923712CA9047.pygtex) [35 <./Bilder/modulareAddition.png>]) (./Chapters/Resultate.tex) (./Chapters/Verlauf.tex) (./Chapters/Anhang.tex) [36] [37]
+ (./_minted-BA/56BCA3BC517522D2C527B3A6ED5A2AE42EE3A8001F9B3DF45F9F923712CA9047.pygtex)
+Overfull \hbox (16.2854pt too wide) in paragraph at lines 580--586
+\T1/cmr/m/n/12 Als nächs-tes wird ein Gat-ter kon-stru-iert, wel-ches auf vier Quan-ten-re-gis-ter $[][] [][] [][] [][]$
+ []
+
+[38]
+<./Bilder/cmult.png, id=480, 511.15968pt x 313.17pt>
+File: ./Bilder/cmult.png Graphic file (type png)
+<use ./Bilder/cmult.png>
+Package pdftex.def Info: ./Bilder/cmult.png  used on input line 630.
+(pdftex.def)             Requested size: 306.69817pt x 187.90344pt.
+ [39] [40 <./Bilder/cmult.png>]
+\openout3 = `BA.pyg'.
+
+ (./_minted-BA/B38205BF6EB8FDA6AD0C58965D92D9042EE3A8001F9B3DF45F9F923712CA9047.pygtex)
+<./Bilder/cmult_qiskit.PNG, id=497, 673.01437pt x 430.60875pt>
+File: ./Bilder/cmult_qiskit.PNG Graphic file (type png)
+<use ./Bilder/cmult_qiskit.PNG>
+Package pdftex.def Info: ./Bilder/cmult_qiskit.PNG  used on input line 722.
+(pdftex.def)             Requested size: 336.50636pt x 215.30383pt.
+ [41]
+\openout3 = `BA.pyg'.
+
+ (./_minted-BA/2C620F8F2E5F6ED0641422624B6C2EB22EE3A8001F9B3DF45F9F923712CA9047.pygtex)
+Overfull \hbox (4.96573pt too wide) in paragraph at lines 755--778
+\T1/cmr/m/n/12 Quan-ten-re-gis-ter von $[][] [][]$ zu $[][] [][]$.
+ []
+
+[42 <./Bilder/cmult_qiskit.PNG>]
+<./Bilder/u_gatter.png, id=512, 283.81032pt x 137.7647pt>
+File: ./Bilder/u_gatter.png Graphic file (type png)
+<use ./Bilder/u_gatter.png>
+Package pdftex.def Info: ./Bilder/u_gatter.png  used on input line 785.
+(pdftex.def)             Requested size: 227.04855pt x 110.21188pt.
+ [43 <./Bilder/u_gatter.png>]
+\openout3 = `BA.pyg'.
+
+ (./_minted-BA/24295EDE2D213421CA459BF0AFF9B83B2EE3A8001F9B3DF45F9F923712CA9047.pygtex)
+<./Bilder/u_gatter_qiskit.PNG, id=522, 492.33937pt x 439.6425pt>
+File: ./Bilder/u_gatter_qiskit.PNG Graphic file (type png)
+<use ./Bilder/u_gatter_qiskit.PNG>
+Package pdftex.def Info: ./Bilder/u_gatter_qiskit.PNG  used on input line 842.
+(pdftex.def)             Requested size: 246.16907pt x 219.82071pt.
+ [44] [45 <./Bilder/u_gatter_qiskit.PNG>]
+\openout3 = `BA.pyg'.
+
+ (./_minted-BA/A8731A70EAA609A0729615A5B8CB10F02EE3A8001F9B3DF45F9F923712CA9047.pygtex) [46]
+<./Bilder/shor_qiskit.PNG, id=547, 743.77875pt x 493.845pt>
+File: ./Bilder/shor_qiskit.PNG Graphic file (type png)
+<use ./Bilder/shor_qiskit.PNG>
+Package pdftex.def Info: ./Bilder/shor_qiskit.PNG  used on input line 938.
+(pdftex.def)             Requested size: 446.27069pt x 296.30928pt.
+ [47 <./Bilder/shor_qiskit.PNG>]
+<./Bilder/Messung_beispiel.PNG, id=558, 865.73438pt x 279.29344pt>
+File: ./Bilder/Messung_beispiel.PNG Graphic file (type png)
+<use ./Bilder/Messung_beispiel.PNG>
+Package pdftex.def Info: ./Bilder/Messung_beispiel.PNG  used on input line 1000.
+(pdftex.def)             Requested size: 432.86613pt x 139.64638pt.
+<./Bilder/FlussdiagramFaktorisierung.png, id=560, 660.4675pt x 1085.05376pt>
+File: ./Bilder/FlussdiagramFaktorisierung.png Graphic file (type png)
+<use ./Bilder/FlussdiagramFaktorisierung.png>
+Package pdftex.def Info: ./Bilder/FlussdiagramFaktorisierung.png  used on input line 1011.
+(pdftex.def)             Requested size: 330.23294pt x 542.52554pt.
+ [48 <./Bilder/Messung_beispiel.PNG>]) (./Chapters/Resultate.tex) (./Chapters/Verlauf.tex) (./Chapters/Anhang.tex) [49 <./Bilder/FlussdiagramFaktorisierung.png>] [50]
 Overfull \hbox (1.37798pt too wide) in paragraph at lines 88--88
 []\T1/cmr/m/n/12 Matthias Ho-meis-ter. \T1/cmr/m/it/12 Quan-tum Com-pu-ting ver-ste-hen\T1/cmr/m/n/12 . 5. Aufl. Sprin-ger, S. 215. 
  []
 
-(./Chapters/Erklaerung.tex) [38] (./BA.aux)
+[51] (./Chapters/Erklaerung.tex) [52] (./BA.aux)
  ***********
 LaTeX2e <2023-11-01> pre-release-0 (develop 2023-7-31 branch)
 L3 programming layer <2023-06-30>
@@ -1146,28 +1205,23 @@ Package rerunfilecheck Info: File `BA.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 runsystem(del BA.pyg)...executed.
 
-
-Package biblatex Warning: Please (re)run Biber on the file:
-(biblatex)                BA
-(biblatex)                and rerun LaTeX afterwards.
-
 Package logreq Info: Writing requests to 'BA.run.xml'.
 \openout1 = `BA.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 28098 strings out of 475329
- 515232 string characters out of 5770278
- 1941280 words of memory out of 5000000
- 48717 multiletter control sequences out of 15000+600000
- 574395 words of font info for 70 fonts, out of 8000000 for 9000
+ 28292 strings out of 475329
+ 521793 string characters out of 5770278
+ 1944280 words of memory out of 5000000
+ 48858 multiletter control sequences out of 15000+600000
+ 576116 words of font info for 75 fonts, out of 8000000 for 9000
  1151 hyphenation exceptions out of 8191
- 108i,13n,107p,11021b,3169s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfcc1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm2074.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfsx1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfsx1440.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfsx1728.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on BA.pdf (38 pages, 1333733 bytes).
+ 108i,13n,107p,11021b,3178s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfcc1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm2074.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfsx1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfsx1440.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfsx1728.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
+Output written on BA.pdf (52 pages, 1711331 bytes).
 PDF statistics:
- 672 PDF objects out of 1000 (max. 8388607)
- 556 compressed objects within 6 object streams
- 120 named destinations out of 1000 (max. 500000)
- 317 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 893 PDF objects out of 1000 (max. 8388607)
+ 737 compressed objects within 8 object streams
+ 157 named destinations out of 1000 (max. 500000)
+ 402 words of extra memory for PDF output out of 10000 (max. 10000000)
 

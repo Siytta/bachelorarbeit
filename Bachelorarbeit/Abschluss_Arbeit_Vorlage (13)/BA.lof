@@ -5,14 +5,27 @@
 \contentsline {figure}{\numberline {4}{\ignorespaces 3-Kontroll-Qubit QPE}}{18}{figure.4}%
 \contentsline {figure}{\numberline {5}{\ignorespaces 3-C-Qubit QPE Messergebnis}}{19}{figure.5}%
 \contentsline {figure}{\numberline {6}{\ignorespaces QPE unpräzises Messergebnis}}{20}{figure.6}%
-\contentsline {figure}{\numberline {7}{\ignorespaces QPE für Shor~\blx@tocontentsinit {0}\cite {anonymousket}}}{24}{figure.7}%
-\contentsline {figure}{\numberline {8}{\ignorespaces Quantum-Addition}}{25}{figure.8}%
-\contentsline {figure}{\numberline {9}{\ignorespaces Quantum-Addition fixierte Phasenverschiebungen}}{28}{figure.9}%
-\contentsline {figure}{\numberline {10}{\ignorespaces Ressourcensparende Quantum-Addition}}{29}{figure.10}%
-\contentsline {figure}{\numberline {11}{\ignorespaces Quantum-Addition in Qiskit}}{29}{figure.11}%
-\contentsline {figure}{\numberline {12}{\ignorespaces Quantum-Subtraktion in Qiskit}}{30}{figure.12}%
-\contentsline {figure}{\numberline {13}{\ignorespaces Modulare Addition nach Beauregard~\blx@tocontentsinit {0}\cite {beauregard2003circuit}}}{31}{figure.13}%
-\contentsline {figure}{\numberline {14}{\ignorespaces Physikalische Implementierung~\blx@tocontentsinit {0}\cite {ibmqx5}}}{34}{figure.14}%
-\contentsline {figure}{\numberline {15}{\ignorespaces Qiskit modulare Addition}}{35}{figure.15}%
-\contentsline {figure}{\numberline {16}{\ignorespaces Modulare Addition in Qiskit}}{36}{figure.16}%
+\contentsline {figure}{\numberline {7}{\ignorespaces Messergebnisse für a=11, N=21, k=7 bei 1024 Messungen}}{25}{figure.7}%
+\contentsline {figure}{\numberline {8}{\ignorespaces Messergebnisse für a=11, N=21, k=10 bei 1024 Messungen}}{25}{figure.8}%
+\contentsline {figure}{\numberline {9}{\ignorespaces QPE für Shor~\blx@tocontentsinit {0}\cite {anonymousket}}}{27}{figure.9}%
+\contentsline {figure}{\numberline {10}{\ignorespaces Quantum-Addition}}{28}{figure.10}%
+\contentsline {figure}{\numberline {11}{\ignorespaces Quantum-Addition fixierte Phasenverschiebungen}}{31}{figure.11}%
+\contentsline {figure}{\numberline {12}{\ignorespaces Ressourcensparende Quantum-Addition}}{32}{figure.12}%
+\contentsline {figure}{\numberline {13}{\ignorespaces Quantum-Addition in Qiskit}}{32}{figure.13}%
+\contentsline {figure}{\numberline {14}{\ignorespaces Quantum-Subtraktion in Qiskit}}{33}{figure.14}%
+\contentsline {figure}{\numberline {15}{\ignorespaces Modulare Addition nach Beauregard~\blx@tocontentsinit {0}\cite {beauregard2003circuit}}}{34}{figure.15}%
+\contentsline {figure}{\numberline {16}{\ignorespaces Physikalische Implementierung~\blx@tocontentsinit {0}\cite {ibmqx5}}}{37}{figure.16}%
+\contentsline {figure}{\numberline {17}{\ignorespaces Qiskit modulare Addition}}{37}{figure.17}%
+\contentsline {figure}{\numberline {18}{\ignorespaces Modulare Addition in Qiskit}}{38}{figure.18}%
+\contentsline {figure}{\numberline {19}{\ignorespaces Kontrollierte Multiplikation nach Beauregard~\blx@tocontentsinit {0}\cite {beauregard2003circuit}}}{40}{figure.19}%
+\contentsline {figure}{\numberline {20}{\ignorespaces Kontrollierte Multiplikation in Qiskit}}{41}{figure.20}%
+\contentsline {figure}{\numberline {21}{\ignorespaces Schaltkreis der kontrollierten Multiplikation in Qiskit}}{42}{figure.21}%
+\contentsline {figure}{\numberline {22}{\ignorespaces Inverse kontrollierte Multiplikation in Qiskit}}{42}{figure.22}%
+\contentsline {figure}{\numberline {23}{\ignorespaces \(U_a\)-Gatter~\blx@tocontentsinit {0}\cite {beauregard2003circuit}}}{43}{figure.23}%
+\contentsline {figure}{\numberline {24}{\ignorespaces \(U\)-Gatter in Qiskit}}{44}{figure.24}%
+\contentsline {figure}{\numberline {25}{\ignorespaces \(U_a\)-Gatter in Qiskit}}{45}{figure.25}%
+\contentsline {figure}{\numberline {26}{\ignorespaces Periodenbestimmung in Qiskit}}{46}{figure.26}%
+\contentsline {figure}{\numberline {27}{\ignorespaces Quantenalgorithmus von Shor in Qiskit}}{47}{figure.27}%
+\contentsline {figure}{\numberline {28}{\ignorespaces Beispiel Messung}}{48}{figure.28}%
+\contentsline {figure}{\numberline {29}{\ignorespaces Flussdiagramm Faktorisierung}}{49}{figure.29}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

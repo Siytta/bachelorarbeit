@@ -2361,56 +2361,73 @@
     <bcf:datasource type="file" datatype="bibtex" glob="false">BA_Bib.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="5" intorder="1">1055638</bcf:citekey>
-    <bcf:citekey order="6" intorder="1">Cormen2009</bcf:citekey>
-    <bcf:citekey order="7" intorder="1">Hoever2022Krypto</bcf:citekey>
-    <bcf:citekey order="8" intorder="1">Shor_1997</bcf:citekey>
-    <bcf:citekey order="9" intorder="1">benioff1980</bcf:citekey>
-    <bcf:citekey order="10" intorder="1">Feynman1982</bcf:citekey>
-    <bcf:citekey order="11" intorder="1">deutsch1985</bcf:citekey>
-    <bcf:citekey order="12" intorder="1">Shor_1997</bcf:citekey>
-    <bcf:citekey order="13" intorder="1">grover1996fast</bcf:citekey>
-    <bcf:citekey order="14" intorder="1">Jones_1998</bcf:citekey>
-    <bcf:citekey order="15" intorder="1">DiVincenzo_2000</bcf:citekey>
-    <bcf:citekey order="16" intorder="1">IBM_2023</bcf:citekey>
-    <bcf:citekey order="17" intorder="1">IBM_2023</bcf:citekey>
-    <bcf:citekey order="18" intorder="1">Google_2023</bcf:citekey>
-    <bcf:citekey order="19" intorder="1">BSI_KPMG_2023</bcf:citekey>
-    <bcf:citekey order="20" intorder="1">dirac_1939</bcf:citekey>
-    <bcf:citekey order="21" intorder="1">Hoever2023Münze</bcf:citekey>
-    <bcf:citekey order="22" intorder="1">homeister2023quantum215</bcf:citekey>
-    <bcf:citekey order="23" intorder="1">Ruiz-Perez2017</bcf:citekey>
-    <bcf:citekey order="24" intorder="1">draper2000addition</bcf:citekey>
+    <bcf:citekey order="7" intorder="1">1055638</bcf:citekey>
+    <bcf:citekey order="8" intorder="1">Cormen2009</bcf:citekey>
+    <bcf:citekey order="9" intorder="1">Hoever2022Krypto</bcf:citekey>
+    <bcf:citekey order="10" intorder="1">Shor_1997</bcf:citekey>
+    <bcf:citekey order="11" intorder="1">benioff1980</bcf:citekey>
+    <bcf:citekey order="12" intorder="1">Feynman1982</bcf:citekey>
+    <bcf:citekey order="13" intorder="1">deutsch1985</bcf:citekey>
+    <bcf:citekey order="14" intorder="1">Shor_1997</bcf:citekey>
+    <bcf:citekey order="15" intorder="1">grover1996fast</bcf:citekey>
+    <bcf:citekey order="16" intorder="1">Jones_1998</bcf:citekey>
+    <bcf:citekey order="17" intorder="1">DiVincenzo_2000</bcf:citekey>
+    <bcf:citekey order="18" intorder="1">IBM_2023</bcf:citekey>
+    <bcf:citekey order="19" intorder="1">IBM_2023</bcf:citekey>
+    <bcf:citekey order="20" intorder="1">Google_2023</bcf:citekey>
+    <bcf:citekey order="21" intorder="1">BSI_KPMG_2023</bcf:citekey>
+    <bcf:citekey order="22" intorder="1">dirac_1939</bcf:citekey>
+    <bcf:citekey order="23" intorder="1">Hoever2023Münze</bcf:citekey>
+    <bcf:citekey order="24" intorder="1">homeister2023quantum215</bcf:citekey>
     <bcf:citekey order="25" intorder="1">Ruiz-Perez2017</bcf:citekey>
-    <bcf:citekey order="26" intorder="1">Hoever2023QC</bcf:citekey>
-    <bcf:citekey order="27" intorder="1">nielsen_chuang_2010</bcf:citekey>
+    <bcf:citekey order="26" intorder="1">draper2000addition</bcf:citekey>
+    <bcf:citekey order="27" intorder="1">Ruiz-Perez2017</bcf:citekey>
     <bcf:citekey order="28" intorder="1">Hoever2023QC</bcf:citekey>
     <bcf:citekey order="29" intorder="1">nielsen_chuang_2010</bcf:citekey>
-    <bcf:citekey order="30" intorder="1">nielsen_chuang_2010</bcf:citekey>
-    <bcf:citekey order="31" intorder="1">katz2023</bcf:citekey>
-    <bcf:citekey order="32" intorder="1">Shor_1997</bcf:citekey>
-    <bcf:citekey order="33" intorder="1">nielsen_chuang_2010</bcf:citekey>
-    <bcf:citekey order="34" intorder="1">nielsen_chuang_2010</bcf:citekey>
+    <bcf:citekey order="30" intorder="1">Hoever2023QC</bcf:citekey>
+    <bcf:citekey order="31" intorder="1">nielsen_chuang_2010</bcf:citekey>
+    <bcf:citekey order="32" intorder="1">nielsen_chuang_2010</bcf:citekey>
+    <bcf:citekey order="33" intorder="1">katz2023</bcf:citekey>
+    <bcf:citekey order="34" intorder="1">Shor_1997</bcf:citekey>
     <bcf:citekey order="35" intorder="1">nielsen_chuang_2010</bcf:citekey>
     <bcf:citekey order="36" intorder="1">nielsen_chuang_2010</bcf:citekey>
     <bcf:citekey order="37" intorder="1">nielsen_chuang_2010</bcf:citekey>
     <bcf:citekey order="38" intorder="1">Shor_1997</bcf:citekey>
     <bcf:citekey order="39" intorder="1">Shor_1997</bcf:citekey>
-    <bcf:citekey order="40" intorder="1">anonymousket</bcf:citekey>
-    <bcf:citekey order="41" intorder="1">anonymousket</bcf:citekey>
-    <bcf:citekey order="42" intorder="1">Hoever2023QC</bcf:citekey>
-    <bcf:citekey order="43" intorder="1">zalka1998fast</bcf:citekey>
-    <bcf:citekey order="44" intorder="1">draper2000addition</bcf:citekey>
-    <bcf:citekey order="45" intorder="1">beauregard2003circuit</bcf:citekey>
-    <bcf:citekey order="46" intorder="1">beauregard2003circuit</bcf:citekey>
-    <bcf:citekey order="47" intorder="1">beauregard2003circuit</bcf:citekey>
-    <bcf:citekey order="48" intorder="1">beauregard2003circuit</bcf:citekey>
-    <bcf:citekey order="49" intorder="1">beauregard2003circuit</bcf:citekey>
-    <bcf:citekey order="50" intorder="1">beauregard2003circuit</bcf:citekey>
+    <bcf:citekey order="40" intorder="1">mosca1999hidden</bcf:citekey>
+    <bcf:citekey order="41" intorder="1">nielsen_chuang_2010</bcf:citekey>
+    <bcf:citekey order="42" intorder="1">Shor_1997</bcf:citekey>
+    <bcf:citekey order="43" intorder="1">nielsen_chuang_2010</bcf:citekey>
+    <bcf:citekey order="44" intorder="1">Shor_1997</bcf:citekey>
+    <bcf:citekey order="45" intorder="1">Shor_1997</bcf:citekey>
+    <bcf:citekey order="46" intorder="1">anonymousket</bcf:citekey>
+    <bcf:citekey order="47" intorder="1">anonymousket</bcf:citekey>
+    <bcf:citekey order="48" intorder="1">Hoever2023QC</bcf:citekey>
+    <bcf:citekey order="49" intorder="1">zalka1998fast</bcf:citekey>
+    <bcf:citekey order="50" intorder="1">draper2000addition</bcf:citekey>
     <bcf:citekey order="51" intorder="1">beauregard2003circuit</bcf:citekey>
-    <bcf:citekey order="52" intorder="1">ibmqx5</bcf:citekey>
-    <bcf:citekey order="53" intorder="1">ibmqx5</bcf:citekey>
-    <bcf:citekey order="54" intorder="1">qiskitReset</bcf:citekey>
+    <bcf:citekey order="52" intorder="1">beauregard2003circuit</bcf:citekey>
+    <bcf:citekey order="53" intorder="1">beauregard2003circuit</bcf:citekey>
+    <bcf:citekey order="54" intorder="1">beauregard2003circuit</bcf:citekey>
+    <bcf:citekey order="55" intorder="1">beauregard2003circuit</bcf:citekey>
+    <bcf:citekey order="56" intorder="1">beauregard2003circuit</bcf:citekey>
+    <bcf:citekey order="57" intorder="1">beauregard2003circuit</bcf:citekey>
+    <bcf:citekey order="58" intorder="1">ibmqx5</bcf:citekey>
+    <bcf:citekey order="59" intorder="1">ibmqx5</bcf:citekey>
+    <bcf:citekey order="60" intorder="1">qiskitReset</bcf:citekey>
+    <bcf:citekey order="61" intorder="1">beauregard2003circuit</bcf:citekey>
+    <bcf:citekey order="62" intorder="1">beauregard2003circuit</bcf:citekey>
+    <bcf:citekey order="63" intorder="1">beauregard2003circuit</bcf:citekey>
+    <bcf:citekey order="64" intorder="1">koepf_modular_2021</bcf:citekey>
+    <bcf:citekey order="65" intorder="1">beauregard2003circuit</bcf:citekey>
+    <bcf:citekey order="66" intorder="1">beauregard2003circuit</bcf:citekey>
+    <bcf:citekey order="67" intorder="1">beauregard2003circuit</bcf:citekey>
+    <bcf:citekey order="68" intorder="1">beauregard2003circuit</bcf:citekey>
+    <bcf:citekey order="69" intorder="1">beauregard2003circuit</bcf:citekey>
+    <bcf:citekey order="70" intorder="1">nielsen_chuang_2010</bcf:citekey>
+    <bcf:citekey order="71" intorder="1">Shor_1997</bcf:citekey>
+    <bcf:citekey order="72" intorder="1">Shor_1997</bcf:citekey>
+    <bcf:citekey order="73" intorder="1">Shor_1997</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="anyt">
