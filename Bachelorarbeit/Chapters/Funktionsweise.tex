@@ -291,7 +291,7 @@ Die Erhöhung der Genauigkeit \(k\) auf Werte über \(2\text{ld}(N)\) hinaus hat
 dass die Wahrscheinlichkeit für das Eintreten des ersten oder zweiten Falls abnimmt.
 Dadurch verbessern sich gleichzeitig die Wahrscheinlichkeit, direkt ein korrektes Ergebnis zu messen.
 Allerdings führt dies zu einem komplexeren Quantenschaltkreis und 
-somit erhöhen sich die Kosten an zusätzlichen Ressourcen~\autocite[231]{nielsen_chuang_2010}.
+somit erhöhen sich die Kosten an zusätzlichen Ressourcen~\autocite[229]{nielsen_chuang_2010}.
 
 Der dritte und letzte Fall kann immer auftreten.
 In diesem Szenario wird ein \(\frac{s'}{p'}\) gemessen, 
@@ -300,8 +300,9 @@ deswegen von \(\frac{s}{p}\) auf \(\frac{s'}{p'}\) gekürzt wurden.
 In diesem Fall kann ein vielfaches von \(p'\), also \(2p'\),\(3p'\),.. zum richtigen \(p\) führen.
 Des Weiteren besteht die Möglichkeit, 
 dass bei einer zweiten Messung erneut ein gekürztes \(\frac{s}{p}\) als \(\frac{s''}{p''}\) gefunden wird.
-Wenn \(s'\) und \(s''\) keine Faktoren teilen,
-kann aus dem kleinsten gemeinsamen Vielfachen von \(p'\) und \(p''\) das \(p\) berechnet werden~\cite{Shor_1997}.
+Es ist möglich, dass aus dem kleinsten gemeinsamen Vielfachen von \(p'\) und \(p''\) das \(p\) berechnet werden kann~\cite{Shor_1997}.
+Dies ist nur den Fall, wenn \(s'\) und \(s''\) keine Faktoren teilen und 
+führt mit einer Wahrscheinlichkeit größer als \(0.25\) zur korrekten Periode \(p\)~\autocite[231]{nielsen_chuang_2010}.
 
 In Abbildung~\ref{fig:Messung10k} sind die beiden Peaks um die Zustände \(\ket{341}_{10}\) und \(\ket{683}_{10}\) rot gefärbt, 
 was auf den dritten Fall zurückzuführen ist.

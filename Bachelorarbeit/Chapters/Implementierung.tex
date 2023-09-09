@@ -1008,74 +1008,110 @@ Abbildung~\ref{fig:Flussdiagramm} gibt einen Überblick über den Ablauf des Alg
 von der Berechnung der Periode bis zur Bestimmung der Primfaktoren.
 
 Am Anfang des Algorithmus wird zufällig ein \(a\) definiert, 
-welches größer ist als 1 aber kleiner als \(N\).
+welches größer als 1 aber kleiner als \(N\) ist.
 
-Für den ungewöhnlichen Fall, dass \(a\) einen nicht-trivialen Teiler mit \(N\) teilt, 
+Für den ungewöhnlichen Fall, dass \(a\) einen gemeinsamen nicht-trivialen Teiler mit \(N\) hat, 
 ist dieser einer der gesuchten Faktoren von \(N\), 
 weswegen der Algorithmus terminiert.
 Die Überprüfung, ob \(a\) und \(N\) einen Faktor teilen, 
 kann mit Euklids Algorithmus mit maximal polynomialen Aufwand berechnet werden~\autocite*[301]{homeister2023quantum215}. 
-Euklids Algorithmus ist in der Lage den größte gemeinsamen Teiler(gcd) zu berechnen.
+Euklids Algorithmus ist in der Lage, den größten gemeinsamen Teiler(gcd) zu berechnen.
 
 Anschließend wird zu dem gewählten \(a\) ein Set erstellt.
 Dieses Set wird dafür genutzt, um die Brüche zu speichern, 
 bei denen die Periode nicht im Nenner steht. 
-Die gespeicherten Brüche beinhaltet in ihrem Nenner womöglich Teiler der gesuchten Periode, 
+Die gespeicherten Brüche enthalten in ihrem Nenner womöglich Teiler der gesuchten Periode, 
 welche bei weiteren Berechnungen dabei helfen könnten, die Periode zu finden.
 
-Darauf folgt der einzige Bestandteil des Algorithmus, 
-der auf einem Quantencomputer ausgeführt wird.
+Darauf folgt der einzige quantenalgorithmische Bestandteil der Berechnung, 
+welcher auf einem Quantencomputer ausgeführt wird.
 Konkret geht es um die Ausführung der für die Periodenbestimmung angepassten Quanten-Phase-Estimation. 
 Für ein ressourceneffizienteres Vorgehen, 
 liefert die Quanten-Phase-Estimation das Messergebnis eines einzelnen Durchlaufes direkt zurück. 
 
-Die nächste Berechnung wird wieder auf einem klassischen Rechnersystem ausgeführt.
+Die nächsten Berechnungen werden wieder auf einem klassischen Rechnersystem ausgeführt.
 Bei der Berechnung wird das Messergebnis aus dem Binärsystem ins Dezimalsystem umgewandelt
 und durch die entsprechende 2er Potenz geteilt.
 Nachdem das Ergebnis ermittelt wurde, 
 wird der Kettenbruch-Algorithmus angewendet. 
 Dieser Algorithmus findet aufgrund der festgelegten Limitation den nächstgelegenen Bruch mit einem Nenner kleiner als \(N\).
-Dieser Schritt wird ebenfalls mit einem maximal polynomialen Aufwand durchgeführt~\autocite*[230]{nielsen_chuang_2010}.
+Dieser Schritt wird ebenfalls mit einem maximal polynomialen Aufwand durchgeführt~\autocite[230]{nielsen_chuang_2010}.
 
-Im nächsten Schritt wird überprüft ob der Nenner des Bruches die Periode ist.
-Dies wird im ersten Durchlauf nur der Fall sein, 
-falls die Messung einen der Zustände ergeben hat, 
-die wie in Abbildung~\ref{fig:shor_measure} zu der farblich grünen Kategorien gehört.
+Im nächsten Schritt wird überprüft, ob der Nenner des Bruches der Periode entspricht.
+Im ersten Durchlauf wird dies nur der Fall sein, 
+wenn die Messung einen der Zustände ergeben hat, 
+die wie in Abbildung~\ref{fig:shor_measure} zu der farblich grünen Kategorie gehört.
 Sollte es nicht möglich sein, die Periode direkt zu extrahieren, 
-wird anhand des Messergebnis eine Nachberechnung angestoßen.
+wird anhand des Messergebnisses eine Nachberechnung angestoßen.
 
 Der erste Schritt in der Nachberechnung besteht darin, 
 zu überprüfen, ob ein Vielfaches des Nenners die Periode darstellt.
 Dabei ist zu beachten, bis zu welchem Vielfachen diese Überprüfung durchgeführt wird. 
 Ein sinnvoller Ansatz wäre, eine Obergrenze festzulegen, die logarithmisch mit \(n\) wächst.
 Andernfalls könnte es bei sehr großen Werten für \(N\) passieren, 
-dass zu viele klassische Berechnungen anfallen, die in einem vertretbaren Zeitaufwand nicht durchführbar sind.
+dass zu viele klassische Berechnungen anfallen, die in keinem vertretbaren Zeitaufwand durchführbar sind.
 
 Sollte die Periode keines der getesteten Vielfachen des Nenners darstellen, 
+wird das kleinste gemeinsame Vielfache(kgV) des aktuellen Nenners mit den einzelnen Nennern aus dem Set gebildet.
+Falls die beiden zugehörigen Zähler keinen Faktor teilen, 
+kann mit einer Wahrscheinlichkeit größer als \(0.25\) die Periode aus dem kgV berechnet werden~\autocite*[231]{nielsen_chuang_2010}.
 
+Die beiden vorherigen Methoden können zum Erfolg führen, 
+falls ein Messergebnis, wie in Abbildung~\ref{fig:shor_measure}, 
+zur gelben Kategorie gehört. 
+
+Wenn beide vorherigen Methoden fehlschlagen, 
+wird angenommen, dass das Messergebnis einer der beiden roten Kategorien angehört.
+In diesem Fall wird überprüft, ob einer der Nachbarn die Periode enthält.
+Damit der Aufwand nicht den Rahmen der Laufzeit sprengt, 
+werden genau wie bei der Überprüfung der Vielfachen
+nur eine begrenzte Anzahl an Nachbarn getestet.
+Falls einer der Nachbarn die Periode enthält, 
+handelt es sich dabei um ein Zustand, 
+welcher der hellroten Kategorie angehört, 
+wie beispielsweise in Abbildung~\ref{fig:shor_measure} der Zustand \(\ket{8878}_{14}\).
+Es ist möglich, 
+dass die Zustände der Nachbarn des Messergebnisses der gelben Kategorie angehören.
+In diesem Fall ist eine direkte Extraktion nicht möglich, 
+weswegen auch die Vielfachen und das kgV von einem benachbarten Zustand geprüft wird.
+In Abbildung~\ref{fig:shor_measure} repräsentiert der Zustand \(\ket{6837}_{14}\) dieses Szenario.
+
+Sollte keine Periode trotz der Nachberechnung extrahiert werden können, 
+wird der Bruch des Messergebnisses im Set gespeichert.
+Anschließend wird ein neuer Durchlauf der Quanten-Phase-Estimation 
+mit demselben \(a\) durchgeführt.
 
 Im Fall, dass die Periode direkt extrahiert werden konnte oder 
-durch die Nachberechnung bestimmt wurde, 
-wird überprüft ob die Periode gerade ist und die folgende Bedingung erfüllt ist:
+durch die Nachberechnung bestimmt wurde, wird überprüft, 
+ob die Periode einer geraden Zahl entspricht und die folgende Bedingung erfüllt:
 \[a^{\frac{p}{2}} = -1 \mod N\]
-Wenn dies der Fall ist kann mit der Periode und 
-Euklids Algorithmus mindestens ein nicht-trivialer Faktor von \(N\) berechnet werden~\cite{Shor_1997}:
+Wenn beide Kriterien zutreffen, 
+kann mit der Periode und 
+Euklids Algorithmus mindestens einer der nicht-trivialer Faktoren von \(N\) berechnet werden~\cite{Shor_1997}:
 \[gcd(a^{\frac{p}{2}}-1, N), gcd(a^{\frac{p}{2}}+1, N)\]
 Anschließend terminiert der Algorithmus. 
 Im Falle, dass nur ein Faktor gefunden wurde, kann der zweite berechnet werden, 
-indem \(N\) mit dem gefundenen Faktor dividiert wird.
+indem \(N\) durch den gefundenen Faktor dividiert wird.
 
+Falls die Periode ungerade ist oder die zweite Bedingung nicht erfüllt ist, 
+ist es nicht möglich, aus der gefundenen Periode die Faktoren zu berechnen~\cite{Shor_1997}.
+In diesem Fall wird ein neues \(a\) gewählt und ein neues leeres Set definiert. 
+Das alte Set ist nicht weiter von Bedeutung, 
+da dieses Informationen zur alten Periode enthält, 
+welche keinen Nutzen mehr haben.
+Anschließend wird mit dem neuen \(a\) die Quanten-Phase-Estimation ausgeführt und 
+die Berechnung wiederholt.
 
-Im Flussdiagramm und in der Beschreibung, 
-wird die Ausführung des Quantenalgorithmus praktisch als ein Abschnitt dargestellt, 
+Im Flussdiagramm und in der Beschreibung 
+wird die Ausführung des Quantenalgorithmus praktisch als ein sequenzieller Abschnitt dargestellt, 
 welcher erst durch einen gewissen Punkt in der klassischen Berechnung angestoßen wird.
 Dies ist aber nur der Fall, bis das erste \(a\) bestimmt wird.
 Da der Quantenalgorithmus und die klassischen Berechnungen auf zwei unterschiedlichen Systemen laufen~\cite{IBMQuantumServerless2023}, 
-ist es möglich, während der klassischen Nachberechnung, 
-bereits eine weiteren Durchlauf der Quantenberechnung durchzuführen. 
+ist es möglich parallel zur klassischen Nachberechnung, 
+bereits einen weiteren Durchlauf der Quantenberechnung durchzuführen. 
 Allerdings kann es bei diesem Vorgehen dazu kommen, 
 dass die erste Messung bereits die korrekte Periode offenbart, 
-weswegen eine parallele zweite Messung unnötige Quanten-Ressourcen verschwendet.
+weswegen eine parallele zweite Messung unnötige Quanten-Ressourcen beansprucht.
 
 \begin{figure} [H]
 \caption{Flussdiagramm Faktorisierung}
