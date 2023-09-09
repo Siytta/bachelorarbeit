@@ -14,7 +14,7 @@ def dezToBin(dez: int, length: int = -1) -> list[int]:
     return bin
 
     
-def modular_exponentiation(base, exponent, modulus):
+def mod_exp(base, exponent, modulus):
     result = 1
     base = base % modulus
 

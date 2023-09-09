@@ -1113,7 +1113,7 @@ Allerdings kann es bei diesem Vorgehen dazu kommen,
 dass die erste Messung bereits die korrekte Periode offenbart, 
 weswegen eine parallele zweite Messung unnötige Quanten-Ressourcen beansprucht.
 
-\begin{figure} [H]
+\begin{figure} 
 \caption{Flussdiagramm Faktorisierung}
 \label{fig:Flussdiagramm}
 \includegraphics[scale = 0.5]{FlussdiagramFaktorisierung.png}
@@ -1121,5 +1121,61 @@ weswegen eine parallele zweite Messung unnötige Quanten-Ressourcen beansprucht.
 \end{figure}
 
 \subsection{Optimierung} \label{Optimierung}
+Der folgende Abschnitt thematisiert zwei mögliche Methoden, 
+um den Ressourcenbedarf der Quantenbrechung zu reduzieren.
+Beide Optimierungen kommen mit einer Abwägung, 
+die gewisse Nachteile mit sich bringt,
+wodurch im Gegenzug jedoch Ressourcen eingespart werden.
+Somit handelt es sich bei den Optimierungen um Lösungen, 
+die situationsbedingt besser sind.
+Dabei sind die Eigenschaften und die Architektur des genutzten Quantencomputers die ausschlaggebenden Kriterien.
+
+\subsubsection{Iterative Quanten-Phase-Estimation}
+In den vorherigen Kapiteln wurde die Quanten-Phase-Estimation in der Standardvariante, 
+wie in Sektion~\ref{Quanten-Phase-Estimation} beschrieben, verwendet.
+In dieser Variante wird für jedes \(U^{2^x}\)-Gatter ein eigenes Kontroll-Qubit benötigt.
+Dies bedeutet, wenn \(2n\) viele \(U^{2^x}\)-Gatter angewendet werden sollen, 
+sind genau so viele Kontroll-Qubits nötig.
+Ein zentraler Bestandteil der Quanten-Phase-Estimation ist die (inverse) Quanten-Fourier-Transformation. 
+Wie in Abschnitt~\ref{Quanten-Fourier-Transformation} gezeigt, 
+hängt die Wirkung dieser Transformation auf ein einzelnes Qubit aufgrund von kontrollierten Phasenverschiebungen vom Zustand der anderen Qubits ab.
+
+Bei der reguläre Quanten-Fourier-Transformation kontrolliert ein bestimmtes Qubit zunächst die Phasen-Gatter auf die übrigen Qubits, 
+bevor auf das kontrollierende Qubit selbst ein Hadamard-Gatter angewendet wird.
+Das bedeutet, dass die kontrollierten Gatter der reguläre Quanten-Fourier-Transformation abhängig sind von dem Eingangszustand.
+
+Dies sieht bei der inversen Quanten-Fourier-Transformation anders aus.
+Bei der inversen Quanten-Fourier-Transformation wird auf ein Qubit zuerst ein Hadamard-Gatter angewendet, 
+erst danach kontrolliert es die Phasen-Gatter auf die anderen Qubits.
+Bei der inversen Quanten-Fourier-Transformation sind die kontrollierten Gatter also abhängig von dem Ausgangszustand.
+
+Diese Abhängigkeit zum Ausgangszustand ermöglicht es, 
+die inverse Quanten-Fourier-Transformation aufzuteilen, 
+um den Ressourcenbedarf von \(2n\) Kontroll-Qubits auf ein einzelnes zu reduzieren.
+
+Im Gegensatz zur Standardvariante, bei der ein Qubit die kontrollierten Phasen-Gatter kontrolliert, 
+wird bei der iterativen Variante das Messergebnis des jeweiligen Qubits als Kontrollbedingung für das Phasen-Gatter verwendet.
+Da die Quanten-Phase-Estimation in ihrer Standardform die inverse Quanten-Fourier-Transformation zusammen mit Swap-Gattern verwendet
+muss die iterative Variante dieselbe Transformation anwenden.
+Um das Verständnis zu erleichtern, 
+sind die Swap-Gatter in Abbildung~\ref{fig:iQFTswaps} ebenfalls dargestellt.
+\begin{figure} 
+  \caption{3 Qubits inverse QFT mit Swaps}
+  \label{fig:iQFTswaps}
+  \includegraphics[scale = 0.5]{iqft_3qubit_swaps.PNG}
+  \centering
+  \end{figure}
+
+\begin{figure} 
+  \caption{3 Messungen inverse iterative QFT}
+  \label{fig:iterative_iQFT}
+  \includegraphics[scale = 0.5]{iterative_iqft.PNG}
+  \centering
+  \end{figure}
+  
+Dieses Vorgehen erfordert eine Umstellung der gesamten Quanten-Phase-Estimation
+
+
+\subsubsection{Approximative Quanten-Fourier-Transformation}
 
 
