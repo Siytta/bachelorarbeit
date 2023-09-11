@@ -1141,21 +1141,22 @@ Wie im Abschnitt~\ref{Quanten-Fourier-Transformation} gezeigt,
 hängt die Wirkung dieser Transformation auf ein einzelnes Qubit von den Zuständen der anderen Qubits ab 
 und zwar aufgrund von kontrollierten Phasenverschiebungen.
 
-Bei der reguläre Quanten-Fourier-Transformation kontrolliert ein bestimmtes Qubit zunächst die Phasen-Gatter auf die übrigen Qubits, 
+Bei der regulären Quanten-Fourier-Transformation kontrolliert ein bestimmtes Qubit zunächst die Phasen-Gatter auf die übrigen Qubits, 
 bevor auf das kontrollierende Qubit selbst ein Hadamard-Gatter angewendet wird.
 Das bedeutet, dass die kontrollierten Gatter der reguläre Quanten-Fourier-Transformation abhängig sind von dem Eingangszustand.
 
 Dies sieht bei der inversen Quanten-Fourier-Transformation anders aus.
 Bei der inversen Quanten-Fourier-Transformation wird auf ein Qubit zuerst ein Hadamard-Gatter angewendet, 
 erst danach kontrolliert es die Phasen-Gatter auf die anderen Qubits.
-Bei der inversen Quanten-Fourier-Transformation sind die kontrollierten Gatter also abhängig von dem Ausgangszustand.
+Dementsprechend sind bei der inversen Quanten-Fourier-Transformation die kontrollierten Gatter abhängig von dem Ausgangszustand.
 
-Diese Abhängigkeit zum Ausgangszustand ermöglicht es, 
+Die Abhängigkeit zum Ausgangszustand ermöglicht es, 
 die inverse Quanten-Fourier-Transformation aufzuteilen.
-Wodurch der Ressourcenbedarf von \(2n\) Kontroll-Qubits auf ein einzelnes reduzieren~\cite{Parker2000} wird.
+Dadurch wird der Ressourcenbedarf von \(2n\) Kontroll-Qubits auf ein einzelnes reduzieren wird~\cite{Parker2000}.
 
-Im Gegensatz zur Standardvariante, bei der Qubits die Phasen-Gatter kontrollieren, 
-dient bei der iterativen Variante das Messergebnis des jeweiligen Qubits als Kontrollbedingung für ein Phasen-Gatter.
+In der Standardvariante der Quanten-Fourier-Transformation kontrollieren Qubits die Phasen-Gatter. 
+Bei der iterativen Variante ist das anders, 
+stattdessen dient das Messergebnis des jeweiligen Qubits als Kontrollbedingung für ein Phasen-Gatter.
 
 Die Quanten-Phase-Estimation verwendet die inverse Quanten-Fourier-Transformation mit Swap-Gattern.
 Da die identische Transformation benötigt wird, 
@@ -1169,12 +1170,16 @@ ist die inverse Quanten-Fourier-Transformation mit Swap-Gatter in Abbildung~\ref
   \centering
   \end{figure}
 Wie in Abbildung~\ref{fig:iQFTswaps} dargestellt, 
-wirkt auf das \(\ket{q3}_1\) Qubit, welches das Most-significant-Bit beinhaltet, 
-ein Hadamard-Gatter. 
-Anschließend befindet sich das \(\ket{q3}_1\) Qubit in der Standardbasis und kontrolliert erst danach zwei Phasen-Gatter.
+wird das Eingangsqubit \(\ket{q3}_1\), welches das Most-significant-Bit beinhaltet, 
+mit \(\ket{q1}_1\) getauscht. 
+Anschließend wird ein Hadamard-Gatter angewendet, 
+wodurch das \(\ket{q3}_1\) Qubit in Standardbasis transformiert wird. 
+Erst danach kontrolliert das \(\ket{q3}_1\) Qubit zwei Phasen-Gatter.
+Bei einer Messung wird dieser Wert in \(c1\) gespeichert.
 Das selbe Verhalten kann wie in Abbildung~\ref{fig:iterative_iQFT} nachgestellt werden, 
-indem das Messergebnis des \(\ket{q3}_1\) Qubit nach dem Hadamard-Gatter in dem klassische Bit \(c3\) gespeichert wird.
-Anschließend kontrolliert das klassische Bit \(c3\) die Phasen-Gatter.
+indem nach der Anwendung des Hadamard-Gatter auf das \(\ket{q3}_1\) Qubit, 
+eine Messung den Messwert in dem klassische Bit \(c1\) speichert.
+Anschließend kontrolliert das klassische Bit \(c1\) die Phasen-Gatter.
 
 Um nach der Messung das selbe Qubit für \(\ket{q2}_1\) verwendet zu können, 
 muss dieses in einen eindeutigen Zustand versetzt werden, 
@@ -1184,22 +1189,25 @@ kollabiert der Zustand des Qubit in den selbe wie das Ergebnis der Messung,
 also entweder \(\ket{0}\) oder \(\ket{1}\).
 Wenn der Zustand der \(\ket{1}\) entspricht, 
 wird ein X-Gatter angewendet, 
-welches durch das Messergebnis kontrolliert wird. 
+welches durch das Messergebnis aus \(c1\) kontrolliert wird. 
 Somit befindet sich das Qubit in beiden Fällen im Zustand \(\ket{0}\).
 
 Anschließend beginnt die Sequenz für das \(\ket{q2}_1\) Qubit.
 Dies bedeutet, das alle Operationen, welche von dem \(\ket{q2}_1\) Qubit abhängig sind, 
-jetzt erst Angewendet werden.
+jetzt erst angewendet werden.
 Im Kontext der Quanten-Phase-Estimation wird an dieser Stelle das zugehörige \(U^{2^x}\)-Gatter durch \(\ket{q2}_1\) kontrolliert.
-Also wäre in Abbildung~\ref{fig:iterative_iQFT} die Kontroll-Operation an der Stelle von der\(\ket{q2}\) Bezeichnung.
+Also wäre in Abbildung~\ref{fig:iterative_iQFT} die Kontroll-Operation an der Stelle von der \(\ket{q2}\) Bezeichnung.
 Im nächsten Schritt werden die Gatter der Quanten-Fourier-Transformation angewendet, gefolgt von einer Messung. 
 Das Ergebnis dieser Messung wird in einem weiteren klassischen Bit gespeichert, in diesem Fall \(c2\).
 Für \(\ket{q1}_1\) ist der Ablauf fast identisch.
 Der einzige Unterschied besteht darin, 
 dass nun zwei kontrollierte Phasen-Gatter angewendet werden, 
 die jeweils von einem unterschiedlichen klassischen Bit, 
-in diesem Fall \(c3\) und \(c2\), abhängig sind.
-Abschließend wird das Messergebnis von \(ket{q1}_1\) in einem weiteren klassischen Bit \(c1\) gespeichert.
+in diesem Fall \(c1\) und \(c2\), abhängig sind.
+Abschließend wird das Messergebnis von \(\ket{q1}_1\) in einem weiteren klassischen Bit \(c3\) gespeichert.
+
+Die verdrehte Reihenfolge beim Speichern der Messergebnisse dient dazu, 
+den Effekt der Swap-Gatter nachzubilden.
 \begin{figure} [H]
   \caption{3 Messungen inverse iterative QFT}
   \label{fig:iterative_iQFT}
@@ -1211,7 +1219,7 @@ Wie im vorherigen Absatz erwähnt,
 werden bei der iterativen Quanten-Phase-Estimation die \(U^{2^x}\)-Gatter zwischen den Abschnitten 
 der iterativen Quanten-Fourier-Transformation angewendet. 
 
-Weswegen der Quantenschaltkreis für den Shor Algorithmus mit der iterative Quanten-Phase-Estimation anders aussieht, 
+Als Resultat besitzt der Quantenschaltkreis für den Shor Algorithmus mit der iterative Quanten-Phase-Estimation eine grundlegende andere Struktur, 
 als die reguläre Variante.
 Das liegt daran, dass die iterative Quanten-Fourier-Transformation kein eigener Baustein ist sondern schrittweise zwischen 
 den einzelnen \(U^{2^x}\)-Gatter angewendet wird.
@@ -1234,8 +1242,9 @@ soll die iterative Quanten-Fourier-Transformation für das Most-Significant-Bit 
 Genau wie in Abbildung~\ref{fig:iterative_iQFT} entspricht dies nur der Anwendung eines Hadamard-Gatters.
 In Zeile drei und vier ist zu erkennen, 
 das mit abnehmender Wertigkeit eines Qubits, zunehmend mehr Phasen-Gatter angewendet werden.
-Die in vierten Zeile angewendeten Phasen-Gatter wirken immer auf das \textit{controlling\_qubit}, 
-werden aber von unterschiedlichen klassischen Bits mit der Methode \(c_if\) kontrolliert.
+Alle Phasen-Gatter, welche in der vierten Zeile angewendeten werden, 
+wirken auf das \textit{controlling\_qubit}, 
+werden aber von unterschiedlichen klassischen Bits mit der Methode \(c\_if\) kontrolliert.
 
 Da die Funktion direkt auf den Quantenschaltkreis \textit{qc} wirkt, 
 wird kein Rückgabewert benötigt.
@@ -1253,13 +1262,15 @@ def iterative_QFT(target: int, qc: QuantumCircuit ,k: range, controlling_qubit: 
 
 Der Code zum vollständigen Quantenschaltkreis ist in Abbildung~\ref{code:IterativeQPE} in der Funktion \texttt{Shor\_sequential} aufgelistet.
 Die Parameter sind identisch zu der Funktion der regulären Variante \texttt{Shor}.
-In der sechsten Zeile der Definition des Quantenschaltkreises ist zu erkennen, 
-dass diese Variante insgesamt \(2n+3\) Qubits benötigt und damit den Bedarf an \(4n+2\) Qubits der Standardvariante reduziert.
-In Zeilen Acht bis Vierzehn ist zu sehen, 
-dass die Teile der iterative Quanten-Fourier-Transformation bei jedem Schleifendurchlauf angewendet wird. 
-Des Weiteren beginnt die Schleife mit dem Qubit, 
-das die Wertigkeit des Most-Significant-Bits hat 
-und wendet somit pro Iteration \(U^{2^x}\)-Gatter mit absteigender Potenz an.
+In der sechsten Zeile der Definition des Quantenschaltkreises ist zu erkennen,
+dass diese Variante insgesamt \(2n+3\) Qubits benötigt und damit den Bedarf der Standardvariante von \(4n+2\) Qubits fast halbiert.
+In den Zeilen Acht bis Vierzehn ist zu sehen, 
+dass die Teile der iterativen Quanten-Fourier-Transformation bei jedem Schleifendurchlauf nach einem \(U^{2^x}\)-Gatter angewendet werden. 
+Des Weiteren ist ersichtlich, 
+dass die Schleife mit dem Qubit beginnt, 
+welches die höchste Wertigkeit (Most-Significant-Bit) hat.
+Pro Iteration werden \(U^{2^x}\)-Gatter mit absteigenden Potenzen angewendet, 
+hingegen werden die Messergebnisse in klassischen Bits mit aufsteigender Wertigkeit gespeichert.
 
 Damit der Code nicht über den Seitenrahmen blickt, 
 wurde Zeile Zehn und Elf mit einem Zeilenumbruch aufgeteilt.
@@ -1288,13 +1299,23 @@ def Shor_sequential(a: int, N: int,number_shots: int = 1000, backend: str = "aer
   \end{minted}
 \end{figure}
 
+Für \(a = 7,~N=15,~k=4\) ist in Abbildung~\ref{fig:iterative_iQPE_qiskit} der Quantenschaltkreis nach der Funktion \texttt{Shor\_sequential} dargestellt.
+Das \(k\) wurde verringert, damit die Grafik nicht zu viel Platz beansprucht.
+
+\begin{figure} [H]
+  \caption{iterative QPE Beispiel in qiskit}
+  \label{fig:iterative_iQPE_qiskit}
+  \includegraphics[scale = 0.4]{code_iterative_QPE_qiskit.PNG}
+  \centering
+  \end{figure}
+
 Der ausschlaggebende Vorteil der iterativen Quanten-Phase-Estimation besteht darin, 
 dass diese Variante im Vergleich zur zuvor in Sektion~\ref{section:imp_QPE_Shor} implementierten Variante den Ressourcenbedarf von \(4n+2\) Qubits auf \(2n+3\) Qubits reduziert.
 
 Ein weiterer Vorteil dieser Variante ist der, 
 dass die Genauigkeit \(k\) nicht auf kosten von weiteren Qubits erhöht wird.
 Stattdessen benötigt diese Variante immer \(2n+3\) Qubits und 
-somit ist der Bedarf an Qubits lediglich von der größenordnung der Zahl \(N\) abhängig.
+somit ist der Bedarf an Qubits lediglich von der gGrößenordnung der Zahl \(N\) abhängig.
 
 Jedoch hat die iterative Variante auch ihre Nachteile.
 Bei der Implementierung in Sektion~\ref{section:imp_QPE_Shor} können mehr Gatter parallel ausgeführt werden, 
@@ -1314,20 +1335,64 @@ hängt vor allem von den zur Verfügung stehenden Ressourcen des Quantencomputer
 %Ressourcen weiter ausführen?
 % Laufzeit & Fehlerrate
 
-
-
-\subsubsection{Approximative Quanten-Fourier-Transformation}
-Die iterative Anwendung der Quanten-Phase-Estimation nach Beauregard ist in Abbildung~\ref{fig:iterative_iQFT_Beauregard} dargestellt.
-
 \vspace{1em}
+
+Die Konstruktion der iterativen Anwendung nach Beauregard ist in Abbildung~\ref{fig:iterative_iQPE_Beauregard} dargestellt.
+Anhand der Grafik ist erkennbar, 
+dass sowohl die Anwendung der \(U^{2^x}\)-Gatter als auch die Messungen der Qubits in Reihenfolge einer aufsteigenden Wertigkeit geschieht.
+Die Anwendung der Gatter und Messungen in dieser Reihenfolge stimmt nicht mit anderen Quellen überein~\cite{Parker2000}.
+
 \begin{figure} [H]
-  \caption{iterative QPE nach Beauregard}
-  \label{fig:iterative_iQFT_Beauregard}
+  \caption{iterative QPE nach Beauregard~\cite{beauregard2003circuit}}
+  \label{fig:iterative_iQPE_Beauregard}
   \includegraphics[scale = 0.6]{beauregard_iterative_QPE.png}
   \centering
   \end{figure}
 
+Wie in Abbildung~\ref{fig:iQFTswaps} für die inverse Quanten-Fourier-Transformation zu sehen ist, 
+werden die Gatter auf den Eingangszustand \(\ket{q1}\) durch die Ergebnisse der beiden anderen Kontroll-Qubits kontrolliert.
+Für die iterative Variante nach Beauregard bedeuten das, 
+dass die klassische kontrollierten Phasen-Gatter auf \(\ket{q1}\) von klassischen Bits kontrolliert werden, 
+welche noch nicht das Messergebnis beinhalten.
+Der selbe Effekt tritt auch für die weiteren Qubits auf.
 
+Ein Nachbau des iterativen Quantenschaltkreis nach Beauregard wie in Abbildung~\ref*{fig:iterative_iQPE_Beauregard_qiskit} für \(a = 7,~N=15,~k=4\), 
+konnte die Funktionsweise durch Simulationen nicht bestätigen.
+\begin{figure} [H]
+  \caption{iterative QPE Beispiel nach Beauregard}
+  \label{fig:iterative_iQPE_Beauregard_qiskit}
+  \includegraphics[scale = 0.425]{beauregard_iterative_QPE_qiskit.PNG}
+  \centering
+  \end{figure}
 
+Der Vergleich beider Quantenschaltkreise wird in Abbildung~\ref{fig:iterative_iQPE_Vergleich} dargestellt.
+Links sind die Ergebnisse des Quantenschaltkreises aus Abbildung~\ref{fig:iterative_iQPE_qiskit}, 
+rechts die des Quantenschaltkreises nach Abbildung~\ref{fig:iterative_iQPE_Beauregard_qiskit}.
+Beide Quantenschaltkreise sind für \(a = 7,~N=15,~k=4\) nachgebildet.
+Lediglich das linke Ergebnis ist korrekt, 
+da sowohl die Messergebnisse stimmen als auch das es vier Peaks gibt, 
+also genau wie die Länge der Periode.
+
+\begin{figure} [H]
+  \caption{iterative QPE Messergebnisse(Beauregard rechts)}
+  \label{fig:iterative_iQPE_Vergleich}
+  \includegraphics[scale = 0.4]{Vergleich_interative_QPE.png}
+  \centering
+  \end{figure}
+
+%Frage an Beauregard dazu gestellt. Antwort wird noch abgewartet.
+
+Im Faktorisierungsalgorithmus wird die iterative Quanten-Phase-Estimation genutzt, 
+wenn die Anzahl der erforderlichen Qubits für die reguläre Variante mit \(4n+2\) Qubits einen zu hohen Ressourcenbedarf darstellt, 
+den der genutzte Quantencomputer nicht bereitstellen kann. 
+In diesem Fall wird auf Kosten der Laufzeit die sparsamere Variante angewendet. 
+Sollten auch dafür nicht genügend Qubits vorhanden sein, 
+wird die Berechnung mit einer Fehlermeldung abgebrochen. 
+Die Fallunterscheidung in der Implementierung wird realisiert, 
+indem statt der Funktion \texttt{Shor} die iterative Variante \texttt{Shor\_sequential} ausgeführt wird. 
+Weitere Anpassungen sind nicht nötig, 
+da sowohl die Eingabewerte als auch die Form der Rückgabewerte identisch sind.
+
+\subsubsection{Approximative Quanten-Fourier-Transformation}
 
 
