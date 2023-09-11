@@ -1155,8 +1155,9 @@ die inverse Quanten-Fourier-Transformation aufzuteilen.
 Dadurch wird der Ressourcenbedarf von \(2n\) Kontroll-Qubits auf ein einzelnes reduzieren wird~\cite{Parker2000}.
 
 In der Standardvariante der Quanten-Fourier-Transformation kontrollieren Qubits die Phasen-Gatter. 
-Bei der iterativen Variante ist das anders, 
-stattdessen dient das Messergebnis des jeweiligen Qubits als Kontrollbedingung für ein Phasen-Gatter.
+Bei der Semi-klassischen beziehungsweise iterativen Variante ist das anders.
+Es ist möglich, das klassische Signal einer Messung zur Kontrolle von Gattern zu verwenden~\cite{Griffiths_1996} 
+Also dient das Messergebnis des jeweiligen Qubits als Kontrollbedingung für ein Phasen-Gatter.
 
 Die Quanten-Phase-Estimation verwendet die inverse Quanten-Fourier-Transformation mit Swap-Gattern.
 Da die identische Transformation benötigt wird, 
@@ -1394,5 +1395,16 @@ Weitere Anpassungen sind nicht nötig,
 da sowohl die Eingabewerte als auch die Form der Rückgabewerte identisch sind.
 
 \subsubsection{Approximative Quanten-Fourier-Transformation}
+Die zweite Methode mit der an Ressourcen gespart werden kann, 
+betrifft ebenfalls die Quanten-Fourier-Transformation.
+
+Bei dieser Optimierung wird die Einsparung an Ressourcen erreicht, 
+indem die Quanten-Fourier-Transformation approximiert wird.
+
+Bekanntlich wendet die reguläre Quanten-Fourier-Transformation und 
+die iterative Quanten-Fourier-Transformation (klassisch) kontrollierte Phasen-Gatter an. 
+Dabei werden Phasen-Gatter mit einer Phasenverschiebung von \(e^{\frac{2 \pi i}{2^1}}\) bis zu \(e^{\frac{2 \pi i}{2^n}}\) angewendet.
+Es existiert also ein exponentielles Wachstum im Nenner des Bruches des gewirkten Phasenverschiebung, 
+welche bei jedem weiteren Phasen-Gatter für ein exponentielle Abnahme der gewirkten Phasenverschiebungen sorgt. 
 
 
