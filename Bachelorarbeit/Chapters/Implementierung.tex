@@ -1154,10 +1154,13 @@ Die Abhängigkeit zum Ausgangszustand ermöglicht es,
 die inverse Quanten-Fourier-Transformation aufzuteilen.
 Dadurch wird der Ressourcenbedarf von \(2n\) Kontroll-Qubits auf ein einzelnes reduzieren wird~\cite{Parker2000}.
 
-In der Standardvariante der Quanten-Fourier-Transformation kontrollieren Qubits die Phasen-Gatter. 
-Bei der Semi-klassischen beziehungsweise iterativen Variante ist das anders.
-Es ist möglich, das klassische Signal einer Messung zur Kontrolle von Gattern zu verwenden~\cite{Griffiths_1996} 
-Also dient das Messergebnis des jeweiligen Qubits als Kontrollbedingung für ein Phasen-Gatter.
+In der Standardvariante der Quanten-Fourier-Transformation kontrollieren Qubits die Phasen-Gatter.
+In der semi-klassischen bzw. iterativen Variante verhält es sich anders.
+Diese Methode kam erstmals 1995 zum Einsatz und 
+nutzt das klassische Signal einer Messung, 
+um ein Quanten-Gatter zu steuern~\cite{Griffiths_1996}.
+Im Kern der Optimierung liegt der Trick, 
+das Messergebnis des jeweiligen Qubits als Steuerungsbedingung für ein Phasen-Gatter zu verwenden.
 
 Die Quanten-Phase-Estimation verwendet die inverse Quanten-Fourier-Transformation mit Swap-Gattern.
 Da die identische Transformation benötigt wird, 
@@ -1395,16 +1398,38 @@ Weitere Anpassungen sind nicht nötig,
 da sowohl die Eingabewerte als auch die Form der Rückgabewerte identisch sind.
 
 \subsubsection{Approximative Quanten-Fourier-Transformation}
-Die zweite Methode mit der an Ressourcen gespart werden kann, 
-betrifft ebenfalls die Quanten-Fourier-Transformation.
+Die zweite Methode zur Ressourceneinsparung betrifft ebenfalls die Quanten-Fourier-Transformation und 
+wurde erstmals 1996 vorgestellt~\cite{Barenco_1996}.
+Bei dieser Optimierung wird die Ressourceneffizienz durch die Reduktion der verwendeten Gatter erreicht. 
+Sowohl die reguläre als auch die iterative Quanten-Fourier-Transformation verwenden (klassisch) kontrollierte Phasen-Gatter, 
+wobei Phasenverschiebungen im Bereich von \(e^{\frac{2\pi i}{2^1}}\) bis \(e^{\frac{2\pi i}{2^n}}\) zur Anwendung kommen. 
+Dies führt zu einem exponentiellen Wachstum der Zweierpotenz im Nenner des Bruchs der wirkenden Phasenverschiebung, 
+was wiederum eine exponentielle Abnahme der wirkenden Phasenverschiebungen bei jedem weiteren Phasen-Gatter bewirkt. 
+Ab einem bestimmten Punkt werden die gewirkten Phasenverschiebungen vernachlässigbar klein. 
 
-Bei dieser Optimierung wird die Einsparung an Ressourcen erreicht, 
-indem die Quanten-Fourier-Transformation approximiert wird.
+Die approximative Quanten-Fourier-Transformation nutzt den Effekt aus, 
+dass die Beiträge höherer Phasen-Gatter für das Endergebnis oft weniger kritisch sind, 
+um eine reduzierte Anzahl an Gattern einzusetzen. 
+Insbesondere ermöglicht die Anwendung von (klassisch) kontrollierten Phasen-Gattern in Kombination mit einer gezielten Auswahl der gewirkten Phasen-Gatter eine effiziente Approximation. 
+Diese Methode führen zu einer Reduzierung des gesamten Ressourcenbedarfs im Hinblick auf die Anzahl der benötigten Phasen-Gatter. 
+Dadurch kann eine Genauigkeit erhalten bleiben, 
+welche weiterhin für ein akzeptables Endergebnis sorgt.
 
-Bekanntlich wendet die reguläre Quanten-Fourier-Transformation und 
-die iterative Quanten-Fourier-Transformation (klassisch) kontrollierte Phasen-Gatter an. 
-Dabei werden Phasen-Gatter mit einer Phasenverschiebung von \(e^{\frac{2 \pi i}{2^1}}\) bis zu \(e^{\frac{2 \pi i}{2^n}}\) angewendet.
-Es existiert also ein exponentielles Wachstum im Nenner des Bruches des gewirkten Phasenverschiebung, 
-welche bei jedem weiteren Phasen-Gatter für ein exponentielle Abnahme der gewirkten Phasenverschiebungen sorgt. 
+Sei die approximative Quanten-Fourier-Transformation definiert als \(AQFT_m\), 
+dann wendet diese maximal \(m\) Phase-Gatter pro Qubit an. 
+Der Parameter \(m\) ist der Grad der \(AQFT_m\) und 
+definiert bis zu welcher Präzision von \(e^{\frac{2\pi i}{2^m}}\) ein Phasen-Gatter angewendet wird.
+Die vollständige Quanten-Fourier-Transformation entspricht demnach \(AQFT_n\).
 
+Die \(AQFT_m\) kann für ein \(m\) mit:
+\[m \geq \text{ld}(n+2)\]
+eine Präzision erreichen, die der unteren Genauigkeit der exakten Quanten-Fourier-Transformation entspricht~\cite{Barenco_1996}.
+Die Wahrscheinlichkeit mit der \(AQFT_m\) ein genaues Ergebnis zu erhalten entspricht~\cite{cheung2004improved}: 
+\[P \geq \frac{4}{\pi^2} - \frac{1}{4n}\].
 
+Bezogen auf die Ressourceneffizienz benötigt die \(AQFT_m\) insgesamt \(\Landau(nm)\) vieler Gatter.
+Wird \(m\) wie oben definiert, entspricht dies \(\Landau(n~\text{ld}(n))\). 
+Im Gegensatz dazu benötigt die reguläre Quanten-Fourier-Transformation \(\Landau(n^2)\) viele Gatter.
+
+Mit der approximative Quanten-Fourier-Transformation können also im Vergleich zur reguläre Variante Gatter gespart werden 
+auf kosten der Genauigkeit.
