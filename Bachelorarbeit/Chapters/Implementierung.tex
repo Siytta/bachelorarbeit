@@ -996,7 +996,7 @@ dies wird zwar durch die Messung von \(\ket{2^k \cdot \frac{p/2}{p}}_k\) bestät
 jedoch kann aus dieser Information keine hilfreiche Konsequenz gezogen werden.
 
 \begin{figure} [H]
-\caption{Beispiel Messung}
+\caption{Beispiel Messung a=19, N=119, k=14}
 \label{fig:shor_measure}
 \includegraphics[scale = 0.5]{Messung_beispiel.PNG}
 \centering
@@ -1392,11 +1392,11 @@ Die einzige nützliche Information, die dabei gefunden wurde,
 war seine Zugehörigkeit zur University of Montreal. 
 Auf LinkedIn wurde ein anderer Stéphane Beauregard gefunden, 
 der zufällig auch an der University of Montreal war. Auf Nachfrage wurde jedoch geklärt, 
-dass es sich um eine andere Person handelt. Eine Anfrage bei der University of Montreal selbst war aus Datenschutzgründen erfolglos. 
+dass es sich um eine andere Person handelt. 
+Eine Anfrage bei der University of Montreal selbst war aus Datenschutzgründen erfolglos. 
 Als letzte Option wurde der häufigste Co-Autor kontaktiert. 
-Dieser ist mittlerweile im Ruhestand, weshalb es möglich ist, dass dies auch für Stéphane Beauregard gilt. 
-Nichtsdestotrotz wurde nachgefragt, ob er Stéphane Beauregard meine Kontaktinformationen inklusive des Betreffs zukommen lassen kann.
-Bis zur Abgabe dieser Arbeit kam diesbezüglich keine Antwort.
+Der Co-Autor Guy Lapalme ist emeritierter Professor der University of Montreal, 
+aber auch er hat keine Kontaktinformationen zu Beauregard.
 
 \vspace{1em}
 
@@ -1415,35 +1415,85 @@ da sowohl die Eingabewerte als auch die Form der Rückgabewerte identisch sind.
 Die zweite Methode zur Ressourceneinsparung betrifft ebenfalls die Quanten-Fourier-Transformation und 
 wurde erstmals 1996 vorgestellt~\cite{Barenco_1996}.
 Bei dieser Optimierung wird die Ressourceneffizienz durch die Reduktion der verwendeten Gatter erreicht. 
-Sowohl die reguläre als auch die iterative Quanten-Fourier-Transformation verwenden (klassisch) kontrollierte Phasen-Gatter, 
-wobei Phasenverschiebungen im Bereich von \(e^{\frac{2\pi i}{2^1}}\) bis \(e^{\frac{2\pi i}{2^n}}\) zur Anwendung kommen. 
+Sowohl die reguläre als auch die iterative Quanten-Fourier-Transformation verwenden (klassisch) kontrollierte Phasen-Gatter.
+Dabei kommen Phasenverschiebungen im Bereich von \(e^{\frac{2\pi i}{2^1}}\) bis \(e^{\frac{2\pi i}{2^n}}\) zur Anwendung. 
 Dies führt zu einem exponentiellen Wachstum der Zweierpotenz im Nenner des Bruchs der wirkenden Phasenverschiebung, 
 was wiederum eine exponentielle Abnahme der wirkenden Phasenverschiebungen bei jedem weiteren Phasen-Gatter bewirkt. 
-Ab einem bestimmten Punkt werden die gewirkten Phasenverschiebungen vernachlässigbar klein. 
 
 Die approximative Quanten-Fourier-Transformation nutzt den Effekt aus, 
 dass die Beiträge höherer Phasen-Gatter für das Endergebnis oft weniger kritisch sind, 
 um eine reduzierte Anzahl an Gattern einzusetzen. 
-Insbesondere ermöglicht die Anwendung von (klassisch) kontrollierten Phasen-Gattern in Kombination mit einer gezielten Auswahl der gewirkten Phasen-Gatter eine effiziente Approximation. 
-Diese Methode führen zu einer Reduzierung des gesamten Ressourcenbedarfs im Hinblick auf die Anzahl der benötigten Phasen-Gatter. 
-Dadurch kann eine Genauigkeit erhalten bleiben, 
-welche weiterhin für ein akzeptables Endergebnis sorgt.
+Indem ein angemessener Approximationsfaktor gewählt wird, 
+kann eine Genauigkeit erzielt werden, 
+die weiterhin für ein akzeptables Endergebnis ausreichend ist.
 
-Sei die approximative Quanten-Fourier-Transformation definiert als \(AQFT_m\), 
-dann wendet diese maximal \(m\) Phase-Gatter pro Qubit an. 
-Der Parameter \(m\) ist der Grad der \(AQFT_m\) und 
-definiert bis zu welcher Präzision von \(e^{\frac{2\pi i}{2^m}}\) ein Phasen-Gatter angewendet wird.
-Die vollständige Quanten-Fourier-Transformation entspricht demnach \(AQFT_n\).
+Die approximative Quanten-Fourier-Transformation wird als \(AQFT_m\) definiert und 
+wendet maximal \(m\) Phase-Gatter pro Qubit an. 
+Der Parameter \(m\) wird als Approximationsfaktor bezeichnet und stellt den Grad der \(AQFT_m\) dar.  
+Er definiert die Präzision, 
+bis zu der Phasen-Gatter mit einer Phasenverschiebung von \(e^{\frac{2\pi i}{2^m}}\) angewendet werden.
+Die vollständige Quanten-Fourier-Transformation entspricht somit einer \(AQFT_n\).
 
-Die \(AQFT_m\) kann für ein \(m\) mit:
+Wenn der Approximationsfaktor \(m\) einem Wert
 \[m \geq \text{ld}(n+2)\]
-eine Präzision erreichen, die der unteren Genauigkeit der exakten Quanten-Fourier-Transformation entspricht~\cite{Barenco_1996}.
-Die Wahrscheinlichkeit mit der \(AQFT_m\) ein genaues Ergebnis zu erhalten entspricht~\cite{cheung2004improved}: 
-\[P \geq \frac{4}{\pi^2} - \frac{1}{4n}\].
+entspricht, nähert sich die Wahrscheinlichkeit, das optimale Ergebnis mit \(AQFT_m\)
+zu erhalten, dem Wert 
+\[P \geq \frac{4}{\pi^2} - \frac{1}{4n}\]
+an~\cite{cheung2004improved}.
+Dies steht im Gegensatz zur Wahrscheinlichkeit von \(\frac{4}{\pi^2}\), 
+die für die exakte Quanten-Fourier-Transformation \(QFT\) gilt~\cite{cheung2004improved}\cite[119]{kaye2007introduction}.
 
-Bezogen auf die Ressourceneffizienz benötigt die \(AQFT_m\) insgesamt \(\Landau(nm)\) vieler Gatter.
-Wird \(m\) wie oben definiert, entspricht dies \(\Landau(n~\text{ld}(n))\). 
-Im Gegensatz dazu benötigt die reguläre Quanten-Fourier-Transformation \(\Landau(n^2)\) viele Gatter.
+Im Hinblick auf die Ressourceneffizienz benötigt die \(AQFT_m\) insgesamt \(\Landau(nm)\) Gatter.
+Wenn \(m\) wie zuvor definiert wird, entspricht dies \(\Landau(n~\text{ld}(n))\). 
+Im Vergleich dazu erfordert die exakte Quanten-Fourier-Transformation \(\Landau(n^2)\) Gatter~\cite{Barenco_1996}.
 
-Mit der approximativen Quanten-Fourier-Transformation können im Vergleich zur regulären Variante Gatter eingespart werden, 
-allerdings auf Kosten der Genauigkeit.
+Daraus folgt, dass die approximative Quanten-Fourier-Transformation einen effizienteren Gatterbedarf aufweist, 
+jedoch zulasten einer geringeren Genauigkeit im Vergleich zur exakten Quanten-Fourier-Transformation.
+
+Allerdings gilt dies nur unter der Annahme, 
+dass der Quantencomputer ideal ist und weder Dekohärenzeffekte noch andere Fehler aufweist.
+Im Falle eines idealen Quantencomputers liefert die exakte Quanten-Fourier-Transformation, die alle Phasen-Gatter anwendet, 
+mit höherer Wahrscheinlichkeit ein genaues Ergebnis als die approximative Quanten-Fourier-Transformation.
+
+Wenn allerdings kein idealer Quantencomputer genutzt wird, 
+führt die Dekohärenz, 
+bedingt durch eine Vielzahl an Gattern und die damit verbundene längere Laufzeit, 
+zu einer erhöhten Fehlerrate.
+Eine Reduktion der Anzahl an Gattern durch ein geringeres 
+\(m\) führt daher zu einer niedrigeren Fehlerrate.
+Ein niedrigeres \(m\) mindert somit den Effekt der Dekohärenz auf die Fehlerrate, 
+was wiederum die Wahrscheinlichkeit für ein genaues Ergebnis erhöht.
+Auf der anderen Seite führt ein geringeres \(m\) zu einer Ungenauigkeit,
+da der Approximationsfaktor größer wird und somit nicht alle Phasen-Gatter angewendet werden.
+Um das bestmögliche Ergebnis zu erzielen, 
+muss eine gewisse Ungenauigkeit durch die Approximation in Kauf genommen werden, 
+die wiederum durch die geringere Fehlerrate kompensiert wird. 
+Das optimale \(m\) liegt in dem Bereich \(m \in [1,n]\) und nähert sich der Untergrenze von~\cite{Barenco_1996}:
+\[m \geq \text{ld}(n+2)\]
+
+Die Approximationstechnik kann auch in der iterativen beziehungsweise semi-klassischen Quanten-Fourier-Transformation angewendet werden. 
+Bei der Implementierung für den Shor-Algorithmus ist darauf zu achten, 
+dass alle verwendeten Quanten-Fourier-Transformationen, also sowohl die in den \(U^{2^x}\)-Gattern als auch die finale Transformation vor dem Basiswechsel, 
+das gleiche \(m\) nutzen.
+Andernfalls wären die gewirkten und extrahierten Phasenverschiebungen inkonsistent 
+und würden zu falschen Ergebnissen führen.
+
+Die Implementierung des \texttt{Faktorisierungsalgorithmus} wird um den Parameter \(m\) ergänzt.
+Standardmäßig ist \[m = \lceil\text{ld}(n+2)\rceil\] gesetzt, 
+kann jedoch über den Parameter beliebig angepasst oder durch Setzen von \(m=-1\) deaktiviert werden.
+In diesem Fall wird die exakte Quanten-Fourier-Transformation angewendet.
+
+Der Grund, warum die approximative Variante verwendet wird, 
+liegt darin, dass das Ergebnis bereits bei kleinen \(n\) gut ist. 
+Dies wird deutlich, wenn man Abbildung~\ref*{fig:shor_measure} mit \(m=n=7\) und
+Abbildung~\ref*{fig:shor_measure_AQFT} mit \(m=4\) vergleicht.
+Abgesehen von \(m\) sind die Berechnungen in beider Abbildungen identisch.
+Bei immer größer werdenden \(n\) wird die Ungenauigkeit durch die fehlenden Gatter immer geringer,  
+bis sie schließlich sogar ganz vernachlässigbar wird~\cite{cheung2004improved}.
+
+\begin{figure} [H]
+  \caption{AQFT Messung a=19, N=119, k=14, m=4}
+  \label{fig:shor_measure_AQFT}
+  \includegraphics[scale = 0.45]{shor_measure_AQFT.PNG}
+  \centering
+  \end{figure}
