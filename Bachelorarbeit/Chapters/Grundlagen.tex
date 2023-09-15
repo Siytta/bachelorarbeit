@@ -282,7 +282,7 @@ Wie aus Abbildung~\ref{fig:qft} ersichtlich,
 kehrt die Quanten-Fourier-Transformation die Reihenfolge der Qubits um~\cite[217]{homeister2023quantum215}.
 Um die ursprüngliche Reihenfolge wiederherzustellen, 
 werden am Ende der Quanten-Fourier-Transformation Swap-Operationen durchgeführt.
-\begin{figure}
+\begin{figure} [H]
 \caption{3-Qubit QFT}
 \label{fig:qft}
 \includegraphics[width=\columnwidth]{qft.PNG}
@@ -300,7 +300,7 @@ Um einen Quantenschaltkreis aus unitären Gattern zu invertieren,
 werden die Inversen der verwendeten Gatter in umgekehrter Reihenfolge zur ursprünglichen Schaltung angewendet. 
 Die Swap-Operationen stehen somit bei der inversen Quanten-Fourier-Transformation am Anfang.
 In Abbildung~\ref{fig:iqft} ist beispielhaft die inverse Quanten-Fourier-Transformation für drei Qubits abgebildet.
-\begin{figure}
+\begin{figure} [H]
 \caption{3-Qubit inverse QFT}
 \label{fig:iqft}
 \includegraphics[width=\columnwidth]{iqft.PNG}
@@ -312,51 +312,64 @@ In Abbildung~\ref{fig:iqft} ist beispielhaft die inverse Quanten-Fourier-Transfo
 Im nachfolgenden Abschnitt wird die Anwendung und Funktionsweise des Quantum-Phase-Estimation Quantenalgorithmus erläutert. 
 Die Quantum-Phase-Estimation ist ein Bestandteil einiger fortgeschrittener Quantenalgorithmen und eine integrale Komponente des spezifischen Quantenalgorithmus, 
 der in dieser Arbeit implementiert wird. 
-Genauer gesagt basiert der implementierte Algorithmus auf den Prinzipien der Quantum-Phase-Estimation und verwendet die selbe Methodik für einen spezialisierten Kontext.
+Genauer gesagt, 
+basiert der implementierte Algorithmus auf den Prinzipien der Quantum-Phase-Estimation und verwendet dieselbe Methodik für einen spezialisierten Kontext.
 
-Schwerpunktmäßig konzentriert sich die Erklärung primär auf das Verständnis der Funktionsweise der Quantum-Phase-Estimation und nimmt an, dass einige Voraussetzungen gegeben sind. 
+Schwerpunktmäßig konzentriert sich die Erklärung primär auf das Verständnis der Funktionsweise der Quantum-Phase-Estimation und nimmt an, 
+dass einige Voraussetzungen gegeben sind. 
 Diese Voraussetzungen hängen vom spezifischen Kontext ab, 
 in dem die Quantum-Phase-Estimation angewendet wird. 
 Im weiteren Verlauf der Arbeit werden diese Voraussetzungen im Hinblick auf den Anwendungsfall des implementierten Quantenalgorithmus konkretisiert.
 
-Voraussetzungen ist, dass ein Eigenvektor \(\ket{x}_n\) von einer unitäre Transformation \(U^{n\times n}\) bekannt ist.
+Eine der Voraussetzungen ist, 
+dass ein Eigenvektor \(\ket{x}_n\) einer unitären Transformation \(U^{n\times n}\) bekannt ist.
 Wendet man die Transformation \(U^{n\times n}\) auf \(\ket{x}_n\) an, 
-so gilt: \(U^{n\times n}\ket{x}_n=\lambda_x\ket{x}_n\)~\cite{nielsen_chuang_2010}.
+so gilt~\cite[221]{nielsen_chuang_2010}: 
+\[U^{n\times n}\ket{x}_n=\lambda_x\ket{x}_n\]
 Dabei erhält man, abhängig vom gewählten Eigenvektor \(\ket{x}_n\), einen der Eigenwert \(\lambda_x\) von \(U^{n\times n}\).
-Ein Eigenwert \(\lambda_x\) besitzt die Form eines Phasenfaktors: \(e^{2\pi i \varphi}\)
+Ein Eigenwert \(\lambda_x\) besitzt die Form eines Phasenfaktors: \(e^{2\pi i \varphi}\),
 mit \(0 \leq \varphi < 1\).
 Im Prinzip wird durch die unitäre Transformation also eine globale Phasenverschiebung auf den Eigenvektor angewendet.
 
 Wie bereits im Kapitel zu den Grundlagen gezeigt wurde, 
-ist es nicht möglich eine globale Phase durch eine gewöhnliche Messung der Qubits zu bestimmen. 
-Das liegt daran, 
-dass eine globale Phase die Amplituden eines Qubits nicht verändert und somit die Wahrscheinlichkeiten der Messergebnisse unverändert bleiben.
-Stattdessen muss man die Qubits manipulieren, so dass die globale Phase doch Einfluss auf die Amplituden hat.
+ist es nicht möglich, eine globale Phase durch eine gewöhnliche Messung der Qubits zu bestimmen. 
+Das liegt daran, dass eine globale Phase die Amplituden eines Qubits nicht verändert und 
+somit die Wahrscheinlichkeiten der Messergebnisse unverändert bleiben. 
+Stattdessen muss man die Qubits so manipulieren, 
+dass die globale Phase doch Einfluss auf die Amplituden nimmt.
 
 Der Quanten-Phase-Estimation Quantenalgorithmus ist in der Lage, 
-den Eigenwert aus \(U^{n\times n}\ket{x}_n=\lambda_x\ket{x}_n\), also die Phasenverschiebungen, repräsentiert durch \(\lambda_x = e^{2\pi i \varphi}\),
+den Eigenwert aus \(U^{n\times n}\ket{x}_n=\lambda_x\ket{x}_n\), 
+also die Phasenverschiebungen repräsentiert durch \(\lambda_x = e^{2\pi i \varphi}\),
 auf die Amplitude eines anderen Qubits zu verschieben.
-Um \(\lambda_x\) auf ein anderes Qubit zu übertragen wird der Effekt des \textbf{Phase-Kickback} genutzt.
+Um \(\lambda_x\) auf ein anderes Qubit zu übertragen, 
+wird der Effekt des \textbf{Phase-Kickback} genutzt.
 Anschließend wird der Wert \(\varphi\) des Eigenwertes durch die inverse Quanten-Fourier-Transformation in einen messbaren Zustand überführt.
 
-Der Phase-Kickback tritt auf,
-wenn eine unitäre Transformation \(U^{n\times n}\) kontrolliert durch ein Qubit \(\ket{y}_1\) in Superposition, 
-auf einen Eigenvektor \(\ket{x}_n\) von \(U^{n\times n}\) anwendet wirkt.
-Dabei wird der Eigenwert, beziehungsweise \(\lambda_x\), auf den \(\ket{1}\)-Anteil von \(\ket{y}_1\)
-übertragen.
+Der Phase-Kickback tritt auf, 
+wenn eine unitäre Transformation \(U^{n\times n}\), die durch ein Qubit \(\ket{y}_1\) in Superposition kontrolliert wird,
+auf einen Eigenvektor \(\ket{x}_n\) von \(U^{n\times n}\) anwendet wird.
+Dabei wird der Eigenwert, genauer gesagt \(\lambda_x\), 
+auf den \(\ket{1}\)-Anteil von \(\ket{y}_1\) übertragen.
 
-Sei: \(\ket{y}_1 \equiv \alpha\ket{0} + \beta\ket{1}\) mit \(\alpha,\beta \neq 0\), 
-dann:
-
-\(CU^{(n+1)\times (n+1)}(\ket{y}_1\Tensor\ket{x}_n)=(\alpha\ket{0} + \lambda_x\beta\ket{1})\Tensor\ket{x}_n\).
+Sei \( \ket{y}_1 = \alpha\ket{0} + \beta\ket{1} \) mit \( \alpha,\beta \neq 0 \), dann gilt:
+\begin{align*}
+  CU^{(n+1)\times (n+1)}(\ket{y}_1 \otimes \ket{x}_n) 
+  &= CU^{(n+1)\times (n+1)}\big((\alpha\ket{0} + \beta\ket{1}) \otimes \ket{x}_n\big) \\
+  &= CU^{(n+1)\times (n+1)}\big((\alpha\ket{0}\otimes\ket{x}_n) + (\beta\ket{1}\otimes \ket{x}_n)\big) \\
+  &= \big((\alpha\ket{0}\otimes\ket{x}_n) + (\beta\ket{1}\otimes U^{(n)\times (n)}\ket{x}_n)\big) \\
+  &= \big((\alpha\ket{0}\otimes\ket{x}_n) + (\beta\ket{1}\otimes \lambda_x\ket{x}_n)\big) \\
+  &= (\alpha\ket{0} + \lambda_x\beta\ket{1}) \otimes \ket{x}_n
+\end{align*}
+In der Rechnung wird also die globale Phase \(\lambda_x\) von \(\ket{x}_n\) als relative Phase auf \(\ket{y}_1\) übertragen.
 
 Es folgt ein Beispiel welches den Effekt verdeutlicht:
-Beachtet werden zwei Qubits im Zustand \(\ket{+}_1 \Tensor \ket{-}_1\) auf die ein kontrolliertes X-Gatter angewendet wird.
-Dabei ist \(\ket{-}_1\) der Eigenvektor einer X-Transformation mit zugehörigen Eigenwert \(-\), also \(X^{1\times 1}\ket{-}_1=-\ket{-}_1\).
-
+Beachtet werden zwei Qubits im Zustand \(\ket{+}_1 \tensor \ket{-}_1\) auf die ein kontrolliertes X-Gatter angewendet wird.
+Dabei ist \(\ket{-}_1\) der Eigenvektor einer X-Transformation mit zugehörigen Eigenwert \(-1\), also: 
+\[X^{1\times 1}\ket{-}_1=-\ket{-}_1\]
 Auf das zweite Qubit \(\ket{-}_1\) wirkt ein \(CX^{2\times 2}\) Gatter welches durch das erste Qubit \(\ket{+}_1\) kontrolliert wird:
 \[
-  CX^{2\times 2}( \ket{+}_1\ \Tensor \ket{-}_1) =
+  CX^{2\times 2}( \ket{+}_1\ \tensor \ket{-}_1) =
   \begin{pmatrix}
     1 & 0 & 0 & 0\\
     0 & 1 & 0 & 0\\
@@ -387,42 +400,44 @@ Auf das zweite Qubit \(\ket{-}_1\) wirkt ein \(CX^{2\times 2}\) Gatter welches d
     1 \\
     -1 
   \end{pmatrix}
-  \Tensor
+  \tensor
   \frac{1}{{\sqrt{2}}}
   \begin{pmatrix}
     1 \\
     -1 
   \end{pmatrix}
   =
-  \ket{-}_1 \Tensor \ket{-}_1
+  \ket{-}_1 \tensor \ket{-}_1
   \]
-Mithilfe des Phase-Kickback kann man also den Eigenwert einer unitären Transformation in die Phase eines Kontrollqubits verschieben.
-Der Vorteil davon ist, dass diese Phasenverschiebung nur den Vorfaktor von \(\ket{1}\) des Kontrollqubits betrifft und keine globale Phase darstellt.
+Mit Hilfe des Phase-Kickback kann man also den Eigenwert einer unitären Transformation in die relative Phase eines Kontrollqubits verschieben.
+Der Vorteil davon ist, 
+dass diese Phasenverschiebung nur den Vorfaktor von \(\ket{1}\) des Kontrollqubits betrifft und keine globale Phase darstellt.
 
 Der Aufbau eines Quanten-Phase-Estimation Quantenschaltung sieht beispielsweise wie folgt aus:
-
 Beachtet wird die unitäre Transformation eines Phase-Gatter(P) mit einer variablen Phasenverschiebung von 
-\(P(2 i \pi \varphi ) = 
+\[P(2 i \pi \varphi ) = 
 \begin{pmatrix}
   1 & 0\\
   0 & e^{2 i \pi \varphi}
-\end{pmatrix}\).
+\end{pmatrix}\]
+Ein zugehöriger Eigenvektor dieser Transformation ist \(\ket{1}_1\), 
+den: 
+\[P(2 i \pi \varphi)\ket{1}_1 = e^{2 i \pi \varphi} \ket{1}_1\]
 
-Ein zugehöriger Eigenvektor dieser Transformation ist \(\ket{1}_1\) den \(P(2 i \pi \varphi)\ket{1}_1 = e^{2 i \pi \varphi} \ket{1}_1\).
-
-Um den Effekt das Phase-Kickback nutzen zu können, muss sich das Kontrollqubit in einer Superposition befinden.
+Um den Effekt des Phase-Kickback nutzen zu können, 
+muss sich das Kontrollqubit in einer Superposition befinden.
 Dafür wird das Kontrollqubit im Zustand \(\ket{0}_1\) initialisiert und
 anschließend mit einem Hadamard-Gatter(H) in die gleichmäßige Superposition \(\ket{+}_1\) versetzt.
-\[\ket{0}_1 \Tensor \ket{1}_1 
-\underrightarrow{H^{\Tensor 1}}
- \ket{+}_1 \Tensor \ket{1}_1
+\[\ket{0}_1 \tensor \ket{1}_1 
+\underrightarrow{H^{\tensor 1}}
+ \ket{+}_1 \tensor \ket{1}_1
 =
 \frac{1}{\sqrt{2}}
 \begin{pmatrix}
   1 \\
   1
  \end{pmatrix}
- \Tensor
+ \tensor
  \begin{pmatrix}
   0 \\
   1 
@@ -437,7 +452,7 @@ anschließend mit einem Hadamard-Gatter(H) in die gleichmäßige Superposition \
 \end{pmatrix}
  \]
 Über das kontrollierte Phase-Gatter wird der Eigenwert auf das Kontrollqubit verschoben und
-befindet sich deswegen nicht mehr im Zustand \(\ket{+}_1\) :
+befindet sich daher nicht mehr im Zustand \(\ket{+}_1\) :
 \[
   \frac{1}{\sqrt{2}}
   \begin{pmatrix}
@@ -475,7 +490,7 @@ befindet sich deswegen nicht mehr im Zustand \(\ket{+}_1\) :
     1 \\
     e^{2 i \pi \varphi}
    \end{pmatrix}
-   \Tensor
+   \tensor
    \begin{pmatrix}
     0 \\
     1 
@@ -486,14 +501,14 @@ Die inverse Quanten-Fourier-Transformation sorgt dafür,
 dass der Eigenwert die Amplituden der Kontrollqubits beeinflusst.
 Die Qubits mit dem Eigenvektor sind für den weiteren Ablauf der Quanten-Phasen-Estimation nicht mehr relevant 
 und werden nicht weiter beachtet.
-Im Beispiel entspricht die inverse Quanten-Fourier-Transformation einem Hadamard-Gatter da nur ein einzelnes Kontrollqubit existiert:
+Im vorliegenden Beispiel entspricht die inverse Quanten-Fourier-Transformation einem Hadamard-Gatter, da lediglich ein Kontrollqubit vorhanden ist:
 \[
 \frac{1}{\sqrt{2}}
 \begin{pmatrix}
   1 \\
   e^{2 i \pi \varphi}
  \end{pmatrix}
- \underrightarrow{H^{\Tensor 1}}
+ \underrightarrow{H^{\tensor 1}}
  \frac{1}{\sqrt{2}}
  \begin{pmatrix}
   1 & 1\\
@@ -512,121 +527,176 @@ Im Beispiel entspricht die inverse Quanten-Fourier-Transformation einem Hadamard
   1 - e^{2 i \pi \varphi}
  \end{pmatrix}
 \]
-Anhand des Ergebnisses des Beispiels ist zu erkennen, dass der Eigenwert praktisch auf die Amplitude vom Kontrollqubit transformiert wird.
+Das Ergebnis des Beispiels zeigt, dass der Eigenwert praktisch auf die Amplitude vom Kontrollqubit transformiert wird.
 
-Verwendet man ein Phase-Gatter mit \(\varphi  = 0.075\) sieht der Quantenschaltkreis wie in Abbildung~\ref{fig:qpe_1qubit} aus.
-Mit dieser Phasenverschiebung sollte man bei einer Messung mit einer Wahrscheinlichkeit von ungefähr
-\(0.9455\) den Zustand \(\ket{0}\) erhalten und \(\ket{1}\) mit der Wahrscheinlichkeit \(0.0544\).
-Die Ergebnisse von 20.000 Messungen in Abbildung~\ref{fig:qpe_1qubit_Messung} bestätigen die Größenordnung der Wahrscheinlichkeiten.
-Jedoch ergeben die Messungen aus Abbildung~\ref{fig:qpe_1qubit_Messung} nicht ganz genau den ausgerechneten Wahrscheinlichkeiten.
+Verwendet man ein Phase-Gatter mit \(\varphi  = 0.075\), 
+so sieht der Quantenschaltkreis wie in Abbildung~\ref{fig:qpe_1qubit} aus.
+\begin{figure}[H]
+  \caption{Einzelnes Kontroll-Qubit QPE}
+  \label{fig:qpe_1qubit}
+  \includegraphics[ scale = 0.9]{qpe_1qubit.PNG}
+  \centering
+  \end{figure}
+Mit dieser Phasenverschiebung sollte man bei einer Messung den Zustand \(\ket{0}\)
+mit einer Wahrscheinlichkeit von ungefähr \(0.9455\) 
+und den Zustand \(\ket{1}\) mit der Wahrscheinlichkeit \(0.0544\) erhalten.
+Die Ergebnisse von 20.000 Messungen, dargestellt in Abbildung~\ref{fig:qpe_1qubit_Messung}, 
+bestätigen die Größenordnung dieser Wahrscheinlichkeiten.
+Jedoch entsprechen die Messungen aus Abbildung~\ref{fig:qpe_1qubit_Messung} nicht ganz den theoretisch ausgerechneten Wahrscheinlichkeiten.
 Dies liegt an der probabilistischen Natur der Messung.
-Bei einer zunehmenden Anzahl an Messungen würden die Ergebnisse an die Wahrscheinlichkeitswerte konvergieren.
-Somit benötigt man sehr viele Durchläufe des Quantenalgorithmus um anhand der Messungen ein verlässliches Ergebnis zu erhalten.
+Bei einer zunehmenden Anzahl an Messungen würden die Ergebnisse gegen die theoretisch erwarteten Wahrscheinlichkeitswerte konvergieren.
+Somit sind viele Durchläufe des Quantenalgorithmus erforderlich, 
+um anhand der Messungen ein verlässliches Ergebnis zu erhalten.
+\begin{figure}[H]
+  \caption{Einzelnes Kontroll-Qubit QPE Messung}
+  \label{fig:qpe_1qubit_Messung}
+  \includegraphics[width=\columnwidth]{qpe_1qubit_Messung.PNG}
+  \centering
+  \end{figure}
+  
 
-Es ist möglich die Präzision der Quanten-Phase-Estimation zu verbessern, 
-indem mehr Qubits verwendet werden.
-Diese Qubits werden dann als weitere Kontrollqubits verwendet.
-Die Anzahl der Qubits für den Eigenvektor bleibt gleich der Bitanzahl, 
+Die Präzision der Quanten-Phasenabschätzung lässt sich durch die Verwendung mehrerer Qubits erhöhen.
+Diese zusätzlichen Qubits dienen als weitere Kontrollqubits.
+Die Anzahl der Qubits, die für den Eigenvektor benötigt werden, 
+bleibt unverändert und entspricht der Bitanzahl, 
 die ausreicht, um den Wert des Eigenvektors zu definieren.
 Jedes einzelne Kontrollqubit kontrolliert ein \(U^{2^x}\)-Gatter.
 Bei \(n\) Kontrollqubits kontrolliert das least-significant-bit ein \(U^{2^0}\)-Gatter,
-das darauffolgende ein \(U^{2^1}\)-Gatter,
-während das letzte Kontrollqubit ein \(U^{2^{n-1}}\)-Gatter kontrolliert.
-Dabei kann \(U^{2^x}\) als \(2^x\) viele \(U\)-Gatter realisiert werden oder 
-als ein einzelnes Gatter, welches den Eigenwert \(\lambda\) mit \(2^x\) multipliziert anwendet.
-Anschließend wirkt die inverse Quanten-Fourier-Transformation auf alle Kontrollqubits.
-Anhand der Messung kann dann \(\varphi\) bestimmt werden.
-Der Aufbau der Schaltung ist in Abbildung~\ref{fig:qpe_n_qubit} abgebildet.
+das darauffolgende ein \(U^{2^1}\)-Gatter und so weiter,
+bis das letzte Kontrollqubit ein \(U^{2^{n-1}}\)-Gatter kontrolliert.
+\(U^{2^x}\) kann entweder durch \(2^x\) viele \(U\)-Gatter oder durch ein einzelnes Gatter implementiert werden, 
+das den Eigenwert \(\lambda\) mit \(2^x\) multipliziert anwendet.
+Anschließend wird die inverse Quanten-Fourier-Transformation auf alle Kontrollqubits angewendet.
+Durch die Messung lässt sich dann der Wert für \(\varphi\) ermitteln.
+Der Aufbau der Schaltung ist als Skizze in Abbildung~\ref{fig:qpe_n_qubit} abgebildet.
+
+\begin{figure}[H]
+  \caption{N Qubit QPE}
+  \label{fig:qpe_n_qubit}
+  \includegraphics[scale = 0.8]{qpe_n_qubit.PNG}
+  \centering
+  \end{figure}
 
 Wird die Quanten-Fourier-Transformation wie in Abbildung~\ref{fig:qpe_n_qubit} realisiert,
 kann man den Zustand der Kontrollqubits vor der inversen Quanten-Fourier-Transformation wie folgt beschreiben:
-\[\frac{1}{\sqrt{N}}[
-  (\ket{0} + CU^{2^0}\ket{1}) \Tensor
-  (\ket{0} + CU^{2^1}\ket{1}) \Tensor 
-  ... \Tensor
-  (\ket{0} + CU^{2^{n-1}}\ket{1}) 
-]\]
-Mit \(U^{n\times n}\ket{x}_n=e^{2\pi i \varphi}\ket{x}_n\) wird der Eigenwert \(e^{2\pi i \varphi}\) wegen des Phase-Kickbacks
+\[\frac{1}{\sqrt{N}}\Bigg[
+  CU^{2^0}\Big(\ket{0} + \ket{1}\Big) \tensor
+  CU^{2^1}\Big(\ket{0} + \ket{1}\Big) \tensor 
+  ... \tensor
+  CU^{2^{n-1}}\Big(\ket{0} + \ket{1}\Big) 
+  \Bigg]\]
+Mit \(U^{2^x}\ket{x}_n=e^{2\pi i 2^x\varphi}\ket{x}_n\) wird der Eigenwert \(e^{2\pi i \varphi}\) wegen des Phase-Kickbacks
 über die \(CU\)-Gatter auf die Kontrollqubits übertragen:
-\[\frac{1}{\sqrt{N}}[
-  (\ket{0} + e^{2\pi i 2^0 \varphi}\ket{1}) \Tensor
-  (\ket{0} + e^{2\pi i 2^1 \varphi}\ket{1}) \Tensor 
-  ... \Tensor
-  (\ket{0} + e^{2\pi i 2^{n-1} \varphi}\ket{1}) 
-]\]
+\[\frac{1}{\sqrt{N}}\Bigg[
+  \Big(\ket{0} + e^{2\pi i 2^0 \varphi}\ket{1}\Big) \tensor
+  \Big(\ket{0} + e^{2\pi i 2^1 \varphi}\ket{1}\Big) \tensor 
+  ... \tensor
+  \Big(\ket{0} + e^{2\pi i 2^{n-1} \varphi}\ket{1}\Big) 
+  \Bigg]\]
 Schreibt man \(\varphi\) als Binärbruch:
 \[\varphi = \frac{\varphi_n}{2^1} + \frac{\varphi_{n-1}}{2^2} + ... + \frac{\varphi_1}{2^n}\]
-Kann die Formel in einer ähnlichen Form wie die Quanten-Fourier-Transformation umgeformt werden~\cite{nielsen_chuang_2010}:
-\[\frac{1}{\sqrt{N}}[
-  (\ket{0} + e^{2\pi i (\frac{\varphi_n}{2})} ... e^{2\pi i (\frac{\varphi_2}{2^{n-1}})}e^{2\pi i (\frac{\varphi_1}{2^{n}})}\ket{1})  ... 
-  (\ket{0} +  e^{2\pi i (\frac{\varphi_2}{2})}e^{2\pi i (\frac{\varphi_1}{4})}\ket{1}) \Tensor 
-  (\ket{0} + e^{2\pi i (\frac{\varphi_1}{2})}\ket{1}) 
-]\]
+Kann die Formel in einer ähnlichen Form wie die Quanten-Fourier-Transformation umgeformt werden:
+\begin{align*}
+\frac{1}{\sqrt{N}}\Bigg[
+  \Big(\ket{0} + e^{2\pi i (\frac{\varphi_n}{2})} 
+  ...  
+  e^{2\pi i (\frac{\varphi_2}{2^{n-1}})}e^{2\pi i (\frac{\varphi_1}{2^{n}})}\ket{1}\Big) 
+  \tensor ... 
+  &\tensor
+  \Big(\ket{0} +  e^{2\pi i (\frac{\varphi_2}{2})}e^{2\pi i (\frac{\varphi_1}{4})}\ket{1}\Big)\\ 
+  &\tensor 
+  \Big(\ket{0} + e^{2\pi i (\frac{\varphi_1}{2})}\ket{1}\Big) 
+  \Bigg]
+\end{align*}
 Die Formel besitzt die gespiegelte Struktur wie die Quanten-Fourier-Transformation ohne Swap-Gatter:
-\[QFT_{N}\ket{x}_{n} = \frac{1}{\sqrt{N}}(\ket{0} + { e^{2 \pi i \frac{(x_1)}{2}}}\ket{1}) \Tensor
-( \ket{0} + { e^{2 \pi i \frac{(x_2)}{2}\frac{(x_1)}{4}}}\ket{1})...
-(\ket{0} + e^{2\pi i (\frac{x_n}{2})} ... e^{2\pi i (\frac{x_2}{2^{n-1}})}e^{2\pi i (\frac{x_1}{2^{n}})}\ket{1})\]
-Durch die Verwendung der Swap Gatter kann die Reihenfolge der quanten-Fourier-Transformation gespiegelt werden, 
+\begin{align*}
+  QFT_{N}\ket{x}_{n} = 
+  \frac{1}{\sqrt{N}}
+  \Bigg[
+    \Big(\ket{0} + { e^{2 \pi i (\frac{x_1}{2})}}\ket{1}\Big) 
+    &\tensor
+    \Big( \ket{0} + { e^{2 \pi i (\frac{x_2}{2})(\frac{x_1}{4})}}\ket{1}\Big)\\
+    &\vdotswithin{\tensor}\\
+    &\tensor
+    \Big(\ket{0} + e^{2\pi i (\frac{x_n}{2})} ... e^{2\pi i (\frac{x_2}{2^{n-1}})}e^{2\pi i (\frac{x_1}{2^{n}})}\ket{1}\Big)
+  \Bigg]
+\end{align*}
+Durch die Verwendung der Swap-Gatter kann die Reihenfolge der Quanten-Fourier-Transformation gespiegelt werden, 
 anschließend sind beide Formeln strukturell identisch.
 
-Wie im Kapitell zur Quanten-Fourier-Transformation erklärt,
+Wie im Kapitel zur Quanten-Fourier-Transformation erklärt,
 transformiert die Quanten-Fourier-Transformation den Zustand der Eingangsqubits \(\ket{x}_n\) in die Phasen der Ausgangsqubits.
-Hingegen kehrt die inverse Quanten-Fourier-Transformation diesen Vorgang um, 
-indem die Phaseninformationen der Eingangsqubits in Zustände der Standartbasis transformiert werden.
+Im Gegensatz dazu kehrt die inverse Quanten-Fourier-Transformation diesen Vorgang um, 
+indem die Phaseninformationen der Eingangsqubits in Zustände der Standardbasis transformiert werden.
 
 Die Anwendung der inversen Quanten-Fourier-Transformation, inklusive Swap-Gatter, bewirkt also:
-\[iQFT(\frac{1}{\sqrt{N}}[
-  (\ket{0} + e^{2\pi i (\frac{\varphi_n}{2})} ... e^{2\pi i (\frac{\varphi_2}{2^{n-1}})}e^{2\pi i (\frac{\varphi_1}{2^{n}})}\ket{1})  ... 
-  (\ket{0} +  e^{2\pi i (\frac{\varphi_2}{2})}e^{2\pi i (\frac{\varphi_1}{4})}\ket{1}) \Tensor 
-  (\ket{0} + e^{2\pi i (\frac{\varphi_1}{2})}\ket{1}) 
-])\]
+\begin{align*}
+iQFT\Bigg(
+\frac{1}{\sqrt{N}}
+\Bigg[
+  \Big(\ket{0} + e^{2\pi i (\frac{\varphi_n}{2})} ...& e^{2\pi i (\frac{\varphi_2}{2^{n-1}})}e^{2\pi i (\frac{\varphi_1}{2^{n}})}\ket{1}\Big) \\
+  &\vdotswithin{\tensor}\\
+  &\tensor
+  \Big(\ket{0} +  e^{2\pi i (\frac{\varphi_2}{2})}e^{2\pi i (\frac{\varphi_1}{4})}\ket{1}\Big) \tensor 
+  \Big(\ket{0} + e^{2\pi i (\frac{\varphi_1}{2})}\ket{1}\Big) 
+  	\Bigg]
+\Bigg)
+\end{align*}
 \[ = \ket{\varphi_1 \varphi_{2}...\varphi_n}_n = \ket{2^n\varphi}_n\]
 Schließlich kann \(\varphi\) mit einer division durch \(2^n\) bestimmt werden.
 
 Als Beispiel wird die Quanten-Phase-Estimation für
-\(U^{1\times 1}\ket{1}_1=e^{2\pi i \frac{3}{8}}\ket{1}_1\) also mit \(\varphi = \frac{3}{8}\)
-beachtet.
-Damit der Quantenschaltkreis in Abbildung~\ref{fig:3_qubit_qpe} möglichst gut erkennbar ist,
-werden die kontrollierten \(U^{2^x}\)-Gatter werden als Phase-Gatter mit \(P(e^{2^x 2\pi i \frac{3}{8}})\) realisiert.
-\begin{figure}
+\(U^{1\times 1}\ket{1}_1=e^{2\pi i \frac{3}{8}}\ket{1}_1\), 
+also mit \(\varphi = \frac{3}{8}\) betrachtet.
+Im Quantenschaltkreis aus Abbildung~\ref{fig:3_qubit_qpe} 
+werden die kontrollierten \(U^{2^x}\)-Gatter als Phase-Gatter mit steigendem \(x\) in \(P(e^{2^x 2\pi i \frac{3}{8}})\) realisiert.
+\begin{figure} [H]
   \caption{3-Kontroll-Qubit QPE}
   \label{fig:3_qubit_qpe}
   \includegraphics[width=\columnwidth]{3_qubit_qpe.png}
   \centering
   \end{figure}
 Die Messung in Abbildung~\ref{fig:3_qubit_qpe_measurement} ergibt konsistent bei allen Durchläufen den Zustand \(\ket{3}_3\).
-Da \(\ket{3}_3 = \ket{2^3\varphi}_3\) entspricht, kann mit einer Division \(\varphi = \frac{3}{8}\) bestimmt werden.
-Es ist zu beachten, dass die Reihenfolge der Wertigkeit der Qubits gleich bleibt.
-Normalerweise vertauscht die inverse wie auch die normale Quanten-Fourier-Transformation die Wertigkeiten.
-Jedoch wird dieser Effekt mit Swap-Gattern korrigiert.
-\begin{figure}
+Da \(\ket{3}_3 = \ket{2^3\varphi}_3\) entspricht, 
+lässt sich durch eine Division \(\varphi = \frac{3}{8}\) ermitteln.
+Es ist zu beachten, 
+dass die Reihenfolge der Wertigkeit der Qubits gleich bleibt.
+Normalerweise tauschen die inverse wie auch die normale Quanten-Fourier-Transformation die Wertigkeiten.
+Dieser Effekt wird jedoch durch Swap-Gatter korrigiert.
+\begin{figure}[H]
 \caption{3-C-Qubit QPE Messergebnis}
 \label{fig:3_qubit_qpe_measurement}
 \includegraphics[width=\columnwidth]{3_qubit_qpe_measurement.PNG}
 \centering
 \end{figure}
 
-Im vorherigen Beispiel liefern die Messungen aller Durchläufe den gleichen Zustand mit dem \(\varphi\) eindeutig bestimmbar ist.
-Diese Eindeutigkeit tritt auf wenn die verwendete Anzahl an Kontroll-Qubits ausreicht, 
+Im vorherigen Beispiel liefern die Messungen aller Durchläufe den gleichen Zustand, 
+durch den \(\varphi\) eindeutig bestimmbar ist.
+Diese Eindeutigkeit tritt auf, 
+wenn die verwendete Anzahl an Kontroll-Qubits ausreicht, 
 um \(\varphi\) eindeutig zu repräsentieren.
-Im oberen Beispiel kann \(\varphi\) eindeutig mit den drei verwendeten Kontrollqubits dargestellt werden:
-\({\frac{3}{8} =0 \cdot 2^{-1} + 1\cdot2^{-2} + 1\cdot2^{-3}}\).
-Verwendet man nicht ausreichend Kontroll-Qubits kann \(\varphi\) nicht eindeutig repräsentiert werden.
+Im obigen Beispiel kann \(\varphi\) eindeutig mit den drei verwendeten Kontrollqubits dargestellt werden:
+\[{\frac{3}{8} =0 \cdot 2^{-1} + 1\cdot2^{-2} + 1\cdot2^{-3}}\]
+Verwendet man nicht ausreichend Kontroll-Qubits, 
+kann \(\varphi\) nicht eindeutig repräsentiert werden.
 Als Konsequenz wird die Messung ungenau.
 Mit hoher Wahrscheinlichkeit kollabieren die Qubits bei einer Messung 
-in die darstellbaren Zustände, die den genauen Wert am besten approximieren.
+in die darstellbaren Zustände, 
+die den genauen Wert am besten approximieren.
 Dabei liegt die Wahrscheinlichkeit, dass die Messung in einen der beiden angrenzenden Zustände kollabiert, 
 bei \(\frac{8}{\pi^2}\)~\cite[119]{kaye2007introduction}.
-In Abbildung ~\ref*{fig:3_qubit_qpe_measurment_uncertain} sind die Messergebnisse von einer Quanten-Phase-Estimation
-abgebildet, die die Phase \(\varphi = \frac{5}{16}\) bestimmen soll.
-Da \(\frac{5}{16}\) nicht mit 3-Qubits darstellbar ist, gibt es kein eindeutiges Messergebnis.
-Anhand der Messergebnisse ist aber erkennbar, dass die Messungen mit hoher Wahrscheinlichkeit,
-zu den bestmöglichen Zuständen kollabieren.
+
+In Abbildung~\ref*{fig:3_qubit_qpe_measurment_uncertain} sind die Messergebnisse einer Quanten-Phase-Estimation abgebildet, 
+die die Phase \(\varphi = \frac{5}{16}\) bestimmen soll.
+Da \(\frac{5}{16}\) nicht mit 3 Qubits darstellbar ist, 
+gibt es kein eindeutiges Messergebnis.
+Anhand der Messergebnisse ist aber erkennbar, 
+dass die Messungen mit einer Wahrscheinlichkeit größer als \(\frac{8}{\pi^2}\) in
+einen der beiden angrenzenden Zustände kollabiert.
 Diese entsprechen \({\frac{2}{8} = \frac{4}{16}}\) und \({\frac{3}{8} = \frac{6}{16}}\), 
-also genau die Werte um \(\frac{5}{16}\).
+also genau den Werten, die \(\frac{5}{16}\) am nächsten sind.
 
-
-\begin{figure}
+\begin{figure} [H]
   \caption{QPE unpräzises Messergebnis}
   \label{fig:3_qubit_qpe_measurment_uncertain}
   \includegraphics[width=\columnwidth]{3_qubit_qpe_measurment_uncertain.PNG}
