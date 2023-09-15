@@ -10,30 +10,34 @@ Sein, das zugleich Nichtsein ist."'
 - Georg Wilhelm Friedrich Hegel
 
 Die Repräsentation und Speicherung von Information ist ein zentraler Aspekt aller Computer, 
-unabhängig von der verwendeten Technologie oder Architektur. 
-Bei klassischen Computern basiert diese Repräsentation auf dem Binärsystem. 
+unabhängig von der verwendeten Technologie oder Architektur.
+Heutzutage basieren klassische Computer in der Regel auf dem Binärsystem. 
 In der klassischen Repräsentation ist das Bit die kleinste Informationseinheit, 
 die eine von zwei mögliche Zustände annehmen kann: 0 oder 1. 
 Ein Bit hat zu jedem Zeitpunkt einen klar definierten Zustand. 
 Mehrmaliges Auslesen eines Bits führt zu keiner Zustandsänderung, 
 sofern keine Operationen zwischen den Auslesungen durchgeführt werden.
 
-Quantencomputer hingegen funktionieren grundlegend anders. 
-Sie stützen sich auf die Prinzipien der Quantenmechanik und verwenden anstelle von Bits Quatenbits beziehungsweise Qubits zur Informationsrepräsentation.
-Ein einzelnes Qubit stellt die kleinstmögliche Informationseinheit dar über die ein Quantencomputer verfügt.
-Um quantenmechanische Zustände von Qubits zu beschreiben wird die Dirac-Notation als mathematische Schreibweise genutzt~\cite{dirac_1939}.
+Im Gegensatz dazu funktionieren Quantencomputer grundlegend anders. 
+Sie stützen sich auf die Prinzipien der Quantenmechanik und 
+verwenden anstelle von Bits sogenannte Quantenbits beziehungsweise Qubits zur Informationsrepräsentation. 
+Ein einzelnes Qubit stellt die kleinstmögliche Informationseinheit dar, 
+über die ein Quantencomputer verfügt. 
+Um quantenmechanische Zustände von Qubits zu beschreiben, 
+wird die Dirac-Notation als mathematische Schreibweise genutzt~\cite{dirac_1939}.
 
-Ein Qubit kann den Zustände 0 oder den Zustand 1 annehmen:
+Ein Qubit kann den Zustand 0 oder den Zustand 1 annehmen:
 \begin{center}
 \(\ket{0}\) oder entsprechend \(\ket{1}\)
 \end{center}
 
-Des weiteren kann ein Qubit auch beide der Basiszustände gleichzeitig einnehmen:
+Des Weiteren kann ein Qubit auch beide der Basiszustände gleichzeitig einnehmen:
 \begin{center}
 \(\ket{\Psi} = \alpha\ket{0} + \beta\ket{1}\)
 \end{center}
 Dieses Phänomen ist eine der charakteristischen Eigenschaften von Qubits und wird als \textbf{Superposition} bezeichnet.
-Dabei handelt es sich bei den Vorfaktoren \(\alpha\) und \(\beta\) um komplexe Zahlen für die gilt:
+Dabei handelt es sich bei den Vorfaktoren \(\alpha\) und \(\beta\) um komplexe Zahlen, 
+für die gilt:
 \begin{center}
 \(\lvert\alpha\rvert^2 + \lvert\beta\rvert^2 = 1\)
 \end{center}
@@ -43,25 +47,28 @@ In der klassischen Welt findet man nur schwer eine Analogie zur Superposition.
 Man kann sich dies jedoch in etwa an einer Münze vorstellen~\cite{Hoever2023Münze}:
 
 Ein klassisches Bit kann dabei entweder auf der Kopf- oder auf der Zahl-Seite liegen.
-Ein Qubit hingegen ist eine Münze die auf der Kante um die eigene Achse rotiert.
+Ein Qubit hingegen ist eine Münze, 
+die auf der Kante um die eigene Achse rotiert.
 Dabei geben die Vorfaktoren \(\alpha\) und \(\beta\) an,
 wie die Münze zu der einen oder zu der anderen Seite tendiert.
-Ohne die Münze zu beeinflussen ist es nicht möglich die Tendenz, 
+Ohne die Münze zu beeinflussen, 
+ist es nicht möglich, die Tendenz, 
 also die Vorfaktoren, zu bestimmen.
 
-Möchte man nun aber doch ein konkretes Ergebnis haben, 
+Möchte man jedoch ein konkretes Ergebnis erhalten, 
 muss man das Qubit lesen, 
 beziehungsweise genauer gesagt messen.
 Dabei wird die Superposition zerstört und das Qubit kollabiert in einen der beiden Basiszustände.
 
-In der Analogie zu der Münze wird die Rotation der Münze gezielt gestoppt, sodass diese auf eine der beiden Seiten kippt.
+In Analogie zur Münze wird die Rotation der Münze gezielt gestoppt, sodass diese auf eine der beiden Seiten kippt.
 
 Die Wahrscheinlichkeiten dafür werden durch die Vorfaktoren des Qubits bestimmt:
 \begin{center}
 \(\lvert\alpha\rvert^2\) für \(\ket{0}\), \(\lvert\beta\rvert^2\) für \(\ket{1}\)
 \end{center}
 
-Es ist also nicht möglich den Zustand eines Qubit während einer Berechnung nur "`anzuschauen"',
+Es ist also nicht möglich, 
+den Zustand eines Qubit während einer Berechnung zu beobachten,
 da ansonsten die Superposition zerstört wird und sich somit der Zustand des Qubits verändert.
 Aus diesem Grund erfolgt die Messung in der Regel erst am Ende eines Quantenalgorithmus, um das endgültige Ergebnis zu ermitteln.
 
@@ -75,32 +82,33 @@ Aus diesem Grund erfolgt die Messung in der Regel erst am Ende eines Quantenalgo
 
 \subsection{Quanten-Fourier-Transformation} \label{Quanten-Fourier-Transformation}
 Die Quanten-Fourier-Transformation bildet einen wesentlichen Bestandteil des implementierten Quantenalgorithmus. 
-Im folgen Abschnitt wird die allgemeine Anwendung der Quanten-Fourier-Transformation erklärt.
-Darüber hinaus wird die Implementierung des Quantenschaltkreis anhand der Formel der Quanten-Fourier-Transformation hergeleitet.
+Im folgenden Abschnitt wird die allgemeine Anwendung der Quanten-Fourier-Transformation erklärt.
+Darüber hinaus wird die Implementierung des Quantenschaltkreises anhand der Formel der Quanten-Fourier-Transformation hergeleitet.
 
 Im Prinzip handelt es sich bei der Quanten-Fourier-Transformation um eine Transformation,
 die Qubits von der Standardbasis (\(\ket{0}\), \(\ket{1}\)),
-in die entsprechende Fourierbasis (\(\ket{+}\), \(\ket{-}\)) überführt~\cite{homeister2023quantum215}.
-Bei dem Basiswechsel werden die Informationen des vorherigen Standardbasiszustandes in die Phase des neuen Zustandes übertragen~\cite{Ruiz-Perez2017}.
-Anschließend können in der Fourierbasis Rechnungen durchgeführt werden die im Grunde durch Manipulationen der Phase realisiert werden.
-Mit diesem Ansatz ist es möglich arithmetische Operationen, wie beispielsweise 
+in die entsprechende Fourierbasis (\(\ket{+}\), \(\ket{-}\)) überführt~\cite[215]{homeister2023quantum215}.
+Bei dem Basiswechsel werden die Informationen des vorherigen Standardbasiszustands in die Phase des neuen Zustandes übertragen~\cite{Ruiz-Perez2017}.
+Anschließend können in der Fourierbasis Rechnungen durchgeführt werden, 
+die im Grunde durch Manipulationen der Phase realisiert werden.
+Mit diesem Ansatz ist es möglich, arithmetische Operationen, wie beispielsweise 
 die Addition, effizienter zu berechnen~\cite{draper2000addition,Ruiz-Perez2017}.
 
 Unter Verwendung der inversen Quanten-Fourier-Transformation, 
-die als Rücktransformation dient, 
-ist es möglich wieder zurück in die Standardbasis zu transformieren.
-Dies bewirkt, die Extraktion der Information aus der Phase in einen messbaren Zustand. 
+die als Rücktransformation dient, ist es möglich, 
+wieder zurück in die Standardbasis zu transformieren. 
+Dies ermöglicht die Extraktion der Information aus der Phase in einen messbaren Zustand.
 
 Die Quanten-Fourier-Transformation ist für ein \(N\) = \(2^n\) mit \(n\) Qubits
-für die Basisvektoren \(\ket{x}, x = 0,...,N-1\) wie folgt definiert~\cite{Hoever2023QC}:
+für die Basisvektoren \(\ket{x}, x = 0,...,N-1\) wie folgt definiert~\cite[216]{homeister2023quantum215}:
 \[QFT_{N}\ket{x}_{n} = \frac{1}{\sqrt{N}}\sum_{y=0}^{N-1}  e^{\frac{2 \pi i x y}{N}}\ket{y}_{n}\]
 Anhand dieser Definition kann der Quantenschaltkreis nicht direkt hergeleitet werden.
-Stattdessen musst die Formel umgeformt werden.
+Stattdessen muss die Formel umgeformt werden.
 
-Die folgende Herleitung stammt aus dem Textbuch \textit{Quantum Computation and Quantum Information} Seite 218~\cite{nielsen_chuang_2010}.
-Die Herleitung wird der Übersicht halber um Zwischenschritte ergänzt:
+Die folgende Herleitung stammt aus dem Lehrbuch \textit{Quantum Computation and Quantum Information}~\cite[218]{nielsen_chuang_2010}.
+Der Übersicht halber werden Zwischenschritte hinzugefügt.
 
-Indem \(y\) in der ersten Formel in die Binärschreibweise übertragen wird, erhält man:
+Indem \(y\) in der ersten Formel in die Binärschreibweise überführt wird, ergibt sich:
 %Reihnfolge der Binärschreibweise einheitlich machen
 % 
 %\begin{align}
@@ -138,12 +146,12 @@ Der Ausdruck kann weiter vereinfacht werden indem das Tensorprodukt vorgezogen w
 Schreibt man das Tensorprodukt voll aus und notiert \(x\) in Binärschreibweise, erhält man:
 \begin{align*}
 \frac{1}{\sqrt{N}}\Bigg(
-  \ket{0} + { e^{\frac{2 \pi i (2^{n-1}x_n+...+2^1x_2+2^0x_1)}{2^1}}}\ket{1}
+  \Big(\ket{0} + { e^{\frac{2 \pi i (2^{n-1}x_n+...+2^1x_2+2^0x_1)}{2^1}}}\ket{1}\Big)
   &\tensor
-  \ket{0} + { e^{\frac{2 \pi i (2^{n-1}x_n+...+2^1x_2+2^0x_1)}{2^2}}}\ket{1} \\
+  \Big(\ket{0} + { e^{\frac{2 \pi i (2^{n-1}x_n+...+2^1x_2+2^0x_1)}{2^2}}}\ket{1}\Big) \\
   &\vdotswithin{\tensor} \\
   &\tensor
-  \ket{0} + { e^{\frac{2 \pi i (2^{n-1}x_n+...+2^1x_2+2^0x_1)}{2^n}}}\ket{1}
+  \Big(\ket{0} + { e^{\frac{2 \pi i (2^{n-1}x_n+...+2^1x_2+2^0x_1)}{2^n}}}\ket{1}\Big)
   \Bigg)
 \end{align*}
 Die komplexe Exponentialfunktion ergibt für eine natürliche Zahl \(k\): \(e^{2\pi i k} = 1\).
@@ -159,51 +167,100 @@ Dabei ergibt nur der Term \(e^{{2 \pi i (2^{-1}x_1)}} \neq 1 \)
 und verursacht somit eine relevante Phasenverschiebung.
 
 Abschließend lässt sich das gesamte Tensorprodukt vereinfachen:
-\[QFT_{N}\ket{x}_{n} = \frac{1}{\sqrt{N}}(\ket{0} + { e^{\frac{2 \pi i (2^0x_1)}{2^1}}}\ket{1}) \Tensor
-( \ket{0} + { e^{\frac{2 \pi i (2^1x_2+2^0x_1)}{2^2}}}\ket{1})...
-( \ket{0} + { e^{\frac{2 \pi i (2^{n-1}x_n+ ... +2^1x_2+2^0x_1)}{2^n}}}\ket{1})\]
+\begin{align*}
+  QFT_{N}\ket{x}_{n} = 
+  \frac{1}{\sqrt{N}}
+  \Bigg(
+    \Big(\ket{0} + { e^{\frac{2 \pi i (2^0x_1)}{2^1}}}\ket{1}\Big) 
+    &\tensor
+    \Big( \ket{0} + { e^{\frac{2 \pi i (2^1x_2+2^0x_1)}{2^2}}}\ket{1}\Big) \\
+    &\vdotswithin{\tensor}\\
+    &\tensor
+    \Big( \ket{0} + { e^{\frac{2 \pi i (2^{n-1}x_n+ ... +2^1x_2+2^0x_1)}{2^n}}}\ket{1}\Big)
+  \Bigg)
+\end{align*}
+Ein einzelner Tensor repräsentiert die Wirkung der Quantenschaltung auf ein einzelnes Qubit. 
+Somit werden die Phasenverschiebungen erkennbar, 
+die auf ein Qubit wirken. 
+Außerdem verdeutlicht die Binärschreibweise, 
+dass die angewendete Phasenverschiebung vom Zustand anderer Qubits abhängig ist.
 
-Ein einzelner Tensor repräsentiert die Wirkung der Schaltung auf ein einzelnes Qubit.
-Somit sind die Phasenverschiebungen erkenntlich die auf ein Qubit wirken.
-Ausserdem verdeutlicht die Binärschreibweise, dass die angewendete Phasenverschiebung vom Zustand anderer Qubits abhängt.
-
-Für die Implementierung der Quanten-Fourier-Transformation sind nur die Terme relevant
-welche eine Phasenverschiebung von ungleich \(1\) bewirken.
-Dies kann man mit folgender Formel beschreiben:
-\[QFT_{N}\ket{x}_{n} = \frac{1}{\sqrt{N}}\Tensor_{k=1}^n [  \ket{0} + { e^{\frac{2 \pi i \sum_{b=0}^{k-1}2^b x_{b+1} }{2^k}}}\ket{1}]\] 
-Im weiteren wird die Formel verwendet um ein Quantenschaltkreis der Quanten-Fourier-Transformation für drei Qubits zu implementieren:
-\[QFT_{8}\ket{x}_{3} = \frac{1}{\sqrt{8}} [ (\ket{0} + { e^{\frac{2 \pi i (2^0x_1)}{2^1}}}\ket{1} ) \Tensor
-( \ket{0} + { e^{\frac{2 \pi i (2^1x_2+2^0x_1)}{2^2}}}\ket{1} ) \Tensor
-( \ket{0} + { e^{\frac{2 \pi i (2^{2}x_3 +2^1x_2+2^0x_1)}{2^3}}}\ket{1} ) ] \]
-Man kann die Phasenverschiebung die durch den Zustand eines einzelnen Qubits erzeugt wird verdeutlichen,
+Für die Implementierung der Quanten-Fourier-Transformation sind nur die Terme relevant, 
+die eine Phasenverschiebung von ungleich 1 bewirken. 
+Dies lässt sich mit der folgenden Formel beschreiben:
+\[
+QFT_{N}\ket{x}_{n} = \frac{1}{\sqrt{N}}
+\Tensor_{k=1}^n \Big[  \ket{0} + { e^{\frac{2 \pi i \sum_{b=0}^{k-1}2^b x_{b+1} }{2^k}}}\ket{1}\Big]
+\] 
+Im Weiteren wird diese Formel verwendet, 
+um einen Quantenschaltkreis für die Quanten-Fourier-Transformation mit drei Qubits zu implementieren:
+\begin{align*}
+QFT_{8}\ket{x}_{3} = 
+\frac{1}{\sqrt{8}} 
+  \Bigg[
+    \Big(\ket{0} + { e^{\frac{2 \pi i (2^0x_1)}{2^1}}}\ket{1} \Big) 
+    &\tensor
+    \Big(\ket{0} + { e^{\frac{2 \pi i (2^1x_2+2^0x_1)}{2^2}}}\ket{1} \Big) \\
+    &\tensor
+    \Big(\ket{0} + { e^{\frac{2 \pi i (2^{2}x_3 +2^1x_2+2^0x_1)}{2^3}}}\ket{1} \Big) 
+  \Bigg] 
+\end{align*}
+Man kann die durch den Eingangszustand eines einzelnen Qubits erzeugte Phasenverschiebung verdeutlichen, 
 indem man die Addition im Exponenten zu einer Multiplikation der gleichen Basen umformt:
-\[ = \frac{1}{\sqrt{8}} [ (\ket{0} + { e^{\frac{2 \pi i (2^0x_1)}{2^1}}}\ket{1}) \Tensor
-( \ket{0} + { e^{\frac{2 \pi i (2^1x_2)}{2^2}} e^{\frac{2 \pi i (2^0x_1)}{2^2}} }\ket{1} ) \Tensor
-( \ket{0} + { e^{\frac{2 \pi i (2^{2}x_3)}{2^3}} e^{\frac{2 \pi i (2^1x_2)}{2^3}} e^{\frac{2 \pi i (2^0x_1)}{2^3}}  }\ket{1} ) ] \]
-Die Phasenverschiebung wird eindeutiger indem man die Brüche kürzt:
-\[ = \frac{1}{\sqrt{8}} [ ( \ket{0} + e^{\pi i x_1}\ket{1} ) \Tensor
-( \ket{0} + { e^{\pi i x_2} e^{ \frac{ \pi i x_1}{2}} }\ket{1} ) \Tensor
-( \ket{0} + { e^{\pi i x_3} e^{\frac{\pi i x_2}{2}} e^{ \frac{ \pi i x_1}{4}} }\ket{1} ) ] \]
-In einer abschließenden Umformung lässt sich die \(\frac{1}{\sqrt8}\) aufteilen.
+\begin{align*}
+  QFT_{8}\ket{x}_{3} = 
+  \frac{1}{\sqrt{8}} 
+  \Bigg[
+    \Big(\ket{0} + { e^{\frac{2 \pi i (2^0x_1)}{2^1}}}\ket{1}\Big) 
+    &\tensor
+    \Big(\ket{0} + { e^{\frac{2 \pi i (2^1x_2)}{2^2}} e^{\frac{2 \pi i (2^0x_1)}{2^2}} }\ket{1} \Big) \\ 
+    &\tensor
+    \Big(\ket{0} + { e^{\frac{2 \pi i (2^{2}x_3)}{2^3}} e^{\frac{2 \pi i (2^1x_2)}{2^3}} e^{\frac{2 \pi i (2^0x_1)}{2^3}}  }\ket{1} \Big)
+  \Bigg] 
+\end{align*}
+Die wirkenden Phasenverschiebungen werden eindeutiger, 
+indem man die Brüche kürzt:
+\begin{align*}
+  QFT_{8}\ket{x}_{3} = 
+  \frac{1}{\sqrt{8}} 
+  \Bigg[ 
+    \Big( \ket{0} + e^{\pi i x_1}\ket{1} \Big) \tensor
+    \Big(\ket{0} + { e^{\pi i x_2} e^{ \frac{ \pi i x_1}{2}} }\ket{1} \Big) \tensor
+    \Big(\ket{0} + { e^{\pi i x_3} e^{\frac{\pi i x_2}{2}} e^{ \frac{ \pi i x_1}{4}} }\ket{1} \Big) 
+  \Bigg] 
+\end{align*}
+In einer abschließenden Umformung lässt sich der Bruch \(\frac{1}{\sqrt8}\) aufteilen.
 Dadurch erinnern die einzelnen Tensoren,
-beziehungsweise Qubits an die Form die bei eine Hadamard-Transformation entsteht:
-\[ = \frac{1}{\sqrt{2}}( \ket{0} + e^{\pi i x_1}\ket{1} ) \Tensor
-\frac{1}{\sqrt{2}}( \ket{0} + { e^{\pi i x_2} e^{ \frac{ \pi i x_1}{2}} }\ket{1} ) \Tensor
-\frac{1}{\sqrt{2}}( \ket{0} + { e^{\pi i x_3} e^{\frac{\pi i x_2}{2}} e^{ \frac{ \pi i x_1}{4}} }\ket{1} )  \]
+beziehungsweise Qubits an die Form die durch eine Hadamard-Transformation entsteht:
+\begin{align*}
+  QFT_{8}\ket{x}_{3} = 
+   \frac{1}{\sqrt{2}}\Big( \ket{0} + e^{\pi i x_1}\ket{1} \Big) 
+   &\tensor
+  \frac{1}{\sqrt{2}}\Big( \ket{0} + { e^{\pi i x_2} e^{ \frac{ \pi i x_1}{2}} }\ket{1} \Big) \\ 
+  &\tensor
+  \frac{1}{\sqrt{2}}\Big( \ket{0} + { e^{\pi i x_3} e^{\frac{\pi i x_2}{2}} e^{ \frac{ \pi i x_1}{4}} }\ket{1} \Big)  
+\end{align*}
 Der Ausdruck \(e^{\pi i x_k}\) ist in jedem der einzelnen Qubits vorhanden.
-Des weiteren ist an dem \(x_k\) erkennbar das die angewendete Phasenverschiebung von dem Zustand des Qubits abhängig ist,
-auf welches die Verschiebung auch angewendet wird.
-Konkret bedeutet dass, das auf jedes Qubit mit dem Zustand \(\ket{x_k} = \ket{1}\) eine Phasenverschiebung von \(e^{\pi i}\) wirkt.
-Anhand des ersten Qubits, beziehungsweise Tensor, würde das bedeuten, dass der Zustand bei \(x_1 = 0\)
-zu \(\ket{0} + e^{\pi i 0} \ket{1} \equiv \ket{0} + \ket{1}\) wird.
-Bei \(x_1 = 1\) würde man \(\ket{0} + e^{\pi i 1} \ket{1}\) erhalten,
+Des Weiteren ist an dem \(x_k\) erkennbar, 
+dass die angewendete Phasenverschiebung vom Eingangszustand des Qubits abhängt,
+auf das die Verschiebung auch angewendet wird. 
+Konkret bedeutet dies, 
+dass auf jedes Qubit mit dem Zustand \(\ket{x_k} = \ket{1}\) eine Phasenverschiebung von \(e^{\pi i}\) wirkt.
+Anhand des ersten Qubits, 
+beziehungsweise des ersten Tensors, 
+ergibt sich bei \(x_1 = 0\)
+der Zustand \(\ket{0} + e^{\pi i 0} \ket{1} \equiv \ket{0} + \ket{1}\).
+Bei \(x_1 = 1\) erhält man \(\ket{0} + e^{\pi i 1} \ket{1}\),
 was \(\ket{0} - \ket{1}\) entspricht.
-Aufgrund des Vorfaktors von \(\frac{1}{\sqrt{2}}\) entsprächen beide Fälle also der Hadamard-Transformation.
-Da auch alle anderen Tensoren den Ausdruck \(e^{\pi i x_k}\) und den Vorfaktor \(\frac{1}{\sqrt{2}}\) beinhalten, wirkt auf jedes Qubit ein Hadamard-Gatter.
+Aufgrund des Vorfaktors von \(\frac{1}{\sqrt{2}}\) entsprechen beide Fälle also der Hadamard-Transformation.
+Da alle anderen Tensoren ebenfalls den Ausdruck \(e^{\pi i x_k}\) 
+und den Vorfaktor \(\frac{1}{\sqrt{2}}\) beinhalten, 
+wirkt auf jedes Qubit ein Hadamard-Gatter.
 
-Die weiteren Tensoren des Tensorproduktes beinhalten zunehmend mehr Ausdrücke die für unterschiedliche Phasenverschiebungen sorgen.
-Die Phasenverschiebung von einem einzelnen Ausdruck kann mit einem Phasen-Gatter realisiert werden.
-Das Phasen-gatter entspricht der Rotation:
+Die weiteren Tensoren des Tensorprodukts beinhalten zunehmend mehr Ausdrücke, 
+die für unterschiedliche Phasenverschiebungen sorgen. 
+Die Phasenverschiebung eines einzelnen Ausdrucks kann mit einem Phasengatter realisiert werden. 
+Das Phasengatter entspricht der Rotation:
 \[
   P(\lambda) = 
   \begin{pmatrix}
@@ -212,20 +269,23 @@ Das Phasen-gatter entspricht der Rotation:
   \end{pmatrix}
 \]
 
-Beispielsweise wirkt auf dem zweiten Qubit noch ein Phase-Gatter mit \(P(\frac{\pi i}{2} )\).
-Diese Phasenverschiebung soll aber nur angewendet werden wenn \(x_1 = 1\) ist.
-Deswegen wird das Phase-Gatter durch den Zustand des ersten Qubits kontrolliert und
-mit einem kontrollierten-Phase-Gatter realisiert.
+Beispielsweise wirkt auf das zweite Qubit ein Phasengatter mit \(P(\frac{\pi i}{2} )\).
+Diese Phasenverschiebung soll jedoch nur angewendet werden, 
+wenn \(x_1 = 1\) ist.
+Aus diesem Grund wird das Phasengatter durch den Eingangszustand des ersten Qubits gesteuert und 
+mithilfe eines kontrollierten Phasengatters realisiert.
 Das gleiche Prinzip gilt für alle weiteren Qubits.
-Anschließend erhält man einen Quantenschaltkreis wie in Abbildung~\ref{fig:qft}.
+Anschließend ergibt sich ein Quantenschaltkreis, 
+wie er in Abbildung~\ref{fig:qft} dargestellt ist.
 
-Wie dort erkennbar, 
-spiegelt die Quanten-Fourier-Transformation die Reihenfolge der Qubits~\cite{Hoever2023QC}.
-Um die Reihenfolge wiederherzustellen werden am Ende der Quanten-Fourier-Transformation Swap-Operationen verwendet.
+Wie aus Abbildung~\ref{fig:qft} ersichtlich, 
+kehrt die Quanten-Fourier-Transformation die Reihenfolge der Qubits um~\cite[217]{homeister2023quantum215}.
+Um die ursprüngliche Reihenfolge wiederherzustellen, 
+werden am Ende der Quanten-Fourier-Transformation Swap-Operationen durchgeführt.
 \begin{figure}
-\caption{3-Qubit QFT ohne Swaps}
+\caption{3-Qubit QFT}
 \label{fig:qft}
-%\includegraphics[width=\columnwidth]{qft.PNG}
+\includegraphics[width=\columnwidth]{qft.PNG}
 \centering
 \end{figure}
 
@@ -235,17 +295,15 @@ Diese Eigenschaft ergibt sich aus der Tatsache,
 dass der zugehörige Quantenschaltkreis ausschließlich unter Verwendung von unitären Gattern realisierbar ist.
 
 Wie bereits oben erwähnt, 
-wird für die Rücktransformation aus der Fourierbasis in die Standardbasis 
-die inversen Quanten-Fourier-Transformation angewendet.
+wird für die Rücktransformation aus der Fourierbasis in die Standardbasis die inverse Quanten-Fourier-Transformation angewendet.
 Um einen Quantenschaltkreis aus unitären Gattern zu invertieren, 
-wird die inverse der verwendeten Gatter
-in umgekehrter Reihenfolge der originalen Schaltung angewendet.
-Die Swap Operationen stehen somit bei der inversen Quanten-Fourier-Transformation am Anfang.
+werden die Inversen der verwendeten Gatter in umgekehrter Reihenfolge zur ursprünglichen Schaltung angewendet. 
+Die Swap-Operationen stehen somit bei der inversen Quanten-Fourier-Transformation am Anfang.
 In Abbildung~\ref{fig:iqft} ist beispielhaft die inverse Quanten-Fourier-Transformation für drei Qubits abgebildet.
 \begin{figure}
-\caption{3-Qubit inverse QFT ohne Swaps}
+\caption{3-Qubit inverse QFT}
 \label{fig:iqft}
-%\includegraphics[width=\columnwidth]{iqft.PNG}
+\includegraphics[width=\columnwidth]{iqft.PNG}
 \centering
 \end{figure}
 
