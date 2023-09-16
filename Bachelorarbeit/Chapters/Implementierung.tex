@@ -1,13 +1,14 @@
 \section{Implementierung}
 
 \subsection{Quantenalgorithmus}
-Wie im Kapitel~\ref*{Funktionsweise} zur Funktionsweise erklärt,
+Wie im Kapitel~\ref{Funktionsweise} zur Funktionsweise erklärt,
 wird für die Periodenbestimmung die Quanten-Phase-Estimation genutzt.
 
 Um den Quanten-Phase-Estimation Algorithmus für die Periodenberechnung zu nutzen,
-benötigt man ein Gatter \(U\) welches die modulare Multiplikation \(U\ket{y} = \ket{ay \mod N}\), 
-als eine unitär Transformation realisiert.
-Mit den passenden \(U\)-Gatter wird der Quantenschaltkreis wie in Abbildung~\ref{fig:shor_n_qubit} strukturiert.
+benötigt man ein \(U\)-Gatter, 
+welches die modulare Multiplikation \(U\ket{y} = \ket{ay \mod N}\), 
+als eine unitäre Transformation realisiert.
+Mit dem passenden \(U\)-Gatter wird der Quantenschaltkreis wie in Abbildung~\ref{fig:shor_n_qubit} strukturiert.
 \begin{figure}
     \caption{QPE für Shor~\cite{anonymousket}}
     \label{fig:shor_n_qubit}
@@ -15,7 +16,7 @@ Mit den passenden \(U\)-Gatter wird der Quantenschaltkreis wie in Abbildung~\ref
     \centering
     \end{figure}
 
-Die Realisierung der Transformation bedingt die Implementierung einiger arithmetischer Operationen in Form eines Quantenschaltkreises. 
+Die Realisierung der Transformation erfordert die Implementierung einiger arithmetischer Operationen in Quantenschaltkreisform. 
 Diese fungieren als Bausteine, die zusammengesetzt zur Konstruktion des übergeordneten Quantenschaltkreises für die modulare Multiplikation beitragen. 
 Zu den erforderlichen arithmetischen Operationen gehört die Addition, Subtraktion sowie die modulare Addition.
 
@@ -37,10 +38,18 @@ also solche der Größenordnung \(2^n\), mindestens \(3n\) Qubits benötigt~\cit
 
 Eine effizientere Methode, die ohne Hilfsqubits auskommt, ist die Quanten-Addition~\cite{draper2000addition}. 
 Die Quanten-Addition führt die Berechnung auf quantenmechanische Weise durch. 
-Im Wesentlichen wird dabei die Addition in der Fourier-Basis berechnet, 
-wobei die Phasen der Qubits eines Summanden mit kontrollierte Phasenverschiebungen auf die Qubits des anderen Summanden wirkt.
+Im Wesentlichen wird dabei die Addition in der Fourier-Basis berechnet. 
+Dabei befindet sich ein Summand des Quantenregisters \(\ket{b}_n\) in der Standardbasis und 
+der andere Summand des Quantenregisters \(\ket{a}_n\) in der Fourier-Basis.
+Da sich das zweite Quantenregister in der Fourier-Basis befindet, 
+wird dieses als \(\ket{\Phi(a)}_n\) bezeichnet.
+Anschließend kontrolliert der Summand \(\ket{b}_n\) Phasen-Gatter, 
+die auf den anderen Summanden \(\ket{\Phi(a)}_n\) Phasenverschiebungen wirken.
+Die durch die Phasen-Gatter induzierten Phasenverschiebungen übertragen die Werte, 
+die dem Zustand des Summanden \(\ket{b}_n\) in der Fourier-Basis entsprechen.
+Dadurch befindet sich anschließend in dem Zielregister der Phasen-Gatter die Addition beider Werte in der Fourier-Basis mit \(\ket{\Phi(a+b)}_n\).
 
-Im Folgenden wird ein Beispiel für die Quanten-Addition zweier Qubit-Register \(\ket{a}_3\) und \(\ket{b}_3\), 
+Im Folgenden wird ein Beispiel für die Quanten-Addition zweier Quantenregister \(\ket{a}_3\) und \(\ket{b}_3\), 
 jeweils bestehend aus drei Qubits, betrachtet:
 \begin{figure}[H]
     \caption{Quantum-Addition}
@@ -48,7 +57,7 @@ jeweils bestehend aus drei Qubits, betrachtet:
     \includegraphics[width=\columnwidth]{3_qubit_quantum_add.png}
     \centering
     \end{figure}
-Die Registermarkierungen in der Mitte von Abbildung~\ref*{fig:3_qubit_quantum_add} unterteilen die Darstellung in zwei Hälften.
+Die Registermarkierungen in der Mitte von Abbildung~\ref{fig:3_qubit_quantum_add} unterteilen die Darstellung in zwei Hälften.
 Die linke Hälfte repräsentiert die Quanten-Fourier-Transformation, 
 während die rechte Hälfte die Quanten-Addition zeigt.
 
@@ -58,11 +67,12 @@ Ein Unterschied besteht darin,
 dass die Hadamard-Gatter durch kontrollierte \(P(\pi)\) Phasen-Gatter ersetzt wurden.
 Sowohl das Hadamard-Gatter als auch das \(P(\pi)\) Phasen-Gatter erzeugen eine relative Phase von \(e^{\pi i}\).
 Ein weiterer Unterschied zur Quanten-Fourier-Transformation besteht darin, 
-dass die Phasen-Gatter nicht durch das gleiche Register\(\ket{a}_3\) kontrolliert werden, 
+dass die Phasen-Gatter nicht durch das Quantenregister kontrolliert werden, 
 auf das die Gatter auch wirken.
-Stattdessen kontrollieren die Qubits des Registers \(\ket{b}_3\) die Phasen-Gatter.
+Stattdessen kontrollieren die Qubits des Quantenregisters \(\ket{b}_3\) die Phasen-Gatter, 
+welche auf das Quantenregister \(\ket{a}_3\) wirken.
 Dabei wird das \(P(\pi)\) Phasen-Gatter durch das Qubit des \(\ket{b}_3\) kontrolliert,
-welches die selbe Wertigkeit hat wie das Zielqubit des \(\ket{a}_3\) Registers.
+welches die gleiche Wertigkeit hat wie das Zielqubit des \(\ket{a}_3\) Quantenregisters.
 Jedes weitere kontrollierte Phasen-Gatter für das gleiche Zielqubit 
 wird fortlaufend von dem nächstkleineren Qubit von \(\ket{b}_3\) kontrolliert.
 
@@ -71,30 +81,37 @@ wie bei der Quanten-Fourier-Transformation.
 Der grundlegende Unterschied liegt darin, 
 dass diese Phasenverschiebungen kontrolliert auf ein anderes Quantenregister angewendet werden.
 
-Die Wirkung der Quanten-Addition wird anhand der Abbildung~\ref*{fig:3_qubit_quantum_add} verdeutlicht:
-Am Anfang der linken Hälfte befinden sich beide Register in der Standardbasis.
-Auf das Zielregister \(\ket{a}_3\) wirkt die Quanten-Fourier-Transformation ohne Swap Gatter.
+Die Wirkung der Quanten-Addition wird anhand der Abbildung~\ref{fig:3_qubit_quantum_add} verdeutlicht.
+Zu Beginn der linken Hälfte befinden sich beide Quantenregister in der Standardbasis.
+Auf das Zielregister \(\ket{a}_3\) wird die Quanten-Fourier-Transformation ohne Swap-Gatter angewendet.
 Dadurch befindet sich \(\ket{a}_3\) nun in der Fourier-Basis \(\Phi\), also \(\ket{\Phi(a)}_3\):
-\[\ket{\Phi(a)}_3 = \frac{1}{\sqrt{8}} [ (\ket{0} + { e^{\frac{2 \pi i (2^0a_1)}{2^1}}}\ket{1} ) \Tensor
-( \ket{0} + { e^{\frac{2 \pi i (2^1a_2+2^0a_1)}{2^2}}}\ket{1} ) \Tensor
-( \ket{0} + { e^{\frac{2 \pi i (2^{2}a_3 +2^1a_2+2^0a_1)}{2^3}}}\ket{1} ) ] \]
-Anschließend wirkt auf das hinterste Tensorprodukt ein \(P(\pi)\) Phasen-Gatter,
-welches durch \(\ket{b_3}_1\) kontrolliert wird.
+\begin{align*}
+  \begin{aligned}
+  &\ket{\Phi(a)}_3 =\\
+  &\frac{1}{\sqrt{8}} \Bigg[ \Big(\ket{0} + { e^{\frac{2 \pi i (2^0a_1)}{2^1}}}\ket{1} \Big) \tensor
+  \Big(\ket{0} + { e^{\frac{2 \pi i (2^1a_2+2^0a_1)}{2^2}}}\ket{1} \Big) \tensor
+  \Big(\ket{0} + { e^{\frac{2 \pi i (2^{2}a_3 +2^1a_2+2^0a_1)}{2^3}}}\ket{1} \Big) \Bigg]
+  \end{aligned}
+\end{align*}
+Anschließend wird auf das hinterste Tensorprodukt ein \(P(\pi)\) Phasen-Gatter angewendet,
+das durch \(\ket{b_3}_1\) kontrolliert wird.
 Wenn sich \(\ket{b_3}_1\) im Zustand \(\ket{0}_1\) befindet, passiert nichts.
-Wenn es sich im Zustand \(\ket{1}_1\) befindet, dass das Phasen-Gatter angewendet wird.
-Dieses Verhalten kann man für beide Fälle mit den entsprechenden Matrizen 
-\(\begin{pmatrix}
+Befindet es sich jedoch im Zustand \(\ket{1}_1\), wird das Phasen-Gatte angewendet.
+Dieses Verhalten lässt sich für beide Fälle mit den entsprechenden Matrizen
+\begin{align*}
+  \begin{pmatrix}
     1 & 0 \\
     0 & e^{\pi i b_3}
-  \end{pmatrix}\)
-  beziehungsweise  
-  \(\begin{pmatrix}
+  \end{pmatrix}  
+  \text{beziehungsweise}  
+  \begin{pmatrix}
     1 & 0 \\
     0 & e^{\frac{2\pi i (2^2b_3)}{2^3}}
-  \end{pmatrix}\)
+  \end{pmatrix}
+\end{align*}
 beschreiben.
 Schreibt man das hinterste Tensorprodukt als Vektor, ergibt sich die folgende Formulierung:
-\[\frac{1}{\sqrt{2}}( \ket{0} + { e^{\frac{2 \pi i (2^{2}a_3 +2^1a_2+2^0a_1)}{2^3}}}\ket{1}) \equiv
+\[\frac{1}{\sqrt{2}}( \ket{0} + { e^{\frac{2 \pi i (2^{2}a_3 +2^1a_2+2^0a_1)}{2^3}}}\ket{1}) =
 \frac{1}{\sqrt{2}}
 \begin{pmatrix}
      1  \\
@@ -120,7 +137,7 @@ dass die Addition im Wesentlichen in der Phase des Quantenzustands stattfindet:
      e^{\frac{2 \pi i (2^{2}(a_3+b_3) +2^1a_2+2^0a_1)}{2^3}}
   \end{pmatrix}
 \]
-Wie in der Abbildung~\ref*{fig:3_qubit_quantum_add} erkenntlich,
+Wie in der Abbildung~\ref{fig:3_qubit_quantum_add} erkenntlich,
 wirken auf das hinterste Tensorprodukt auch noch die beiden Phasen-Gatter \(P(\frac{\pi}{2})\) und \(P(\frac{\pi}{4})\) mit:
 \[
     P(\frac{\pi}{2}) = 
@@ -145,12 +162,12 @@ P(\frac{\pi}{4}) =
     0 & e^{\frac{2\pi i (2^0b_1)}{2^3}}
   \end{pmatrix}
 \]
-\[
+\begin{align*}
     \begin{pmatrix}
         1 & 0 \\
         0 & e^{\frac{2\pi i (2^0b_1)}{2^3}}
       \end{pmatrix}
-      \cdot
+      &\cdot
       \begin{pmatrix}
         1 & 0 \\
         0 & e^{\frac{2\pi i (2^1b_2)}{2^3}}
@@ -159,100 +176,119 @@ P(\frac{\pi}{4}) =
       \frac{1}{\sqrt{2}}
       \begin{pmatrix}
         1  \\
-         e^{\frac{2 \pi i (2^{2}(a_3+b_3) +2^1a_2+2^0a_1)}{2^3}}
-      \end{pmatrix}
-      =
+         e^{\frac{2 \pi i (2^{2}(a_3+b_3) +2^1a_2+2^0a_1)}{2^3}} 
+      \end{pmatrix} 
+     \\
+      &=
       \frac{1}{\sqrt{2}}
       \begin{pmatrix}
         1  \\
          e^{\frac{2 \pi i (2^{2}(a_3+b_3) +2^1(a_2+b_2)+2^0(a_1+b_1))}{2^3}}
       \end{pmatrix}
-\]
-Wendet man alle weiteren Phasen-Gatter auf das vollstände Tensorprodukt an, 
+\end{align*}
+Wendet man alle weiteren Phasen-Gatter auf das vollständige Tensorprodukt an, 
 erhält man:
-\[
-    \frac{1}{\sqrt{8}} [ (\ket{0} + { e^{\frac{2 \pi i (2^0(a_1+b_1))}{2^1}}}\ket{1} ) \Tensor
-( \ket{0} + { e^{\frac{2 \pi i (2^1(a_2+b_2)+2^0(a_1+b_1))}{2^2}}}\ket{1} ) \Tensor
-( \ket{0} + { e^{\frac{2 \pi i (2^{2}(a_3+b_3) +2^1(a_2+b_2)+2^0(a_1+b_1))}{2^3}}}\ket{1} ) ]
-\]
+\begin{align*}
+    \frac{1}{\sqrt{8}} 
+    \Bigg[ 
+      \Big(\ket{0} + { e^{\frac{2 \pi i (2^0(a_1+b_1))}{2^1}}}\ket{1} \Big) 
+      \tensor
+      \Big( &\ket{0} + { e^{\frac{2 \pi i (2^1(a_2+b_2)+2^0(a_1+b_1))}{2^2}}}\ket{1} \Big)\\ 
+      &\tensor
+      \Big( \ket{0} + { e^{\frac{2 \pi i (2^{2}(a_3+b_3) +2^1(a_2+b_2)+2^0(a_1+b_1))}{2^3}}}\ket{1} \Big) 
+    \Bigg]
+\end{align*}
 Setzt man in diese Formel zwei Zahlen in Binärschreibweise ein, 
-wird man den selben Zustand erhalten,
+wird man denselben Zustand erhalten,
 wie wenn man die Summe der beiden Zahlen in die Formel der Quanten-Fourier-Transformation einsetzt.
 Beispielsweise sei \(a = 3\) also binär \(a_3 = 0\), \(a_2 = 1\),\(a_1 = 1\) und 
 \(b = 1\) also \(b_3 = 0\), \(b_2 = 0\),\(b_1 = 1\):
+\begin{align*}
+\frac{1}{\sqrt{8}} 
+\Bigg[ \Big(\ket{0} + { e^{\frac{2 \pi i (2^0(1+1))}{2^1}}}\ket{1} \Big) 
+\tensor
+\Big( \ket{0} + &{ e^{\frac{2 \pi i (2^1(1+0)+2^0(1+1))}{2^2}}}\ket{1} \Big) \\
+&\tensor
+\Big( \ket{0} + { e^{\frac{2 \pi i (2^{2}(0+0) +2^1(1+0)+2^0(1+1))}{2^3}}}\ket{1} \Big) 
+\Bigg]
+\end{align*}
 \[
-\frac{1}{\sqrt{8}} [ (\ket{0} + { e^{\frac{2 \pi i (2^0(1+1))}{2^1}}}\ket{1} ) \Tensor
-( \ket{0} + { e^{\frac{2 \pi i (2^1(1+0)+2^0(1+1))}{2^2}}}\ket{1} ) \Tensor
-( \ket{0} + { e^{\frac{2 \pi i (2^{2}(0+0) +2^1(1+0)+2^0(1+1))}{2^3}}}\ket{1} ) ]
+=\frac{1}{\sqrt{8}} 
+\Bigg[ \Big(\ket{0} + \ket{1} \Big) \tensor
+\Big( \ket{0} +   \ket{1} \Big) \tensor
+\Big( \ket{0} +  e^{\pi i }\ket{1} \Big) 
+\Bigg]
 \]
-\[
-=\frac{1}{\sqrt{8}} [ (\ket{0} + \ket{1} ) \Tensor
-( \ket{0} +   \ket{1} ) \Tensor
-( \ket{0} +  e^{\pi i }\ket{1} ) ]
-\]
-Das dies tatsächlich die Summe in Fourier-Basis entspricht, 
-wird deutlich wenn man das selbe Tensorprodukt aus der Quanten-Fourier-Transformation bildet:
-\[
-    QFT(\ket{c}_3)
-    \frac{1}{\sqrt{8}} [ (\ket{0} + { e^{\frac{2 \pi i (2^0(c_1))}{2^1}}}\ket{1} ) \Tensor
-( \ket{0} + { e^{\frac{2 \pi i (2^1(c_2)+2^0(c_1))}{2^2}}}\ket{1} ) \Tensor
-( \ket{0} + { e^{\frac{2 \pi i (2^{2}(c_3) +2^1(c_2)+2^0(c_1))}{2^3}}}\ket{1} ) ]
-\]
+Das dies tatsächlich der Summe in der Fourier-Basis entspricht, wird deutlich, 
+wenn man das gleiche Tensorprodukt im Kontext der Quanten-Fourier-Transformation bildet:
+\begin{align*}
+    QFT(\ket{c}_3) = 
+    \frac{1}{\sqrt{8}} 
+    \Bigg[ \Big(\ket{0} + { e^{\frac{2 \pi i (2^0(c_1))}{2^1}}}\ket{1} \Big) 
+    \tensor
+    \Big( \ket{0} + &{ e^{\frac{2 \pi i (2^1(c_2)+2^0(c_1))}{2^2}}}\ket{1} \Big) \\
+    &\tensor
+    \Big( \ket{0} + { e^{\frac{2 \pi i (2^{2}(c_3) +2^1(c_2)+2^0(c_1))}{2^3}}}\ket{1} \Big) 
+\Bigg]
+\end{align*}
 Die Summe von \(a\) und \(b\) entspricht \(c = 4\) also \(c_3 = 1,~c_2 = 0,~c_1=0\):
-\[
-    QFT(\ket{4}_3)
-    \frac{1}{\sqrt{8}} [ (\ket{0} + { e^{\frac{2 \pi i (2^0(0))}{2^1}}}\ket{1} ) \Tensor
-( \ket{0} + { e^{\frac{2 \pi i (2^1(0)+2^0(0))}{2^2}}}\ket{1} ) \Tensor
-( \ket{0} + { e^{\frac{2 \pi i (2^{2}(1) +2^1(0)+2^0(0))}{2^3}}}\ket{1} ) ]
-\]
-\[
-    = 
-    \frac{1}{\sqrt{8}} [ (\ket{0} + { e^{\frac{2 \pi i (0)}{2^1}}}\ket{1} ) \Tensor
-( \ket{0} + { e^{\frac{2 \pi i (0)}{2^2}}}\ket{1} ) \Tensor
-( \ket{0} + { e^{\frac{2 \pi i (2^{2}(1))}{2^3}}}\ket{1} ) ]
-\]
-\[
-=\frac{1}{\sqrt{8}} [ (\ket{0} + \ket{1} ) \Tensor
-( \ket{0} +   \ket{1} ) \Tensor
-( \ket{0} +  e^{\pi i }\ket{1} ) ]
-\]
+\begin{align*}
+    &QFT(\ket{4}_3) = \\
+    &= \frac{1}{\sqrt{8}} \Bigg[ \Big(\ket{0} + { e^{\frac{2 \pi i (2^0(0))}{2^1}}}\ket{1} \Big) 
+    \tensor
+    \Big( \ket{0} + { e^{\frac{2 \pi i (2^1(0)+2^0(0))}{2^2}}}\ket{1} \Big) 
+\tensor
+\Big( \ket{0} + { e^{\frac{2 \pi i (2^{2}(1) +2^1(0)+2^0(0))}{2^3}}}\ket{1} \Big) \Bigg] \\
+    &= 
+    \frac{1}{\sqrt{8}} \Bigg[ \Big(\ket{0} + { e^{\frac{2 \pi i (0)}{2^1}}}\ket{1} \Big) 
+    \tensor
+    \Big( \ket{0} + { e^{\frac{2 \pi i (0)}{2^2}}}\ket{1} \Big) 
+\tensor
+\Big( \ket{0} + { e^{\frac{2 \pi i (2^{2}(1))}{2^3}}}\ket{1} \Big) \Bigg] \\
+&=\frac{1}{\sqrt{8}} \Bigg[ \Big(\ket{0} + \ket{1} \Big) 
+\tensor
+\Big( \ket{0} +   \ket{1} \Big) 
+\tensor
+\Big( \ket{0} +  e^{\pi i }\ket{1} \Big) \Bigg]
+\end{align*}
 Das Ergebnis der Quanten-Addition zweier Summanden \(a=3,~b=1\), 
 jeweils in einem Register mit drei Qubits,
 ist somit identisch mit dem Zustand, 
 der durch die Anwendung der Quanten-Fourier-Transformation auf ein Register 
 aus ebenfalls drei Qubits mit der Summe der beiden Zahlen entsteht.
 
-Mit einer anschließenden inversen Quanten-Fourier-Transformation, 
-kann die Summe in die Standardbasis und somit in einen Messbaren Zustand transformiert werden:
+Mit einer anschließenden inversen Quanten-Fourier-Transformation 
+kann die Summe in die Standardbasis und somit in einen messbaren Zustand transformiert werden:
 \[
 iQFT(\ket{\Phi(4)_3})
-\equiv
- iQFT(\frac{1}{\sqrt{8}} [ (\ket{0} + \ket{1} ) \Tensor
-( \ket{0} +   \ket{1} ) \Tensor
-( \ket{0} +  e^{\pi i }\ket{1} ) ]) 
+=
+ iQFT \Bigg(\frac{1}{\sqrt{8}} \Big[ (\ket{0} + \ket{1} ) \tensor
+( \ket{0} +   \ket{1} ) \tensor
+( \ket{0} +  e^{\pi i }\ket{1} ) \Big]\Bigg) 
 =
 \ket{4}_3
 \]
 
 Das Zielregister sollte aus genügend Qubits bestehen, 
 damit die Summe vollständig erfasst werden kann.
-Andernfalls kommt es zum overflow mit \(a + b \mod 2^n\), 
-wobei \(n\) die Anzahl an Qubits des Zielregisters beschreibt~\cite{beauregard2003circuit}.
+Andernfalls kommt es zum Overflow mit \(a + b \mod 2^n\), 
+wobei \(n\) die Anzahl der Qubits des Zielregisters beschreibt~\cite{beauregard2003circuit}.
 
 Für die Realisierung der modularen Multiplikation wird zu keinem Zeitpunkt der Berechnung eine Addition zweier Zwischenergebnisse benötigt. 
 Genauer gesagt, ist es nicht nötig, ein Quantenregister auf ein anderes zu addieren. 
 Stattdessen wird die Quanten-Addition benutzt, um eine vorab bekannte Zahl auf ein Quantenregister zu addieren.
 
-Bei der Quanten-Addition mit zwei Register wie in Abbildung~\ref{fig:3_qubit_quantum_add} erfolgt die Phasenverschiebung kontrolliert,  
-also in Abhängigkeit des Inhaltes von Register \(\ket{b}_3\).
-Ist der Inhalt von Register \(\ket{b}_3\) vorab bekannt,
+Bei der Quanten-Addition mit zwei Quantenregister, 
+wie in Abbildung~\ref{fig:3_qubit_quantum_add} erfolgt die Phasenverschiebung kontrolliert,  
+also in Abhängigkeit des Inhaltes von Quantenregister \(\ket{b}_3\).
+Ist der Inhalt von Quantenregister \(\ket{b}_3\) vorab bekannt,
 können gewöhnliche Phasen-Gatter anstelle von kontrollierten verwendet werden~\cite{beauregard2003circuit}.
 
-Wenn bei der Quanten-Addition mit zwei Registern ein Phasen-Gatter aufgrund des zugehörigen Kontrollqubits im Zustand \(\ket{1}\) angewendet wird,
-wird es in der Variante mit einem einzelnen Register als gewöhnliches Phasen-Gatter verwendet.
+Wenn bei der Quanten-Addition mit zwei Quantenregistern ein Phasen-Gatter aufgrund des zugehörigen Kontrollqubits im Zustand \(\ket{1}\) angewendet wird,
+wird es in der Variante mit einem einzelnen Quantenregister als gewöhnliches Phasen-Gatter verwendet.
 Ist das Kontrollqubit hingegen im Zustand \(\ket{0}\), 
-wodurch das Phasen-Gatter bei der Quanten-Addition mit zwei Registern nicht zur Anwendung kommt, 
-wird dieses Phasen-Gatter in der Variante mit nur einem Register weggelassen.
+wodurch das Phasen-Gatter bei der Quanten-Addition mit zwei Quantenregistern nicht zur Anwendung kommt, 
+wird dieses Phasen-Gatter in der Variante mit nur einem Quantenregister weggelassen.
 
 \begin{figure}[H]
     \caption{Quantum-Addition fixierte Phasenverschiebungen}
@@ -260,21 +296,21 @@ wird dieses Phasen-Gatter in der Variante mit nur einem Register weggelassen.
     \includegraphics[width=\columnwidth]{3_qubit_fixed_quantum_addition.png}
     \centering
     \end{figure}
-In Abbildung~\ref{fig:3_qubit_fixed_quantum_addition} ist die Quanten-Addition für ein 3-Qubit Register abgebildet.
+In Abbildung~\ref{fig:3_qubit_fixed_quantum_addition} ist die Quanten-Addition für ein 3-Qubit Quantenregister abgebildet.
 Die blauen Phasen-Gatter sorgen für die Quanten-Addition mit einem fixierten Wert von \(3\).
-Vergleicht man die Abbildung~\ref{fig:3_qubit_fixed_quantum_addition} mit der Abbildung~\ref{fig:3_qubit_quantum_add} fällt auf, 
-dass das aller erste Phasen-Gatter der Quanten-Addition nicht vorkommt.
+Vergleicht man Abbildung~\ref{fig:3_qubit_fixed_quantum_addition} mit der Abbildung~\ref{fig:3_qubit_quantum_add} fällt auf, 
+dass das allererste Phasen-Gatter der Quanten-Addition nicht vorkommt.
 Im Quantenschaltkreis der Abbildung~\ref{fig:3_qubit_quantum_add} würde ein Registerinhalt von \(b = 3\) das Kontrollqubit \(b_3\) nicht setzen. 
 Somit kommt das erste Phasen-Gatter der Quanten-Addition nicht zum Einsatz und 
 wird deswegen in der Variante wie in Abbildung~\ref{fig:3_qubit_fixed_quantum_addition} weggelassen. 
 
-Des weiteren ist es möglich, 
+Des Weiteren ist es möglich, 
 den Quantenschaltkreis der Quanten-Addition für eine vorab festgelegte Zahl ressourcensparender zu realisieren.
 Die Optimierung bezieht sich dabei auf die Anzahl der verwendeten Gatter.
 Wird die Quanten-Addition für eine feste Zahl realisiert, 
 können für jedes einzelne Qubit die angewendeten Phasenverschiebungen vorab zusammengerechnet werden.
 Demnach bietet es sich an, 
-die zusammengerechneten Phasenverschiebung in ein einzelnes Phasen-Gatter zusammen zu fassen.
+die zusammengerechneten Phasenverschiebung in ein einzelnes Phasen-Gatter zusammenzufassen.
 Nach diesem Prinzip, benötigt man für eine Quanten-Addition maximal ein einzelnes Phasen-Gatter pro Qubit.
 
 \begin{figure}[H]
@@ -284,8 +320,8 @@ Nach diesem Prinzip, benötigt man für eine Quanten-Addition maximal ein einzel
   \centering
   \end{figure}
 Der Quantenschaltkreis in Abbildung~\ref{fig:3_qubit_fixed_quantum_addition_opt} führt die identische 
-Berechnung durch, wie der Quantenschaltkreis aus Abbildung~\ref{fig:3_qubit_fixed_quantum_addition}.
-Darüber hinaus, werden die benötigten Phasenverschiebungen mit einem einzigen Phasen-Gatter pro Qubit realisiert.
+Berechnung durch wie der Quantenschaltkreis aus Abbildung~\ref{fig:3_qubit_fixed_quantum_addition}.
+Darüber hinaus werden die benötigten Phasenverschiebungen mit einem einzigen Phasen-Gatter pro Qubit realisiert.
 
 Die Implementierung nutzt die ressourceneffiziente Variante der Quanten-Addition.
 In der Funktion \texttt{A\_Gate} wird ein Gatter erzeugt, 
