@@ -632,47 +632,54 @@ def Modular_Adder_Gate(a_bin: list[int],N_bin: list[int]) -> qiskit.circuit.gate
 \end{figure}
 
 \subsubsection{Kontrollierte Multiplikation}
-Als nächstes wird ein Gatter konstruiert, welches auf vier Quantenregister \(\ket{c}_1\ket{x}_{n}\ket{b}_{n+1}\ket{0}_1\)
+Als Nächstes wird ein Gatter konstruiert, 
+das auf vier Quantenregister \(\ket{c}_1\ket{x}_{n}\ket{b}_{n+1}\ket{0}_1\)
 eine Transformation nach \(\ket{c}_1\ket{x}_{n}\ket{b + (ax)\mod N}_{n+1}\ket{0}_1\) durchführt.
 Das Gatter umfasst ein Kontroll-Qubit \(\ket{c}_1\), 
 ein Quantenregister \(\ket{x}_{n}\) mit dem Faktor \(x\),
-das Zielregister \(\ket{b}_{n+1}\) mit initialem Wert \(b\) und 
-ein Hilfsqubit \(\ket{0}_1\) welches als Bedingungs-Qubit dient.
+das Zielregister \(\ket{b}_{n+1}\) mit dem initialen Wert \(b\) und 
+ein Hilfsqubit \(\ket{0}_1\), das als Bedingungs-Qubit dient.
 
 Die Spezifikation dieses Gatters besteht darin, 
-auf den Registerinhalt des Zielregisters \(\ket{b}_{n+1}\) mit initialen Wert \(b\) , 
-das Produkt der Faktoren \(x\) und \(a\) modulare aufzuaddieren.
+das Produkt der Faktoren \(x\) und \(a\) 
+zum initialen Wert \(b\) des Zielregisters \(\ket{b}_{n+1}\) modulo \(N\) aufzuaddieren.
 
-Dabei handelt es sich bei dem Faktor \(a\) um eine vorab bekannte Zahl die während der Berechnung nicht variiert.
-Anders sieht dies bei \(x\) aus, da es sich bei dieser Zahl um den Registerinhalt von \(\ket{x}_{n}\) handelt.
+Dabei handelt es sich bei dem Faktor \(a\) um eine vorab bekannte Zahl, 
+die während der Berechnung nicht variiert.
+Anders sieht dies bei \(x\) aus, da es sich bei dieser Zahl um den Inhalt des Quantenregisters von \(\ket{x}_{n}\) handelt.
 Das Gatter berechnet also das Produkt einer klassischen Zahl \(a\) und dem Inhalt eines Quantenregisters \(x\).
-Das Register \(\ket{x}_{n}\) umfasst mehrere Qubits die \(x\) im Binärsystem beschreiben, 
-also zum Beispiel in Binärschreibweise für drei Qubits \(\ket{x}_{3} = 2^0x_0+2^1x_1+2^2x_2\).
+
+Das Register \(\ket{x}_{n}\) umfasst mehrere Qubits, 
+welche \(x\) im Binärsystem beschreiben, 
+also zum Beispiel in Binärschreibweise für drei Qubits 
+\[\ket{x}_{3} = 2^0x_0+2^1x_1+2^2x_2\]
 Das Produkt kann dementsprechend umgeformt werden: 
 \[(x\cdot a)  = (2^0x_0\cdot a+2^1x_1\cdot a+2^2x_2\cdot a) \]
 Beziehungsweise bezogen auf die Transformation des \(\ket{b}_{n+1}\) Registers:
 \[\ket{b + (x\cdot a) \mod N}_{4} = \ket{b + (2^0x_0\cdot a+2^1x_1\cdot a+2^2x_2\cdot a) \mod N}_{4}\]
-Bedeutet, dass die Transformation realisiert werden kann, 
+Dies bedeutet, dass die Transformation realisiert werden kann, 
 indem die einzelnen Produkte \(2^ix_i\cdot a\) einzeln auf \(\ket{b}_{n+1}\) addiert werden.
 Um große Zwischenergebnisse zu vermeiden, die gegebenenfalls für einen Overflow im \(\ket{b}_{n+1}\) Register sorgen, 
 kann man die Berechnung weiter umformen~\cite{beauregard2003circuit}:
 \[= \ket{(((b + 2^0x_0\cdot a)\mod N+2^1x_1\cdot a)\mod N+2^2x_2\cdot a) \mod N}_{4}\]
+
 Dies wird als Quantenschaltkreis realisiert, 
-indem eine Gatter zur modularen Addition verwendet wird, 
-um \((b + 2^ix_i\cdot a)\mod N\) zu berechnet.
-Dafür wird das modulare Addition Gatter mit dem Summanden beziehungsweise Parameter \(2^i\cdot a\) versehen 
-und für die Abhängigkeit von \(x_i\) durch das Qubit \(\ket{x_i}_1\) kontrolliert.
+indem ein Gatter zur modularen Addition verwendet wird, 
+um \((b + 2^ix_i\cdot a)\mod N\) zu berechnen.
+Dafür wird dem modularen Addition-Gatter der Summand beziehungsweise Parameter \(2^i\cdot a\) zugewiesen 
+und aufgrund der Abhängigkeit zu \(x_i\) durch das Qubit \(\ket{x_i}_1\) kontrolliert.
 Für die gesamte Summe muss jedes Qubit des \(\ket{x}_{n}\) Registers ein Gatter zur modularen Addition kontrollieren, 
-welche auf das Register \(\ket{b}_{n+1}\) wirken.
-Jedes Gatter zur modularen Addition bekommt die zugehörigen Potenz von \(2^i\) zugewiesen, 
+welches auf das Register \(\ket{b}_{n+1}\) wirkt.
+Jedes Gatter zur modularen Addition bekommt die zugehörige Potenz von \(2^i\) zugewiesen, 
 die auch der Wertigkeit des zugehörigen Kontroll-Qubits \(\ket{x_i}_1\) entspricht.
 Also wirken alle Gatter zur modularen Addition nacheinander auf das \(\ket{b}_{n+1}\) Register und 
-Transformieren dies so sukzessiv nach \(\ket{b + (x\cdot a) \mod N}_{n+1}\).
+transformieren dies so sukzessiv nach \(\ket{b + (x\cdot a) \mod N}_{n+1}\).
 
 Die verwendeten Gatter zur modularen Addition führen alle Berechnungen in der Fourier-Basis durch.
-Deswegen muss sich das \(\ket{b}_{n+1}\) Register auch in der Fourier-Basis befinden.
-Das Gatter für die kontrollierte Multiplikation wirkt dazu als erste Operation eine Quanten-Fourier-Transformation auf 
-das Zielregister \(\ket{b}_{n+1}\) und als letzte Operation die inverse Quanten-Fourier-Transformation.
+Deswegen muss sich das \(\ket{b}_{n+1}\) Quantenregister auch in der Fourier-Basis befinden.
+Also wird im Gatter für die kontrollierte Multiplikation zuerst eine Quanten-Fourier-Transformation auf das Zielregister \(\ket{b}_{n+1}\) angewendet und 
+als letzte Operation erfolgt die inverse Quanten-Fourier-Transformation, 
+damit der Inhalt des Quantenregister wieder in der Standardbasis ist.
 
 Zusätzlich verfügt das Gatter zur kontrollierten Multiplikation noch über das Kontroll-Qubit \(\ket{c}_1\).
 Dieses Kontroll-Qubit kontrolliert alle der verwendeten modularen Addition Gatter.
@@ -690,29 +697,31 @@ Alles zusammen führt zu einem Quantenschaltkreis wie in Abbildung~\ref{fig:cmul
 
 \vspace{1em}
 
-Der Code der einen Quantenschaltkreis als Gatter nach dem Konzept in Abbildung~\ref{fig:cmult} generiert, 
-wird in der Funktion \texttt{cmult\_gate}~\ref{code:ModularMultiplication} definiert.
+Der Code, der einen Quantenschaltkreis als Gatter gemäß dem Konzept in Abbildung~\ref{fig:cmult} generiert, 
+ist in der Funktion \texttt{cmult\_gate}~\ref{code:ModularMultiplication} definiert.
+
 Die Funktion erwartet sowohl \(a\) als auch \(N\) als Parameter, 
 jeweils in der Form einer Liste, welche die Zahl in Binärdarstellung beschreibt.
 Dabei repräsentiert der erste Index beider Listen das Least-Significant-Bit.
 Damit die unterliegenden modularen Addition Gatter für die korrekte Anzahl an Qubits gebildet werden, 
-müssen die Listen jeweils von der Länge n + 1 sein, wenn \(N\) der Größenordnung \(2^n\) entspricht.
-Das Most-Significant-Bit ist dementsprechend für beide Listen \(0\).
-Des Weiteren erwartet die Funktion den Parameter \textit{x\_bits\_amount}, welcher angibt, 
+müssen die Listen jeweils die Länge n + 1 haben, wenn \(N\) der Größenordnung \(2^n\) entspricht.
+Das Most-Significant-Bit sollte in beiden Listen dementsprechend den Wert \(0\) haben.
+Des Weiteren erwartet die Funktion den Parameter \textit{x\_bits\_amount}, der angibt, 
 wie viele Qubits das Register \(\ket{x}_n\) umfasst 
-und somit also \(n\) entspricht. 
+und somit \(n\) entspricht. 
 
 Um die Position der Qubits zu beschreiben, 
-werden in der Funktion vier Wertebereiche definiert.
+definiert die Funktion vier Wertebereiche.
 \textit{c\_qbit} liegt an der ersten Stelle des kontrollierten Multiplikation Gatters und 
 ist für das Kontroll-Qubit \(\ket{c}_1\) vorhergesehen.
 Die darauffolgenden Qubits umfassen das \(\ket{x}_n\) Register und bestehen aus insgesamt \(n\) Qubits, 
 deren Position in \textit{c\_qbit} definiert ist.
 Die Position des \(\ket{b}_{n+1}\) Registers wird in \textit{b\_qbits} beschrieben.
-Aufgrund der unterliegenden Gatter umfasst das \(\ket{b}_{n+1}\) Register ein extra Qubit, 
+Aufgrund der unterliegenden Gatter umfasst das \(\ket{b}_{n+1}\) Register ein zusätzliches Qubit, 
 welches als Borrow-Bit dient.
-Die Position des letzten Qubit \(\ket{0}_1\) wird mit \textit{cond\_qbit} definiert.
-Dieses Qubit ist das Bedingungs-Qubit für die unterliegenden modularen Addition Gatter.
+Die Position des letzten Qubit \(\ket{0}_1\), 
+wird mit \textit{cond\_qbit} definiert.
+Dieses Qubit dient als Bedingungs-Qubit für die unterliegenden modularen Addition Gatter.
 
 Im Code~\ref{code:ModularMultiplication} wird in Zeile 9 die Quanten-Fourier-Transformation auf 
 das \(\ket{b}_{n+1}\) Register anwendet.
@@ -720,14 +729,15 @@ In Zeile 10 bis 13 folgen die Gatter zur modularen Addition.
 Da \((b + a \cdot x) \mod N\) äquivalent ist zu \((b + (a \cdot x)\mod N) \mod N\)~\cite{koepf_modular_2021}, 
 wird einem Gatter der modularen Addition nicht der Parameter \(2^i\cdot a\) übergeben, 
 sondern \((2^i\cdot a)\mod N\).
-Andernfalls wäre es nötig, 
-zusätzliche Qubits zu verwendet, 
-damit \(2^i\cdot a\) gespeichert werden kann.
+Andernfalls wäre es notwendig, 
+zusätzliche Qubits zu verwenden, um \(2^i\cdot a\) zu speichern.
+
 Wie man in Zeile 13 sieht, teilen sich alle modularen Additions Gatter das selbe Bedingungs-Qubit \(\ket{0}_1\), 
 welches sich auf der Position von \textit{cond\_qbit} befindet.
-Genau aus diesem Grund, wird bei dem Gatter zur modularen Addition des Bedingungs-Qubit zurückgesetzt.
+Genau aus diesem Grund, wird bei dem Gatter zur modularen Addition das Bedingungs-Qubit zurückgesetzt.
+
 Abschließend wird noch die inverse Quanten-Fourier-Transformation auf das \(\ket{b}_{n+1}\) Register anwendet und 
-von einem Quantenschaltkreis in ein Quantengatter umgeformt.
+der Quantenschaltkreis in ein Quantengatter umgeformt.
 
 \begin{figure}[H]
   \caption{Kontrollierte Multiplikation in Qiskit}
@@ -753,7 +763,9 @@ def cmult_gate(x_bits_amount: int,a_bin: list[int],N_bin: list[int]) -> qiskit.c
   \end{minted}
 \end{figure}
 
-In Qiskit wird der durch den Code gebildete Quantenschaltkreis wie in Abbildung~\ref{fig:cmult_qiskit} in Qiskit dargestellt.
+In Qiskit wird der durch den Code gebildete Quantenschaltkreis wie in Abbildung~\ref{fig:cmult_qiskit} dargestellt.
+Die Abbildung repräsentiert den Quantenschaltkreis für \(a = 11;~N = 15\).
+
 Die Visualisierung der Kontroll-Abzweigungen ist anders als in den vorherigen Abbildungen dargestellt.
 Dies liegt daran, dass die Kontroll-Qubits bereits in den unterliegenden Gattern, 
 also der modularen Addition, 
@@ -762,14 +774,13 @@ Es ist möglich, die Kontroll-Qubits bei der Definition der modularen Adder Gatt
 stattdessen erst bei der Anwendung im kontrollierten Multiplikation Gatter anzuwenden, 
 indem die Qiskit Funktion \textit{control} verwendet wird.
 Dadurch wird der Kontrolleffekt auf das gesamte Gatter zur modularen Addition angewendet, 
-wodurch man einen ineffizientere Quantenschaltkreis erhält, 
+wodurch ein ineffizienterer Quantenschaltkreis entsteht, 
 wie bereits im Abschnitt~\ref{sub:modulareAddition} zur modularen Addition erwähnt.
 
 Es ist zu beachten, dass die Gatter zur modularen Addition in Abbildung~\ref{fig:cmult_qiskit} zwar über 
 alle Qubits des \(\ket{x}_n\) Registers verlaufen, 
 jedoch ausschließlich durch das Qubit kontrolliert werden, 
-bei dem das modularen Additions Gatter den Index 1 verzeichnet.
-Die Abbildung repräsentiert den Quantenschaltkreis für \(a = 11;~N = 15\).
+das im modularen Additions-Gatter den Index 1 trägt.
 
 \begin{figure} [H]
   \caption{Schaltkreis der kontrollierten Multiplikation in Qiskit}
@@ -780,9 +791,9 @@ Die Abbildung repräsentiert den Quantenschaltkreis für \(a = 11;~N = 15\).
 
 Insgesamt wirkt das Gatter auf \(2n+3\) Qubits.
 Diese setzen sich aus dem Kontroll-Qubit \(\ket{c}_1\), den \(n\) Qubits von \(\ket{x}_n\), 
-den \(n+1\) Qubits von \(\ket{b}_{n+1}\) und dem Bedingungs-Qubit \(\ket{0}_1\)zusammen.
+den \(n+1\) Qubits von \(\ket{b}_{n+1}\) und dem einzelnen Bedingungs-Qubit \(\ket{0}_1\)zusammen.
 
-Damit die Inverse des kontrollierten Multiplikation Gatters eine Eindeutige Benennung hat, 
+Um der Inversen des kontrollierten Multiplikation Gatters eine eindeutige Benennung zu geben, 
 wird dafür eine zusätzliche Funktion \texttt{inv\_cmult\_gate} definiert.
 \begin{figure}[H]
   \caption{Inverse kontrollierte Multiplikation in Qiskit}
