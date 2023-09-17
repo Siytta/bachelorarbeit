@@ -941,28 +941,30 @@ Die Abbildung zeigt ein Beispiel für \(a=7\) und \(N=15\).
   \end{figure}
 
 \subsubsection{QPE für Shor} \label{section:imp_QPE_Shor}
+Der letzte Schritt zur Komplettierung des Quantenschaltkreises für den Quantenalgorithmus, 
+der in der Lage ist, 
+die Periode zu bestimmen, besteht darin, 
+die Quanten-Phase-Estimation wie in Abbildung~\ref{fig:shor_n_qubit} unter Verwendung des \(U_a\)-Gatters zu bilden.
 Das \(U_a\)-Gatter führt die benötigte unitäre Transformation von \(U\ket{y} = \ket{ay \mod N}\) aus.
-Der letzte Schritt, um den Quantenschaltkreis des Quantenalgorithmus zu bilden, 
-der in der Lage, ist die Periode zu bestimmen, 
-besteht darin, 
-die Quanten-Phase-Estimation wie in Abbildung~\ref{fig:shor_n_qubit} mit den \(U_a\)-Gatter nachzubauen.
 
 In Abbildung~\ref{fig:shor_n_qubit} werden unter anderem \({U_a}^{2^x}\)-Gatter eingesetzt.
 Diese können realisiert werden, 
 indem ein \({U_a}\)-Gatter insgesamt \(2^x\) mal hintereinander geschaltet wird oder 
-indem anstelle von \(a\) den Parameter \(a^{2^x}\) an ein einzelnes \(U_a\)-Gatter übergibt.
+indem anstelle von \(a\) der Parameter \(a^{2^x}\) an ein einzelnes \(U_a\)-Gatter übergeben wird.
 Die zweite Variante ist möglich wegen~\cite{beauregard2003circuit}:
 \[(a^nx)\mod N = \underbrace{(a...(((a(ax)\mod N)\mod N)...)\mod N)}_{\text{\(n\) mal}}\]
 
-Bei der Wahl zwischen den beiden Varianten ist das entscheidende Kriterium bei der Ressourceneffizienz. 
-Die zweite Variante schneidet dabei deutlich besser ab, da sie lediglich \(2n\) \(U_a\)-Gatter benötigt, 
-im Gegensatz zur ersten Variante, die \(2^n-1\) \(U_a\)-Gatter erfordert.
+Bei der Wahl zwischen den beiden Varianten liegt das entscheidende Kriterium bei der Ressourceneffizienz. 
+Die zweite Variante schneidet dabei deutlich besser ab, 
+da sie lediglich \(x\) \(U_a\)-Gatter benötigt, 
+wenn \(x\) Kontroll-Qubits verwendet werden, 
+im Gegensatz zur ersten Variante, die \(2^x-1\) \(U_a\)-Gatter erfordert.
 
 Ein weiterer wichtiger Aspekt für den Aufbau der Quantenschaltung betrifft die Anzahl der benötigten Kontroll-Qubits.
 Beauregard erklärt in seinem Paper~\cite{beauregard2003circuit} nicht, 
 warum er eine Konstruktion mit insgesamt \(2n\) Kontroll-Qubits beziehungsweise \({U_a}^{2^x}\)-Gatter wählt.
-Es gibt Quellen, die mehr als \(2n\) \({U_a}^{2^x}\)-Gatter verwendeten~\cite{nielsen_chuang_2010}.
-Nach dem Paper von Peter Shor~\cite{Shor_1997} sind jedoch \(2n\) \({U_a}^{2^x}\)-Gatter ausreichen,
+Es gibt Quellen, die mehr als \(2n\) \({U_a}^{2^x}\)-Gatter verwendeten~\cite[229]{nielsen_chuang_2010}.
+Nach dem Paper von Peter Shor~\cite{Shor_1997} sind jedoch \(2n\) \({U_a}^{2^x}\)-Gatter ausreichend,
 wie auch im Abschnitt~\ref{Funktionsweise:klassisch} erläutert wird.
 Deswegen verwendet die hier implementierte Variante \(2n\) Kontroll-Qubits.
 
@@ -970,35 +972,40 @@ Deswegen verwendet die hier implementierte Variante \(2n\) Kontroll-Qubits.
 
 Der Code für einen Quantenschaltkreis wie in Abbildung~\ref{fig:shor_n_qubit} ist in der Funktion 
 \texttt{Shor}~\ref{code:Periodenbestimmung} enthalten.
+
 Die Funktion erwartet die beiden Zahlen \(a\) und \(N\) als Parameter.
 Des Weiteren kann der Funktion über den Parameter \textit{number\_shots} mitgeteilt werden, 
 mit wie vielen Durchläufen der Quantenalgorithmus ausgeführt werden soll.
 Jeder Durchlauf gewährt ein weiteres Messergebnis.
 Der Parameter \textit{backend} ist dazu da, 
-um Festzulegen auf welchem System der Quantenalgorithmus ausgeführt werden soll.
+um festzulegen auf welchem System der Quantenalgorithmus ausgeführt werden soll.
 Standardmäßig wird der Simulator von Qiskit genommen, 
 falls Zugang zu einem Quantensystem von IBM besteht, 
 würde man hier die Bezeichnung des entsprechenden Quantum-Backend verwenden.
+
 Die Funktion \texttt{Shor} definiert die beiden Wertebereiche \textit{c\_qbits} und 
 \textit{ev\_qbits} um die Positionen der beiden Quantenregister zu beschreiben.
 Der Wertebereich \textit{c\_qbits} enthält die insgesamt \(2n\) Positionen der Kontroll-Qubits.
 Der Eigenvektor wird in den Qubits gespeichert, 
 deren Position in \textit{ev\_qbits} definiert ist.
-Der Quantenschaltkreis wird in der 5 Zeile definiert und umfasst \(4n+2\) Qubits und 
-\(2n\) klassische Bits, welche zum Messen verwendet werden.
-In Zeile 6 und 7 wird auf jedes Kontroll-Qubit mit ein Hadamard-Gatter angewendet.
-In Zeile 8 wird der Eigenvektor gebildet. 
-Da dieser dem Zustand \(\ket{1}\) entspricht,
-genügt es, wenn das Least-Significant-Qubit mit einem X-Gatter versehen wird.
-Die Zeile 9 und 10 wendet das Zugehörige \({U_a}^{2^x}\)-Gatter mit dem passenden \(x\) auf das Register mit dem Eigenvektor an.
-Die Funktion \texttt{mod\_exp} berechnet \((a^{2^x})\mod N\).
-In Zeile 11 wird die inverse Quanten-Fourier-Transformation auf die Kontroll-Qubits angewendet.
-Da die Funktion \texttt{Shor} Messungen durchführen soll, 
-wird in Zeile 12 definiert, welche Qubits gemessen werden. 
-Anschließend werden in Zeile 13-14 \textit{number\_shots} viele Messungen durchgeführt und 
-das Ergebnis als Rückgabewert der Funktion zurückgeben.
 
-Wie bei der Definition des Quantenschaltkreis in Zeil 5 erkennbar, 
+Der Quantenschaltkreis wird in der 5. Zeile definiert und umfasst \(4n+2\) Qubits und 
+\(2n\) klassische Bits, welche zum Messen verwendet werden.
+In Zeilen 6 und 7 wird ein Hadamard-Gatter auf jedes Kontroll-Qubit angewendet.
+In der 8. Zeile wird der Eigenvektor gebildet. 
+Da der Eigenvektor dem Zustand \(\ket{1}\) entspricht,
+genügt es, wenn das Least-Significant-Qubit mit einem X-Gatter versehen wird.
+In den Zeilen 9 und 10 wird das zugehörige \({U_a}^{2^x}\)-Gatter mit dem passenden \(x\) auf das Register mit dem Eigenvektor angewendet.
+Die Funktion \texttt{mod\_exp} berechnet \((a^{2^x})\mod N\).
+In der 11. Zeile wird die inverse Quanten-Fourier-Transformation auf die Kontroll-Qubits angewendet.
+Da die Funktion \texttt{Shor} Messungen durchführen soll, 
+wird in der 12. Zeile definiert, welche Qubits gemessen werden.
+In dem Fall werden die Qubits auf den Positionen \textit{c\_qbits} gemessen, 
+da diese die Kontroll-Qubits sind.
+Anschließend werden in Zeilen 13 und 14 \textit{number\_shots} viele Messungen durchgeführt und 
+das Ergebnis wird als Rückgabewert der Funktion zurückgegeben.
+
+Wie bei der Definition des Quantenschaltkreises in Zeil 5 erkennbar, 
 benötigt der Quantenschaltkreis \(4n+2\) Qubits anstatt \(2n+3\).
 Die Reduktion der benötigten Qubits wird in der Sektion~\ref{Optimierung} thematisiert. 
 
@@ -1026,8 +1033,8 @@ def Shor(a: int, N: int,number_shots: int = 1000, backend: str = "aer_simulator"
 
 In Abbildung~\ref{fig:shor_qiskit} ist der Quantenschaltkreis zu sehen, 
 welcher durch die Funktion \texttt{Shor} mit \(a=7;~N=15\) generiert wird.
-Bei \(N=15\) tritt der Effekt auf, das für \(x>1\) die Rechnung \((a^{2^x})\mod N = 1\) ergibt, 
-weswegen auch die \({U_a}^{2^x}\)-Gatter zu \(U_1\) werden.
+Bei \(N=15\) tritt der Effekt auf, dass für \(x>1\) die Rechnung \((a^{2^x})\mod N = 1\) ergibt, 
+weshalb auch die \({U_a}^{2^x}\)-Gatter zu \(U\_1\) werden.
 
 \begin{figure} [H]
   \caption{Quantenalgorithmus von Shor in Qiskit}
