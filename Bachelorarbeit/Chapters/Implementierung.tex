@@ -356,34 +356,36 @@ Die Phasenverschiebung eines einzelnen Phasen-Gatters ergibt sich aus der vorher
 Abschließend wird der Quantenschaltkreis in ein Gatter umgewandelt und mit einer passenden Bezeichnung versehen.
 
 \subsubsection{Subtraktion}
-Die Quanten-Addition besteht ausschließlich aus unitären Gattern 
-und ist daher selbst auch unitär. 
+Die Quanten-Addition besteht ausschließlich aus unitären Gattern und ist daher selbst ebenfalls unitär.
 Diese Eigenschaft vereinfacht die Implementierung der Subtraktion. 
-Indem die Quanten-Addition invertiert wird, ergibt sich ein Quantenschaltkreis, 
+Durch die Invertierung der Quanten-Addition ergibt sich ein Quantenschaltkreis, 
 der eine Subtraktion in der Fourier-Basis ausführt. 
-Damit hat man praktisch einen Quantenschaltkreis der Quanten-Subtraktion.
+Damit erhält man praktisch einen Quantenschaltkreis für die Quanten-Subtraktion.
 
-Genau wie bei der Quanten-Addition kann es auch bei der Quanten-Subtraktion zu einem Overflow,
-beziehungsweise im konkreten Kontext, zu einem Underflow kommen.
-Bei der Quanten-Subtraktion tritt dieser Effekt ein, 
-falls der Minuend im Zielregister kleiner als der Subtrahend ist.
+Genau wie bei der Quanten-Addition kann es auch bei der Quanten-Subtraktion zu einem Overflow
+oder im konkreten Kontext, zu einem Underflow kommen.
+Dieser Effekt tritt ein, 
+falls der im Zielregister befindliche Minuend kleiner ist als der Subtrahend.
 
-Dieser Effekt kann verwendet werden, um herauszufinden, 
-ob der Subtrahend größer ist als der Minuend~\cite{beauregard2003circuit}.
-Angenommen man hat zwei Zahlen die maximal der Größenordnung \(2^n\) entsprechen und 
-ein Zielregister welches aus \(n+1\) Qubits besteht.
-Der Subtrahend \(b\) befindet sich im Zielregister also \(\ket{\phi(b)}_{n+1}\), 
-worauf die Quanten-Subtraktion mit dem Minuend \(a\) wirkt.
+Der Effekt des Underflows wird verwendet, um herauszufinden, 
+ob der Subtrahend größer als der Minuend ist~\cite{beauregard2003circuit}.
+Angenommen, man hat zwei Zahlen, 
+die maximal der Größenordnung \(2^n\) entsprechen und 
+ein Zielregister, 
+welches aus \(n+1\) Qubits besteht.
+Der Minuend \(b\) befindet sich im Zielregister, 
+also \(\ket{\phi(b)}_{n+1}\), 
+worauf die Quanten-Subtraktion mit dem Subtrahenden \(a\) wirkt.
 Dann existieren zwei mögliche Fälle:
 \[b \geq a~\rightarrow~\ket{\phi(b-a)}_{n+1};~
 b < a~\rightarrow~\ket{\phi(2^{n+1}-(a-b))}_{n+1}
   \]
 Das Most-Significant Bit ist ausschließlich im zweiten Fall gesetzt und kann somit, 
-nachdem das Register in die Standardbasis transformiert wird, 
-als eine Art Borrow-Bit entspricht.
+nachdem das Quantenregister in die Standardbasis transformiert wurde, 
+als eine Art Borrow-Bit verwendet werden.
 
 Die Implementierung der Quanten-Subtraktion ist aufgrund der \texttt{inverse} Funktion von Qiskit unkompliziert.
-Wendet man die \texttt{inverse} Funktion auf ein Gatter der Quanten-Addition der \texttt{A\_Gate} Funktion an, 
+Wendet man die \texttt{inverse} Funktion auf ein Gatter der Quanten-Addition aus der \texttt{A\_Gate} Funktion an, 
 wird dieses in die Quanten-Subtraktion invertiert.
 Der Code davon ist in~\ref{code:QuantumSub} abgebildet.
 \begin{figure}[H]
