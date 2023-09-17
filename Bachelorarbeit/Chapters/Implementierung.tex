@@ -850,7 +850,7 @@ dass das zweite Quantenregister aus \(n+1\) Qubits besteht und
 somit ein Qubit mehr besitzt als das erste Quantenregister.
 Da das Most-Significant-Bit des zweiten Quantenregisters zu diesem Zeitpunkt garantiert im Zustand \(\ket{0}\) ist, 
 kann es vernachlässigt werden und wird keiner Swap-Operation unterzogen.
-%
+
 Nach dem Swap wird ein inverses Gatter zur kontrollierten Multiplikation angewendet.
 Dabei wird dem inversen Gatter zur kontrollierten Multiplikation statt dem Element \(a\) 
 das multiplikative Inverse von \(a\) in den Einheiten des Restklassenrings \(N\) übergeben, 
@@ -868,7 +868,7 @@ weswegen der Zustand der Quantenregister wie folgt vereinfacht werden kann:
 \ket{(ax)\mod N}_{n}\ket{0}_{n+1}
 \] 
 
-Beachtet man den ersten und letzten Zustand der beiden Quantenregister, 
+Beachtet man den Eingangs- und Ausgangszustand der beiden Quantenregister, 
 so bewirkt das \(U\)-Gatter eine Transformation von:
  \[\ket{x}_{n}\ket{0}_{n+1} 
  \longrightarrow 
@@ -882,8 +882,8 @@ Das Konzept des Aufbaus des Quantenschaltkreises ist in Abbildung~\ref{fig:u_gat
   \centering
   \end{figure}
 
-Die Funktion \texttt{U\_gate}~\ref{code:UGatter} enthält den Code, um ein \(U_a\)-Gatter zu generieren. 
-Dazu benötigt die Funktion dieselben Parameter wie die Funktion \texttt{cmult\_gate}, 
+Die Funktion \texttt{U\_gate}~\ref{code:UGatter} enthält den Code zur Generierung eines \(U_a\)-Gatters.
+Dazu nimmt die Funktion dieselben Parameter wie die Funktion \texttt{cmult\_gate} entgegen, 
 nämlich  \textit{a\_bin} und \textit{N\_bin}, welche jeweils \(a\) und \(N\) binärer Form im Listenformat beschreiben,  
 sowie \textit{x\_bits\_amount}, das im Grunde \(n\) repräsentiert.
 
@@ -896,15 +896,15 @@ ist in \textit{cond\_qbit} festgelegt.
 Des Weiteren wird \textit{full\_range} verwendet,
 um alle vier vorherigen Quantenregister zu umfassen.
 
-Wie im Code in Zeile 7 zu sehen ist, wird zuerst ein Gatter zur kontrollierten Multiplikation eingesetzt.
-Dazu bekommt die Funktion \texttt{cmult\_gate} die Parameter \textit{a\_bin}, \textit{N\_bin} und \textit{x\_bits\_amount} übergeben.
-Das Gatter zur kontrollierten Multiplikation wird über den Bereich \textit{full\_range} angewendet, 
+Wie in Zeile 7 des Codes ersichtlich, wird zuerst ein Gatter zur kontrollierten Multiplikation eingesetzt.
+Dafür werden der Funktion \texttt{cmult\_gate} die Parameter \textit{a\_bin}, \textit{N\_bin} und \textit{x\_bits\_amount} übergeben.
+Das Gatter zur kontrollierten Multiplikation wird auf den gesamten Bereich \textit{full\_range} angewendet, 
 somit umfasst das \(U_a\)-Gatter \(2n+3\) Qubits.
 In Zeile 9 und 10 werden die kontrollierten Swap-Gatter eingesetzt.
-Wie man in Zeile 10 erkennt, bezieht sich die Wirkung eines Swap-Gatters auf den selben index von \textit{x\_qbits} und \textit{b\_qbits}.
-Somit werden die Qubits beider Quantenregister vertauscht, die die identische Wertigkeit besitzen.
-In Zeile 11 wird \(a^{-1}\mod N\) mit dem erweiterte euklidische Algorithmus berechnet.
-Anschließend wird das Berechnete \(a^{-1}\mod N\) als Parameter an ein inverses kontrolliertes Multiplikation Gatter übergeben.
+Wie man in Zeile 10 erkennt, bezieht sich die Wirkung eines Swap-Gatters auf den selben Index von \textit{x\_qbits} und \textit{b\_qbits}.
+Somit werden die Qubits beider Quantenregister vertauscht, die die gleiche Wertigkeit haben.
+In Zeile 11 wird \(a^{-1}\mod N\) mittels des erweiterten euklidischen Algorithmus berechnet.
+Anschließend wird das berechnete \(a^{-1}\mod N\) als Parameter an ein inverses kontrolliertes Multiplikation Gatter übergeben.
 Abschließend wird der Quantenschaltkreis zu einem Gatter umgeformt und passend benannt.
 
 \begin{figure}[H]
@@ -929,7 +929,7 @@ def U_gate(x_bits_amount: int,a_bin: list[int],N_bin: list[int]) -> qiskit.circu
   \end{minted}
 \end{figure}
 
-Der Quantenschaltkreis der durch den Code~\ref{code:UGatter} gebildet wird, 
+Der Quantenschaltkreis, der durch den Code~\ref{code:UGatter} gebildet wird, 
 wird in Qiskit wie in Abbildung~\ref{fig:u_gatter_qiskit} dargestellt. 
 Die Abbildung zeigt ein Beispiel für \(a=7\) und \(N=15\).
 
