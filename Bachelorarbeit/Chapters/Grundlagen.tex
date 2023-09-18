@@ -1,13 +1,14 @@
 \section{Grundlagen}
-%*Im Folgenden Kapitel werden die Grundlagen erklärt die Notwenig sind um die 
-% Aufgabe zu verstehen. Es werden nur auf die Eigenschaften eingegangen die Nötig sind um die fortlaufende
-%Arbeit zu verstehen. "Irgendwie so etwas in die richtung "
+
 \subsection{Qubits} 
-"`Der Anfang enthält also beides, Sein und
-Nichts; ist die Einheit von Sein und Nichts,
-– oder ist Nichtsein, das zugleich Sein, und
-Sein, das zugleich Nichtsein ist."'
-- Georg Wilhelm Friedrich Hegel
+\begin{quote}
+  \noindent
+  \textit{"`Der Anfang enthält also beides, Sein und
+  Nichts; ist die Einheit von Sein und Nichts,
+  – oder ist Nichtsein, das zugleich Sein, und
+  Sein, das zugleich Nichtsein ist."' \\
+  - Georg Wilhelm Friedrich Hegel}
+\end{quote}
 
 Die Repräsentation und Speicherung von Information ist ein zentraler Aspekt aller Computer, 
 unabhängig von der verwendeten Technologie oder Architektur.
@@ -22,8 +23,9 @@ Im Gegensatz dazu funktionieren Quantencomputer grundlegend anders.
 Sie stützen sich auf die Prinzipien der Quantenmechanik und 
 verwenden anstelle von Bits sogenannte Quantenbits beziehungsweise Qubits zur Informationsrepräsentation. 
 Ein einzelnes Qubit stellt die kleinstmögliche Informationseinheit dar, 
-über die ein Quantencomputer verfügt. 
-Um quantenmechanische Zustände von Qubits zu beschreiben, 
+über die ein Quantencomputer verfügt.
+
+Um die quantenmechanischen Zustände von Qubits zu beschreiben, 
 wird die Dirac-Notation als mathematische Schreibweise genutzt~\cite{dirac_1939}.
 
 Ein Qubit kann den Zustand 0 oder den Zustand 1 annehmen:
@@ -35,13 +37,15 @@ Des Weiteren kann ein Qubit auch beide der Basiszustände gleichzeitig einnehmen
 \begin{center}
 \(\ket{\Psi} = \alpha\ket{0} + \beta\ket{1}\)
 \end{center}
-Dieses Phänomen ist eine der charakteristischen Eigenschaften von Qubits und wird als \textbf{Superposition} bezeichnet.
-Dabei handelt es sich bei den Vorfaktoren \(\alpha\) und \(\beta\) um komplexe Zahlen, 
+Dieses Phänomen ist eines der charakteristischen Eigenschaften von Qubits und wird als \textbf{Superposition} bezeichnet.
+Dabei handelt es sich bei den Vorfaktoren \(\alpha\) und \(\beta\) um reale Zahlen, 
 für die gilt:
 \begin{center}
 \(\lvert\alpha\rvert^2 + \lvert\beta\rvert^2 = 1\)
-\end{center}
-Es gibt also unendlich viele Zustände, die ein Qubit in einer Superposition der beiden Basiszustände annehmen kann.
+\end{center} 
+
+
+Es gibt unendlich viele Zustände, die ein Qubit in einer Superposition der beiden Basiszustände annehmen kann.
 
 In der klassischen Welt findet man nur schwer eine Analogie zur Superposition. 
 Man kann sich dies jedoch in etwa an einer Münze vorstellen~\cite{Hoever2023Münze}:
@@ -55,24 +59,303 @@ Ohne die Münze zu beeinflussen,
 ist es nicht möglich, die Tendenz, 
 also die Vorfaktoren, zu bestimmen.
 
-Möchte man jedoch ein konkretes Ergebnis erhalten, 
-muss man das Qubit lesen, 
-beziehungsweise genauer gesagt messen.
-Dabei wird die Superposition zerstört und das Qubit kollabiert in einen der beiden Basiszustände.
+Um ein konkretes Ergebnis zu erhalten, 
+muss das Qubit gelesen werden, 
+beziehungsweise genauer gesagt gemessen.
+Durch die Messung wird die Superposition zerstört und 
+das Qubit kollabiert in einen der beiden Basiszustände.
 
 In Analogie zur Münze wird die Rotation der Münze gezielt gestoppt, sodass diese auf eine der beiden Seiten kippt.
 
-Die Wahrscheinlichkeiten dafür werden durch die Vorfaktoren des Qubits bestimmt:
+Die Vorfaktoren \(\alpha\) und \(\beta\) repräsentieren die Amplituden des Qubits dar.
+Die Amplituden beschreiben, 
+wie stark die Tendenz des Qubits ist, in einen bestimmten Basiszustand zu kollabieren.
+Um die konkreten Wahrscheinlichkeiten für diese Zustände zu bestimmen, 
+verwendet man die quadrierten Beträge der jeweiligen Vorfaktoren:
 \begin{center}
 \(\lvert\alpha\rvert^2\) für \(\ket{0}\), \(\lvert\beta\rvert^2\) für \(\ket{1}\)
 \end{center}
 
-Es ist also nicht möglich, 
+Es ist nicht möglich, 
 den Zustand eines Qubit während einer Berechnung zu beobachten,
 da ansonsten die Superposition zerstört wird und sich somit der Zustand des Qubits verändert.
 Aus diesem Grund erfolgt die Messung in der Regel erst am Ende eines Quantenalgorithmus, um das endgültige Ergebnis zu ermitteln.
 
+\vspace{1em}
+
+Qubits können über eine komplexe Phasenverschiebung verfügen:
+\begin{center}
+  \(
+    \ket{\Psi} = (\alpha \cdot e^{i\varphi_1}) \cdot \ket{0} + (\beta \cdot e^{i\varphi_2}) \cdot \ket{1}
+    \text{, }~
+    \varphi_1,\varphi_2~\in~\mathbb{C}
+  \)
+  \end{center}
+Wenn die komplexe Phasenverschiebung für beide Amplituden beziehungsweise Vorfaktoren identisch ist, 
+spricht man von einer globalen Phase:
+\begin{center}
+  \(
+    \ket{\Psi} = e^{i\varphi} \cdot (\alpha \ket{0} + \beta  \ket{1} )
+    \text{, }~
+    \varphi~\in~\mathbb{C}
+  \)
+\end{center}
+Bei einer Messung hat eine Phasenverschiebung keinen Einfluss auf das Messergebnis, 
+da nur die Amplituden beziehungsweise deren Betragsquadrate ausschlaggebend sind~\cite{Hoever2023QC}. 
+
+\vspace{1em}
+In Rechnungen wird häufig die vektorielle Darstellung genutzt, 
+um ein Qubit darzustellen:
+\[
+  \ket{0} = 
+  \begin{pmatrix}
+    1 \\
+    0
+  \end{pmatrix},~ 
+  \ket{1} = 
+  \begin{pmatrix}
+    0 \\
+    1
+  \end{pmatrix}
+  \]
+oder im Allgemeinen:
+\[
+  \ket{\Psi} 
+  =
+  (\alpha \cdot e^{i\varphi_1}) \cdot \ket{0} + (\beta \cdot e^{i\varphi_2}) \cdot \ket{1}
+  =  
+  (\alpha \cdot e^{i\varphi_1}) \cdot 
+  \begin{pmatrix}
+    1 \\
+    0
+  \end{pmatrix} + (\beta \cdot e^{i\varphi_2}) \cdot 
+  \begin{pmatrix}
+    0 \\
+    1
+  \end{pmatrix} 
+  =
+  \begin{pmatrix}
+    \alpha \cdot e^{i\varphi_1} \\
+    \beta \cdot e^{i\varphi_2}
+  \end{pmatrix}
+\] 
+
 \subsection{Quantengatter}
+Während ein klassischer Rechner logische Gatter wie AND, OR und NOT nutzt um Bits zu manipulieren, 
+verwendet ein Quantencomputer Quantengatter, 
+um die Zustände von Qubits zu steuern. 
+Im Gegensatz zu klassischen logischen Gattern führen Quantengatter stets unitäre Transformationen durch. 
+Das bedeutet, die durch das Quantengatter bewirkte Änderung ist reversibel und 
+bewahrt die Norm des Zustandsvektors. 
+Somit wird die grundlegende Bedingung eines Qubits nicht verletzt:
+\begin{center}
+\(\lvert\alpha\rvert^2 + \lvert\beta\rvert^2 = 1\)
+\end{center}
+
+Im Verlauf dieser Arbeit werden insbesondere Pauli-X-Gatter, Hadamard-Gatter und Phasen-Gatter verwendet. 
+Die Transformationen dieser Gatter werden in Form einer Matrix beschrieben.
+\vspace{1em}
+Das Pauli-X-Gatter oder auch X-Gatter und Not-Gatter genannt, 
+wirkt die Transformation: 
+\[
+  P_X = 
+  \begin{pmatrix}
+    0 & 1 \\
+    1 & 0
+    \end{pmatrix}
+  \]
+Die Wirkung auf Qubits in den Basiszuständen ähnelt dem logischen Not, 
+daher kommt auch die Bezeichnung als Not-Gatter:
+\[
+  P_X \cdot
+  \ket{0} 
+  =
+  \begin{pmatrix}
+    0 & 1 \\
+    1 & 0
+    \end{pmatrix}
+    \cdot
+    \begin{pmatrix}
+      1 \\
+      0
+    \end{pmatrix}
+    = 
+    \begin{pmatrix}
+      0 \\
+      1
+    \end{pmatrix}
+    = 
+    \ket{1}~
+    \text{bzw. }
+    P_X \cdot
+  \ket{1} 
+  =
+  \begin{pmatrix}
+    0 & 1 \\
+    1 & 0
+    \end{pmatrix}
+    \cdot
+    \begin{pmatrix}
+      0 \\
+      1
+    \end{pmatrix}
+    = 
+    \begin{pmatrix}
+      1 \\
+      0
+    \end{pmatrix}
+    = 
+    \ket{0}
+  \]
+Im Allgemeinen führt das Pauli-X-Gatter einen Bitflip durch, 
+indem die Vorfaktoren vertauscht werden:
+\[
+  \begin{pmatrix}
+    0 & 1 \\
+    1 & 0
+    \end{pmatrix}
+    \cdot
+    \begin{pmatrix}
+      \alpha \\
+      \beta
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      \beta \\
+      \alpha
+    \end{pmatrix}
+  \]
+  \vspace{1em}
+
+Das Hadamard-Gatter realisiert die Transformation:
+\[
+  H 
+  =
+  \frac{1}{\sqrt{2}}
+  \begin{pmatrix}
+    1 & 1 \\
+    1 & -1
+    \end{pmatrix}
+\]
+Die Transformation des Hadamard-Gatters, 
+wird von Phasen beziehungsweise Phasenverschiebungen beeinflusst:
+\[
+  \frac{1}{\sqrt{2}}
+  \begin{pmatrix}
+    1 & 1 \\
+    1 & -1
+    \end{pmatrix}
+    \cdot
+    \frac{1}{\sqrt{2}}
+    \begin{pmatrix}
+      1 \\
+      1
+    \end{pmatrix}
+     =
+     \begin{pmatrix}
+      1 \\
+      0
+    \end{pmatrix}
+    =
+     \ket{0}
+     \text{ und }
+     \frac{1}{\sqrt{2}}
+     \begin{pmatrix}
+       1 & 1 \\
+       1 & -1
+       \end{pmatrix}
+       \cdot
+       \frac{1}{\sqrt{2}}
+       \begin{pmatrix}
+         1 \\
+         -1
+       \end{pmatrix}
+        =
+        \begin{pmatrix}
+         0 \\
+         1
+       \end{pmatrix}
+       =
+        \ket{1}
+  \]
+  Die Zustände \(\ket{0}\) und \(\ket{1}\) sind praktisch die Basiszustände der so genannten Standardbasis.
+  Wendet man auf \(\ket{0}\) und \(\ket{1}\) die Hadamard-Transformation an, 
+  werden diese entsprechend zu den Basiszuständen der Fourierbasis \(\ket{+}\) und \(\ket{-}\):
+  \[ 
+    \frac{1}{\sqrt{2}}
+  \begin{pmatrix}
+    1 & 1 \\
+    1 & -1
+    \end{pmatrix}
+    \cdot
+    \begin{pmatrix}
+      1 \\
+      0
+    \end{pmatrix}
+    =
+    \frac{1}{\sqrt{2}}
+    \begin{pmatrix}
+      1 \\
+      1
+    \end{pmatrix}
+    =
+    \ket{+}
+    \text{ und }
+    \frac{1}{\sqrt{2}}
+    \begin{pmatrix}
+      1 & 1 \\
+      1 & -1
+      \end{pmatrix}
+      \cdot
+      \begin{pmatrix}
+        0 \\
+        1
+      \end{pmatrix}
+      =
+      \frac{1}{\sqrt{2}}
+      \begin{pmatrix}
+        1 \\
+        -1
+      \end{pmatrix}
+      =
+      \ket{-}
+    \]
+    Im Kapitel der Quanten-Fourier-Transformation~\ref{Quanten-Fourier-Transformation} wird dies Vertieft.
+    Für das Verständnis dieses Kapitels sollte man im Hinterkopf haben, 
+    dass das Hadamard-Gatter von der Phasenverschiebung beeinflusst wird.
+    \vspace{1em}
+    Das Phase-Gatter realisiert die Transformation:
+    \[
+      P(\lambda) =
+      \begin{pmatrix}
+        1 & 0 \\
+        0 & e^{i\lambda}
+        \end{pmatrix}
+      \]
+    Damit fügt dieses Gatter eine Phasenverschiebung zum \(\ket{1}\) Anteil eines Qubits hinzu:
+    \[
+      \begin{pmatrix}
+        1 & 0 \\
+        0 & e^{i\lambda}
+        \end{pmatrix}
+        \cdot
+        \begin{pmatrix}
+          \alpha \\
+          \beta
+        \end{pmatrix}
+          =
+        \begin{pmatrix}
+          \alpha \\
+          e^{i\lambda} \cdot \beta
+        \end{pmatrix}
+    \]
+%Kontrollierte Gatter
+%Tensor
+%Notation mit anzahl Qubits
+%Reihenfolge Rechnung mehrere Gatter
+
+
+ 
 
 \subsection{Qiskit}
 \subsection{RSA}
