@@ -1542,9 +1542,8 @@ Die vollständige Quanten-Fourier-Transformation entspricht somit einer \(AQFT_n
 Wenn der Approximationsfaktor \(m\) einem Wert
 \[m \geq \text{ld}(n+2)\]
 entspricht, nähert sich die Wahrscheinlichkeit, das optimale Ergebnis mit \(AQFT_m\)
-zu erhalten, dem Wert 
+zu erhalten, dem Wert~\cite{cheung2004improved}: 
 \[P \geq \frac{4}{\pi^2} - \frac{1}{4n}\]
-an~\cite{cheung2004improved}.
 Dies steht im Gegensatz zur Wahrscheinlichkeit von \(\frac{4}{\pi^2}\), 
 die für die exakte Quanten-Fourier-Transformation \(QFT\) gilt~\cite{cheung2004improved}\cite[119]{kaye2007introduction}.
 
@@ -1565,11 +1564,10 @@ führt die Dekohärenz,
 bedingt durch eine Vielzahl an Gattern und die damit verbundene längere Laufzeit, 
 zu einer erhöhten Fehlerrate.
 Eine Reduktion der Anzahl an Gattern durch ein geringeres 
-\(m\) führt daher zu einer niedrigeren Fehlerrate.
-Ein niedrigeres \(m\) mindert somit den Effekt der Dekohärenz auf die Fehlerrate, 
+\(m\) führt daher zu einer niedrigeren Fehlerrate durch Dekohärenz, 
 was wiederum die Wahrscheinlichkeit für ein genaues Ergebnis erhöht.
 Auf der anderen Seite führt ein geringeres \(m\) zu einer Ungenauigkeit,
-da der Approximationsfaktor größer wird und somit nicht alle Phasen-Gatter angewendet werden.
+da der Approximationsfaktor größer ist und somit nicht alle Phasen-Gatter angewendet werden.
 Um das bestmögliche Ergebnis zu erzielen, 
 muss eine gewisse Ungenauigkeit durch die Approximation in Kauf genommen werden, 
 die wiederum durch die geringere Fehlerrate kompensiert wird. 
@@ -1580,21 +1578,21 @@ Die Approximationstechnik kann auch in der iterativen beziehungsweise semi-klass
 Bei der Implementierung für den Shor-Algorithmus ist darauf zu achten, 
 dass alle verwendeten Quanten-Fourier-Transformationen, also sowohl die in den \(U^{2^x}\)-Gattern als auch die finale Transformation vor dem Basiswechsel, 
 das gleiche \(m\) nutzen.
-Andernfalls wären die gewirkten und extrahierten Phasenverschiebungen inkonsistent 
+Andernfalls wären die angewendeten und extrahierten Phasenverschiebungen inkonsistent 
 und würden zu falschen Ergebnissen führen.
 
 Die Implementierung des \texttt{Faktorisierungsalgorithmus} wird um den Parameter \(m\) ergänzt.
 Standardmäßig ist \[m = \lceil\text{ld}(n+2)\rceil\] gesetzt, 
 kann jedoch über den Parameter beliebig angepasst oder durch Setzen von \(m=-1\) deaktiviert werden.
-In diesem Fall wird die exakte Quanten-Fourier-Transformation angewendet.
+Im Falle der Deaktivierung, wird die exakte Quanten-Fourier-Transformation angewendet.
 
 Der Grund, warum die approximative Variante verwendet wird, 
-liegt darin, dass das Ergebnis bereits bei kleinen \(n\) gut ist. 
-Dies wird deutlich, wenn man Abbildung~\ref*{fig:shor_measure} mit \(m=n=7\) und
-Abbildung~\ref*{fig:shor_measure_AQFT} mit \(m=4\) vergleicht.
+liegt darin, dass das Ergebnis bereits bei kleinen \(n\) eine gute Genauigkeit gewährt. 
+Dies wird deutlich, wenn man Abbildung~\ref{fig:shor_measure} mit \(m=n=7\) und
+Abbildung~\ref{fig:shor_measure_AQFT} mit \(m=4\) vergleicht.
 Abgesehen von \(m\) sind die Berechnungen in beider Abbildungen identisch.
-Bei immer größer werdenden \(n\) wird die Ungenauigkeit durch die fehlenden Gatter immer geringer,  
-bis sie schließlich sogar ganz vernachlässigbar wird~\cite{cheung2004improved}.
+Mit steigendem \(n\) nimmt die Ungenauigkeit durch die fehlenden Gatter ab, 
+bis sie schließlich ganz vernachlässigbar wird~\cite{cheung2004improved}.
 
 \begin{figure} [H]
   \caption{AQFT Messung a=19, N=119, k=14, m=4}
