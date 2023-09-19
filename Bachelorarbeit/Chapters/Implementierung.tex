@@ -420,7 +420,7 @@ Sowohl die Quanten-Addition als auch die Quanten-Subtraktion addieren beziehungs
 sind somit die zuvor vorgestellten Varianten mit gewöhnlichen Phasen-Gattern.
 
 Der Quantenschaltkreis zur modularen Addition agiert als Baustein in einem größeren Gesamtbild. 
-Aus diesem Grund werden zwei Kontroll-Qubits \(\ket{c_1}\) und \(\ket{c_2}\) eingebaut, 
+Aus diesem Grund werden zwei Kontroll-Qubits \(\ket{c_1}_1\) und \(\ket{c_2}_1\) eingebaut, 
 die im weiteren Verlauf Anwendung finden.
 Das Eingaberegister, das zugleich als Zielregister dient,  
 ist initial bereits in der Fourier-Basis mit \(\ket{\phi(b)}\).
@@ -523,7 +523,7 @@ Wenn man den Quantenschaltkreis in Abbildung~\ref{fig:modulare_addition_paper} b
 fällt auf, 
 dass nicht alle Quanten-Additionen und Quanten-Subtraktionen kontrolliert durchgeführt werden.
 Die modulare Addition soll nur dann ausgeführt werden, 
-wenn die Kontroll-Qubits \(\ket{c_1}\) und \(\ket{c_2}\) gesetzt sind.
+wenn die Kontroll-Qubits \(\ket{c_1}_1\) und \(\ket{c_2}_1\) gesetzt sind.
 
 Die restlichen Gatter des Quantenschaltkreises, welche nicht von \(\ket{c_1}\) und \(\ket{c_2}\) kontrolliert sind, 
 führen lediglich die Identitätstransformation durch~\cite{beauregard2003circuit}.
@@ -584,7 +584,7 @@ müssen die Listen jeweils von der Länge \(n+1\) sein,
 wobei das Most-Significant-Bit immer \(0\) entspricht.
 
 Die Funktion definiert drei Wertebereiche, die die Positionen der Qubits beschreiben.
-\textit{c\_qbits} definiert die Position der beiden Kontroll-Qubits \(\ket{c_1}\) und \(\ket{c_2}\), 
+\textit{c\_qbits} definiert die Position der beiden Kontroll-Qubits \(\ket{c_1}_1\) und \(\ket{c_2}_1\), 
 \textit{b\_qbits} die Qubits, welche den Summanden \(b\) 
 in der Fourier-Basis enthalten 
 und \textit{cond\_qbit} repräsentiert die Position des Bedingungs-Qubit.
@@ -1222,7 +1222,7 @@ weswegen eine parallele zweite Messung unnötige Quanten-Ressourcen beansprucht.
 \begin{figure} 
 \caption{Flussdiagramm Faktorisierung}
 \label{fig:Flussdiagramm}
-\includegraphics[scale = 0.75]{FlussdiagramFaktorisierung.png}
+\includegraphics[scale = 0.63]{FlussdiagramFaktorisierung.png}
 \centering
 \end{figure}
 

@@ -11,16 +11,16 @@ Mit dem privaten Schlüssel ist der Eigentümer in der Lage, Nachrichten zu sign
 Ein Nutzer kann unter der Verwendung des öffentlichen Schlüssels die Authentizität der signierten Nachricht überprüfen. 
 Hingegen erlaubt der öffentliche Schlüssel die Verschlüsselung von Nachrichten, 
 deren anschließende Entschlüsselung ausschließlich mit dem privaten Schlüssel durchführbar ist.
-Eine Bedingung der asymmetrischer Kryptosysteme ist, 
+Eine Bedingung asymmetrischer Kryptosysteme ist, 
 dass die Ableitung des privaten Schlüssels aus dem öffentlichen Schlüssel eine Herausforderung von erheblicher Komplexität darstellt~\cite{1055638}. 
 Um dieser Anforderung gerecht zu werden, basieren asymmetrische Kryptosysteme auf mathematischen Problemstellungen, 
-deren Lösung sogar mit dem Nutzen eines Computers von erheblicher Komplexität ist.
+deren Lösung sogar unter Nutzung eines Computers von erheblicher Komplexität ist.
 
-Die Sicherheit des kryptographischen Verfahren RSA beruht auf der Annahme,
+Die Sicherheit des kryptografischen Verfahren RSA beruht auf der Annahme,
 dass die Faktorisierung eines Produkts bestehend aus zwei großen Primzahlen in keiner vertretbaren Zeit berechenbar ist.
 Andernfalls wäre es möglich, aus dem öffentlichen Schlüssel die beiden Primfaktoren zu extrahieren, 
 um anschließend damit den privaten Schlüssel zu bestimmen.
-Daraus ergibt sich die Folgerung, dass, sofern die Faktorisierung großer Zahlen mit geringen Aufwand bewältigt werden kann, 
+Daraus ergibt sich die Folgerung, dass, sofern die Faktorisierung großer Zahlen mit geringem Aufwand bewältigt werden kann, 
 das RSA-Verfahren als kompromittiert angesehen werden muss~\cite{Cormen2009}.
 
 Bislang ist kein klassischer Algorithmus bekannt, der die Primfaktorzerlegung effizient berechnen kann~\cite{Hoever2022Krypto}.
@@ -28,9 +28,7 @@ In diesem Zusammenhang bedeutet "'effizient"', dass die Laufzeit des Algorithmus
 
 Im Kontext der Entschlüsselungsfunktion für RSA wird eine Funktion implementiert,
 die in der Lage ist, die Primfaktorzerlegung effizient zu berechnen.
-Zudem wird diese Funktion spezifisch darauf ausgerichtet, 
-aus einem öffentlichen Schlüssel den zugehörigen privaten Schlüssel des RSA-Verfahrens abzuleiten.
-Die Entschlüsselungsfunktion besteht aus einem Quantenalgorithmus und einem klassischer Algorithmus.
+Die Entschlüsselungsfunktion besteht aus einem Quantenalgorithmus und einem klassischen Algorithmus.
 Der eingesetzte Quantenalgorithmus kann effektiv die Ordnung eines Elements in einer Gruppe bestimmen. 
 Unter Einbeziehung der zuvor bestimmten Ordnung werden anschließend die Primfaktoren des öffentlichen Schlüssels mithilfe eines klassischen Algorithmus berechnet~\cite{Shor_1997}.
 In einem abschließenden Schritt wird der private Schlüssel auf der Grundlage der berechneten Primfaktoren ermittelt.

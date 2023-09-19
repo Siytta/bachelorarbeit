@@ -28,7 +28,7 @@ Ein einzelnes Qubit stellt die kleinstmögliche Informationseinheit dar,
 Um die quantenmechanischen Zustände von Qubits zu beschreiben, 
 wird die Dirac-Notation als mathematische Schreibweise genutzt~\cite{dirac_1939}.
 
-Ein Qubit kann den Zustand 0 oder den Zustand 1 annehmen:
+Ein Qubit kann einen der beiden Basiszustände annehmen 0 oder  1:
 \begin{center}
 \(\ket{0}\) oder entsprechend \(\ket{1}\)
 \end{center}
@@ -67,7 +67,7 @@ das Qubit kollabiert in einen der beiden Basiszustände.
 
 In Analogie zur Münze wird die Rotation der Münze gezielt gestoppt, sodass diese auf eine der beiden Seiten kippt.
 
-Die Vorfaktoren \(\alpha\) und \(\beta\) repräsentieren die Amplituden des Qubits dar.
+Die Vorfaktoren \(\alpha\) und \(\beta\) repräsentieren die Amplituden des Qubits.
 Die Amplituden beschreiben, 
 wie stark die Tendenz des Qubits ist, in einen bestimmten Basiszustand zu kollabieren.
 Um die konkreten Wahrscheinlichkeiten für diese Zustände zu bestimmen, 
@@ -101,7 +101,7 @@ spricht man von einer globalen Phase:
   \)
 \end{center}
 Bei einer Messung hat eine Phasenverschiebung keinen Einfluss auf das Messergebnis, 
-da nur die Amplituden beziehungsweise deren Betragsquadrate ausschlaggebend sind~\cite{Hoever2023QC}. 
+da nur die Betragsquadrate ausschlaggebend sind~\cite{Hoever2023QC}. 
 
 \vspace{1em}
 In Rechnungen wird häufig die vektorielle Darstellung genutzt, 
@@ -145,7 +145,7 @@ Während ein klassischer Rechner logische Gatter wie AND, OR und NOT nutzt um Bi
 verwendet ein Quantencomputer Quantengatter, 
 um die Zustände von Qubits zu steuern. 
 Im Gegensatz zu klassischen logischen Gattern führen Quantengatter stets unitäre Transformationen durch. 
-Das bedeutet, die durch das Quantengatter bewirkte Änderung ist reversibel und 
+Das bedeutet, dass die durch das Quantengatter bewirkte Änderung reversibel ist und 
 bewahrt die Norm des Zustandsvektors. 
 Somit wird die grundlegende Bedingung eines Qubits nicht verletzt:
 \begin{center}
@@ -155,10 +155,11 @@ Somit wird die grundlegende Bedingung eines Qubits nicht verletzt:
 Im Verlauf dieser Arbeit werden insbesondere Pauli-X-Gatter, Hadamard-Gatter und Phasen-Gatter verwendet. 
 Die Transformationen dieser Gatter werden in Form einer Matrix beschrieben.
 \vspace{1em}
+\subsubsection*{Pauli-X-Gatter}
 Das Pauli-X-Gatter oder auch X-Gatter und Not-Gatter genannt, 
 wirkt die Transformation: 
 \[
-  P_X = 
+  X = 
   \begin{pmatrix}
     0 & 1 \\
     1 & 0
@@ -167,7 +168,7 @@ wirkt die Transformation:
 Die Wirkung auf Qubits in den Basiszuständen ähnelt dem logischen Not, 
 daher kommt auch die Bezeichnung als Not-Gatter:
 \[
-  P_X \cdot
+  X \cdot
   \ket{0} 
   =
   \begin{pmatrix}
@@ -187,7 +188,7 @@ daher kommt auch die Bezeichnung als Not-Gatter:
     = 
     \ket{1}~
     \text{bzw. }
-    P_X \cdot
+    X \cdot
   \ket{1} 
   =
   \begin{pmatrix}
@@ -225,8 +226,10 @@ indem die Vorfaktoren vertauscht werden:
       \alpha
     \end{pmatrix}
   \]
+
   \vspace{1em}
 
+\subsubsection*{Hadamard-Gatter}
 Das Hadamard-Gatter realisiert die Transformation:
 \[
   H 
@@ -238,7 +241,7 @@ Das Hadamard-Gatter realisiert die Transformation:
     \end{pmatrix}
 \]
 Die Transformation des Hadamard-Gatters, 
-wird von Phasen beziehungsweise Phasenverschiebungen beeinflusst:
+wird von den Phasen der Zustände beziehungsweise Phasenverschiebungen beeinflusst:
 \[
   \frac{1}{\sqrt{2}}
   \begin{pmatrix}
@@ -278,7 +281,7 @@ wird von Phasen beziehungsweise Phasenverschiebungen beeinflusst:
        =
         \ket{1}
   \]
-  Die Zustände \(\ket{0}\) und \(\ket{1}\) sind praktisch die Basiszustände der so genannten Standardbasis.
+  Die Zustände \(\ket{0}\) und \(\ket{1}\) sind praktisch die Basiszustände der sogenannten Standardbasis.
   Wendet man auf \(\ket{0}\) und \(\ket{1}\) die Hadamard-Transformation an, 
   werden diese entsprechend zu den Basiszuständen der Fourierbasis \(\ket{+}\) und \(\ket{-}\):
   \[ 
@@ -320,10 +323,13 @@ wird von Phasen beziehungsweise Phasenverschiebungen beeinflusst:
       =
       \ket{-}
     \]
-    Im Kapitel der Quanten-Fourier-Transformation~\ref{Quanten-Fourier-Transformation} wird dies Vertieft.
+    Im Kapitel der Quanten-Fourier-Transformation~\ref{Quanten-Fourier-Transformation} wird dies vertieft.
     Für das Verständnis dieses Kapitels sollte man im Hinterkopf haben, 
-    dass das Hadamard-Gatter von der Phasenverschiebung beeinflusst wird.
+    dass das Ergebnis eines Hadamard-Gatters von der Phasenverschiebung des Zustandes beeinflusst wird.
+
     \vspace{1em}
+
+    \subsubsection*{Phase-Gatter}
     Das Phase-Gatter realisiert die Transformation:
     \[
       P(\lambda) =
@@ -332,7 +338,7 @@ wird von Phasen beziehungsweise Phasenverschiebungen beeinflusst:
         0 & e^{i\lambda}
         \end{pmatrix}
       \]
-    Damit fügt dieses Gatter eine Phasenverschiebung zum \(\ket{1}\) Anteil eines Qubits hinzu:
+    Damit fügt das Phase-Gatter eine Phasenverschiebung zum \(\ket{1}\)-Anteil eines Qubits hinzu:
     \[
       \begin{pmatrix}
         1 & 0 \\
@@ -349,19 +355,255 @@ wird von Phasen beziehungsweise Phasenverschiebungen beeinflusst:
           e^{i\lambda} \cdot \beta
         \end{pmatrix}
     \]
-%Kontrollierte Gatter
-%Tensor
-%Notation mit anzahl Qubits
-%Reihenfolge Rechnung mehrere Gatter
 
+  \vspace{1em}
 
- 
+\subsubsection*{Kontrollierte Gatter}
+Ein weiterer wichtiger Baustein sind die kontrollierten Gatter. 
+Kontrollierte Gatter werden durch ein Qubit kontrolliert und wirken auf mindestens ein anderes Qubit. 
+Beachtet man die Basiszustände, 
+so wird die Transformation nur ausgeführt, 
+wenn das Kontroll-Qubit im Zustand \(\ket{1}\) ist.
 
-\subsection{Qiskit}
-\subsection{RSA}
-%Funktionsweise
-%Schwierigkeit Faktorisierung
-%Laufzeit klassischer PC
+Als Beispiel wird der Effekt eines kontrollierten Pauli-X-Gatters beziehungsweise 
+CNot-Gatters für die beiden Basiszustände betrachtet.
+Der Quantenschaltkreis für die beiden Qubits \(\ket{xy}\) ist in Abbildung~\ref{fig:cnot} abgebildet.
+Dabei handelt es sich bei \(\ket{x}\) um das Kontroll-Qubit und bei \(\ket{y}\) um das Ziel-Qubit:
+\[\ket{00}\shortrightarrow\ket{00},~\ket{01}\shortrightarrow\ket{01},~
+\ket{10}\shortrightarrow\ket{11},~\ket{11}\shortrightarrow\ket{10}
+  \]
+Also wird die Not-Transformation auf das Qubit \(\ket{y}\) nur ausgeführt, 
+wenn das Qubit \(\ket{x}\) dem Zustand \(\ket{1}\) entspricht.
+\begin{figure} [H]
+  \caption{CNot-Gatter}
+  \label{fig:cnot}
+  \includegraphics[scale=1]{cnot.png}
+  \centering
+  \end{figure}
+
+Im Verlauf dieser Arbeit werden einige kontrollierte Operationen verwendet. 
+Für ein besseres Verständnis ist es hilfreich, 
+sich diese Operationen mathematisch anzuschauen.
+Die Transformation eines kontrollierten Pauli-X-Gatters lässt sich mit der folgenden Matrix beschreiben:
+\[
+  CX = 
+  \begin{pmatrix}
+    1 & 0 & 0 & 0\\
+    0 & 1 & 0 & 0\\
+    0 & 0 & 0 & 1\\
+    0 & 0 & 1 & 0
+    \end{pmatrix}
+  \]
+Um die Matrix mit den beiden Vektoren der beiden Qubits verrechnen zu können, 
+wird das Tensorprodukt gebildet. Beispielsweise für \(\ket{xy}\) = \(\ket{10}\):
+\[
+  \begin{pmatrix}
+    1 & 0 & 0 & 0\\
+    0 & 1 & 0 & 0\\
+    0 & 0 & 0 & 1\\
+    0 & 0 & 1 & 0
+    \end{pmatrix}
+    \cdot
+    \Bigg(
+  \begin{pmatrix}
+    0 \\
+    1
+  \end{pmatrix} \tensor
+  \begin{pmatrix}
+    1 \\
+    0
+  \end{pmatrix}
+  \Bigg)
+  =
+  \begin{pmatrix}
+    1 & 0 & 0 & 0\\
+    0 & 1 & 0 & 0\\
+    0 & 0 & 0 & 1\\
+    0 & 0 & 1 & 0
+    \end{pmatrix}
+    \cdot
+  \begin{pmatrix}
+    0 \\
+    0 \\
+    1 \\
+    0
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    0 \\
+    0 \\
+    0 \\
+    1
+  \end{pmatrix}
+  =
+  \Bigg(
+    \begin{pmatrix}
+      0 \\
+      1
+    \end{pmatrix} \tensor
+    \begin{pmatrix}
+      0 \\
+      1
+    \end{pmatrix}
+    \Bigg)
+\]
+
+Im Allgemeinen kann jedes Quanten-Gatter \(U\) als kontrolliertes Gatter eingesetzt werden. 
+Dieses realisiert die Transformation~\cite{Hoever2023QC}: 
+\[
+  \text{für }
+  U = 
+  \begin{pmatrix}
+    u_{00} & u_{01}\\
+    u_{10} & u_{11}
+    \end{pmatrix}
+    \text{dementsprechend: }
+    CU = 
+  \begin{pmatrix}
+    1 & 0 & 0 & 0\\
+    0 & 1 & 0 & 0\\
+    0 & 0 & u_{00} & u_{01}\\
+    0 & 0 & u_{10} & u_{11}
+    \end{pmatrix}
+  \]
+
+  \vspace{1em}
+
+\subsubsection*{Aufeinander folgende Gatter} 
+
+Um die Wirkung mehrerer Gatter zu berechnen, die nacheinander auf ein Qubit wirken, 
+werden die Matrizen der Gatter in umgekehrter Reihenfolge aufgeschrieben, 
+wie diese im Quantenschaltkreis vorkommen. 
+In Abbildung~\ref{fig:gate_order} wirkt zuerst ein Pauli-X-Gatter und anschließend ein Hadamard-Gatter auf das Qubit im Zustand \(\ket{0}\).
+\[
+  \frac{1}{\sqrt{2}}
+  \begin{pmatrix}
+    1 & 1 \\
+    1 & -1
+    \end{pmatrix} 
+    \cdot
+    \begin{pmatrix}
+      0 & 1 \\
+      1 & 0
+      \end{pmatrix} 
+    \cdot
+    \begin{pmatrix}
+      1  \\
+      0 
+      \end{pmatrix} 
+      =
+      \frac{1}{\sqrt{2}}
+      \begin{pmatrix}
+        1 & 1 \\
+        1 & -1
+        \end{pmatrix} 
+      \cdot
+      \begin{pmatrix}
+        0  \\
+        1 
+        \end{pmatrix} 
+        =
+        \frac{1}{\sqrt{2}}
+        \begin{pmatrix}
+          1  \\
+          -1 
+          \end{pmatrix}
+        =
+        \ket{-}
+  \]
+\begin{figure} [H]
+  \caption{Berechnung aufeinanderfolgende Gatter}
+  \label{fig:gate_order}
+  \includegraphics[scale=1]{gate_order.png}
+  \centering
+  \end{figure}
+
+\subsection{Notation}
+Die Notation von Quantenzuständen und Berechnungen ist in der Literatur nicht immer eindeutig. 
+Um Mehrdeutigkeiten zu vermeiden, wird unter anderem die Schreibweise aus der Vorlesung "'Quanten Computing"` 
+von Professor Hoever übernommen~\cite{Hoever2023QC}.
+
+Dazu werden Qubits mit einem Index \(x\) versehen: \(\ket{\psi}_x\). 
+Der Index gibt an, wie viele Qubits die Notation umfasst. 
+Beispielsweise entspricht \(\ket{1}_1\) einem Qubit, 
+welches sich im Zustand \(\ket{1}\) befindet.
+Dank des Index ist bei den Qubits \(\ket{1}_3\) klar, 
+dass es sich um drei Qubits handelt. 
+Dabei befinden sich die ersten beiden Qubits im Zustand \(\ket{0}\) und das Letzte im Zustand \(\ket{1}\).
+Hingegen beschreibt \(\ket{4}_3\) ebenfalls drei Qubits, 
+wobei diesmal das erste Qubit im Zustand \(\ket{1}\) ist und die letzten beiden dem Zustand \(\ket{0}\) entsprechen.
+Also:
+\[\ket{4}_3 = \ket{1}_1 \tensor \ket{0}_1 \tensor \ket{0}_1 = \ket{100}_3\]
+
+Zustände, die weder ein spezifisches Qubit noch ein Quantenregister beschreiben, 
+werden ohne Index aufgeschrieben:
+\[
+  \ket{\psi}_1 = \alpha\ket{0} + \beta\ket{1}
+  \]
+Der Index wird auch ausgelassen, 
+wenn ein Quantenregister einen Zustand beschreibt, 
+der keine eindeutige Anzahl an Qubits vorschreibt.
+
+\vspace{1em}
+
+Wenn mehrere gleiche Gatter parallel auf die identische Anzahl an Qubits angewendet werden 
+oder das Gatter auf mehrere Qubits wirkt, 
+wird das Gatter im Exponenten mit einem Tensor inklusive des Index beschrieben:
+\[
+  U^{\tensor x} \cdot 
+  \ket{\psi}_x
+\]
+\subsection{RSA-Verschlüsselung}
+Das RSA-Verfahren ist ein weitverbreitetes asymmetrisches Kryptosystem, 
+das 1977 von Ron \textbf{R}ivest, Adi \textbf{S}hamir und Leonard \textbf{A}dleman entwickelt wurde~\cite{10.1145/359340.359342}. 
+In asymmetrischen Verschlüsselungsverfahren werden zwei verschiedene Schlüssel verwendet: 
+Ein öffentlicher Schlüssel zum Verschlüsseln von Nachrichten und ein privater Schlüssel zum Entschlüsseln dieser Nachrichten.
+Der private Schlüssel kann ebenfalls Nachrichten verschlüsseln beziehungsweise signieren.
+Eine Signatur kann mit dem öffentlichen Schlüssel bestätigt werden, 
+damit kann der Nutzer des öffentlichen Schlüssels die Authentizität der Nachricht kontrollieren.
+
+\subsubsection*{Funktionsweise}
+Die Grundlage des RSA-Verfahrens basiert auf der Schwierigkeit, 
+das Produkt zweier großer Primzahlen zu zerlegen. 
+
+Zunächst wählt man zwei große Primzahlen \(p\) und \(q\) und 
+berechnet deren Produkt \(N = p \cdot q\). 
+Des Weiteren wird \(f=(p-1)(q-1)\) berechnet und ein Exponent \(e\) ausgewählt, 
+der teilerfremd zu \(f\) ist.
+Anschließend wird \(d\) berechnet, 
+welches das multiplikative Inverse von \(e\) modulo \(f\) ist.
+Der öffentliche Schlüssel besteht aus \(N\) und dem Exponenten \(e\). 
+Der private Schlüssel ist \(d\).
+
+Eine zu sendende Nachricht \( M \) wird in einen numerischen Wert umgewandelt und mittels des öffentlichen Schlüssels verschlüsselt:
+\[
+  C = M^e \mod N
+\]
+Der Empfänger kann die verschlüsselte Nachricht \(C\) dann mit seinem privaten Schlüssel entschlüsseln:
+\[
+  M = C^d \mod N
+\]
+
+Eine Nachricht \( M \) kann als \(S\) mit dem privaten Schlüssel signiert werden:
+\[
+  S = M^d \mod N
+\]
+Für die Verifikation der Nachricht \(M\) muss dem Nutzer des öffentlichen Schlüssels \(M\) bekannt sein. 
+Die Signatur \(S\) sollte die Nachricht wiedergeben:
+\[
+  M = S^e \mod N
+\] 
+
+\subsubsection*{Schwierigkeiten für klassische Computer}
+Ein klassischer Computer hat Schwierigkeiten, 
+RSA-Verschlüsselung effizient zu brechen, 
+da das Problem der Zerlegung einer Zahl \(N\) in seine Primfaktoren für große Zahlen exponentiell schwieriger wird. 
+Nach dem aktuellen Stand im Herbst 2023 benötigen die besten klassischen Algorithmen exponentiell mehr Zeit zur Entschlüsselung, 
+je länger der verwendete Schlüssel ist~\cite{Hoever2022Krypto}.
+Daher wird RSA als sicher angesehen, solange die Schlüssellänge ausreichend groß ist (heutzutage meist 2048 Bit oder mehr).
+
+Dies stellt sicher, dass eine Brute-Force-Attacke oder Faktorisierung mit klassischen Computern in praktischer Hinsicht nicht durchführbar ist, 
+da es zu lange dauern würde, um als effektive Angriffsmethode zu gelten.
 
 \subsection{Quanten-Fourier-Transformation} \label{Quanten-Fourier-Transformation}
 Die Quanten-Fourier-Transformation bildet einen wesentlichen Bestandteil des implementierten Quantenalgorithmus. 
@@ -371,7 +613,7 @@ Darüber hinaus wird die Implementierung des Quantenschaltkreises anhand der For
 Im Prinzip handelt es sich bei der Quanten-Fourier-Transformation um eine Transformation,
 die Qubits von der Standardbasis (\(\ket{0}\), \(\ket{1}\)),
 in die entsprechende Fourierbasis (\(\ket{+}\), \(\ket{-}\)) überführt~\cite[215]{homeister2023quantum215}.
-Bei dem Basiswechsel werden die Informationen des vorherigen Standardbasiszustands in die Phase des neuen Zustandes übertragen~\cite{Ruiz-Perez2017}.
+Bei dem Basiswechsel werden die Informationen des vorherigen Zustands der Standardbasis in die Phase des neuen Zustandes übertragen~\cite{Ruiz-Perez2017}.
 Anschließend können in der Fourierbasis Rechnungen durchgeführt werden, 
 die im Grunde durch Manipulationen der Phase realisiert werden.
 Mit diesem Ansatz ist es möglich, arithmetische Operationen, wie beispielsweise 
@@ -392,21 +634,6 @@ Die folgende Herleitung stammt aus dem Lehrbuch \textit{Quantum Computation and 
 Der Übersicht halber werden Zwischenschritte hinzugefügt.
 
 Indem \(y\) in der ersten Formel in die Binärschreibweise überführt wird, ergibt sich:
-%Reihnfolge der Binärschreibweise einheitlich machen
-% 
-%\begin{align}
-%    % -> & <-    &     ->&<-
-%    122 &= 3     &   abc &= foo\\
-%      x &= y     &
-%      a &= 700   &
-%\end{align}
-%
-%\begin{align}
-% foo &= bar \\
-%     &= baz \\
-%     &= woop
-%\end{align}
-%
 \[ y = \sum_{k=1}^{n}2^{n-k} y_{n-k+1}\]  
 \begin{align}
   QFT_{N}\ket{x}_{n} &=
@@ -424,8 +651,8 @@ Die Summe im Exponenten der Basis \(e\) kann als Produkt umgeschrieben werden.
 Anstatt dem Produktzeichen \(\prod\) wird das Tensorprodukt \(\Tensor\) verwendet, da es sich um Qubits handelt:
 \[QFT_{N}\ket{x}_{n} = \frac{1}{\sqrt{N}}\sum_{y_n=0}^{1}...\sum_{y_1=0}^{1} \Tensor_{k=1}^n{ e^{\frac{2 \pi i x y_k}{2^k}}}\ket{y_{k}}\]
 Der Ausdruck kann weiter vereinfacht werden indem das Tensorprodukt vorgezogen wird:
-\[QFT_{N}\ket{x}_{n} = \frac{1}{\sqrt{N}}\Tensor_{k=1}^n [  \sum_{y_k=0}^{1}{ e^{\frac{2 \pi i x y_k}{2^k}}}\ket{y_{k}}]\]
-\[QFT_{N}\ket{x}_{n} = \frac{1}{\sqrt{N}}\Tensor_{k=1}^n [  \ket{0} + { e^{\frac{2 \pi i x}{2^k}}}\ket{1}]\] 
+\[QFT_{N}\ket{x}_{n} = \frac{1}{\sqrt{N}}\Tensor_{k=1}^n \Big[  \sum_{y_k=0}^{1}{ e^{\frac{2 \pi i x y_k}{2^k}}}\ket{y_{k}}\Big]\]
+\[QFT_{N}\ket{x}_{n} = \frac{1}{\sqrt{N}}\Tensor_{k=1}^n \Big[  \ket{0} + { e^{\frac{2 \pi i x}{2^k}}}\ket{1}\Big]\] 
 Schreibt man das Tensorprodukt voll aus und notiert \(x\) in Binärschreibweise, erhält man:
 \begin{align*}
 \frac{1}{\sqrt{N}}\Bigg(
@@ -441,9 +668,9 @@ Die komplexe Exponentialfunktion ergibt für eine natürliche Zahl \(k\): \(e^{2
 Mit dieser Eigenschaft kann man beispielsweise die Phasenverschiebung des ersten Tensors vereinfachen:
 \begin{align*} 
   e^{\frac{2 \pi i (2^{n-1}x_n+ \dotsb +2^1x_2+2^0x_1)}{2^1}}
-  &\equiv
+  &=
   e^{\frac{2 \pi i (2^{n-1}x_n)}{2^1}} \dotsb e^{\frac{2 \pi i (2^1x_2)}{2^1}} e^{\frac{2 \pi i (2^0x_1)}{2^1}} \\
-  &\equiv 
+  &=
   e^{{2 \pi i (2^{n-2}x_n)}} \dotsb e^{{2 \pi i (2^0x_2)}} e^{{2 \pi i (2^{-1}x_1)}}
 \end{align*}
 Dabei ergibt nur der Term \(e^{{2 \pi i (2^{-1}x_1)}} \neq 1 \)  
@@ -466,7 +693,7 @@ Ein einzelner Tensor repräsentiert die Wirkung der Quantenschaltung auf ein ein
 Somit werden die Phasenverschiebungen erkennbar, 
 die auf ein Qubit wirken. 
 Außerdem verdeutlicht die Binärschreibweise, 
-dass die angewendete Phasenverschiebung vom Zustand anderer Qubits abhängig ist.
+dass die angewendete Phasenverschiebung vom Zustand anderer Qubits abhängig sind.
 
 Für die Implementierung der Quanten-Fourier-Transformation sind nur die Terme relevant, 
 die eine Phasenverschiebung von ungleich 1 bewirken. 
@@ -523,18 +750,18 @@ beziehungsweise Qubits an die Form die durch eine Hadamard-Transformation entste
   &\tensor
   \frac{1}{\sqrt{2}}\Big( \ket{0} + { e^{\pi i x_3} e^{\frac{\pi i x_2}{2}} e^{ \frac{ \pi i x_1}{4}} }\ket{1} \Big)  
 \end{align*}
-Der Ausdruck \(e^{\pi i x_k}\) ist in jedem der einzelnen Qubits vorhanden.
-Des Weiteren ist an dem \(x_k\) erkennbar, 
-dass die angewendete Phasenverschiebung vom Eingangszustand des Qubits abhängt,
+Die Phasenverschiebung \(e^{\pi i}\) ist in jedem der einzelnen Qubits vorhanden.
+Des Weiteren ist diese Phasenverschiebung von dem Eingangszustand des Qubits abhängt,
 auf das die Verschiebung auch angewendet wird. 
 Konkret bedeutet dies, 
-dass auf jedes Qubit mit dem Zustand \(\ket{x_k} = \ket{1}\) eine Phasenverschiebung von \(e^{\pi i}\) wirkt.
+dass auf jedes Qubit in dem Zustand \(\ket{1}\) eine Phasenverschiebung von \(e^{\pi i}\) wirkt.
 Anhand des ersten Qubits, 
 beziehungsweise des ersten Tensors, 
 ergibt sich bei \(x_1 = 0\)
-der Zustand \(\ket{0} + e^{\pi i 0} \ket{1} \equiv \ket{0} + \ket{1}\).
-Bei \(x_1 = 1\) erhält man \(\ket{0} + e^{\pi i 1} \ket{1}\),
-was \(\ket{0} - \ket{1}\) entspricht.
+der Zustand: 
+\[\frac{1}{\sqrt{2}}(\ket{0} + e^{\pi i 0} \ket{1}) = \frac{1}{\sqrt{2}}(\ket{0} + \ket{1})\]
+Bei \(x_1 = 1\) wird der Zustand zu:
+\[\frac{1}{\sqrt{2}}(\ket{0} + e^{\pi i 1} \ket{1}) = \frac{1}{\sqrt{2}}(\ket{0} - \ket{1})\]
 Aufgrund des Vorfaktors von \(\frac{1}{\sqrt{2}}\) entsprechen beide Fälle also der Hadamard-Transformation.
 Da alle anderen Tensoren ebenfalls den Ausdruck \(e^{\pi i x_k}\) 
 und den Vorfaktor \(\frac{1}{\sqrt{2}}\) beinhalten, 
@@ -542,26 +769,18 @@ wirkt auf jedes Qubit ein Hadamard-Gatter.
 
 Die weiteren Tensoren des Tensorprodukts beinhalten zunehmend mehr Ausdrücke, 
 die für unterschiedliche Phasenverschiebungen sorgen. 
-Die Phasenverschiebung eines einzelnen Ausdrucks kann mit einem Phasengatter realisiert werden. 
-Das Phasengatter entspricht der Rotation:
-\[
-  P(\lambda) = 
-  \begin{pmatrix}
-    1 & 0 \\
-    0 & e^{i \lambda}
-  \end{pmatrix}
-\]
+Die Phasenverschiebung eines einzelnen Ausdrucks kann mit einem Phasen-Gatter realisiert werden. 
 
-Beispielsweise wirkt auf das zweite Qubit ein Phasengatter mit \(P(\frac{\pi}{2} )\).
+Beispielsweise wirkt auf das zweite Qubit ein Phasen-Gatter mit \(P(\frac{\pi}{2} )\).
 Diese Phasenverschiebung soll jedoch nur angewendet werden, 
 wenn \(x_1 = 1\) ist.
-Aus diesem Grund wird das Phasengatter durch den Eingangszustand des ersten Qubits gesteuert und 
-mithilfe eines kontrollierten Phasengatters realisiert.
+Aus diesem Grund wird das Phasen-Gatter durch den Eingangszustand des ersten Qubits gesteuert und 
+mithilfe eines kontrollierten Phasen-Gatters realisiert.
 Das gleiche Prinzip gilt für alle weiteren Qubits.
 Anschließend ergibt sich ein Quantenschaltkreis, 
-wie er in Abbildung~\ref{fig:qft} dargestellt ist.
+wie dieser in Abbildung~\ref{fig:qft} dargestellt ist.
 
-Wie aus Abbildung~\ref{fig:qft} ersichtlich, 
+Wie in Abbildung~\ref{fig:qft} ersichtlich, 
 kehrt die Quanten-Fourier-Transformation die Reihenfolge der Qubits um~\cite[217]{homeister2023quantum215}.
 Um die ursprüngliche Reihenfolge wiederherzustellen, 
 werden am Ende der Quanten-Fourier-Transformation Swap-Operationen durchgeführt.
@@ -596,22 +815,23 @@ Im nachfolgenden Abschnitt wird die Anwendung und Funktionsweise des Quantum-Pha
 Die Quantum-Phase-Estimation ist ein Bestandteil einiger fortgeschrittener Quantenalgorithmen und eine integrale Komponente des spezifischen Quantenalgorithmus, 
 der in dieser Arbeit implementiert wird. 
 Genauer gesagt, 
-basiert der implementierte Algorithmus auf den Prinzipien der Quantum-Phase-Estimation und verwendet dieselbe Methodik für einen spezialisierten Kontext.
+basiert der implementierte Quantenalgorithmus auf den Prinzipien der Quantum-Phase-Estimation und verwendet dieselbe Methodik für einen spezialisierten Kontext.
 
-Schwerpunktmäßig konzentriert sich die Erklärung primär auf das Verständnis der Funktionsweise der Quantum-Phase-Estimation und nimmt an, 
-dass einige Voraussetzungen gegeben sind. 
-Diese Voraussetzungen hängen vom spezifischen Kontext ab, 
-in dem die Quantum-Phase-Estimation angewendet wird. 
+Schwerpunktmäßig konzentriert sich die Erklärung primär auf das Verständnis der Funktionsweise der Quantum-Phase-Estimation.
+Die Anwendung der Quantum-Phase-Estimation benötigt ein paar Voraussetzungen die vom spezifischen Kontext abhängen, 
+in dem die Quantum-Phase-Estimation angewendet wird.
+Die Voraussetzungen werden für die Erklärung der Funktionsweise als Gegeben angesehen.
+
 Im weiteren Verlauf der Arbeit werden diese Voraussetzungen im Hinblick auf den Anwendungsfall des implementierten Quantenalgorithmus konkretisiert.
 
 Eine der Voraussetzungen ist, 
-dass ein Eigenvektor \(\ket{x}_n\) einer unitären Transformation \(U^{n\times n}\) bekannt ist.
-Wendet man die Transformation \(U^{n\times n}\) auf \(\ket{x}_n\) an, 
+dass ein Eigenvektor \(\ket{x}_n\) einer unitären Transformation \(U^{\tensor n}\) bekannt ist.
+Wendet man die Transformation \(U^{\tensor n}\) auf \(\ket{x}_n\) an, 
 so gilt~\cite[221]{nielsen_chuang_2010}: 
-\[U^{n\times n}\ket{x}_n=\lambda_x\ket{x}_n\]
-Dabei erhält man, abhängig vom gewählten Eigenvektor \(\ket{x}_n\), einen der Eigenwert \(\lambda_x\) von \(U^{n\times n}\).
-Ein Eigenwert \(\lambda_x\) besitzt die Form eines Phasenfaktors: \(e^{2\pi i \varphi}\),
-mit \(0 \leq \varphi < 1\).
+\[U^{\tensor n}\ket{x}_n=\lambda_x\ket{x}_n\]
+Dabei erhält man, abhängig vom gewählten Eigenvektor \(\ket{x}_n\), einen der Eigenwert \(\lambda_x\) von \(U^{\tensor n}\).
+Ein Eigenwert \(\lambda_x\) besitzt die Form eines Phasenfaktors: \(e^{2\pi i \varphi_x}\),
+mit \(0 \leq \varphi_x < 1\).
 Im Prinzip wird durch die unitäre Transformation also eine globale Phasenverschiebung auf den Eigenvektor angewendet.
 
 Wie bereits im Kapitel zu den Grundlagen gezeigt wurde, 
@@ -622,25 +842,25 @@ Stattdessen muss man die Qubits so manipulieren,
 dass die globale Phase doch Einfluss auf die Amplituden nimmt.
 
 Der Quanten-Phase-Estimation Quantenalgorithmus ist in der Lage, 
-den Eigenwert aus \(U^{n\times n}\ket{x}_n=\lambda_x\ket{x}_n\), 
-also die Phasenverschiebungen repräsentiert durch \(\lambda_x = e^{2\pi i \varphi}\),
+den Eigenwert aus \(U^{\tensor n}\ket{x}_n=\lambda_x\ket{x}_n\), 
+also die Phasenverschiebungen repräsentiert durch \(\lambda_x = e^{2\pi i \varphi_x}\),
 auf die Amplitude eines anderen Qubits zu verschieben.
 Um \(\lambda_x\) auf ein anderes Qubit zu übertragen, 
 wird der Effekt des \textbf{Phase-Kickback} genutzt.
-Anschließend wird der Wert \(\varphi\) des Eigenwertes durch die inverse Quanten-Fourier-Transformation in einen messbaren Zustand überführt.
+Anschließend wird der Wert \(\varphi_x\) des Eigenwertes durch die inverse Quanten-Fourier-Transformation in einen messbaren Zustand überführt.
 
 Der Phase-Kickback tritt auf, 
-wenn eine unitäre Transformation \(U^{n\times n}\), die durch ein Qubit \(\ket{y}_1\) in Superposition kontrolliert wird,
-auf einen Eigenvektor \(\ket{x}_n\) von \(U^{n\times n}\) anwendet wird.
+wenn eine unitäre Transformation \(U^{\tensor n}\), die durch ein Qubit \(\ket{y}_1\) in Superposition kontrolliert wird,
+auf einen Eigenvektor \(\ket{x}_n\) von \(U^{\tensor n}\) anwendet wird.
 Dabei wird der Eigenwert, genauer gesagt \(\lambda_x\), 
 auf den \(\ket{1}\)-Anteil von \(\ket{y}_1\) übertragen.
 
 Sei \( \ket{y}_1 = \alpha\ket{0} + \beta\ket{1} \) mit \( \alpha,\beta \neq 0 \), dann gilt:
 \begin{align*}
-  CU^{(n+1)\times (n+1)}(\ket{y}_1 \otimes \ket{x}_n) 
-  &= CU^{(n+1)\times (n+1)}\big((\alpha\ket{0} + \beta\ket{1}) \otimes \ket{x}_n\big) \\
-  &= CU^{(n+1)\times (n+1)}\big((\alpha\ket{0}\otimes\ket{x}_n) + (\beta\ket{1}\otimes \ket{x}_n)\big) \\
-  &= \big((\alpha\ket{0}\otimes\ket{x}_n) + (\beta\ket{1}\otimes U^{(n)\times (n)}\ket{x}_n)\big) \\
+  CU^{\tensor n+1}(\ket{y}_1 \otimes \ket{x}_n) 
+  &= CU^{\tensor n+1}\big((\alpha\ket{0} + \beta\ket{1}) \otimes \ket{x}_n\big) \\
+  &= CU^{\tensor n+1}\big((\alpha\ket{0}\otimes\ket{x}_n) + (\beta\ket{1}\otimes \ket{x}_n)\big) \\
+  &= \big((\alpha\ket{0}\otimes\ket{x}_n) + (\beta\ket{1}\otimes U^{\tensor n}\ket{x}_n)\big) \\
   &= \big((\alpha\ket{0}\otimes\ket{x}_n) + (\beta\ket{1}\otimes \lambda_x\ket{x}_n)\big) \\
   &= (\alpha\ket{0} + \lambda_x\beta\ket{1}) \otimes \ket{x}_n
 \end{align*}
@@ -648,11 +868,11 @@ In der Rechnung wird also die globale Phase \(\lambda_x\) von \(\ket{x}_n\) als 
 
 Es folgt ein Beispiel welches den Effekt verdeutlicht:
 Beachtet werden zwei Qubits im Zustand \(\ket{+}_1 \tensor \ket{-}_1\) auf die ein kontrolliertes X-Gatter angewendet wird.
-Dabei ist \(\ket{-}_1\) der Eigenvektor einer X-Transformation mit zugehörigen Eigenwert \(-1\), also: 
-\[X^{1\times 1}\ket{-}_1=-\ket{-}_1\]
-Auf das zweite Qubit \(\ket{-}_1\) wirkt ein \(CX^{2\times 2}\) Gatter welches durch das erste Qubit \(\ket{+}_1\) kontrolliert wird:
+Dabei ist \(\ket{-}_1\) der Eigenvektor einer X-Transformation mit zugehörigen Eigenwert \(e^{\pi i} = -1\), also: 
+\[X \cdot \ket{-}_1=-\ket{-}_1\]
+Auf das zweite Qubit \(\ket{-}_1\) wirkt ein \(CX^{\tensor 2}\) Gatter welches durch das erste Qubit \(\ket{+}_1\) kontrolliert wird:
 \[
-  CX^{2\times 2}( \ket{+}_1\ \tensor \ket{-}_1) =
+  CX^{\tensor 2}( \ket{+}_1\ \tensor \ket{-}_1) =
   \begin{pmatrix}
     1 & 0 & 0 & 0\\
     0 & 1 & 0 & 0\\
@@ -744,7 +964,7 @@ befindet sich daher nicht mehr im Zustand \(\ket{+}_1\) :
    0 \\
    1
   \end{pmatrix}
-  \underrightarrow{CP^{2\times 2}(2 \pi \varphi)}
+  \underrightarrow{CP^{\tensor 2}(2 \pi \varphi)}
   \begin{pmatrix}
     1 & 0 & 0 & 0\\
     0 & 1 & 0 & 0\\
@@ -784,7 +1004,9 @@ Die inverse Quanten-Fourier-Transformation sorgt dafür,
 dass der Eigenwert die Amplituden der Kontrollqubits beeinflusst.
 Die Qubits mit dem Eigenvektor sind für den weiteren Ablauf der Quanten-Phasen-Estimation nicht mehr relevant 
 und werden nicht weiter beachtet.
-Im vorliegenden Beispiel entspricht die inverse Quanten-Fourier-Transformation einem Hadamard-Gatter, da lediglich ein Kontrollqubit vorhanden ist:
+Im vorliegenden Beispiel entspricht die inverse Quanten-Fourier-Transformation einem einzelnen Hadamard-Gatter. 
+Das liegt daran, dass lediglich ein Kontrollqubit vorhanden ist, 
+auf das die inverse Quanten-Fourier-Transformation angewendet wird:
 \[
 \frac{1}{\sqrt{2}}
 \begin{pmatrix}
@@ -907,7 +1129,7 @@ Die Formel besitzt die gespiegelte Struktur wie die Quanten-Fourier-Transformati
 Durch die Verwendung der Swap-Gatter kann die Reihenfolge der Quanten-Fourier-Transformation gespiegelt werden, 
 anschließend sind beide Formeln strukturell identisch.
 
-Wie im Kapitel zur Quanten-Fourier-Transformation erklärt,
+Wie im Abschnitt zur Quanten-Fourier-Transformation erklärt,
 transformiert die Quanten-Fourier-Transformation den Zustand der Eingangsqubits \(\ket{x}_n\) in die Phasen der Ausgangsqubits.
 Im Gegensatz dazu kehrt die inverse Quanten-Fourier-Transformation diesen Vorgang um, 
 indem die Phaseninformationen der Eingangsqubits in Zustände der Standardbasis transformiert werden.
@@ -929,7 +1151,7 @@ iQFT\Bigg(
 Schließlich kann \(\varphi\) mit einer division durch \(2^n\) bestimmt werden.
 
 Als Beispiel wird die Quanten-Phase-Estimation für
-\(U^{1\times 1}\ket{1}_1=e^{2\pi i \frac{3}{8}}\ket{1}_1\), 
+\(U\ket{1}_1=e^{2\pi i \frac{3}{8}}\ket{1}_1\), 
 also mit \(\varphi = \frac{3}{8}\) betrachtet.
 Im Quantenschaltkreis aus Abbildung~\ref{fig:3_qubit_qpe} 
 werden die kontrollierten \(U^{2^x}\)-Gatter als Phase-Gatter mit steigendem \(x\) in \(P(2^x 2\pi \frac{3}{8})\) realisiert.
@@ -954,7 +1176,7 @@ Dieser Effekt wird jedoch durch Swap-Gatter korrigiert.
 \end{figure}
 
 Im vorherigen Beispiel liefern die Messungen aller Durchläufe den gleichen Zustand, 
-durch den \(\varphi\) eindeutig bestimmbar ist.
+mit dem \(\varphi\) eindeutig bestimmbar ist.
 Diese Eindeutigkeit tritt auf, 
 wenn die verwendete Anzahl an Kontroll-Qubits ausreicht, 
 um \(\varphi\) eindeutig zu repräsentieren.
@@ -967,7 +1189,7 @@ Mit hoher Wahrscheinlichkeit kollabieren die Qubits bei einer Messung
 in die darstellbaren Zustände, 
 die den genauen Wert am besten approximieren.
 Dabei liegt die Wahrscheinlichkeit, dass die Messung in einen der beiden angrenzenden Zustände kollabiert, 
-bei \(\frac{8}{\pi^2}\)~\cite[119]{kaye2007introduction}.
+bei mindestens \(\frac{8}{\pi^2}\)~\cite[119]{kaye2007introduction}.
 
 In Abbildung~\ref*{fig:3_qubit_qpe_measurment_uncertain} sind die Messergebnisse einer Quanten-Phase-Estimation abgebildet, 
 die die Phase \(\varphi = \frac{5}{16}\) bestimmen soll.
