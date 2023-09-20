@@ -6,8 +6,9 @@ wird für die Periodenbestimmung die Quanten-Phase-Estimation genutzt.
 
 Um den Quanten-Phase-Estimation Algorithmus für die Periodenberechnung zu nutzen,
 benötigt man ein \(U\)-Gatter, 
-welches die modulare Multiplikation \(U\ket{y} = \ket{ay \mod N}\), 
-als eine unitäre Transformation realisiert.
+welches die modulare Multiplikation, 
+als eine unitäre Transformation realisiert:
+\[U^{\tensor n}\ket{x}_n=\lambda_x\ket{x}_n\]
 Mit dem passenden \(U\)-Gatter wird der Quantenschaltkreis wie in Abbildung~\ref{fig:shor_n_qubit} strukturiert.
 \begin{figure}
     \caption{QPE für Shor~\cite{anonymousket}}
@@ -26,31 +27,30 @@ In den folgenden Abschnitten werden die untergeordneten arithmetischen Operation
 Der Quantenschaltkreis für die Addition bildet das Fundament der \(U\)-Gatter und 
 stellt einen der am häufigsten verwendeten Bausteine dar. 
 Deswegen hat die Implementierung der Addition einen erheblichen Einfluss auf den Ressourcenbedarf des gesamten Quantenalgorithmus
-und sollte daher möglichst effizient implementiert werden.
+und sollte daher möglichst effizient umgesetzt werden.
 
 Eine Möglichkeit, die Addition als Quantenschaltkreis zu realisieren, 
-besteht im Nachbau eines klassischen Schaltkreises aus Volladdierern. 
+besteht im Nachbau eines klassischen Schaltkreises aus Volladdierer. 
 Da es nicht möglich ist, 
-die notwendige klassischen Gatter wie AND und OR als unitäre Transformation mit nur zwei Qubits darzustellen~\cite{Hoever2023QC},
+die notwendigen klassischen Gatter wie AND und OR als unitäre Transformation mit nur zwei Qubits darzustellen~\cite{Hoever2023QC},
 werden zusätzliche Hilfsqubits benötigt.
-Die zusätzlichen Hilfsqubits bewirken, dass der Nachbau eines klassischen Schaltkreis für die Addition zweier \(n\)-Bit Zahlen, 
+Die zusätzlichen Hilfsqubits bewirken, dass der Nachbau eines klassischen Schaltkreises für die Addition zweier \(n\)-Bit Zahlen, 
 also solche der Größenordnung \(2^n\), mindestens \(3n\) Qubits benötigt~\cite{zalka1998fast}.
 
 Eine effizientere Methode, die ohne Hilfsqubits auskommt, ist die Quanten-Addition~\cite{draper2000addition}. 
 Die Quanten-Addition führt die Berechnung auf quantenmechanische Weise durch. 
-Im Wesentlichen wird dabei die Addition in der Fourier-Basis berechnet. 
-Dabei befindet sich ein Summand des Quantenregisters \(\ket{b}_n\) in der Standardbasis und 
-der andere Summand des Quantenregisters \(\ket{a}_n\) in der Fourier-Basis.
-Da sich das zweite Quantenregister in der Fourier-Basis befindet, 
+Im Wesentlichen wird dabei die Addition in der Fourierbasis berechnet. 
+Dafür befindet sich ein Summand des Quantenregisters \(\ket{b}_n\) in der Standardbasis und 
+der andere Summand des Quantenregisters \(\ket{a}_n\) in der Fourierbasis.
+Da sich das zweite Quantenregister in der Fourierbasis \(\Phi\) befindet, 
 wird dieses als \(\ket{\Phi(a)}_n\) bezeichnet.
-Anschließend kontrolliert der Summand \(\ket{b}_n\) Phasen-Gatter, 
-die auf den anderen Summanden \(\ket{\Phi(a)}_n\) Phasenverschiebungen wirken.
+Anschließend kontrolliert der Summand in \(\ket{b}_n\) Phasen-Gatter, 
+die auf den anderen Summanden in \(\ket{\Phi(a)}_n\) wirken.
 Die durch die Phasen-Gatter induzierten Phasenverschiebungen übertragen die Werte, 
-die dem Zustand des Summanden \(\ket{b}_n\) in der Fourier-Basis entsprechen.
-Dadurch befindet sich anschließend in dem Zielregister der Phasen-Gatter die Addition beider Werte in der Fourier-Basis mit \(\ket{\Phi(a+b)}_n\).
+die dem Zustand des Summanden \(\ket{b}_n\) in der Fourierbasis entsprechen.
+Dadurch befindet sich anschließend in dem Zielregister der Phasen-Gatter die Addition beider Werte in der Fourierbasis mit \(\ket{\Phi(a+b)}_n\).
 
-Im Folgenden wird ein Beispiel für die Quanten-Addition zweier Quantenregister \(\ket{a}_3\) und \(\ket{b}_3\), 
-jeweils bestehend aus drei Qubits, betrachtet:
+Im Folgenden wird ein Beispiel für die Quanten-Addition zweier Quantenregister \(\ket{a}_3\) und \(\ket{b}_3\) betrachtet:
 \begin{figure}[H]
     \caption{Quantum-Addition}
     \label{fig:3_qubit_quantum_add}
@@ -65,16 +65,16 @@ Wie man an der Struktur der Quanten-Addition erkennen kann,
 ist die Anordnung der Gatter fast identisch mit der Quanten-Fourier-Transformation.
 Ein Unterschied besteht darin, 
 dass die Hadamard-Gatter durch kontrollierte \(P(\pi)\) Phasen-Gatter ersetzt wurden.
-Sowohl das Hadamard-Gatter als auch das \(P(\pi)\) Phasen-Gatter erzeugen eine relative Phase von \(e^{\pi i}\).
+Sowohl das Hadamard-Gatter als auch das \(P(\pi)\) Phasen-Gatter erzeugt eine relative Phase von \(e^{\pi i}\).
 Ein weiterer Unterschied zur Quanten-Fourier-Transformation besteht darin, 
 dass die Phasen-Gatter nicht durch das Quantenregister kontrolliert werden, 
 auf das die Gatter auch wirken.
 Stattdessen kontrollieren die Qubits des Quantenregisters \(\ket{b}_3\) die Phasen-Gatter, 
-welche auf das Quantenregister \(\ket{a}_3\) wirken.
-Dabei wird das \(P(\pi)\) Phasen-Gatter durch das Qubit des \(\ket{b}_3\) kontrolliert,
-welches die gleiche Wertigkeit hat wie das Zielqubit des \(\ket{a}_3\) Quantenregisters.
+welche auf das \(\ket{a}_3\) Quantenregister wirken.
+Dabei wird das \(P(\pi)\) Phasen-Gatter durch das Qubit, des Quantenregisters \(\ket{b}_3\) kontrolliert,
+welches die gleiche Wertigkeit hat wie das Zielqubit des Quantenregisters \(\ket{a}_3\).
 Jedes weitere kontrollierte Phasen-Gatter für das gleiche Zielqubit 
-wird fortlaufend von dem nächstkleineren Qubit von \(\ket{b}_3\) kontrolliert.
+wird fortlaufend von dem nächstkleineren Qubit des Quantenregisters \(\ket{b}_3\) kontrolliert.
 
 Im Prinzip handelt es sich bei dieser Quantenschaltung um eine Anwendung derselben Phasenverschiebungen 
 wie bei der Quanten-Fourier-Transformation. 
@@ -84,7 +84,7 @@ dass diese Phasenverschiebungen kontrolliert auf ein anderes Quantenregister ang
 Die Wirkung der Quanten-Addition wird anhand der Abbildung~\ref{fig:3_qubit_quantum_add} verdeutlicht.
 Zu Beginn der linken Hälfte befinden sich beide Quantenregister in der Standardbasis.
 Auf das Zielregister \(\ket{a}_3\) wird die Quanten-Fourier-Transformation ohne Swap-Gatter angewendet.
-Dadurch befindet sich \(\ket{a}_3\) nun in der Fourier-Basis \(\Phi\), also \(\ket{\Phi(a)}_3\):
+Dadurch befindet sich \(\ket{a}_3\) nun in der Fourierbasis \(\Phi\), also \(\ket{\Phi(a)}_3\):
 \begin{align*}
   \begin{aligned}
   &\ket{\Phi(a)}_3 =\\
@@ -94,9 +94,9 @@ Dadurch befindet sich \(\ket{a}_3\) nun in der Fourier-Basis \(\Phi\), also \(\k
   \end{aligned}
 \end{align*}
 Anschließend wird auf das hinterste Tensorprodukt ein \(P(\pi)\) Phasen-Gatter angewendet,
-das durch \(\ket{b_3}_1\) kontrolliert wird.
-Wenn sich \(\ket{b_3}_1\) im Zustand \(\ket{0}_1\) befindet, passiert nichts.
-Befindet es sich jedoch im Zustand \(\ket{1}_1\), wird das Phasen-Gatte angewendet.
+das von \(\ket{b_3}_1\) kontrolliert wird.
+Wenn sich Qubit \(\ket{b_3}_1\) im Zustand \(\ket{0}\) befindet, passiert nichts.
+Befindet es sich jedoch im Zustand \(\ket{1}\), wird das Phasen-Gatte angewendet.
 Dieses Verhalten lässt sich für beide Fälle mit den entsprechenden Matrizen
 \begin{align*}
   \begin{pmatrix}
@@ -187,7 +187,7 @@ P(\frac{\pi}{4}) =
       \end{pmatrix}
 \end{align*}
 Wendet man alle weiteren Phasen-Gatter auf das vollständige Tensorprodukt an, 
-erhält man:
+wird dies zu:
 \begin{align*}
     \frac{1}{\sqrt{8}} 
     \Bigg[ 
@@ -200,7 +200,7 @@ erhält man:
 \end{align*}
 Setzt man in diese Formel zwei Zahlen in Binärschreibweise ein, 
 wird man denselben Zustand erhalten,
-wie wenn man die Summe der beiden Zahlen in die Formel der Quanten-Fourier-Transformation einsetzt.
+wie, wenn man die Summe der beiden Zahlen in die Formel der Quanten-Fourier-Transformation einsetzt.
 Beispielsweise sei \(a = 3\) also binär \(a_3 = 0\), \(a_2 = 1\),\(a_1 = 1\) und 
 \(b = 1\) also \(b_3 = 0\), \(b_2 = 0\),\(b_1 = 1\):
 \begin{align*}
@@ -219,7 +219,7 @@ Beispielsweise sei \(a = 3\) also binär \(a_3 = 0\), \(a_2 = 1\),\(a_1 = 1\) un
 \Big( \ket{0} +  e^{\pi i }\ket{1} \Big) 
 \Bigg]
 \]
-Das dies tatsächlich der Summe in der Fourier-Basis entspricht, wird deutlich, 
+Dass dies tatsächlich der Summe in der Fourierbasis entspricht, wird deutlich, 
 wenn man das gleiche Tensorprodukt im Kontext der Quanten-Fourier-Transformation bildet:
 \begin{align*}
     QFT(\ket{c}_3) = 
@@ -251,11 +251,12 @@ Die Summe von \(a\) und \(b\) entspricht \(c = 4\) also \(c_3 = 1,~c_2 = 0,~c_1=
 \tensor
 \Big( \ket{0} +  e^{\pi i }\ket{1} \Big) \Bigg]
 \end{align*}
-Das Ergebnis der Quanten-Addition zweier Summanden \(a=3,~b=1\), 
-jeweils in einem Register mit drei Qubits,
-ist somit identisch mit dem Zustand, 
-der durch die Anwendung der Quanten-Fourier-Transformation auf ein Register 
-aus ebenfalls drei Qubits mit der Summe der beiden Zahlen entsteht.
+Der Zustand, 
+der durch die Quanten-Addition der Summanden \(a=3\) und 
+\(b=1\) in zwei verschiedenen Quantenregistern mit jeweils drei Qubits erzeugt wird, 
+entspricht dem Zustand, der entsteht, 
+wenn man die Quanten-Fourier-Transformation auf ein Quantenregister mit drei Qubits anwendet, 
+das die Summe der beiden Zahlen enthält.
 
 Mit einer anschließenden inversen Quanten-Fourier-Transformation 
 kann die Summe in die Standardbasis und somit in einen messbaren Zustand transformiert werden:
@@ -272,7 +273,7 @@ iQFT(\ket{\Phi(4)_3})
 Das Zielregister sollte aus genügend Qubits bestehen, 
 damit die Summe vollständig erfasst werden kann.
 Andernfalls kommt es zum Overflow mit \(a + b \mod 2^n\), 
-wobei \(n\) die Anzahl der Qubits des Zielregisters beschreibt~\cite{beauregard2003circuit}.
+wobei \(n\) die Anzahl der Qubits des Zielregisters beschreibt.
 
 Für die Realisierung der modularen Multiplikation wird zu keinem Zeitpunkt der Berechnung eine Addition zweier Zwischenergebnisse benötigt. 
 Genauer gesagt, ist es nicht nötig, ein Quantenregister auf ein anderes zu addieren. 
@@ -310,8 +311,8 @@ Die Optimierung bezieht sich dabei auf die Anzahl der verwendeten Gatter.
 Wird die Quanten-Addition für eine feste Zahl realisiert, 
 können für jedes einzelne Qubit die angewendeten Phasenverschiebungen vorab zusammengerechnet werden.
 Demnach bietet es sich an, 
-die zusammengerechneten Phasenverschiebung in ein einzelnes Phasen-Gatter zusammenzufassen.
-Nach diesem Prinzip, benötigt man für eine Quanten-Addition maximal ein einzelnes Phasen-Gatter pro Qubit.
+die zusammengerechneten Phasenverschiebungen in ein einzelnes Phasen-Gatter zusammenzufassen.
+Nach diesem Prinzip benötigt man für eine Quanten-Addition maximal ein einzelnes Phasen-Gatter pro Qubit.
 
 \begin{figure}[H]
   \caption{Ressourcensparende Quantum-Addition}
@@ -360,15 +361,15 @@ Die Quanten-Addition besteht ausschließlich aus unitären Gattern und ist daher
 Diese Eigenschaft vereinfacht die Implementierung der Subtraktion. 
 Durch die Invertierung der Quanten-Addition ergibt sich ein Quantenschaltkreis, 
 der eine Subtraktion in der Fourier-Basis ausführt. 
-Damit erhält man praktisch einen Quantenschaltkreis für die Quanten-Subtraktion.
+Damit erhält man praktisch einen Quantenschaltkreis, für die Quanten-Subtraktion.
 
 Genau wie bei der Quanten-Addition kann es auch bei der Quanten-Subtraktion zu einem Overflow
-oder im konkreten Kontext, zu einem Underflow kommen.
+oder im konkreten Kontext zu einem Underflow kommen.
 Dieser Effekt tritt ein, 
 falls der im Zielregister befindliche Minuend kleiner ist als der Subtrahend.
 
 Der Effekt des Underflows wird verwendet, um herauszufinden, 
-ob der Subtrahend größer als der Minuend ist~\cite{beauregard2003circuit}.
+ob der Subtrahend größer als der Minuend ist.
 Angenommen, man hat zwei Zahlen, 
 die maximal der Größenordnung \(2^n\) entsprechen und 
 ein Zielregister, 
@@ -376,7 +377,7 @@ welches aus \(n+1\) Qubits besteht.
 Der Minuend \(b\) befindet sich im Zielregister, 
 also \(\ket{\phi(b)}_{n+1}\), 
 worauf die Quanten-Subtraktion mit dem Subtrahenden \(a\) wirkt.
-Dann existieren zwei mögliche Fälle:
+Dann existieren zwei mögliche Fälle~\cite{beauregard2003circuit}:
 \[b \geq a~\rightarrow~\ket{\phi(b-a)}_{n+1};~
 b < a~\rightarrow~\ket{\phi(2^{n+1}-(a-b))}_{n+1}
   \]
@@ -400,8 +401,8 @@ def S_Gate(subtrahend_bin: list[int]) -> qiskit.circuit.gate:
 \end{figure}
 
 \subsubsection{Modulare Addition} \label{sub:modulareAddition}
-Die Gatter der Quanten-Addition und der Quanten-Subtraktion ermöglichen die Konstruktion einer unitären Transformation, 
-die die Berechnung der modularen Addition realisiert.
+Das Gatter der Quanten-Addition und der Quanten-Subtraktion ermöglichen die Konstruktion einer unitären Transformation, 
+welche die Berechnung der modularen Addition realisiert.
 Gemeinsam bilden sie einen Quantenschaltkreis, 
 der das Ergebnis der Berechnung \(\ket{\Phi(a+b)\mod N}\) für \(a, b < N\) im Zielregister speichert.
 
@@ -465,7 +466,7 @@ Anhand dieser Unterscheidung kann man eine bedingte Operation mittels eines kont
 Dafür kontrolliert das Borrow-Bit ein X-Gatter, 
 welches auf das Bedingungs-Qubit wirkt.
 Dadurch wird das Bedingungs-Qubit ausschließlich im zweiten Fall in den Zustand \(\ket{1}\) versetzt.
-Danach wird das Zielregister wieder in die Fourier-Basis transformiert, 
+Danach wird das Zielregister wieder in die Fourierbasis transformiert, 
 indem die Quanten-Fourier-Transformation angewendet wird.
 Anschließend kontrolliert das Bedingungs-Qubit eine Quanten-Addition mit dem Summanden \(N\) auf das Zielregister.
 Die kontrollierte Quanten-Addition wird also nur im zweiten Fall angewendet und korrigiert das vorher ungültige Ergebnis
@@ -514,8 +515,8 @@ die quasi die Inverse der inversen Quanten-Fourier-Transformation darstellt.
 Abschließend folgt die Quanten-Addition mit \(a\), 
 um die zuvor erfolgte Quanten-Subtraktion von \(a\) auf das Zielregister zu revertieren.
 
-Das Zielregister beinhaltet nun also den gewünschten Zustand \(\ket{\Phi(a+b)\mod N}\) für \(a, b < N\).
-Des Weiteren befindet sich das Bedingungs-Qubit wieder im initialen Zustand und kann für weitere Rechnungen wiederverwendet werden.
+Das Zielregister beinhaltet nun den gewünschten Zustand \(\ket{\Phi(a+b)\mod N}\) für \(a, b < N\).
+Des Weiteren befindet sich das Bedingungs-Qubit wieder im initialen Zustand \(\ket{0}\) und kann für weitere Rechnungen wiederverwendet werden.
 
 \vspace{1em}
 
@@ -525,10 +526,13 @@ dass nicht alle Quanten-Additionen und Quanten-Subtraktionen kontrolliert durchg
 Die modulare Addition soll nur dann ausgeführt werden, 
 wenn die Kontroll-Qubits \(\ket{c_1}_1\) und \(\ket{c_2}_1\) gesetzt sind.
 
-Die restlichen Gatter des Quantenschaltkreises, welche nicht von \(\ket{c_1}\) und \(\ket{c_2}\) kontrolliert sind, 
-führen lediglich die Identitätstransformation durch~\cite{beauregard2003circuit}.
-Dies liegt an der Bedingung \(b < N\), 
-weswegen bereits der modulare Rest im Zielregister steht und somit keine Berechnung notwendig ist.
+Beachtet man ausschließlich die kombinierte Wirkung der Gatter des Quantenschaltkreises, 
+welche nicht von \(\ket{c_1}\) und \(\ket{c_2}\) kontrolliert sind, 
+führen diese lediglich die Identitätstransformation durch~\cite{beauregard2003circuit}.
+Dies liegt daran, dass keine modulare Addition mit \(a\) durchgeführt werden soll, 
+wenn \(\ket{c_1}\) oder \(\ket{c_2}\) im Zustand \(\ket{0}\) ist. 
+Aufgrund der Bedingung \(b < N\), 
+steht bereits der modulare Rest im Zielregister und somit ist keine Berechnung notwendig.
 
 Der Grund, weshalb nicht alle Quanten-Additionen, 
 Quanten-Subtraktionen und gegebenenfalls sogar die (inversen) Quanten-Fourier-Transformationen kontrolliert sind,
@@ -588,7 +592,7 @@ Die Funktion definiert drei Wertebereiche, die die Positionen der Qubits beschre
 \textit{b\_qbits} die Qubits, welche den Summanden \(b\) 
 in der Fourier-Basis enthalten 
 und \textit{cond\_qbit} repräsentiert die Position des Bedingungs-Qubit.
-Dadurch, dass \textit{b\_qbits} genau so groß definiert wird, 
+Dadurch, dass \textit{b\_qbits} genauso groß definiert wird, 
 wie die Liste des Summand \(a\) lang ist, wird sichergestellt, 
 dass das \textit{b\_qbits} Register ein extra Qubit für das Borrow-Bit enthält.
 In Zeile 5 der Funktion wird ein Quantenschaltkreis definiert, 
@@ -633,8 +637,11 @@ def Modular_Adder_Gate(a_bin: list[int],N_bin: list[int]) -> qiskit.circuit.gate
 
 \subsubsection{Kontrollierte Multiplikation}
 Als Nächstes wird ein Gatter konstruiert, 
-das auf vier Quantenregister \(\ket{c}_1\ket{x}_{n}\ket{b}_{n+1}\ket{0}_1\)
-eine Transformation nach \(\ket{c}_1\ket{x}_{n}\ket{b + (ax)\mod N}_{n+1}\ket{0}_1\) durchführt.
+das basierend auf vier Quantenregister,
+die folgende Transformation durchführt: 
+\[\ket{c}_1\ket{x}_{n}\ket{b}_{n+1}\ket{0}_1
+\longrightarrow
+\ket{c}_1\ket{x}_{n}\ket{b + (ax)\mod N}_{n+1}\ket{0}_1\]
 Das Gatter umfasst ein Kontroll-Qubit \(\ket{c}_1\), 
 ein Quantenregister \(\ket{x}_{n}\) mit dem Faktor \(x\),
 das Zielregister \(\ket{b}_{n+1}\) mit dem initialen Wert \(b\) und 
@@ -655,7 +662,7 @@ also zum Beispiel in Binärschreibweise für drei Qubits
 \[\ket{x}_{3} = 2^0x_0+2^1x_1+2^2x_2\]
 Das Produkt kann dementsprechend umgeformt werden: 
 \[(x\cdot a)  = (2^0x_0\cdot a+2^1x_1\cdot a+2^2x_2\cdot a) \]
-Beziehungsweise bezogen auf die Transformation des \(\ket{b}_{n+1}\) Registers:
+Beziehungsweise bezogen auf die Transformation des \(\ket{b}_{n+1}\) Registers für ein Beispiel mit \(n=3\):
 \[\ket{b + (x\cdot a) \mod N}_{4} = \ket{b + (2^0x_0\cdot a+2^1x_1\cdot a+2^2x_2\cdot a) \mod N}_{4}\]
 Dies bedeutet, dass die Transformation realisiert werden kann, 
 indem die einzelnen Produkte \(2^ix_i\cdot a\) einzeln auf \(\ket{b}_{n+1}\) addiert werden.
@@ -668,18 +675,18 @@ indem ein Gatter zur modularen Addition verwendet wird,
 um \((b + 2^ix_i\cdot a)\mod N\) zu berechnen.
 Dafür wird dem modularen Addition-Gatter der Summand beziehungsweise Parameter \(2^i\cdot a\) zugewiesen 
 und aufgrund der Abhängigkeit zu \(x_i\) durch das Qubit \(\ket{x_i}_1\) kontrolliert.
-Für die gesamte Summe muss jedes Qubit des \(\ket{x}_{n}\) Registers ein Gatter zur modularen Addition kontrollieren, 
-welches auf das Register \(\ket{b}_{n+1}\) wirkt.
+Für die gesamte Summe muss jedes Qubit des \(\ket{x}_{n}\) Quantenregisters ein Gatter zur modularen Addition kontrollieren, 
+welches auf das Quantenregister \(\ket{b}_{n+1}\) wirkt.
 Jedes Gatter zur modularen Addition bekommt die zugehörige Potenz von \(2^i\) zugewiesen, 
 die auch der Wertigkeit des zugehörigen Kontroll-Qubits \(\ket{x_i}_1\) entspricht.
-Also wirken alle Gatter zur modularen Addition nacheinander auf das \(\ket{b}_{n+1}\) Register und 
+Also wirken alle Gatter zur modularen Addition nacheinander auf das \(\ket{b}_{n+1}\) Quantenregister und 
 transformieren dies so sukzessiv nach \(\ket{b + (x\cdot a) \mod N}_{n+1}\).
 
-Die verwendeten Gatter zur modularen Addition führen alle Berechnungen in der Fourier-Basis durch.
-Deswegen muss sich das \(\ket{b}_{n+1}\) Quantenregister auch in der Fourier-Basis befinden.
+Die verwendeten Gatter zur modularen Addition führen alle Berechnungen in der Fourierbasis durch.
+Deswegen muss sich das \(\ket{b}_{n+1}\) Quantenregister auch in der Fourierbasis befinden.
 Also wird im Gatter für die kontrollierte Multiplikation zuerst eine Quanten-Fourier-Transformation auf das Zielregister \(\ket{b}_{n+1}\) angewendet und 
 als letzte Operation erfolgt die inverse Quanten-Fourier-Transformation, 
-damit der Inhalt des Quantenregister wieder in der Standardbasis ist.
+damit der Inhalt des Quantenregister wieder der Standardbasis entspricht.
 
 Zusätzlich verfügt das Gatter zur kontrollierten Multiplikation noch über das Kontroll-Qubit \(\ket{c}_1\).
 Dieses Kontroll-Qubit kontrolliert alle der verwendeten modularen Addition Gatter.
@@ -707,24 +714,24 @@ Damit die unterliegenden modularen Addition Gatter für die korrekte Anzahl an Q
 müssen die Listen jeweils die Länge n + 1 haben, wenn \(N\) der Größenordnung \(2^n\) entspricht.
 Das Most-Significant-Bit sollte in beiden Listen dementsprechend den Wert \(0\) haben.
 Des Weiteren erwartet die Funktion den Parameter \textit{x\_bits\_amount}, der angibt, 
-wie viele Qubits das Register \(\ket{x}_n\) umfasst 
+wie viele Qubits das Quantenregister \(\ket{x}_n\) umfasst 
 und somit \(n\) entspricht. 
 
 Um die Position der Qubits zu beschreiben, 
 definiert die Funktion vier Wertebereiche.
 \textit{c\_qbit} liegt an der ersten Stelle des kontrollierten Multiplikation Gatters und 
 ist für das Kontroll-Qubit \(\ket{c}_1\) vorhergesehen.
-Die darauffolgenden Qubits umfassen das \(\ket{x}_n\) Register und bestehen aus insgesamt \(n\) Qubits, 
+Die darauffolgenden Qubits umfassen das \(\ket{x}_n\) Quantenregister und bestehen aus insgesamt \(n\) Qubits, 
 deren Position in \textit{c\_qbit} definiert ist.
-Die Position des \(\ket{b}_{n+1}\) Registers wird in \textit{b\_qbits} beschrieben.
-Aufgrund der unterliegenden Gatter umfasst das \(\ket{b}_{n+1}\) Register ein zusätzliches Qubit, 
+Die Position des \(\ket{b}_{n+1}\) Quantenregisters wird in \textit{b\_qbits} beschrieben.
+Aufgrund der unterliegenden Gatter umfasst das \(\ket{b}_{n+1}\) Quantenregister ein zusätzliches Qubit, 
 welches als Borrow-Bit dient.
 Die Position des letzten Qubit \(\ket{0}_1\), 
 wird mit \textit{cond\_qbit} definiert.
 Dieses Qubit dient als Bedingungs-Qubit für die unterliegenden modularen Addition Gatter.
 
 Im Code~\ref{code:ModularMultiplication} wird in Zeile 9 die Quanten-Fourier-Transformation auf 
-das \(\ket{b}_{n+1}\) Register anwendet.
+das \(\ket{b}_{n+1}\) Quantenregister anwendet.
 In Zeile 10 bis 13 folgen die Gatter zur modularen Addition.
 Da \((b + a \cdot x) \mod N\) äquivalent ist zu \((b + (a \cdot x)\mod N) \mod N\)~\cite{koepf_modular_2021}, 
 wird einem Gatter der modularen Addition nicht der Parameter \(2^i\cdot a\) übergeben, 
@@ -736,7 +743,7 @@ Wie man in Zeile 13 sieht, teilen sich alle modularen Additions Gatter das selbe
 welches sich auf der Position von \textit{cond\_qbit} befindet.
 Genau aus diesem Grund, wird bei dem Gatter zur modularen Addition das Bedingungs-Qubit zurückgesetzt.
 
-Abschließend wird noch die inverse Quanten-Fourier-Transformation auf das \(\ket{b}_{n+1}\) Register anwendet und 
+Abschließend wird noch die inverse Quanten-Fourier-Transformation auf das \(\ket{b}_{n+1}\) Quantenregister anwendet und 
 der Quantenschaltkreis in ein Quantengatter umgeformt.
 
 \begin{figure}[H]
@@ -810,7 +817,7 @@ def inv_cmult_gate(x_bits_amount: int,a_bin: list[int],N_bin: list[int]) -> qisk
 
 Das letzte zu konstruierende Gatter wird als \(U_a\)-Gatter bezeichnet, 
 weil es die benötigte Transformation realisiert: 
-\[U\ket{y} = \ket{ay \mod N}\] 
+\[U^{\tensor n}\ket{y}_n = \ket{ay \mod N}_n\] 
 Das \(U_a\)-Gatter dient zur Realisierung der Quanten-Phase-Estimation im Shor-Algorithmus, 
 wie in Abbildung~\ref{fig:shor_n_qubit} dargestellt.
 
@@ -827,14 +834,14 @@ lediglich zwei Gatter zur kontrollierten Multiplikation.
 Im Folgenden wird die Auswirkung der einzelnen Bestandteile des \(U_a\)-Gatter erklärt.
 Dabei werden von den vier Quantenregistern nur die beiden 
 Quantenregister \(\ket{x}_{n}\ket{0}_{n+1}\) beachtet.
-Sowohl \(\ket{c}_1\) als auch \(\ket{0}_1\) verzeichnen während der Transformation keine Veränderung, 
+Das Qubit \(\ket{c}_1\) wie auch \(\ket{0}_1\) verzeichnet während der Transformation keine Veränderung, 
 welche für das Verständnis des \(U_a\)-Gatter relevant ist.
 
 Der Ablauf des \(U_a\)-Gatter lautet wie folgt:
-Als erstes wird ein Gatter zur kontrollierten Multiplikation mit \(a\) ausgeführt. 
+Als erstes wird ein Gatter zur kontrollierten Multiplikation mit \(a\) angewendet. 
 Dieses Gatter führt, 
 ausgehend vom initialen Zustand der beiden Quantenregister, 
-die folgende Transformation durch:
+die folgende Transformation durch~\cite{beauregard2003circuit}:
 \[
   \ket{x}_{n}\ket{0}_{n+1}
   \longrightarrow
@@ -842,14 +849,16 @@ die folgende Transformation durch:
   \]
 
 Darauf folgen kontrollierte Swap-Gatter, die beide Zustände vertauschen:
-\[\ket{(ax)\mod N}_{n}\ket{x}_{n+1}
+\[
+  \ket{x}_{n}\ket{(ax)\mod N}_{n+1}
 \longrightarrow
-\ket{x}_{n}\ket{(ax)\mod N}_{n+1}\]
+\ket{(ax)\mod N}_{n}\ket{x}_{n+1}
+\]
 Dabei ist zu beachten, 
 dass das zweite Quantenregister aus \(n+1\) Qubits besteht und
 somit ein Qubit mehr besitzt als das erste Quantenregister.
 Da das Most-Significant-Bit des zweiten Quantenregisters zu diesem Zeitpunkt garantiert im Zustand \(\ket{0}\) ist, 
-kann es vernachlässigt werden und wird keiner Swap-Operation unterzogen.
+kann es vernachlässigt werden und wird daher keiner Swap-Operation unterzogen.
 
 Nach dem Swap wird ein inverses Gatter zur kontrollierten Multiplikation angewendet.
 Dabei wird dem inversen Gatter zur kontrollierten Multiplikation statt dem Element \(a\) 
@@ -884,7 +893,7 @@ Das Konzept des Aufbaus des Quantenschaltkreises ist in Abbildung~\ref{fig:u_gat
 
 Die Funktion \texttt{U\_gate}~\ref{code:UGatter} enthält den Code zur Generierung eines \(U_a\)-Gatters.
 Dazu nimmt die Funktion dieselben Parameter wie die Funktion \texttt{cmult\_gate} entgegen, 
-nämlich  \textit{a\_bin} und \textit{N\_bin}, welche jeweils \(a\) und \(N\) binärer Form im Listenformat beschreiben,  
+nämlich  \textit{a\_bin} und \textit{N\_bin}, welche jeweils \(a\) und \(N\) in binärer Form im Listenformat beschreiben,  
 sowie \textit{x\_bits\_amount}, das im Grunde \(n\) repräsentiert.
 
 Im Code~\ref{code:UGatter} werden insgesamt fünf Wertebereiche definiert.
@@ -901,7 +910,7 @@ Dafür werden der Funktion \texttt{cmult\_gate} die Parameter \textit{a\_bin}, \
 Das Gatter zur kontrollierten Multiplikation wird auf den gesamten Bereich \textit{full\_range} angewendet, 
 somit umfasst das \(U_a\)-Gatter \(2n+3\) Qubits.
 In Zeile 9 und 10 werden die kontrollierten Swap-Gatter eingesetzt.
-Wie man in Zeile 10 erkennt, bezieht sich die Wirkung eines Swap-Gatters auf den selben Index von \textit{x\_qbits} und \textit{b\_qbits}.
+Wie man in Zeile 10 erkennt, bezieht sich die Wirkung eines Swap-Gatters auf denselben Index von \textit{x\_qbits} und \textit{b\_qbits}.
 Somit werden die Qubits beider Quantenregister vertauscht, die die gleiche Wertigkeit haben.
 In Zeile 11 wird \(a^{-1}\mod N\) mittels des erweiterten euklidischen Algorithmus berechnet.
 Anschließend wird das berechnete \(a^{-1}\mod N\) als Parameter an ein inverses kontrolliertes Multiplikation Gatter übergeben.
@@ -945,7 +954,6 @@ Der letzte Schritt zur Komplettierung des Quantenschaltkreises für den Quantena
 der in der Lage ist, 
 die Periode zu bestimmen, besteht darin, 
 die Quanten-Phase-Estimation wie in Abbildung~\ref{fig:shor_n_qubit} unter Verwendung des \(U_a\)-Gatters zu bilden.
-Das \(U_a\)-Gatter führt die benötigte unitäre Transformation von \(U\ket{y} = \ket{ay \mod N}\) aus.
 
 In Abbildung~\ref{fig:shor_n_qubit} werden unter anderem \({U_a}^{2^x}\)-Gatter eingesetzt.
 Diese können realisiert werden, 
@@ -957,14 +965,14 @@ Die zweite Variante ist möglich wegen~\cite{beauregard2003circuit}:
 Bei der Wahl zwischen den beiden Varianten liegt das entscheidende Kriterium bei der Ressourceneffizienz. 
 Die zweite Variante schneidet dabei deutlich besser ab, 
 da sie lediglich \(x\) \(U_a\)-Gatter benötigt, 
-wenn \(x\) Kontroll-Qubits verwendet werden, 
+wenn \(x\) viele Kontroll-Qubits verwendet werden, 
 im Gegensatz zur ersten Variante, die \(2^x-1\) \(U_a\)-Gatter erfordert.
 
 Ein weiterer wichtiger Aspekt für den Aufbau der Quantenschaltung betrifft die Anzahl der benötigten Kontroll-Qubits.
 Beauregard erklärt in seinem Paper~\cite{beauregard2003circuit} nicht, 
 warum er eine Konstruktion mit insgesamt \(2n\) Kontroll-Qubits beziehungsweise \({U_a}^{2^x}\)-Gatter wählt.
-Es gibt Quellen, die mehr als \(2n\) \({U_a}^{2^x}\)-Gatter verwendeten~\cite[229]{nielsen_chuang_2010}.
-Nach dem Paper von Peter Shor~\cite{Shor_1997} sind jedoch \(2n\) \({U_a}^{2^x}\)-Gatter ausreichend,
+Es gibt Quellen, die mehr als \(2n\)  Kontroll-Qubits verwendeten~\cite[229]{nielsen_chuang_2010}.
+Nach dem Paper von Peter Shor~\cite{Shor_1997} sind jedoch \(2n\) Kontroll-Qubits ausreichend,
 wie auch im Abschnitt~\ref{Funktionsweise:klassisch} erläutert wird.
 Deswegen verwendet die hier implementierte Variante \(2n\) Kontroll-Qubits.
 
@@ -978,13 +986,13 @@ Des Weiteren kann der Funktion über den Parameter \textit{number\_shots} mitget
 mit wie vielen Durchläufen der Quantenalgorithmus ausgeführt werden soll.
 Jeder Durchlauf gewährt ein weiteres Messergebnis.
 Der Parameter \textit{backend} ist dazu da, 
-um festzulegen auf welchem System der Quantenalgorithmus ausgeführt werden soll.
-Standardmäßig wird der Simulator von Qiskit genommen, 
-falls Zugang zu einem Quantensystem von IBM besteht, 
-würde man hier die Bezeichnung des entsprechenden Quantum-Backend verwenden.
+um festzulegen, auf welchem System der Quantenalgorithmus ausgeführt werden soll.
+Standardmäßig wird der Simulator von Qiskit genommen. 
+Falls Zugang zu einem Quantensystem von IBM besteht, 
+würde man stattdessen die Bezeichnung dem entsprechenden Quantum-Backend verwenden.
 
 Die Funktion \texttt{Shor} definiert die beiden Wertebereiche \textit{c\_qbits} und 
-\textit{ev\_qbits} um die Positionen der beiden Quantenregister zu beschreiben.
+\textit{ev\_qbits}, um die Positionen der beiden Quantenregister zu beschreiben.
 Der Wertebereich \textit{c\_qbits} enthält die insgesamt \(2n\) Positionen der Kontroll-Qubits.
 Der Eigenvektor wird in den Qubits gespeichert, 
 deren Position in \textit{ev\_qbits} definiert ist.
@@ -995,13 +1003,12 @@ In Zeilen 6 und 7 wird ein Hadamard-Gatter auf jedes Kontroll-Qubit angewendet.
 In der 8. Zeile wird der Eigenvektor gebildet. 
 Da der Eigenvektor dem Zustand \(\ket{1}\) entspricht,
 genügt es, wenn das Least-Significant-Qubit mit einem X-Gatter versehen wird.
-In den Zeilen 9 und 10 wird das zugehörige \({U_a}^{2^x}\)-Gatter mit dem passenden \(x\) auf das Register mit dem Eigenvektor angewendet.
+In den Zeilen 9 und 10 werden die zugehörigen \({U_a}^{2^x}\)-Gatter mit dem passenden \(x\) auf das Register mit dem Eigenvektor angewendet.
 Die Funktion \texttt{mod\_exp} berechnet \((a^{2^x})\mod N\).
-In der 11. Zeile wird die inverse Quanten-Fourier-Transformation auf die Kontroll-Qubits angewendet.
+In der 11. Zeile werden die Kontroll-Qubits mit der inverse Quanten-Fourier-Transformation in die Standardbasis transformiert.  
 Da die Funktion \texttt{Shor} Messungen durchführen soll, 
-wird in der 12. Zeile definiert, welche Qubits gemessen werden.
-In dem Fall werden die Qubits auf den Positionen \textit{c\_qbits} gemessen, 
-da diese die Kontroll-Qubits sind.
+wird in der 12. Zeile definiert, dass die Kontroll-Qubits gemessen werden.
+In dem Fall entspricht dies den Qubits auf den Positionen \textit{c\_qbits}.
 Anschließend werden in Zeilen 13 und 14 \textit{number\_shots} viele Messungen durchgeführt und 
 das Ergebnis wird als Rückgabewert der Funktion zurückgegeben.
 
@@ -1032,7 +1039,7 @@ def Shor(a: int, N: int,number_shots: int = 1000, backend: str = "aer_simulator"
 \end{figure}
 
 In Abbildung~\ref{fig:shor_qiskit} ist der Quantenschaltkreis zu sehen, 
-welcher durch die Funktion \texttt{Shor} mit \(a=7;~N=15\) generiert wird.
+der durch die Funktion \texttt{Shor} für \(a=7;~N=15\) generiert wird.
 Bei \(N=15\) tritt der Effekt auf, dass für \(x>1\) die Rechnung \((a^{2^x})\mod N = 1\) ergibt, 
 weshalb auch die \({U_a}^{2^x}\)-Gatter zu \(U\_1\) werden.
 
@@ -1048,6 +1055,7 @@ Der Faktorisierungsalgorithmus kombiniert die Quanten-Phase-Estimation zur Perio
 der klassischen Nachberechnung. 
 Der Hauptfokus der Implementierung liegt darauf, 
 die Schwächen der Messergebnisse der Quanten-Phase-Estimation mithilfe klassischer Methoden zu kompensieren.
+
 Es ist zu erwarten, 
 dass die Ausführung von Quantenberechnungen auch mit zukünftig fortschrittlichen Quantencomputern kostenintensiv sein wird~\cite{Shor_1997}.
 Daher wäre es ineffizient, 
@@ -1069,11 +1077,11 @@ welche bei Messergebnissen auftreten können, hervorzuheben.
 Zur Verdeutlichung sind die Messergebnisse in Abbildung~\ref{fig:shor_measure} in vier Kategorien eingeteilt.
 Die Kriterien für die Einteilung in diese Kategorien basieren darauf, 
 ob nach der Division durch \(2^k\) und 
-der Anwendung des Kettenbruch-Algorithmus mit einem Limit von \(N\), 
+der Anwendung des Kettenbruch-Algorithmus mit einem Nenner kleiner als \(N\), 
 die Periode erfolgreich extrahiert werden kann.
 
 Die grünen Ergebnisse offenbaren direkt die gesuchte Periode von \(p = 24\).
-Ein Faktorisierungsalgorithmus, welcher solange die Quanten-Phase-Estimation wiederholt, 
+Ein Faktorisierungsalgorithmus, welcher so lange die Quanten-Phase-Estimation wiederholt, 
 bis ein Messergebnis die ungekürzte Periode enthält, 
 wird ausschließlich bei den grünen Ergebnissen erfolgreich sein.
 
@@ -1091,7 +1099,7 @@ Die beiden dunkelroten Zustände sind die beiden Zustände der finalen Superposi
 \(\ket{2^k \cdot \frac{0}{p}}_k\) und \(\ket{2^k \cdot \frac{p/2}{p}}_k\).
 Der Zustand \(\ket{2^k \cdot \frac{0}{p}}_k\) existiert für jede Zahl und erlaubt keine 
 Rückschlüsse auf die Periode.
-Der andere Zustand \(\ket{2^k \cdot \frac{p/2}{p}}_k\) existiert ausschließlich wenn \(p\) gerade ist.
+Der andere Zustand \(\ket{2^k \cdot \frac{p/2}{p}}_k\) existiert ausschließlich, wenn \(p\) gerade ist.
 Auch dieser Zustand gewährt keine hilfreichen Rückschlüsse auf die Phase, 
 da \(\frac{p/2}{p}\) immer zu \(\frac{1}{2}\) gekürzt wird.
 Eine notwendige Bedingung, um die Faktoren aus \(p\) herleiten zu können, 
@@ -1112,7 +1120,7 @@ Abbildung~\ref{fig:Flussdiagramm} gibt einen Überblick über den Ablauf des Alg
 von der Berechnung der Periode bis zur Bestimmung der Primfaktoren.
 
 Am Anfang des Algorithmus wird zufällig ein \(a\) definiert, 
-welches größer als 1 aber kleiner als \(N\) ist.
+welches größer als 1, aber kleiner als \(N\) ist.
 
 Für den ungewöhnlichen Fall, dass \(a\) einen gemeinsamen, nicht-trivialen Teiler mit \(N\) hat, 
 ist dieser einer der gesuchten Faktoren von \(N\) 
@@ -1130,12 +1138,12 @@ welche bei weiteren Berechnungen dabei helfen könnten, die Periode zu finden.
 Darauf folgt der einzige quantenalgorithmische Bestandteil der Berechnung, 
 welcher auf einem Quantencomputer ausgeführt wird.
 Konkret geht es um die Ausführung der für die Periodenbestimmung angepassten Quanten-Phase-Estimation. 
-Für ein ressourceneffizienteres Vorgehen 
-liefert die Quanten-Phase-Estimation das Messergebnis eines einzelnen Durchlaufes direkt zurück. 
+Für ein ressourceneffizienteres Vorgehen wird nur ein Durchlauf der Quanten-Phase-Estimation angestoßen.
+Anhand des einzelnen Messergebnisses wird die Berechnung fortgesetzt.
 
 Die nächsten Berechnungen werden wieder auf einem klassischen Rechnersystem ausgeführt.
 Bei der Berechnung wird das Messergebnis aus dem Binärsystem ins Dezimalsystem umgewandelt
-und durch die entsprechende 2er Potenz geteilt.
+und durch die entsprechende 2er-Potenz geteilt.
 Nachdem das Ergebnis ermittelt wurde, 
 wird der Kettenbruch-Algorithmus angewendet. 
 Dieser Algorithmus findet aufgrund der festgelegten Limitation den nächstgelegenen Bruch mit einem Nenner kleiner als \(N\).
@@ -1170,9 +1178,10 @@ In diesem Fall wird überprüft, ob einer der Nachbarn die Periode enthält.
 Damit der Aufwand nicht den Rahmen der Laufzeit sprengt, 
 werden genau wie bei der Überprüfung der Vielfachen
 nur eine begrenzte Anzahl an Nachbarn getestet.
+
 Falls einer der Nachbarn die Periode enthält, 
 handelt es sich bei dem Zustand des Nachbarn um einen, 
-welcher der hellroten Kategorie angehört, 
+welcher der grünen Kategorie angehört, 
 wie beispielsweise in Abbildung~\ref{fig:shor_measure} der Zustand \(\ket{8878}_{14}\).
 
 Es ist möglich, 
@@ -1192,7 +1201,7 @@ ob die Periode einer geraden Zahl entspricht und die folgende Bedingung erfüllt
 \[a^{\frac{p}{2}} = -1 \mod N\]
 Wenn beide Kriterien zutreffen, 
 kann mit der Periode und 
-Euklids Algorithmus mindestens einer der nicht-trivialer Faktoren von \(N\) berechnet werden~\cite{Shor_1997}:
+Euklids Algorithmus mindestens einer der beiden nicht-trivialen Faktoren von \(N\) berechnet werden~\cite{Shor_1997}:
 \[gcd(a^{\frac{p}{2}}-1, N), gcd(a^{\frac{p}{2}}+1, N)\]
 Anschließend terminiert der Algorithmus. 
 
@@ -1202,9 +1211,8 @@ indem \(N\) durch den gefundenen Faktor dividiert wird.
 Falls die Periode ungerade ist oder die zweite Bedingung nicht erfüllt ist, 
 ist es nicht möglich, aus der gefundenen Periode die Faktoren zu berechnen~\cite{Shor_1997}.
 In diesem Fall wird ein neues \(a\) gewählt und ein neues leeres Set definiert. 
-Das alte Set ist nicht weiter von Bedeutung, 
-da dieses Informationen zur alten Periode enthält, 
-welche keinen Nutzen mehr haben.
+Das alte Set beinhaltet Informationen zur Periode des vorherigen \(a\), 
+welche keinen Nutzen mehr haben und somit keinen weiteren Gebrauch hat.
 Anschließend wird mit dem neuen \(a\) die Quanten-Phase-Estimation ausgeführt und 
 die Berechnung wiederholt.
 
@@ -1213,7 +1221,7 @@ wird die Ausführung des Quantenalgorithmus praktisch als ein sequenzieller Absc
 welcher erst durch einen gewissen Punkt in der klassischen Berechnung angestoßen wird.
 Dies ist aber nur der Fall, bis das erste \(a\) bestimmt wird.
 Da der Quantenalgorithmus und die klassischen Berechnungen auf zwei unterschiedlichen Systemen laufen~\cite{IBMQuantumServerless2023}, 
-ist es möglich parallel zur klassischen Nachberechnung, 
+ist es möglich, parallel zur klassischen Nachberechnung, 
 bereits einen weiteren Durchlauf der Quantenberechnung durchzuführen. 
 Allerdings kann es bei diesem Vorgehen dazu kommen, 
 dass die erste Messung bereits die korrekte Periode offenbart, 
@@ -1239,9 +1247,10 @@ Dabei sind die Eigenschaften und die Architektur des genutzten Quantencomputers 
 \subsubsection{Iterative Quanten-Phase-Estimation}
 In den vorherigen Kapiteln wurde die Quanten-Phase-Estimation in der Standardvariante, 
 wie in Sektion~\ref{Quanten-Phase-Estimation} beschrieben, verwendet.
-In dieser Variante wird für jedes \(U^{2^x}\)-Gatter ein eigenes Kontroll-Qubit benötigt.
+In der Standardvariante wird für jedes \(U^{2^x}\)-Gatter ein eigenes Kontroll-Qubit benötigt.
 Dies bedeutet, wenn \(2n\) viele \(U^{2^x}\)-Gatter angewendet werden sollen, 
 sind genau so viele Kontroll-Qubits nötig.
+
 Ein zentraler Bestandteil der Quanten-Phase-Estimation ist die (inverse) Quanten-Fourier-Transformation. 
 Wie im Abschnitt~\ref{Quanten-Fourier-Transformation} gezeigt, 
 hängt die Wirkung dieser Transformation auf ein einzelnes Qubit von den Zuständen der anderen Qubits ab 
@@ -1249,7 +1258,7 @@ und zwar aufgrund von kontrollierten Phasenverschiebungen.
 
 Bei der regulären Quanten-Fourier-Transformation kontrolliert ein bestimmtes Qubit zunächst die Phasen-Gatter auf die übrigen Qubits, 
 bevor auf das kontrollierende Qubit selbst ein Hadamard-Gatter angewendet wird.
-Das bedeutet, dass die kontrollierten Gatter der reguläre Quanten-Fourier-Transformation abhängig sind von dem Eingangszustand.
+Das bedeutet, dass die kontrollierten Gatter der regulären Quanten-Fourier-Transformation abhängig sind von dem Eingangszustand.
 
 Dies sieht bei der inversen Quanten-Fourier-Transformation anders aus.
 Bei der inversen Quanten-Fourier-Transformation wird auf ein Qubit zuerst ein Hadamard-Gatter angewendet, 
@@ -1257,8 +1266,8 @@ erst danach kontrolliert es die Phasen-Gatter auf die anderen Qubits.
 Dementsprechend sind bei der inversen Quanten-Fourier-Transformation die kontrollierten Gatter abhängig von dem Ausgangszustand.
 
 Die Abhängigkeit zum Ausgangszustand ermöglicht es, 
-die inverse Quanten-Fourier-Transformation aufzuteilen.
-Dadurch wird der Ressourcenbedarf von \(2n\) Kontroll-Qubits auf ein einzelnes reduzieren wird~\cite{Parker2000}.
+die inverse Quanten-Fourier-Transformation aufzuteilen und die Bestandteile iterativ anzuwenden.
+Dadurch wird der Ressourcenbedarf der Quanten-Phase-Estimation von \(2n\) Kontroll-Qubits auf ein einzelnes reduziert~\cite{Parker2000}.
 
 In der Standardvariante der Quanten-Fourier-Transformation kontrollieren Qubits die Phasen-Gatter.
 In der semi-klassischen beziehungsweise iterativen Variante ist dies anders.
@@ -1284,20 +1293,19 @@ mit \(\ket{q1}_1\) getauscht.
 Anschließend wird ein Hadamard-Gatter angewendet, 
 wodurch das \(\ket{q3}_1\) Qubit in die Standardbasis transformiert wird. 
 Erst danach kontrolliert das \(\ket{q3}_1\) Qubit zwei Phasen-Gatter.
-Bei einer Messung wird dieser Wert in \(c1\) gespeichert.
+Der Messwert wird in dem klassischen Bit \(c1\) gespeichert.
 Das gleiche Verhalten kann, wie in Abbildung~\ref{fig:iterative_iQFT} gezeigt, nachgestellt werden, 
-indem nach der Anwendung des Hadamard-Gatter auf das \(\ket{q3}_1\) Qubit 
-eine Messung den Messwert im klassischen Bit \(c1\) speichert.
+indem nach der Anwendung des Hadamard-Gatters auf das \(\ket{q3}_1\) Qubit 
+der Messwert im klassischen Bit \(c1\) gespeichert wird.
 Anschließend kontrolliert das klassische Bit \(c1\) die Phasen-Gatter.
 
-Um nach der Messung dasselbe Qubit für \(\ket{q2}_1\) verwendet zu können, 
-muss es in einen eindeutigen Zustand versetzt werden, 
+Um nach der Messung dasselbe Kontroll-Qubit für \(\ket{q2}_1\) verwendet zu können, 
+muss dieses in einen eindeutigen Zustand versetzt werden, 
 in diesem Fall der Zustand \(\ket{0}\).
 Aufgrund der zuvor durchgeführten Messung 
-kollabiert der Zustand des Qubit zu dem Ergebnis der Messung, 
-also entweder \(\ket{0}\) oder \(\ket{1}\).
+kollabiert der Zustand des Qubit zu \(\ket{0}\) oder \(\ket{1}\). 
 Wenn der Zustand der \(\ket{1}\) entspricht, 
-wird ein X-Gatter angewendet, 
+wird ein X-Gatter kontrolliert angewendet, 
 welches durch das Messergebnis aus \(c1\) kontrolliert wird. 
 Somit befindet sich das Qubit in beiden Fällen im Zustand \(\ket{0}\).
 
@@ -1311,8 +1319,7 @@ Das Ergebnis dieser Messung wird in einem weiteren klassischen Bit gespeichert, 
 Für \(\ket{q1}_1\) ist der Ablauf fast identisch.
 Der einzige Unterschied besteht darin, 
 dass nun zwei kontrollierte Phasen-Gatter angewendet werden, 
-die jeweils von einem unterschiedlichen klassischen Bits, 
-in diesem Fall \(c1\) und \(c2\), abhängig sind.
+von denen eines von \(c1\) und das andere von \(c2\) kontrolliert wird.
 Abschließend wird das Messergebnis von \(\ket{q1}_1\) in einem weiteren klassischen Bit \(c3\) gespeichert.
 
 Die verdrehte Reihenfolge beim Speichern der Messergebnisse dient dazu, 
@@ -1330,8 +1337,9 @@ der iterativen Quanten-Fourier-Transformation angewendet.
 
 Als Ergebnis besitzt der Quantenschaltkreis für den Shor Algorithmus mit der iterative Quanten-Phase-Estimation eine grundlegende andere Struktur 
 im Vergleich zur regulären Variante.
-Dies resultiert daraus, dass die iterative Quanten-Fourier-Transformation kein eigener Baustein ist sondern schrittweise zwischen 
-den einzelnen \(U^{2^x}\)-Gatter angewendet wird.
+Dies resultiert daraus, dass die iterative Quanten-Fourier-Transformation kein zusammenhängender Baustein ist, 
+sondern dass die einzelnen Bestandteile schrittweise zwischen 
+den einzelnen \(U^{2^x}\)-Gatter angewendet werden.
 Aufgrund der benötigten klassisch-kontrollierten Phasen-Gatter wird die iterative Quanten-Fourier-Transformation nicht als einzelne Gatter, 
 sondern in einer Funktion \texttt{iterative\_QFT} definiert.
 Diese Funktion wendet die erforderlichen klassisch-kontrollierten Gatter direkt auf den Quantenschaltkreis für ein jeweiliges Qubit an.
@@ -1350,7 +1358,7 @@ Wenn der Parameter \textit{target} dem Wert 0 entspricht,
 wird die iterative Quanten-Fourier-Transformation für das Most-Significant-Bit angewendet werden.
 Wie in Abbildung~\ref{fig:iterative_iQFT} gezeigt, entspricht dies nur der Anwendung eines einzelnen Hadamard-Gatters.
 In Zeile drei und vier ist zu erkennen, 
-das mit abnehmender Wertigkeit eines Qubits zunehmend mehr Phasen-Gatter angewendet werden.
+dass mit abnehmender Wertigkeit eines Qubits zunehmend mehr Phasen-Gatter angewendet werden.
 Alle Phasen-Gatter, welche in der vierten Zeile angewendeten werden, 
 wirken auf das \textit{controlling\_qubit} und 
 werden von unterschiedlichen klassischen Bits mit der Methode \(c\_if\) kontrolliert.
@@ -1423,22 +1431,24 @@ Der ausschlaggebende Vorteil der iterativen Quanten-Phase-Estimation besteht dar
 dass diese Variante im Vergleich zur zuvor in Sektion~\ref{section:imp_QPE_Shor} implementierten Variante den Ressourcenbedarf von \(4n+2\) Qubits auf \(2n+3\) Qubits reduziert.
 
 Ein weiterer Vorteil dieser Variante ist, 
-dass die Genauigkeit \(k\) nicht auf Kosten von weiteren Qubits erhöht wird.
-Stattdessen benötigt diese Variante stets \(2n+3\) Qubits, 
+dass die Genauigkeit \(k\) nicht auf Kosten von weiteren Qubits erhöht wird, 
+sondern ausschließlich durch zusätzliche Gatter.
+Deswegen benötigt diese Variante stets \(2n+3\) Qubits, 
 sodass der Bedarf an Qubits lediglich von der Größenordnung der Zahl \(N\) abhängig ist.
 
-Jedoch hat die iterative Variante auch ihre Nachteile.
-Bei der Implementierung in Sektion~\ref{section:imp_QPE_Shor} können mehr Gatter parallel ausgeführt werden, 
-weshalb die Laufzeit geringer ausfällt.
-Dies liegt daran, dass die \(U^{2^x}\)-Gatter keine Abhängigkeiten zueinander haben. 
-Des weiteren können auch manche Teile der regulären inversen Quanten-Fourier-Transformation parallel ausgeführt werden.
+Der Nachteil der iterative Variante besteht darin, 
+dass die einzelnen Episoden der semi-klassischen Quanten-Fourier-Transformation nicht parallel angewendet werden können.
+Hingegen ist es möglich, die regulären inversen Quanten-Fourier-Transformation, bis zu einem gewissen Grad, 
+parallel Anzuwenden.
+Da dies aber lediglich die letzte Anwendung der Quanten-Fourier-Transformation im Quanten-Phase-Estimation Algorithmus betrifft, 
+ist diese zusätzliche Laufzeit vernachlässigbar.
 
-Da bei der iterativen Variante alle \(U^{2^x}\)-Gatter von dem selben Kontroll-Qubit abhängen, 
-muss jedes einzelne \(U^{2^x}\)-Gatter komplett sequenziell von den anderen \(U^{2^x}\)-Gatter ausgeführt werden.
-Darüber hinaus besteht auch bei den einzelnen Episoden der iterativen Quanten-Fourier-Transformation keine Möglichkeit zur parallelen Ausführung.
+Da sowohl bei der regulären als auch bei der iterativen Variante, 
+alle \(U^{2^x}\)-Gatter auf das selbe Quantenregister wirken, 
+können diese nur sequenziell angewendet werden.
 
 Zusammengefasst tauscht man bei der Verwendung der Iterativen Variante, 
-einen tieferen Quantenschaltkreis gegen einen breiteren ein.
+einen breiteren Quantenschaltkreis gegen einen minimal tieferen ein.
 
 Welche der beiden Varianten vorzuziehen ist, 
 hängt vor allem von den zur Verfügung stehenden Ressourcen des Quantencomputers ab.
@@ -1535,7 +1545,7 @@ die weiterhin für ein akzeptables Endergebnis ausreichend ist.
 Die approximative Quanten-Fourier-Transformation wird als \(AQFT_m\) definiert und 
 wendet maximal \(m\) Phase-Gatter pro Qubit an. 
 Der Parameter \(m\) wird als Approximationsfaktor bezeichnet und stellt den Grad der \(AQFT_m\) dar.  
-Er definiert die Präzision, 
+Der Parameter definiert die Präzision, 
 bis zu der Phasen-Gatter mit einer Phasenverschiebung von \(e^{\frac{2\pi i}{2^m}}\) angewendet werden.
 Die vollständige Quanten-Fourier-Transformation entspricht somit einer \(AQFT_n\).
 
@@ -1550,6 +1560,7 @@ die für die exakte Quanten-Fourier-Transformation \(QFT\) gilt~\cite{cheung2004
 Im Hinblick auf die Ressourceneffizienz benötigt die \(AQFT_m\) insgesamt \(\Landau(nm)\) Gatter.
 Wenn \(m\) wie zuvor definiert wird, entspricht dies \(\Landau(n~\text{ld}(n))\). 
 Im Vergleich dazu erfordert die exakte Quanten-Fourier-Transformation \(\Landau(n^2)\) Gatter~\cite{Barenco_1996}.
+Die Tiefe der Schaltung wird durch die approximative Quanten-Fourier-Transformation im Vergleich zur exakten nicht verändert.
 
 Daraus folgt, dass die approximative Quanten-Fourier-Transformation einen effizienteren Gatterbedarf aufweist, 
 jedoch zulasten einer geringeren Genauigkeit im Vergleich zur exakten Quanten-Fourier-Transformation.
