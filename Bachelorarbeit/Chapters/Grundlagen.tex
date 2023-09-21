@@ -1,5 +1,62 @@
 \section{Grundlagen}
 
+\subsection{RSA-Verschlüsselung}
+Das RSA-Verfahren ist ein weitverbreitetes asymmetrisches Kryptosystem, 
+das 1977 von Ron \textbf{R}ivest, Adi \textbf{S}hamir und Leonard \textbf{A}dleman entwickelt wurde~\cite{10.1145/359340.359342}. 
+In asymmetrischen Verschlüsselungsverfahren werden zwei verschiedene Schlüssel verwendet: 
+Ein öffentlicher Schlüssel zum Verschlüsseln von Nachrichten und ein privater Schlüssel zum Entschlüsseln dieser Nachrichten.
+Der private Schlüssel kann ebenfalls Nachrichten verschlüsseln beziehungsweise signieren.
+Eine Signatur kann mit dem öffentlichen Schlüssel bestätigt werden, 
+damit kann der Nutzer des öffentlichen Schlüssels die Authentizität der Nachricht kontrollieren.
+
+\subsubsection*{Funktionsweise}
+Die Grundlage des RSA-Verfahrens basiert auf der Schwierigkeit, 
+das Produkt zweier großer Primzahlen zu zerlegen. 
+
+Zunächst wählt man zwei große Primzahlen \(p\) und \(q\) und 
+berechnet deren Produkt 
+\[N = p \cdot q \text{ und } f=(p-1)(q-1)\]  
+Des Weiteren wird ein Exponent \(e\) ausgewählt, 
+der teilerfremd zu \(f\) ist.
+Anschließend wird \(d\) berechnet, 
+welches das multiplikative Inverse von \(e\) modulo \(f\) ist.
+Der öffentliche Schlüssel besteht aus \(N\) und dem Exponenten \(e\). 
+Der private Schlüssel ist \(d\).
+
+Eine zu sendende Nachricht \( M \) wird in einen numerischen Wert umgewandelt und mittels des öffentlichen Schlüssels verschlüsselt:
+\[
+  C = M^e \mod N
+\]
+Der Empfänger kann die verschlüsselte Nachricht \(C\) dann mit seinem privaten Schlüssel entschlüsseln:
+\[
+  M = C^d \mod N
+\]
+
+Eine Nachricht \( M \) kann als \(S\) mit dem privaten Schlüssel signiert werden:
+\[
+  S = M^d \mod N
+\]
+Für die Verifikation der Nachricht \(M\) muss dem Nutzer des öffentlichen Schlüssels \(M\) bekannt sein. 
+Die Signatur \(S\) sollte die Nachricht wiedergeben:
+\[
+  M = S^e \mod N
+\]
+
+Der private Schlüssel kann kompromittiert werden, wenn es gelingt, die beiden Faktoren \(p\) und 
+\(q\) aus dem öffentlichen Schlüssel \(N\) zu extrahieren. 
+In diesem Fall wäre es möglich, den privaten Schlüssel zu berechnen. 
+Dadurch könnte man sowohl verschlüsselte Nachrichten mitlesen als auch Nachrichten signieren.
+
+\subsubsection*{Schwierigkeiten für klassische Computer}
+Ein klassischer Computer hat Schwierigkeiten, 
+RSA-Verschlüsselung effizient zu brechen, 
+da das Problem der Zerlegung einer Zahl \(N\) in seine Primfaktoren für große Zahlen exponentiell schwieriger wird. 
+Nach dem aktuellen Stand (Herbst 2023~\cite{Hoever2022Krypto}) benötigen die besten klassischen Algorithmen exponentiell mehr Zeit zur Entschlüsselung, 
+je länger der verwendete Schlüssel ist.
+Daher wird RSA als sicher angesehen, solange die Schlüssellänge ausreichend groß ist (heutzutage meist 2048 Bit oder mehr).
+
+
+
 \subsection{Qubits} 
 \begin{quote}
   \noindent
@@ -553,57 +610,7 @@ wird das Gatter im Exponenten mit einem Tensor inklusive des Index beschrieben:
   U^{\tensor x} \cdot 
   \ket{\psi}_x
 \]
-\subsection{RSA-Verschlüsselung}
-Das RSA-Verfahren ist ein weitverbreitetes asymmetrisches Kryptosystem, 
-das 1977 von Ron \textbf{R}ivest, Adi \textbf{S}hamir und Leonard \textbf{A}dleman entwickelt wurde~\cite{10.1145/359340.359342}. 
-In asymmetrischen Verschlüsselungsverfahren werden zwei verschiedene Schlüssel verwendet: 
-Ein öffentlicher Schlüssel zum Verschlüsseln von Nachrichten und ein privater Schlüssel zum Entschlüsseln dieser Nachrichten.
-Der private Schlüssel kann ebenfalls Nachrichten verschlüsseln beziehungsweise signieren.
-Eine Signatur kann mit dem öffentlichen Schlüssel bestätigt werden, 
-damit kann der Nutzer des öffentlichen Schlüssels die Authentizität der Nachricht kontrollieren.
 
-\subsubsection*{Funktionsweise}
-Die Grundlage des RSA-Verfahrens basiert auf der Schwierigkeit, 
-das Produkt zweier großer Primzahlen zu zerlegen. 
-
-Zunächst wählt man zwei große Primzahlen \(p\) und \(q\) und 
-berechnet deren Produkt \(N = p \cdot q\). 
-Des Weiteren wird \(f=(p-1)(q-1)\) berechnet und ein Exponent \(e\) ausgewählt, 
-der teilerfremd zu \(f\) ist.
-Anschließend wird \(d\) berechnet, 
-welches das multiplikative Inverse von \(e\) modulo \(f\) ist.
-Der öffentliche Schlüssel besteht aus \(N\) und dem Exponenten \(e\). 
-Der private Schlüssel ist \(d\).
-
-Eine zu sendende Nachricht \( M \) wird in einen numerischen Wert umgewandelt und mittels des öffentlichen Schlüssels verschlüsselt:
-\[
-  C = M^e \mod N
-\]
-Der Empfänger kann die verschlüsselte Nachricht \(C\) dann mit seinem privaten Schlüssel entschlüsseln:
-\[
-  M = C^d \mod N
-\]
-
-Eine Nachricht \( M \) kann als \(S\) mit dem privaten Schlüssel signiert werden:
-\[
-  S = M^d \mod N
-\]
-Für die Verifikation der Nachricht \(M\) muss dem Nutzer des öffentlichen Schlüssels \(M\) bekannt sein. 
-Die Signatur \(S\) sollte die Nachricht wiedergeben:
-\[
-  M = S^e \mod N
-\] 
-
-\subsubsection*{Schwierigkeiten für klassische Computer}
-Ein klassischer Computer hat Schwierigkeiten, 
-RSA-Verschlüsselung effizient zu brechen, 
-da das Problem der Zerlegung einer Zahl \(N\) in seine Primfaktoren für große Zahlen exponentiell schwieriger wird. 
-Nach dem aktuellen Stand im Herbst 2023 benötigen die besten klassischen Algorithmen exponentiell mehr Zeit zur Entschlüsselung, 
-je länger der verwendete Schlüssel ist~\cite{Hoever2022Krypto}.
-Daher wird RSA als sicher angesehen, solange die Schlüssellänge ausreichend groß ist (heutzutage meist 2048 Bit oder mehr).
-
-Dies stellt sicher, dass eine Brute-Force-Attacke oder Faktorisierung mit klassischen Computern in praktischer Hinsicht nicht durchführbar ist, 
-da es zu lange dauern würde, um als effektive Angriffsmethode zu gelten.
 
 \subsection{Quanten-Fourier-Transformation} \label{Quanten-Fourier-Transformation}
 Die Quanten-Fourier-Transformation bildet einen wesentlichen Bestandteil des implementierten Quantenalgorithmus. 

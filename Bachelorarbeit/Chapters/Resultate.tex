@@ -1,1 +1,38 @@
 \section{Resultate}
+In der nachfolgenden Analyse liegt der Fokus auf der Evaluierung der implementierten Varianten des Shor-Algorithmus hinsichtlich ihres Ressourcenverbrauchs und 
+der Laufzeitkomplexität. 
+Angesichts der signifikanten Auswirkungen des Algorithmus für die Integrität des kryptographischen Systems des RSA-Verfahrens  
+orientieren sich die zugrunde gelegten Bewertungskriterien an den Richtlinien für Post-Quantenkryptographie des \textit{National Institute of Standards and Technology}. 
+Die erzielten Resultate ermöglichen eine Einordnung in die Größenordnung der erforderlichen Laufzeit und 
+erlauben einen direkten Vergleich mit den Ergebnissen anderer Arbeiten.
+
+\subsection*{Ressourcenbedarf und Laufzeit}
+In der Publikation "'Submission Requirements and Evaluation Criteria for the Post-Quantum Cryptography Standardization Process"`~\cite{NISTPQC} des \textit{National Institute of Standards and Technology}
+werden drei Sicherheitsstufen definiert, die sich auf die Laufzeitanforderungen von Quantencomputern in Bezug auf kryptographische Angriffe beziehen.
+
+Als Metrik für die Laufzeitevaluation wird der Parameter \textit{MAXDEPTH} eingeführt, 
+welcher die Anzahl der Quantengatter für die längste serielle Ausführung eines Quantenalgorithmus erfasst.
+Die Auswahl dieser Metrik wird in der Publikation~\cite{NISTPQC} damit begründet, dass lange serielle Berechnungen Herausforderungen mit sich bringen.
+
+Die unterste der drei Sicherheitsstufe beginnt bei einer MAXDEPTH von \(2^{40}\) Quantengattern. 
+Dieser Wert dient als approximative Messgröße für die Anzahl an seriell ausgeführten Quantengattern, 
+die nach aktueller Prognose von Quantencomputern innerhalb eines Jahres realisiert werden können.
+
+Die zweite Sicherheitsstufe setzt eine \textit{MAXDEPTH} von \(2^{64}\) Quantengattern an.
+Dieser Wert stellt die approximative Anzahl an seriell ausgeführten Quantengattern dar, 
+die nach der Prognose innerhalb eines Jahrzehnts durchgeführt werden können.
+
+Die Obergrenze ist bei einer \textit{MAXDEPTH} von \(2^{96}\) Quantengattern festgelegt. 
+Selbst unter idealen Bedingungen, 
+bei denen Qubits auf atomarer Skala arbeiten und die Übertragungsgeschwindigkeit der Lichtgeschwindigkeit entspricht, 
+würde diese Anzahl an Quantengattern ein Jahrtausend an Berechnungszeit erfordern.
+
+\vspace{1em}
+
+Als Metriken für den Ressourcenverbrauch werden die benötigte Anzahl an Qubits sowie die Gesamtanzahl an Quantengattern herangezogen. 
+Die Anzahl der Qubits stellt eine notwendige Voraussetzung dar, 
+die ein Quantencomputer erfüllen muss, da andernfalls die Ausführung des Quantenalgorithmus nicht möglich ist. 
+Die Gesamtanzahl an Quantengattern dient als eine Kennzahl, 
+die potenzielle Rückschlüsse auf die Fehlerrate durch Dekohärenz zulässt. 
+Darüber hinaus finden sowohl die Anzahl an Qubits als auch die Gesamtanzahl an Quantengattern häufig Anwendung als Kennzahl in der wissenschaftlichen Literatur. 
+Diese beiden Metriken ermöglichen somit einen Vergleich mit den Ergebnissen anderer Arbeiten.

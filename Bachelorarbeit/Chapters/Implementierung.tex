@@ -1548,7 +1548,7 @@ bis zu welcher Phasenverschiebung von \(e^{\frac{2\pi i}{2^m}}\) die Phasen-Gatt
 Die vollständige Quanten-Fourier-Transformation entspricht einer \(AQFT_n\).
 
 Wenn der Approximationsfaktor \(m\) einen Wert
-\[m \geq \text{ld}(n+2)\]
+\[m \geq \text{ld}(n)+2\]
 entspricht, nähert sich die Wahrscheinlichkeit, das optimale Ergebnis mit \(AQFT_m\)
 zu erhalten, dem Wert~\cite{cheung2004improved}: 
 \[P \geq \frac{4}{\pi^2} - \frac{1}{4n}\]
@@ -1582,7 +1582,7 @@ Um das bestmögliche Ergebnis zu erzielen,
 muss eine gewisse Ungenauigkeit durch die Approximation in Kauf genommen werden, 
 die wiederum durch die geringere Fehlerrate kompensiert wird. 
 Das optimale \(m\) nähert sich der Untergrenze von~\cite{Barenco_1996}:
-\[m \geq \text{ld}(n+2)\]
+\[m \geq \text{ld}(n)+2\]
 
 Die Approximationstechnik kann auch in der iterativen beziehungsweise semi-klassischen Quanten-Fourier-Transformation angewendet werden. 
 Bei der Implementierung für den Shor-Algorithmus ist darauf zu achten, 
@@ -1593,7 +1593,7 @@ und würden zu falschen Ergebnissen führen.
 
 Die Implementierung des \texttt{Faktorisierungsalgorithmus} wird um den Parameter \(m\) ergänzt.
 Standardmäßig entspricht der Approximationsfaktor 
-\[m = \lceil\text{ld}(n+2)\rceil\]  
+\[m = \lceil\text{ld}(n)+2\rceil\]  
 Dieser kann jedoch über den Parameter beliebig angepasst oder 
 durch Setzen von \(m=-1\) deaktiviert werden.
 Im Falle der Deaktivierung wird die exakte Quanten-Fourier-Transformation angewendet.
