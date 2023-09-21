@@ -1386,7 +1386,7 @@ dass die Komponenten der iterativen Quanten-Fourier-Transformation in jedem Schl
 Des Weiteren ist ersichtlich, 
 dass die Schleife mit dem Qubit beginnt, 
 welches die höchste Wertigkeit (Most-Significant-Bit) hat.
-Pro Iteration werden \(U^{2^x}\)-Gatter mit absteigenden Potenzen angewendet, 
+Pro Iteration wird jeweils ein \(U^{2^x}\)-Gatter mit absteigender Potenzen zum vorherigen Durchlauf angewendet, 
 hingegen werden die Messergebnisse in klassischen Bits mit aufsteigender Wertigkeit gespeichert.
 
 Um zu verhindern, 
@@ -1436,18 +1436,18 @@ sondern ausschließlich durch zusätzliche Gatter.
 Deswegen benötigt diese Variante stets \(2n+3\) Qubits, 
 sodass der Bedarf an Qubits lediglich von der Größenordnung der Zahl \(N\) abhängig ist.
 
-Der Nachteil der iterative Variante besteht darin, 
+Der Nachteil der iterativen Variante besteht darin, 
 dass die einzelnen Episoden der semi-klassischen Quanten-Fourier-Transformation nicht parallel angewendet werden können.
-Hingegen ist es möglich, die regulären inversen Quanten-Fourier-Transformation, bis zu einem gewissen Grad, 
+Hingegen ist es möglich, die regulären inverse Quanten-Fourier-Transformation, bis zu einem gewissen Grad, 
 parallel Anzuwenden.
 Da dies aber lediglich die letzte Anwendung der Quanten-Fourier-Transformation im Quanten-Phase-Estimation Algorithmus betrifft, 
 ist diese zusätzliche Laufzeit vernachlässigbar.
 
 Da sowohl bei der regulären als auch bei der iterativen Variante, 
-alle \(U^{2^x}\)-Gatter auf das selbe Quantenregister wirken, 
+alle \(U^{2^x}\)-Gatter auf dasselbe Quantenregister wirken, 
 können diese nur sequenziell angewendet werden.
 
-Zusammengefasst tauscht man bei der Verwendung der Iterativen Variante, 
+Zusammengefasst tauscht man bei der Verwendung der iterativen Variante, 
 einen breiteren Quantenschaltkreis gegen einen minimal tieferen ein.
 
 Welche der beiden Varianten vorzuziehen ist, 
@@ -1487,11 +1487,9 @@ Links sind die Ergebnisse des Quantenschaltkreises aus Abbildung~\ref{fig:iterat
 rechts die des Quantenschaltkreises nach Abbildung~\ref{fig:iterative_iQPE_Beauregard_qiskit}.
 Beide Quantenschaltkreise sind für \(a = 7,~N=15,~k=4\) nachgebildet.
 Lediglich das Ergebnis auf der linken Seite ist korrekt, 
-da sowohl die Messergebnisse übereinstimmen, 
+da die Messergebnisse übereinstimmen, 
 als auch genau vier Peaks vorhanden sind, 
 was der Länge der Periode entspricht.
-
-
 \begin{figure} [H]
   \caption{iterative QPE Messergebnisse(Beauregard rechts)}
   \label{fig:iterative_iQPE_Vergleich}
@@ -1544,12 +1542,12 @@ die weiterhin für ein akzeptables Endergebnis ausreichend ist.
 
 Die approximative Quanten-Fourier-Transformation wird als \(AQFT_m\) definiert und 
 wendet maximal \(m\) Phase-Gatter pro Qubit an. 
-Der Parameter \(m\) wird als Approximationsfaktor bezeichnet und stellt den Grad der \(AQFT_m\) dar.  
-Der Parameter definiert die Präzision, 
-bis zu der Phasen-Gatter mit einer Phasenverschiebung von \(e^{\frac{2\pi i}{2^m}}\) angewendet werden.
-Die vollständige Quanten-Fourier-Transformation entspricht somit einer \(AQFT_n\).
+Der Parameter \(m\) wird als Approximationsfaktor bezeichnet und bestimmt die Präzision der \(AQFT_m\). 
+Der Approximationsfaktor gibt an, 
+bis zu welcher Phasenverschiebung von \(e^{\frac{2\pi i}{2^m}}\) die Phasen-Gatter angewendet werden.
+Die vollständige Quanten-Fourier-Transformation entspricht einer \(AQFT_n\).
 
-Wenn der Approximationsfaktor \(m\) einem Wert
+Wenn der Approximationsfaktor \(m\) einen Wert
 \[m \geq \text{ld}(n+2)\]
 entspricht, nähert sich die Wahrscheinlichkeit, das optimale Ergebnis mit \(AQFT_m\)
 zu erhalten, dem Wert~\cite{cheung2004improved}: 
@@ -1562,8 +1560,9 @@ Wenn \(m\) wie zuvor definiert wird, entspricht dies \(\Landau(n~\text{ld}(n))\)
 Im Vergleich dazu erfordert die exakte Quanten-Fourier-Transformation \(\Landau(n^2)\) Gatter~\cite{Barenco_1996}.
 Die Tiefe der Schaltung wird durch die approximative Quanten-Fourier-Transformation im Vergleich zur exakten nicht verändert.
 
-Daraus folgt, dass die approximative Quanten-Fourier-Transformation einen effizienteren Gatterbedarf aufweist, 
+Daraus folgt, dass die approximative Quanten-Fourier-Transformation einen effizienteren Bedarf an Gattern aufweist, 
 jedoch zulasten einer geringeren Genauigkeit im Vergleich zur exakten Quanten-Fourier-Transformation.
+Aufgrund der identischen Tiefe beider Varianten ist die Laufzeit beider Varianten ebenfalls identisch.
 
 Allerdings gilt dies nur unter der Annahme, 
 dass der Quantencomputer ideal ist und weder Dekohärenzeffekte noch andere Fehler aufweist.
@@ -1572,7 +1571,7 @@ mit höherer Wahrscheinlichkeit ein genaues Ergebnis als die approximative Quant
 
 Wenn allerdings kein idealer Quantencomputer genutzt wird, 
 führt die Dekohärenz, 
-bedingt durch eine Vielzahl an Gattern und die damit verbundene längere Laufzeit, 
+bedingt durch eine Vielzahl an Gattern, 
 zu einer erhöhten Fehlerrate.
 Eine Reduktion der Anzahl an Gattern durch ein geringeres 
 \(m\) führt daher zu einer niedrigeren Fehlerrate durch Dekohärenz, 
@@ -1582,7 +1581,7 @@ da der Approximationsfaktor größer ist und somit nicht alle Phasen-Gatter ange
 Um das bestmögliche Ergebnis zu erzielen, 
 muss eine gewisse Ungenauigkeit durch die Approximation in Kauf genommen werden, 
 die wiederum durch die geringere Fehlerrate kompensiert wird. 
-Das optimale \(m\) liegt in dem Bereich \(m \in [1,n]\) und nähert sich der Untergrenze von~\cite{Barenco_1996}:
+Das optimale \(m\) nähert sich der Untergrenze von~\cite{Barenco_1996}:
 \[m \geq \text{ld}(n+2)\]
 
 Die Approximationstechnik kann auch in der iterativen beziehungsweise semi-klassischen Quanten-Fourier-Transformation angewendet werden. 
@@ -1593,9 +1592,11 @@ Andernfalls wären die angewendeten und extrahierten Phasenverschiebungen inkons
 und würden zu falschen Ergebnissen führen.
 
 Die Implementierung des \texttt{Faktorisierungsalgorithmus} wird um den Parameter \(m\) ergänzt.
-Standardmäßig ist \[m = \lceil\text{ld}(n+2)\rceil\] gesetzt, 
-kann jedoch über den Parameter beliebig angepasst oder durch Setzen von \(m=-1\) deaktiviert werden.
-Im Falle der Deaktivierung, wird die exakte Quanten-Fourier-Transformation angewendet.
+Standardmäßig entspricht der Approximationsfaktor 
+\[m = \lceil\text{ld}(n+2)\rceil\]  
+Dieser kann jedoch über den Parameter beliebig angepasst oder 
+durch Setzen von \(m=-1\) deaktiviert werden.
+Im Falle der Deaktivierung wird die exakte Quanten-Fourier-Transformation angewendet.
 
 Der Grund, warum die approximative Variante verwendet wird, 
 liegt darin, dass das Ergebnis bereits bei kleinen \(n\) eine gute Genauigkeit gewährt. 
