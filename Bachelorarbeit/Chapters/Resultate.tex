@@ -6,29 +6,29 @@ orientieren sich die zugrunde gelegten Bewertungskriterien an den Richtlinien f�
 Die erzielten Resultate ermöglichen eine Einordnung in die Größenordnung der erforderlichen Laufzeit und 
 erlauben einen direkten Vergleich mit den Ergebnissen anderer Arbeiten.
 
-\subsection*{Ressourcenbedarf und Laufzeit}
+\subsection*{Laufzeit}
 In der Publikation "'Submission Requirements and Evaluation Criteria for the Post-Quantum Cryptography Standardization Process"`~\cite{NISTPQC} des \textit{National Institute of Standards and Technology}
 werden drei Sicherheitsstufen definiert, die sich auf die Laufzeitanforderungen von Quantencomputern in Bezug auf kryptographische Angriffe beziehen.
 
-Als Metrik für die Laufzeitevaluation wird der Parameter \textit{MAXDEPTH} eingeführt, 
+Als Metrik für die Laufzeitevaluation wird der Parameter \textit{Maxdepth} eingeführt, 
 welcher die Anzahl der Quantengatter für die längste serielle Ausführung eines Quantenalgorithmus erfasst.
-Die Auswahl dieser Metrik wird in der Publikation~\cite{NISTPQC} damit begründet, dass lange serielle Berechnungen Herausforderungen mit sich bringen.
+Die Auswahl dieser Metrik wird in der Publikation damit begründet, dass lange serielle Berechnungen Herausforderungen mit sich bringen.
 
-Die unterste der drei Sicherheitsstufe beginnt bei einer MAXDEPTH von \(2^{40}\) Quantengattern. 
+Die unterste der drei Sicherheitsstufe beginnt bei einer \textit{Maxdepth} von \(2^{40}\) Quantengattern. 
 Dieser Wert dient als approximative Messgröße für die Anzahl an seriell ausgeführten Quantengattern, 
 die nach aktueller Prognose von Quantencomputern innerhalb eines Jahres realisiert werden können.
 
-Die zweite Sicherheitsstufe setzt eine \textit{MAXDEPTH} von \(2^{64}\) Quantengattern an.
+Die zweite Sicherheitsstufe setzt eine \textit{Maxdepth} von \(2^{64}\) Quantengattern an.
 Dieser Wert stellt die approximative Anzahl an seriell ausgeführten Quantengattern dar, 
 die nach der Prognose innerhalb eines Jahrzehnts durchgeführt werden können.
 
-Die Obergrenze ist bei einer \textit{MAXDEPTH} von \(2^{96}\) Quantengattern festgelegt. 
+Die stärkste Sicherheitsstufe ist bei einer \textit{Maxdepth} von \(2^{96}\) Quantengattern festgelegt. 
 Selbst unter idealen Bedingungen, 
 bei denen Qubits auf atomarer Skala arbeiten und die Übertragungsgeschwindigkeit der Lichtgeschwindigkeit entspricht, 
 würde diese Anzahl an Quantengattern ein Jahrtausend an Berechnungszeit erfordern.
 
-\vspace{1em}
 
+\subsection*{Ressourcenbedarf}
 Als Metriken für den Ressourcenverbrauch werden die benötigte Anzahl an Qubits sowie die Gesamtanzahl an Quantengattern herangezogen. 
 Die Anzahl der Qubits stellt eine notwendige Voraussetzung dar, 
 die ein Quantencomputer erfüllen muss, da andernfalls die Ausführung des Quantenalgorithmus nicht möglich ist. 
@@ -36,3 +36,97 @@ Die Gesamtanzahl an Quantengattern dient als eine Kennzahl,
 die potenzielle Rückschlüsse auf die Fehlerrate durch Dekohärenz zulässt. 
 Darüber hinaus finden sowohl die Anzahl an Qubits als auch die Gesamtanzahl an Quantengattern häufig Anwendung als Kennzahl in der wissenschaftlichen Literatur. 
 Diese beiden Metriken ermöglichen somit einen Vergleich mit den Ergebnissen anderer Arbeiten.
+
+In der Analyse wurden ausschließlich elementare Quantengatter wie Hadamard-, Phasen- und X-Gatter in die Betrachtung einbezogen. 
+Die in Sektion~\ref{sec:Implementierung} eingeführten, spezialisierten Gatter wurden nicht direkt gezählt, 
+stattdessen wurden die darin enthaltenen Basisgatter gezählt. 
+Diese Vorgehen ergibt sich aus der Tatsache, dass ein Quantencomputer effektiv die Basisgatter eines Quantenschaltkreises ausführt. 
+Übergeordnete, spezialisierte Gatter werden demzufolge in ihre elementaren Komponenten zerlegt. 
+Eine Zählung der spezialisierten Gatter wäre somit nicht repräsentativ für die tatsächliche Ressourcennutzung.
+
+Die Zählung der Anzahl der Gatter sowie der \textit{Maxdepth} des Quantenschaltkreises wurden spezifische Funktionen der Qiskit-Bibliothek genutzt. 
+Diese Funktionen erlauben die Bestimmung der Anzahl an Gatter oder der \textit{Maxdepth} in einem Quantenschaltkreis.
+Dabei ist zu beachten, dass diese Funktionen keine Unterscheidung zwischen elementaren und spezialisierten Gattern treffen.
+Daher konnte die Funktion nicht direkt auf den vorliegenden Quantenschaltkreis angewendet werden. 
+Als Lösungsansatz wurde der Code zur Zählung modifiziert, um sicherzustellen, dass der Quantenschaltkreis ausschließlich aus Basisgattern besteht.
+
+\subsection*{Analyse}
+Die Analyse beinhaltet eine Untersuchung von vier Varianten des Shor-Algorithmus, 
+die jeweils unterschiedliche Kombinationen der in Sektion~\ref{Optimierung} erörterten Optimierungsstrategien implementieren.
+Die vier Varianten werden nach den implementierten Optimierungsstrategien in die Kategorien \textit{Reguläre}, 
+\textit{Approximative}, \textit{Iterative} und \textit{Approximative-Iterative} eingeteilt.
+In den Kategorien unterscheidet sich insbesondere die Nutzung der Quanten-Phase-Estimation und der Quanten-Fourier-Transformation. 
+Während die \textit{Reguläre} Variante auf die \(4n+2\) Qubit Version der der Quanten-Phase-Estimation mit der exakten Quanten-Fourier-Transformation setzt, 
+nutzt die \textit{Approximative} Variante ebenfalls die \(4n+2\) Qubit Variante, 
+verwendet jedoch die approximative Quanten-Fourier-Transformation mit einem Approximationsfaktor von \(m = \lceil\text{ld}(n)+2\rceil\).
+
+Die \textit{Iterative} Variante bedient sich der iterativen Quanten-Phase-Estimation mit \(2n+3\) Qubits und 
+verwendet die exakten Quanten-Fourier-Transformation, dementsprechend in iterativer Anwendung.
+Die \textit{Approximative-Iterative} Variante verwendet ebenfalls die iterativen Quanten-Phase-Estimation mit \(2n+3\) Qubits, 
+aber ergänzt die iterativ angewendete Quanten-Fourier-Transformation um einen Approximationsfaktor von \\\(m = \lceil\text{ld}(n)+2\rceil\).
+bedient sich der approximative Quanten-Fourier-Transformation in iterativer Anwendung.
+
+Die Analyse bezieht sich auf die Schlüssellängen des RSA-Kryptosystems von 1024-Bit, 2048-Bit, 3072-Bit und 4096-Bit. 
+Nach aktuellem Stand empfiehlt das BSI für das RSA-Verfahren keine Schlüssellänge unter 3000-Bit~\cite{BSI2023}. 
+Nichtsdestotrotz kommen auch kürzere Varianten des RSA-Kryptosystems zum Einsatz, weshalb diese ebenfalls berücksichtigt werden.
+
+\vspace{1em}
+
+\begin{table}[H] \label{Varainten_Analyse}
+    \centering
+    \caption{Vergleich der vier Varianten des Shor-Algorithmus für verschiedene Schlüssellängen}
+    \begin{tabular}{|l|l|l|l|l|}
+        \hline
+        \textbf{Variante} & \textbf{Schlüssellänge} & \textbf{Qubits} & \textbf{Gatteranzahl} & \textbf{Maxdepth} \\ \hline
+        Reguläre & 1024-Bit & 4098 & \(2^{43}\) & \(2^{35}\) \\ \hline
+        Reguläre & 2048-Bit & 8194 & \(2^{47}\) & \(2^{38}\) \\ \hline
+        Reguläre & 3072-Bit & 12290 & \(2^{49}\) & \(2^{40}\) \\ \hline
+        Reguläre & 4096-Bit & 16386 & \(2^{51}\) & \(2^{41}\) \\ \hline
+        Approximative & 1024-Bit & 4098 & \(2^{38}\) & \(2^{35}\) \\ \hline
+        Approximative & 2048-Bit & 8194 & \(2^{41}\) & \(2^{38}\) \\ \hline
+        Approximative & 3072-Bit & 12290 & \(2^{43}\) & \(2^{40}\) \\ \hline
+        Approximative & 4096-Bit & 16386 & \(2^{44}\) & \(2^{41}\) \\ \hline
+        Iterative & 1024-Bit & 2051 & \(2^{43}\) & \(2^{35}\) \\ \hline
+        Iterative & 2048-Bit & 4099 & \(2^{47}\) & \(2^{38}\) \\ \hline
+        Iterative & 3072-Bit & 6147 & \(2^{49}\) & \(2^{40}\) \\ \hline
+        Iterative & 4096-Bit & 8195 & \(2^{51}\) & \(2^{41}\) \\ \hline
+        Approximative-Iterative & 1024-Bit & 2051 & \(2^{38}\) & \(2^{35}\) \\ \hline
+        Approximative-Iterative & 2048-Bit & 4099 & \(2^{41}\) & \(2^{38}\) \\ \hline
+        Approximative-Iterative & 3072-Bit & 6147 & \(2^{43}\) & \(2^{40}\) \\ \hline
+        Approximative-Iterative & 4096-Bit & 8195 & \(2^{44}\) & \(2^{41}\) \\ \hline
+    \end{tabular}
+    \end{table}
+    
+Anhand der Tabelle~\ref{Varainten_Analyse} fällt auf,
+dass die Varianten keinen signifikante Unterschiede in Bezug auf die \textit{Maxdepth} haben.
+Stattdessen ist die Schlüssellänge der einzige Faktor, 
+der die \textit{Maxdepth} beeinflusst.
+
+Hingegen ermöglicht der Einsatz eines approximativen und iterativen Ansatzes deutliche Einsparungen im Hinblick auf den Ressourcenbedarf. 
+Im Vergleich zu einer Schlüssellänge von 4096-Bit lässt die approximative Variante eine Reduktion der gesamten Anzahl an Gattern um etwa den Faktor 100 zu. 
+Wie in Sektion~\ref{sec:ApproxQFT} erwähnt, ist der Genauigkeitsverlust durch die approximative Variante für große \(n\) beziehungsweise konkret Schlüssellänge vernachlässigbar. 
+Des Weiteren, schneidet die approximative Variante in Anwesenheit von Dekohärenz aufgrund der geringeren Anzahl an Gattern besser ab~\cite{Barenco_1996}. 
+Diese Aspekte sprechen dafür, den approximativen Ansatz grundsätzlich Vorzuziehen.
+
+\vspace{1em}
+
+Bezüglich der \textit{Maxdepth} entspricht eine Schlüssellänge von mindestens 3072-Bit der geringsten Sicherheitsstufe nach den Kriterien des NIST. 
+
+Es ist denkbar, dass durch die Verwendung zusätzlicher Qubits ein Quantenschaltkreis mit einer geringeren \textit{Maxdepth} konstruiert werden kann, 
+wodurch die nötige Laufzeit unter das Minimum der geringsten Sicherheitsstufe abfallen würde.
+
+Des Weiteren wurde in Sektion~\ref{Funktionsweise:klassisch} erwähnt, 
+dass im Grunde ein \(k\) mit \(k > 2\text{ld}(p)\) ausreichend Genauigkeit gewährt. 
+Ein mögliches Vorgehen wäre, 
+auf eine geringere Größenordnung der Periode zu setzen um so einen Quantenschaltkreis mit einer kleineren \textit{Maxdepth} zu erhalten~\cite{Shor_1997}. 
+Beispielsweise würde ein \(p\) der Größenordnung \(2^{1500}\) mit einem entsprechenden \(k = 2\text{ld}(2^{1500})\) dazu führen, 
+dass die \textit{Maxdepth} von \(2^{40}\) auf \(2^{37}\) reduziert wird. 
+Die Erfolgswahrscheinlichkeit dieses Vorgehen ist eher kritisch anzusehen. 
+Im vorherigen Beispiel ist eine Periode \(p<2^{1500}\) in der Gesamtanzahl aller möglichen Zahlen im Raum \(2^{3072}\) sehr unwahrscheinlich. 
+Konkret ist der Gesamtraum um Faktor \(\frac{2^{3072}}{2^{1500}} = 2^{1572}\) größer als die Größenordnung der vermuteten Periode.  
+Dementsprechend ist die Wahrscheinlichkeit, 
+dass die Periode größer als \(2^{1500}\) auch um einen ähnlichen Faktor größer als die Wahrscheinlichkeit für eine Periode kleiner als \(2^{1500}\)
+
+
+
+
