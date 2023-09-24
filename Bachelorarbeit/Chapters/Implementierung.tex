@@ -2,9 +2,9 @@
 
 \subsection{Quantenalgorithmus}
 Wie im Kapitel~\ref{Funktionsweise} zur Funktionsweise erklärt,
-wird für die Periodenbestimmung die Quanten-Phase-Estimation genutzt.
+wird für die Periodenbestimmung die Quantum-Phase-Estimation genutzt.
 
-Um den Quanten-Phase-Estimation Algorithmus für die Periodenberechnung zu nutzen,
+Um den Quantum-Phase-Estimation Algorithmus für die Periodenberechnung zu nutzen,
 benötigt man ein \(U\)-Gatter, 
 welches die modulare Multiplikation, 
 als eine unitäre Transformation realisiert:
@@ -23,14 +23,14 @@ Zu den erforderlichen arithmetischen Operationen gehört die Addition, Subtrakti
 
 In den folgenden Abschnitten werden die untergeordneten arithmetischen Operationen bis hin zur modularen Multiplikation implementiert.
 
-\subsubsection{Addition}
+\subsubsection{Addition} \label{sec:QuantumAdder}
 Der Quantenschaltkreis für die Addition bildet das Fundament der \(U\)-Gatter und 
 stellt einen der am häufigsten verwendeten Bausteine dar. 
 Deswegen hat die Implementierung der Addition einen erheblichen Einfluss auf den Ressourcenbedarf des gesamten Quantenalgorithmus
 und sollte daher möglichst effizient umgesetzt werden.
 
 Eine Möglichkeit, die Addition als Quantenschaltkreis zu realisieren, 
-besteht im Nachbau eines klassischen Schaltkreises aus Volladdierer. 
+besteht im Nachbau eines klassischen Schaltkreises aus Volladierern. 
 Da es nicht möglich ist, 
 die notwendigen klassischen Gatter wie AND und OR als unitäre Transformation mit nur zwei Qubits darzustellen~\cite{Hoever2023QC},
 werden zusätzliche Hilfsqubits benötigt.
@@ -200,7 +200,7 @@ wird dies zu:
 \end{align*}
 Setzt man in diese Formel zwei Zahlen in Binärschreibweise ein, 
 wird man denselben Zustand erhalten,
-wie, wenn man die Summe der beiden Zahlen in die Formel der Quanten-Fourier-Transformation einsetzt.
+als, würde man die Summe der beiden Zahlen in die Formel der Quanten-Fourier-Transformation einsetzt.
 Beispielsweise sei \(a = 3\) also binär \(a_3 = 0\), \(a_2 = 1\),\(a_1 = 1\) und 
 \(b = 1\) also \(b_3 = 0\), \(b_2 = 0\),\(b_1 = 1\):
 \begin{align*}
@@ -279,7 +279,7 @@ Für die Realisierung der modularen Multiplikation wird zu keinem Zeitpunkt der 
 Genauer gesagt, ist es nicht nötig, ein Quantenregister auf ein anderes zu addieren. 
 Stattdessen wird die Quanten-Addition benutzt, um eine vorab bekannte Zahl auf ein Quantenregister zu addieren.
 
-Bei der Quanten-Addition mit zwei Quantenregister, 
+Bei der Quanten-Addition mit zwei Quantenregistern, 
 wie in Abbildung~\ref{fig:3_qubit_quantum_add} erfolgt die Phasenverschiebung kontrolliert,  
 also in Abhängigkeit des Inhaltes von Quantenregister \(\ket{b}_3\).
 Ist der Inhalt von Quantenregister \(\ket{b}_3\) vorab bekannt,
@@ -299,7 +299,7 @@ wird dieses Phasen-Gatter in der Variante mit nur einem Quantenregister weggelas
     \end{figure}
 In Abbildung~\ref{fig:3_qubit_fixed_quantum_addition} ist die Quanten-Addition für ein 3-Qubit Quantenregister abgebildet.
 Die blauen Phasen-Gatter sorgen für die Quanten-Addition mit einem fixierten Wert von \(3\).
-Vergleicht man Abbildung~\ref{fig:3_qubit_fixed_quantum_addition} mit der Abbildung~\ref{fig:3_qubit_quantum_add} fällt auf, 
+Vergleicht man Abbildung~\ref{fig:3_qubit_fixed_quantum_addition} mit Abbildung~\ref{fig:3_qubit_quantum_add} fällt auf, 
 dass das allererste Phasen-Gatter der Quanten-Addition nicht vorkommt.
 Im Quantenschaltkreis der Abbildung~\ref{fig:3_qubit_quantum_add} würde ein Registerinhalt von \(b = 3\) das Kontrollqubit \(b_3\) nicht setzen. 
 Somit kommt das erste Phasen-Gatter der Quanten-Addition nicht zum Einsatz und 
@@ -388,7 +388,7 @@ als eine Art Borrow-Bit verwendet werden.
 Die Implementierung der Quanten-Subtraktion ist aufgrund der \texttt{inverse} Funktion von Qiskit unkompliziert.
 Wendet man die \texttt{inverse} Funktion auf ein Gatter der Quanten-Addition aus der \texttt{A\_Gate} Funktion an, 
 wird dieses in die Quanten-Subtraktion invertiert.
-Der Code davon ist in~\ref{code:QuantumSub} abgebildet.
+Der zugehörige Code ist in~\ref{code:QuantumSub} abgebildet.
 \begin{figure}[H]
   \caption{Quantum-Subtraktion in Qiskit}
   \label{code:QuantumSub}
@@ -446,7 +446,8 @@ Darauf folgt eine Quanten-Subtraktion,
 die mit dem Subtrahend \(N\) auf das Zielregister \(\ket{\phi(b + a)}\) wirkt und 
 dieses in den Zustand \(\ket{\phi(b + a - N)}\) überführt. 
 Daraus resultieren zwei mögliche Zustände:
-\[1.~(b+a) \geq N~\rightarrow~\ket{\phi((b+a) - N)}_{n+1};~2.~
+\[1.~(b+a) \geq N~\rightarrow~\ket{\phi((b+a) - N)}_{n+1}\]
+\[2.~
 (b+a) < N~\rightarrow~\ket{\phi(2^{n+1}-(N-(a+b)))}_{n+1}
   \]
 Im ersten Fall entspricht das Ergebnis der korrekten Berechnung von \(a+b \mod N\).
@@ -526,7 +527,7 @@ dass nicht alle Quanten-Additionen und Quanten-Subtraktionen kontrolliert durchg
 Die modulare Addition soll nur dann ausgeführt werden, 
 wenn die Kontroll-Qubits \(\ket{c_1}_1\) und \(\ket{c_2}_1\) gesetzt sind.
 
-Beachtet man ausschließlich die kombinierte Wirkung der Gatter des Quantenschaltkreises, 
+Betrachtet man ausschließlich die kombinierte Wirkung der Gatter des Quantenschaltkreises, 
 welche nicht von \(\ket{c_1}\) und \(\ket{c_2}\) kontrolliert sind, 
 führen diese lediglich die Identitätstransformation durch~\cite{beauregard2003circuit}.
 Dies liegt daran, dass keine modulare Addition mit \(a\) durchgeführt werden soll, 
@@ -564,7 +565,7 @@ Die Verwendung ist jedoch nicht zielführend, da diese durch keine unitäre Abbi
 beschrieben werden kann.
 Somit ist die Reset-Transformation nicht unitär und würde deswegen dazu führen, dass alle Quantenalgorithmen, 
 die diese Funktion nutzen, ebenfalls nicht mehr unitär wären.
-Da die Quanten-Phase-Estimation den Eigenwert einer \textit{unitären} Transformation extrahiert, 
+Da die Quantum-Phase-Estimation den Eigenwert einer \textit{unitären} Transformation extrahiert, 
 ist diese Funktion für die Anwendung im Shor-Algorithmus ungeeignet.
 
 \begin{figure} [H]
@@ -731,7 +732,7 @@ wird mit \textit{cond\_qbit} definiert.
 Dieses Qubit dient als Bedingungs-Qubit für die unterliegenden modularen Addition Gatter.
 
 Im Code~\ref{code:ModularMultiplication} wird in Zeile 9 die Quanten-Fourier-Transformation auf 
-das \(\ket{b}_{n+1}\) Quantenregister anwendet.
+das \(\ket{b}_{n+1}\) Quantenregister angewandt.
 In Zeile 10 bis 13 folgen die Gatter zur modularen Addition.
 Da \((b + a \cdot x) \mod N\) äquivalent ist zu \((b + (a \cdot x)\mod N) \mod N\)~\cite{koepf_modular_2021}, 
 wird einem Gatter der modularen Addition nicht der Parameter \(2^i\cdot a\) übergeben, 
@@ -818,7 +819,7 @@ def inv_cmult_gate(x_bits_amount: int,a_bin: list[int],N_bin: list[int]) -> qisk
 Das letzte zu konstruierende Gatter wird als \(U_a\)-Gatter bezeichnet, 
 weil es die benötigte Transformation realisiert: 
 \[U^{\tensor n}\ket{y}_n = \ket{ay \mod N}_n\] 
-Das \(U_a\)-Gatter dient zur Realisierung der Quanten-Phase-Estimation im Shor-Algorithmus, 
+Das \(U_a\)-Gatter dient zur Realisierung der Quantum-Phase-Estimation im Shor-Algorithmus, 
 wie in Abbildung~\ref{fig:shor_n_qubit} dargestellt.
 
 Dafür nimmt das \(U_a\)-Gatter vier Quantenregister entgegen und 
@@ -953,7 +954,7 @@ Die Abbildung zeigt ein Beispiel für \(a=7\) und \(N=15\).
 Der letzte Schritt zur Komplettierung des Quantenschaltkreises für den Quantenalgorithmus, 
 der in der Lage ist, 
 die Periode zu bestimmen, besteht darin, 
-die Quanten-Phase-Estimation wie in Abbildung~\ref{fig:shor_n_qubit} unter Verwendung des \(U_a\)-Gatters zu bilden.
+die Quantum-Phase-Estimation wie in Abbildung~\ref{fig:shor_n_qubit} unter Verwendung des \(U_a\)-Gatters zu bilden.
 
 In Abbildung~\ref{fig:shor_n_qubit} werden unter anderem \({U_a}^{2^x}\)-Gatter eingesetzt.
 Diese können realisiert werden, 
@@ -987,9 +988,9 @@ mit wie vielen Durchläufen der Quantenalgorithmus ausgeführt werden soll.
 Jeder Durchlauf gewährt ein weiteres Messergebnis.
 Der Parameter \textit{backend} ist dazu da, 
 um festzulegen, auf welchem System der Quantenalgorithmus ausgeführt werden soll.
-Standardmäßig wird der Simulator von Qiskit genommen. 
+Standardmäßig wird der Simulator von Qiskit genutzt. 
 Falls Zugang zu einem Quantensystem von IBM besteht, 
-würde man stattdessen die Bezeichnung dem entsprechenden Quantum-Backend verwenden.
+würde man stattdessen die Bezeichnung der entsprechenden Quantum-Backend verwenden.
 
 Die Funktion \texttt{Shor} definiert die beiden Wertebereiche \textit{c\_qbits} und 
 \textit{ev\_qbits}, um die Positionen der beiden Quantenregister zu beschreiben.
@@ -1000,7 +1001,7 @@ deren Position in \textit{ev\_qbits} definiert ist.
 Der Quantenschaltkreis wird in der 5. Zeile definiert und umfasst \(4n+2\) Qubits und 
 \(2n\) klassische Bits, welche zum Messen verwendet werden.
 In Zeilen 6 und 7 wird ein Hadamard-Gatter auf jedes Kontroll-Qubit angewendet.
-In der 8. Zeile wird der Eigenvektor gebildet. 
+In den der 8. Zeile wird der Eigenvektor gebildet. 
 Da der Eigenvektor dem Zustand \(\ket{1}\) entspricht,
 genügt es, wenn das Least-Significant-Qubit mit einem X-Gatter versehen wird.
 In den Zeilen 9 und 10 werden die zugehörigen \({U_a}^{2^x}\)-Gatter mit dem passenden \(x\) auf das Register mit dem Eigenvektor angewendet.
@@ -1009,10 +1010,10 @@ In der 11. Zeile werden die Kontroll-Qubits mit der inverse Quanten-Fourier-Tran
 Da die Funktion \texttt{Shor} Messungen durchführen soll, 
 wird in der 12. Zeile definiert, dass die Kontroll-Qubits gemessen werden.
 In dem Fall entspricht dies den Qubits auf den Positionen \textit{c\_qbits}.
-Anschließend werden in Zeilen 13 und 14 \textit{number\_shots} viele Messungen durchgeführt und 
+Anschließend werden in den Zeilen 13 und 14 \textit{number\_shots} viele Messungen durchgeführt und 
 das Ergebnis wird als Rückgabewert der Funktion zurückgegeben.
 
-Wie bei der Definition des Quantenschaltkreises in Zeil 5 erkennbar, 
+Wie bei der Definition des Quantenschaltkreises in Zeile 5 erkennbar, 
 benötigt der Quantenschaltkreis \(4n+2\) Qubits anstatt \(2n+3\).
 Die Reduktion der benötigten Qubits wird in der Sektion~\ref{Optimierung} thematisiert. 
 
@@ -1051,21 +1052,21 @@ weshalb auch die \({U_a}^{2^x}\)-Gatter zu \(U\_1\) werden.
   \end{figure}
 
 \subsection{Faktorisierungsalgorithmus}
-Der Faktorisierungsalgorithmus kombiniert die Quanten-Phase-Estimation zur Periodenberechnung mit  
+Der Faktorisierungsalgorithmus kombiniert die Quantum-Phase-Estimation zur Periodenberechnung mit  
 der klassischen Nachberechnung. 
 Der Hauptfokus der Implementierung liegt darauf, 
-die Schwächen der Messergebnisse der Quanten-Phase-Estimation mithilfe klassischer Methoden zu kompensieren.
+die Schwächen der Messergebnisse der Quantum-Phase-Estimation mithilfe klassischer Methoden zu kompensieren.
 
 Es ist zu erwarten, 
 dass die Ausführung von Quantenberechnungen auch mit zukünftig fortschrittlichen Quantencomputern kostenintensiv sein wird~\cite{Shor_1997}.
 Daher wäre es ineffizient, 
-die Quanten-Phase-Estimation so oft zu wiederholen, 
+die Quantum-Phase-Estimation so oft zu wiederholen, 
 bis ein Ergebnis erzielt wird, dass die Periode direkt offenbart.
 Stattdessen ist es ressourcensparender, 
 ein erhaltenes Messergebnis, 
 unter Berücksichtigung der in Abschnitt~\ref{Funktionsweise:klassisch} erklärten drei möglichen Szenarien,
 mit klassischen Methoden aufzubereiten. 
-Als Resultat können so weitere Durchläufe der Quanten-Phase-Estimation eingespart und 
+Als Resultat können so weitere Durchläufe der Quantum-Phase-Estimation eingespart und 
 durch klassische Rechenleistung ersetzt werden.
 
 \vspace{1em}
@@ -1081,7 +1082,7 @@ der Anwendung des Kettenbruch-Algorithmus mit einem Nenner kleiner als \(N\),
 die Periode erfolgreich extrahiert werden kann.
 
 Die grünen Ergebnisse offenbaren direkt die gesuchte Periode von \(p = 24\).
-Ein Faktorisierungsalgorithmus, welcher so lange die Quanten-Phase-Estimation wiederholt, 
+Ein Faktorisierungsalgorithmus, welcher so lange die Quantum-Phase-Estimation wiederholt, 
 bis ein Messergebnis die ungekürzte Periode enthält, 
 wird ausschließlich bei den grünen Ergebnissen erfolgreich sein.
 
@@ -1123,7 +1124,7 @@ Am Anfang des Algorithmus wird zufällig ein \(a\) definiert,
 welches größer als 1, aber kleiner als \(N\) ist.
 
 Für den ungewöhnlichen Fall, dass \(a\) einen gemeinsamen, nicht-trivialen Teiler mit \(N\) hat, 
-ist dieser einer der gesuchten Faktoren von \(N\) 
+ist dieser einer der gesuchten Faktoren von \(N\), 
 weswegen der Algorithmus terminiert.
 Die Überprüfung, ob \(a\) und \(N\) einen Faktor teilen, 
 kann mit Euklids Algorithmus mit maximal polynomialen Aufwand berechnet werden~\cite[301]{homeister2023quantum215}. 
@@ -1137,8 +1138,8 @@ welche bei weiteren Berechnungen dabei helfen könnten, die Periode zu finden.
 
 Darauf folgt der einzige quantenalgorithmische Bestandteil der Berechnung, 
 welcher auf einem Quantencomputer ausgeführt wird.
-Konkret geht es um die Ausführung der für die Periodenbestimmung angepassten Quanten-Phase-Estimation. 
-Für ein ressourceneffizienteres Vorgehen wird nur ein Durchlauf der Quanten-Phase-Estimation angestoßen.
+Konkret geht es um die Ausführung der für die Periodenbestimmung angepassten Quantum-Phase-Estimation. 
+Für ein ressourceneffizienteres Vorgehen wird nur ein Durchlauf der Quantum-Phase-Estimation angestoßen.
 Anhand des einzelnen Messergebnisses wird die Berechnung fortgesetzt.
 
 Die nächsten Berechnungen werden wieder auf einem klassischen Rechnersystem ausgeführt.
@@ -1161,7 +1162,7 @@ zu überprüfen, ob ein Vielfaches des Nenners die Periode darstellt.
 Dabei ist zu beachten, bis zu welchem Vielfachen diese Überprüfung durchgeführt wird. 
 Ein sinnvoller Ansatz wäre, eine Obergrenze festzulegen, die logarithmisch mit \(n\) wächst.
 Andernfalls könnte es bei sehr großen Werten für \(N\) passieren, 
-dass zu viele klassische Berechnungen anfallen, die in keinem vertretbaren Zeitaufwand durchführbar sind.
+dass zu viele klassische Berechnungen anfallen würden, die in keinem vertretbaren Zeitaufwand durchführbar wären.
 
 Sollte die Periode keines der getesteten Vielfachen des Nenners darstellen, 
 wird das kleinste gemeinsame Vielfache(kgV) des aktuellen Nenners mit den einzelnen Nennern aus dem Set gebildet.
@@ -1192,7 +1193,7 @@ In Abbildung~\ref{fig:shor_measure} repräsentiert der Zustand \(\ket{6837}_{14}
 
 Sollte trotz der Nachberechnung keine Periode extrahiert werden können, 
 wird der Bruch des Messergebnisses im Set gespeichert.
-Anschließend wird ein neuer Durchlauf der Quanten-Phase-Estimation 
+Anschließend wird ein neuer Durchlauf der Quantum-Phase-Estimation 
 mit demselben \(a\) durchgeführt.
 
 Im Falle, dass die Periode direkt extrahiert werden konnte oder 
@@ -1211,9 +1212,8 @@ indem \(N\) durch den gefundenen Faktor dividiert wird.
 Falls die Periode ungerade ist oder die zweite Bedingung nicht erfüllt ist, 
 ist es nicht möglich, aus der gefundenen Periode die Faktoren zu berechnen~\cite{Shor_1997}.
 In diesem Fall wird ein neues \(a\) gewählt und ein neues leeres Set definiert. 
-Das alte Set beinhaltet Informationen zur Periode des vorherigen \(a\), 
-welche keinen Nutzen mehr haben und somit keinen weiteren Gebrauch hat.
-Anschließend wird mit dem neuen \(a\) die Quanten-Phase-Estimation ausgeführt und 
+Das alte Set beinhaltet Informationen zur Periode des vorherigen \(a\).
+Anschließend wird mit dem neuen \(a\) die Quantum-Phase-Estimation ausgeführt und 
 die Berechnung wiederholt.
 
 Im Flussdiagramm und in der Beschreibung 
@@ -1244,14 +1244,14 @@ Somit handelt es sich bei den Optimierungen um Lösungen,
 die situationsbedingt besser sind.
 Dabei sind die Eigenschaften und die Architektur des genutzten Quantencomputers die ausschlaggebenden Kriterien.
 
-\subsubsection{Iterative Quanten-Phase-Estimation}
-In den vorherigen Kapiteln wurde die Quanten-Phase-Estimation in der Standardvariante, 
-wie in Sektion~\ref{Quanten-Phase-Estimation} beschrieben, verwendet.
+\subsubsection{Iterative QuanQuantumten-Phase-Estimation}
+In den vorherigen Kapiteln wurde die Quantum-Phase-Estimation in der Standardvariante, 
+wie in Sektion~\ref{Quantum-Phase-Estimation} beschrieben, verwendet.
 In der Standardvariante wird für jedes \(U^{2^x}\)-Gatter ein eigenes Kontroll-Qubit benötigt.
 Dies bedeutet, wenn \(2n\) viele \(U^{2^x}\)-Gatter angewendet werden sollen, 
 sind genau so viele Kontroll-Qubits nötig.
 
-Ein zentraler Bestandteil der Quanten-Phase-Estimation ist die (inverse) Quanten-Fourier-Transformation. 
+Ein zentraler Bestandteil der Quantum-Phase-Estimation ist die (inverse) Quanten-Fourier-Transformation. 
 Wie im Abschnitt~\ref{Quanten-Fourier-Transformation} gezeigt, 
 hängt die Wirkung dieser Transformation auf ein einzelnes Qubit von den Zuständen der anderen Qubits ab 
 und zwar aufgrund von kontrollierten Phasenverschiebungen.
@@ -1267,17 +1267,17 @@ Dementsprechend sind bei der inversen Quanten-Fourier-Transformation die kontrol
 
 Die Abhängigkeit zum Ausgangszustand ermöglicht es, 
 die inverse Quanten-Fourier-Transformation aufzuteilen und die Bestandteile iterativ anzuwenden.
-Dadurch wird der Ressourcenbedarf der Quanten-Phase-Estimation von \(2n\) Kontroll-Qubits auf ein einzelnes reduziert~\cite{Parker2000}.
+Dadurch wird der Ressourcenbedarf der Quantum-Phase-Estimation von \(2n\) Kontroll-Qubits auf ein einzelnes reduziert~\cite{Parker2000}.
 
 In der Standardvariante der Quanten-Fourier-Transformation kontrollieren Qubits die Phasen-Gatter.
-In der semi-klassischen beziehungsweise iterativen Variante ist dies anders.
+In der semi-klassischen beziehungsweise, iterativen Variante ist dies anders.
 Diese Methode kam erstmals 1995 zum Einsatz und 
 nutzt das klassische Signal einer Messung, 
 um ein Quanten-Gatter zu kontrollieren~\cite{Griffiths_1996}.
 Im Kern der Optimierung liegt der Trick, 
 das Messergebnis des jeweiligen Qubits als Steuerungsbedingung für ein Phasen-Gatter zu verwenden.
 
-Die Quanten-Phase-Estimation verwendet die inverse Quanten-Fourier-Transformation mit Swap-Gattern.
+Die Quantum-Phase-Estimation verwendet die inverse Quanten-Fourier-Transformation mit Swap-Gattern.
 Da die identische Transformation benötigt wird, 
 muss die iterative Variante das Verhalten der Swap-Gatter berücksichtigen.
 Zur besseren Verständlichkeit ist die inverse Quanten-Fourier-Transformation mit Swap-Gattern in Abbildung~\ref{fig:iQFTswaps} dargestellt.
@@ -1299,7 +1299,7 @@ indem nach der Anwendung des Hadamard-Gatters auf das \(\ket{q3}_1\) Qubit
 der Messwert im klassischen Bit \(c1\) gespeichert wird.
 Anschließend kontrolliert das klassische Bit \(c1\) die Phasen-Gatter.
 
-Um nach der Messung dasselbe Kontroll-Qubit für \(\ket{q2}_1\) verwendet zu können, 
+Um nach der Messung dasselbe Kontroll-Qubit für \(\ket{q2}_1\) verwenden zu können, 
 muss dieses in einen eindeutigen Zustand versetzt werden, 
 in diesem Fall der Zustand \(\ket{0}\).
 Aufgrund der zuvor durchgeführten Messung 
@@ -1312,7 +1312,7 @@ Somit befindet sich das Qubit in beiden Fällen im Zustand \(\ket{0}\).
 Anschließend beginnt die Sequenz für das \(\ket{q2}_1\) Qubit.
 Das bedeutet, dass alle Operationen, die von dem \(\ket{q2}_1\) Qubit abhängig sind, 
 jetzt erst angewendet werden.
-Im Kontext der Quanten-Phase-Estimation wird an dieser Stelle das zugehörige \(U^{2^x}\)-Gatter von \(\ket{q2}_1\) kontrolliert.
+Im Kontext der Quantum-Phase-Estimation wird an dieser Stelle das zugehörige \(U^{2^x}\)-Gatter von \(\ket{q2}_1\) kontrolliert.
 In Abbildung~\ref{fig:iterative_iQFT} entspricht dies der Stelle, an der die Bezeichnung \(\ket{q2}\) steht.
 Im nächsten Schritt werden die Gatter der Quanten-Fourier-Transformation angewendet, gefolgt von einer Messung. 
 Das Ergebnis dieser Messung wird in einem weiteren klassischen Bit gespeichert, in diesem Fall \(c2\).
@@ -1332,12 +1332,12 @@ den Effekt der Swap-Gatter nachzubilden.
   \end{figure}
   
 Wie im vorherigen Absatz erwähnt, 
-werden bei der iterativen Quanten-Phase-Estimation die \(U^{2^x}\)-Gatter zwischen den Abschnitten 
+werden bei der iterativen Quantum-Phase-Estimation die \(U^{2^x}\)-Gatter zwischen den Abschnitten 
 der iterativen Quanten-Fourier-Transformation angewendet. 
 
-Als Ergebnis besitzt der Quantenschaltkreis für den Shor Algorithmus mit der iterative Quanten-Phase-Estimation eine grundlegende andere Struktur 
+Als Ergebnis besitzt der Quantenschaltkreis für den Shor Algorithmus mit der iterativen Quantum-Phase-Estimation eine grundlegend andere Struktur 
 im Vergleich zur regulären Variante.
-Dies resultiert daraus, dass die iterative Quanten-Fourier-Transformation kein zusammenhängender Baustein ist, 
+Dies resultiert darin, dass die iterative Quanten-Fourier-Transformation kein zusammenhängender Baustein ist, 
 sondern dass die einzelnen Bestandteile schrittweise zwischen 
 den einzelnen \(U^{2^x}\)-Gatter angewendet werden.
 Aufgrund der benötigten klassisch-kontrollierten Phasen-Gatter wird die iterative Quanten-Fourier-Transformation nicht als einzelne Gatter, 
@@ -1355,11 +1355,11 @@ Der letzte Parameter, \textit{controlling\_qubit}, beinhaltet das Ziel der angew
 somit die Position des Kontroll-Qubit.
 
 Wenn der Parameter \textit{target} dem Wert 0 entspricht, 
-wird die iterative Quanten-Fourier-Transformation für das Most-Significant-Bit angewendet werden.
+wird die iterative Quanten-Fourier-Transformation für das Most-Significant-Bit angewendet.
 Wie in Abbildung~\ref{fig:iterative_iQFT} gezeigt, entspricht dies nur der Anwendung eines einzelnen Hadamard-Gatters.
 In Zeile drei und vier ist zu erkennen, 
 dass mit abnehmender Wertigkeit eines Qubits zunehmend mehr Phasen-Gatter angewendet werden.
-Alle Phasen-Gatter, welche in der vierten Zeile angewendeten werden, 
+Alle Phasen-Gatter, welche in der vierten Zeile genutzt werden, 
 wirken auf das \textit{controlling\_qubit} und 
 werden von unterschiedlichen klassischen Bits mit der Methode \(c\_if\) kontrolliert.
 
@@ -1427,7 +1427,7 @@ Aufgrund des geringeren \(k\) kommen dementsprechend weniger \(U^{2^x}\)-Gatter 
   \centering
   \end{figure}
 
-Der ausschlaggebende Vorteil der iterativen Quanten-Phase-Estimation besteht darin, 
+Der ausschlaggebende Vorteil der iterativen Quantum-Phase-Estimation besteht darin, 
 dass diese Variante im Vergleich zur zuvor in Sektion~\ref{section:imp_QPE_Shor} implementierten Variante den Ressourcenbedarf von \(4n+2\) Qubits auf \(2n+3\) Qubits reduziert.
 
 Ein weiterer Vorteil dieser Variante ist, 
@@ -1440,7 +1440,7 @@ Der Nachteil der iterativen Variante besteht darin,
 dass die einzelnen Episoden der semi-klassischen Quanten-Fourier-Transformation nicht parallel angewendet werden können.
 Hingegen ist es möglich, die regulären inverse Quanten-Fourier-Transformation, bis zu einem gewissen Grad, 
 parallel Anzuwenden.
-Da dies aber lediglich die letzte Anwendung der Quanten-Fourier-Transformation im Quanten-Phase-Estimation Algorithmus betrifft, 
+Da dies aber lediglich die letzte Anwendung der Quanten-Fourier-Transformation im Quantum-Phase-Estimation Algorithmus betrifft, 
 ist diese zusätzliche Laufzeit vernachlässigbar.
 
 Da sowohl bei der regulären als auch bei der iterativen Variante, 
@@ -1503,7 +1503,7 @@ auf denen seine Arbeiten öffentlich zugänglich sind.
 Die einzige nützliche Information, die dabei gefunden wurde, 
 war seine Zugehörigkeit zur University of Montreal. 
 Auf LinkedIn wurde ein anderer Stéphane Beauregard gefunden, 
-der zufällig auch an der University of Montreal war. Auf Nachfrage wurde jedoch geklärt, 
+der zufällig auch an der University of Montreal war. Auf Nachfrage wurde jedoch herausgefunden, 
 dass es sich um eine andere Person handelt. 
 Eine Anfrage bei der University of Montreal selbst war aus Datenschutzgründen erfolglos. 
 Als letzte Option wurde der häufigste Co-Autor kontaktiert. 
@@ -1513,7 +1513,7 @@ hatte auch Guy Lapalme keine Kontaktinformationen von Beauregard.
 
 \vspace{1em}
 
-Im Faktorisierungsalgorithmus wird die iterative Quanten-Phase-Estimation genutzt, 
+Im Faktorisierungsalgorithmus wird die iterative Quantum-Phase-Estimation genutzt, 
 wenn die Anzahl der erforderlichen Qubits für die reguläre Variante mit \(4n+2\) Qubits einen zu hohen Ressourcenbedarf darstellt, 
 den der genutzte Quantencomputer nicht bereitstellen kann. 
 In diesem Fall wird auf Kosten der Laufzeit die sparsamere Variante angewendet. 
@@ -1584,7 +1584,8 @@ die wiederum durch die geringere Fehlerrate kompensiert wird.
 Das optimale \(m\) nähert sich der Untergrenze von~\cite{Barenco_1996}:
 \[m \geq \text{ld}(n)+2\]
 
-Die Approximationstechnik kann auch in der iterativen beziehungsweise semi-klassischen Quanten-Fourier-Transformation angewendet werden. 
+Die Approximationstechnik kann auch in der iterativen beziehungsweise, 
+semi-klassischen Quanten-Fourier-Transformation angewendet werden. 
 Bei der Implementierung für den Shor-Algorithmus ist darauf zu achten, 
 dass alle verwendeten Quanten-Fourier-Transformationen, also sowohl die in den \(U^{2^x}\)-Gattern als auch die finale Transformation vor dem Basiswechsel, 
 das gleiche \(m\) nutzen.
@@ -1602,7 +1603,7 @@ Der Grund, warum die approximative Variante verwendet wird,
 liegt darin, dass das Ergebnis bereits bei kleinen \(n\) eine gute Genauigkeit gewährt. 
 Dies wird deutlich, wenn man Abbildung~\ref{fig:shor_measure} mit \(m=n=7\) und
 Abbildung~\ref{fig:shor_measure_AQFT} mit \(m=4\) vergleicht.
-Abgesehen von \(m\) sind die Berechnungen in beider Abbildungen identisch.
+Abgesehen von \(m\) sind die Berechnungen in beiden Abbildungen identisch.
 Mit steigendem \(n\) nimmt die Ungenauigkeit durch die fehlenden Gatter ab, 
 bis sie schließlich ganz vernachlässigbar wird~\cite{cheung2004improved}.
 

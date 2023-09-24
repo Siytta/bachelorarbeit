@@ -44,8 +44,8 @@ Diese Vorgehen ergibt sich aus der Tatsache, dass ein Quantencomputer effektiv d
 Übergeordnete, spezialisierte Gatter werden demzufolge in ihre elementaren Komponenten zerlegt. 
 Eine Zählung der spezialisierten Gatter wäre somit nicht repräsentativ für die tatsächliche Ressourcennutzung.
 
-Die Zählung der Anzahl der Gatter sowie der \textit{Maxdepth} des Quantenschaltkreises wurden spezifische Funktionen der Qiskit-Bibliothek genutzt. 
-Diese Funktionen erlauben die Bestimmung der Anzahl an Gatter oder der \textit{Maxdepth} in einem Quantenschaltkreis.
+Für die Zählung der Anzahl der Gatter sowie der \textit{Maxdepth} des Quantenschaltkreises wurden spezifische Funktionen der Qiskit-Bibliothek genutzt. 
+Diese Funktionen erlauben die Bestimmung der Anzahl an Gatter und der \textit{Maxdepth} in einem Quantenschaltkreis.
 Dabei ist zu beachten, dass diese Funktionen keine Unterscheidung zwischen elementaren und spezialisierten Gattern treffen.
 Daher konnte die Funktion nicht direkt auf den vorliegenden Quantenschaltkreis angewendet werden. 
 Als Lösungsansatz wurde der Code zur Zählung modifiziert, um sicherzustellen, dass der Quantenschaltkreis ausschließlich aus Basisgattern besteht.
@@ -55,20 +55,20 @@ Die Analyse beinhaltet eine Untersuchung von vier Varianten des Shor-Algorithmus
 die jeweils unterschiedliche Kombinationen der in Sektion~\ref{Optimierung} erörterten Optimierungsstrategien implementieren.
 Die vier Varianten werden nach den implementierten Optimierungsstrategien in die Kategorien \textit{Reguläre}, 
 \textit{Approximative}, \textit{Iterative} und \textit{Approximative-Iterative} eingeteilt.
-In den Kategorien unterscheidet sich insbesondere die Nutzung der Quanten-Phase-Estimation und der Quanten-Fourier-Transformation. 
-Während die \textit{Reguläre} Variante auf die \(4n+2\) Qubit Version der der Quanten-Phase-Estimation mit der exakten Quanten-Fourier-Transformation setzt, 
+In den Kategorien unterscheidet sich insbesondere die Nutzung der Quantum-Phase-Estimation und der Quanten-Fourier-Transformation. 
+Während die \textit{Reguläre} Variante auf die \(4n+2\) Qubit Version der der Quantum-Phase-Estimation mit der exakten Quanten-Fourier-Transformation setzt, 
 nutzt die \textit{Approximative} Variante ebenfalls die \(4n+2\) Qubit Variante, 
 verwendet jedoch die approximative Quanten-Fourier-Transformation mit einem Approximationsfaktor von \(m = \lceil\text{ld}(n)+2\rceil\).
 
-Die \textit{Iterative} Variante bedient sich der iterativen Quanten-Phase-Estimation mit \(2n+3\) Qubits und 
+Die \textit{Iterative} Variante bedient sich der iterativen Quantum-Phase-Estimation mit \(2n+3\) Qubits und 
 verwendet die exakten Quanten-Fourier-Transformation, dementsprechend in iterativer Anwendung.
-Die \textit{Approximative-Iterative} Variante verwendet ebenfalls die iterativen Quanten-Phase-Estimation mit \(2n+3\) Qubits, 
+Die \textit{Approximative-Iterative} Variante verwendet ebenfalls die iterativen Quantum-Phase-Estimation mit \(2n+3\) Qubits, 
 aber ergänzt die iterativ angewendete Quanten-Fourier-Transformation um einen Approximationsfaktor von \\\(m = \lceil\text{ld}(n)+2\rceil\).
-bedient sich der approximative Quanten-Fourier-Transformation in iterativer Anwendung.
 
 Die Analyse bezieht sich auf die Schlüssellängen des RSA-Kryptosystems von 1024-Bit, 2048-Bit, 3072-Bit und 4096-Bit. 
 Nach aktuellem Stand empfiehlt das BSI für das RSA-Verfahren keine Schlüssellänge unter 3000-Bit~\cite{BSI2023}. 
-Nichtsdestotrotz kommen auch kürzere Varianten des RSA-Kryptosystems zum Einsatz, weshalb diese ebenfalls berücksichtigt werden.
+Nichtsdestotrotz sind heutzutage noch immer Varianten des RSA-Kryptosystems in Einsatz, welche kürzere Schlüssel verwenden, 
+weshalb diese ebenfalls berücksichtigt werden.
 
 \vspace{1em}
 
@@ -103,14 +103,62 @@ Stattdessen ist die Schlüssellänge der einzige Faktor,
 der die \textit{Maxdepth} beeinflusst.
 
 Hingegen ermöglicht der Einsatz eines approximativen und iterativen Ansatzes deutliche Einsparungen im Hinblick auf den Ressourcenbedarf. 
-Im Vergleich zu einer Schlüssellänge von 4096-Bit lässt die approximative Variante eine Reduktion der gesamten Anzahl an Gattern um etwa den Faktor 100 zu. 
+Im Vergleich zu einer Schlüssellänge von 4096-Bit ermöglicht die Verwendung der approximativen Quanten-Fourier-Transformation im Vergleich zur exakten Variante eine Reduzierung der Gesamtanzahl an Gattern um etwa den Faktor 100.
 Wie in Sektion~\ref{sec:ApproxQFT} erwähnt, ist der Genauigkeitsverlust durch die approximative Variante für große \(n\) beziehungsweise konkret Schlüssellänge vernachlässigbar. 
 Des Weiteren, schneidet die approximative Variante in Anwesenheit von Dekohärenz aufgrund der geringeren Anzahl an Gattern besser ab~\cite{Barenco_1996}. 
 Diese Aspekte sprechen dafür, den approximativen Ansatz grundsätzlich Vorzuziehen.
 
 \vspace{1em}
 
-Bezüglich der \textit{Maxdepth} entspricht eine Schlüssellänge von mindestens 3072-Bit der geringsten Sicherheitsstufe nach den Kriterien des NIST. 
+Unter Sektion~\ref{sec:QuantumAdder} wurde gesagt, 
+dass der Nachbau von klassischen Volladdierer in einem Quantenschaltkreise mehr Ressourcen benötigt, 
+als die Quantum Addition. 
+Da der Baustein der die Addition häufig im gesamten Shor-Algorithmus verwendet wird, 
+ist dementsprechend auch der Einfluss auf den Gesamtbedarf ausschlaggebend. 
+
+Um ein Abwägung beider Methoden zu haben, 
+werden die Ergebnisse der Analyse mit dem berechneten Ressourcenbedarf aus der Publikation "'Estimation of Shor’s Circuit for 2048-bit Integers
+based on Quantum Simulator"`~\cite{cryptoeprint:2023/092} verglichen. 
+Die Publikation verwendet zum Nachbau des Shor-Algorithmus einen ähnlichen Ansatz und verwendet beispielsweise auch ein \(k\) welches \(2n\) entspricht. 
+Der entscheidende Unterschied liegt darin, 
+dass die Variante aus der Publikation, die klassische Volladdierer 
+nach der Anleitung von \textit{Vedral}, \textit{Barenco} und \textit{Ekert}\cite{Vedral_1996} verwendet.
+\begin{table}[H] \label{Volladdierer_Analyse}
+    \centering
+    \caption{Vergleich Shor-Algorithmus mit Volladdierer~\cite{cryptoeprint:2023/092}}
+    \begin{tabular}{|l|l|l|l|l|}
+        \hline
+        \textbf{Variante} & \textbf{Schlüssellänge} & \textbf{Qubits} & \textbf{Gatteranzahl} & \textbf{Maxdepth} \\ \hline
+        Volladdierer & 1024-Bit & 5121 & \(2^{38}\) & \(2^{38}\) \\ \hline
+        Volladdierer & 2048-Bit & 10241 & \(2^{41}\) & \(2^{41}\) \\ \hline
+    \end{tabular}
+\end{table}
+In der Publikation werden die Ressourcen nur für jeweils \(1024\) und \(2048\) Bit bestimmt. 
+Nichtsdestotrotz lässt sich im direkten Vergleich feststellen, 
+dass die Verwendung der Quanten-Addition in allen Fällen zu einer geringeren \textit{Maxdepth} führt. 
+Des Weiteren wird am Bedarf an Qubit deutlich, dass die Verwendung von Volladdierer zusätzliche Hilfqubits benötigt. 
+Lediglich beim Gesamtbedarf an Quantengattern schneidet die Variante mit den Volladdierer besser ab, 
+als die Varianten, welche die exakt Quanten-Fourier-Transformation nutzen. 
+Hingegen weist der approximativen Ansatz einen äquivalenten Gesamtbedarf an Quantengattern auf.
+
+
+\vspace{1em}
+
+Bezüglich der \textit{Maxdepth} erfüllt eine Schlüssellänge von mindestens 3072-Bit die Kriterien der geringsten Sicherheitsstufe. 
+Dabei ist aber zu beachten, dass diese \textit{Maxdepth} nur für einen einzelnen Durchlauf des Quantenalgorithmus gilt. 
+Wenn mehrere Durchläufe benötigt werden, steigt dementsprechend auch die \textit{Maxdepth} der gesamten Berechnung.
+Wie in Sektion~\ref{Funktionsweise:klassisch} erklärt, 
+kann es ohne klassische Nachberechnungen bis zu \(2\text{ld}(N)\) Messungen notwendig sein, 
+bis ein Messergebnis die ungekürzte Periode enthält. 
+Im Bezug auf eine Schlüssellänge von 3072-Bit, 
+würde das im Worst-Case \(2\text{ld}(2^{3072})\) also ca. \(2^{13}\) Durchläufe bedeuten. 
+Dementsprechend eine gesamte \textit{Maxdepth} aller Durchläufe von \(2^{40} \cdot 2^{13}\) also insgesamt \(2^{53}\).
+Unter Beachtung der erforderlichen Laufzeiten, 
+wird die Sinnhaftigkeit von intensiven Nachberechnungen mit klassischen Methoden verdeutlicht. 
+
+\vspace{1em}
+
+ 
 
 Es ist denkbar, dass durch die Verwendung zusätzlicher Qubits ein Quantenschaltkreis mit einer geringeren \textit{Maxdepth} konstruiert werden kann, 
 wodurch die nötige Laufzeit unter das Minimum der geringsten Sicherheitsstufe abfallen würde.
@@ -118,14 +166,16 @@ wodurch die nötige Laufzeit unter das Minimum der geringsten Sicherheitsstufe a
 Des Weiteren wurde in Sektion~\ref{Funktionsweise:klassisch} erwähnt, 
 dass im Grunde ein \(k\) mit \(k > 2\text{ld}(p)\) ausreichend Genauigkeit gewährt. 
 Ein mögliches Vorgehen wäre, 
-auf eine geringere Größenordnung der Periode zu setzen um so einen Quantenschaltkreis mit einer kleineren \textit{Maxdepth} zu erhalten~\cite{Shor_1997}. 
+auf eine geringere Größenordnung der Periode zu spekulieren, 
+um so einen Quantenschaltkreis mit einer kleineren \textit{Maxdepth} zu erhalten~\cite{Shor_1997}. 
 Beispielsweise würde ein \(p\) der Größenordnung \(2^{1500}\) mit einem entsprechenden \(k = 2\text{ld}(2^{1500})\) dazu führen, 
-dass die \textit{Maxdepth} von \(2^{40}\) auf \(2^{37}\) reduziert wird. 
-Die Erfolgswahrscheinlichkeit dieses Vorgehen ist eher kritisch anzusehen. 
-Im vorherigen Beispiel ist eine Periode \(p<2^{1500}\) in der Gesamtanzahl aller möglichen Zahlen im Raum \(2^{3072}\) sehr unwahrscheinlich. 
+dass die \textit{Maxdepth} des Quantenschaltkreises von \(2^{40}\) auf \(2^{37}\) reduziert wird. 
+Jedoch ist die Erfolgswahrscheinlichkeit dieses Vorgehen ist eher kritisch anzusehen. 
+Im vorherigen Beispiel ist eine Periode kleiner als \(2^{1500}\) in der Gesamtanzahl aller möglichen Zahlen im Raum \(2^{3072}\) sehr unwahrscheinlich. 
 Konkret ist der Gesamtraum um Faktor \(\frac{2^{3072}}{2^{1500}} = 2^{1572}\) größer als die Größenordnung der vermuteten Periode.  
-Dementsprechend ist die Wahrscheinlichkeit, 
-dass die Periode größer als \(2^{1500}\) auch um einen ähnlichen Faktor größer als die Wahrscheinlichkeit für eine Periode kleiner als \(2^{1500}\)
+Daher ist die Wahrscheinlichkeit, 
+dass die Periode größer als \(2^{1500}\) ist, 
+auch um einen ähnlichen Faktor höher als die Wahrscheinlichkeit, dass sie kleiner als \(2^{1500}\) ist.
 
 
 

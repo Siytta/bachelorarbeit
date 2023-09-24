@@ -8,10 +8,10 @@ Der erste Algorithmus ermöglicht die effiziente Berechnung der Primfaktorzerleg
 während der zweite Algorithmus die effiziente Berechnung des diskreten Logarithmus ermöglicht.
 Aufgrund ihrer konzeptionellen Ähnlichkeiten werden beide Algorithmen häufig kollektiv als "`Shors Algorithmus"' bezeichnet.
 
-Die Quantenberechnungen beider Algorithmen basieren auf arithmetische Operationen in Restklassen und der Quanten-Fourier-Transformation.
+Die Quantenberechnungen beider Algorithmen basieren auf arithmetischen Operationen in Restklassen und der Quanten-Fourier-Transformation.
 Da Shor die Umsetzung von arithmetischen Operationen in Restklassen sowie die Quanten-Fourier-Transformation nicht explizit behandelt,
 stützt sich die Implementierung auf den Ergebnissen weiterer Arbeiten. 
-Diese untersuchen insbesondere effiziente Methoden zur Durchführung von arithmetischer Operationen in Restklassen innerhalb eines Quantenschaltkreises.
+Diese untersuchen insbesondere effiziente Methoden zur Durchführung von arithmetischen Operationen in Restklassen innerhalb eines Quantenschaltkreises.
 Einige dieser Arbeiten untersuchen die Quanten-Fourier-Transformation, 
 da diese ein notwendiges Element für gewisse Berechnungen darstellt.
 
@@ -32,13 +32,14 @@ realisieren die modularen Exponentiation,
 indem klassische Schaltkreise identisch in den Quantenkontext übersetzt werden~\cite{Vedral_1996}.
 Der Nachbau von klassischen Operationen ist aufgrund der unitären Natur von Quantenoperationen nicht die effizienteste Realisierung.
 Des Weiteren meiden andere Arbeiten die Realisierung der modularen Exponentiation für allgemeine Eingaben~\cite{9376169,9686492}. 
-Ohne modulare Exponentiation sind diese Varianten nicht in der Lage die Berechnung variabler Werte zu verarbeiten.
+Ohne modulare Exponentiation sind diese Varianten nicht in der Lage, 
+die Berechnung variabler Werte zu verarbeiten.
 Stattdessen dienen diese ausschließlich der Demonstration der Funktionsweise von Shors Algorithmus und
 sind nur in der Lage, ausgewählte Eingaben zu verarbeiten.
 
 Bei Recherchen wurde keine allgemeine Variante gefunden,
-die weniger Qubits benötigt als die Variante aus der Arbeit \textit{"`Circuit for Shor’s algorithm using 2n+3 qubits"'},
-deswegen bildet diese die Grundlage der Implementierung ab.
+die weniger Qubits benötigt als die Variante aus der Arbeit \textit{"`Circuit for Shor’s algorithm using 2n+3 qubits"'}.
+Deswegen bildet diese die Grundlage der Implementierung ab.
 
 Des Weiteren wurde untersucht, 
 ob bereits vergleichbare Implementierungen von Shors Algorithmus für Qiskit existieren. 

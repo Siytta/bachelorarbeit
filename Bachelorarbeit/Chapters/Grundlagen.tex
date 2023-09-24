@@ -118,7 +118,7 @@ also die Vorfaktoren, zu bestimmen.
 
 Um ein konkretes Ergebnis zu erhalten, 
 muss das Qubit gelesen werden, 
-beziehungsweise genauer gesagt gemessen.
+beziehungsweise genauer gesagt, gemessen.
 Durch die Messung wird die Superposition zerstört und 
 das Qubit kollabiert in einen der beiden Basiszustände.
 
@@ -203,7 +203,7 @@ verwendet ein Quantencomputer Quantengatter,
 um die Zustände von Qubits zu steuern. 
 Im Gegensatz zu klassischen logischen Gattern führen Quantengatter stets unitäre Transformationen durch. 
 Das bedeutet, dass die durch das Quantengatter bewirkte Änderung reversibel ist und 
-bewahrt die Norm des Zustandsvektors. 
+die Norm des Zustandsvektors bewahrt. 
 Somit wird die grundlegende Bedingung eines Qubits nicht verletzt:
 \begin{center}
 \(\lvert\alpha\rvert^2 + \lvert\beta\rvert^2 = 1\)
@@ -211,7 +211,9 @@ Somit wird die grundlegende Bedingung eines Qubits nicht verletzt:
 
 Im Verlauf dieser Arbeit werden insbesondere Pauli-X-Gatter, Hadamard-Gatter und Phasen-Gatter verwendet. 
 Die Transformationen dieser Gatter werden in Form einer Matrix beschrieben.
+
 \vspace{1em}
+
 \subsubsection*{Pauli-X-Gatter}
 Das Pauli-X-Gatter oder auch X-Gatter und Not-Gatter genannt, 
 wirkt die Transformation: 
@@ -423,7 +425,7 @@ so wird die Transformation nur ausgeführt,
 wenn das Kontroll-Qubit im Zustand \(\ket{1}\) ist.
 
 Als Beispiel wird der Effekt eines kontrollierten Pauli-X-Gatters beziehungsweise 
-CNot-Gatters für die beiden Basiszustände betrachtet.
+Controlled-Not-Gatters für die beiden Basiszustände betrachtet.
 Der Quantenschaltkreis für die beiden Qubits \(\ket{xy}\) ist in Abbildung~\ref{fig:cnot} abgebildet.
 Dabei handelt es sich bei \(\ket{x}\) um das Kontroll-Qubit und bei \(\ket{y}\) um das Ziel-Qubit:
 \[\ket{00}\shortrightarrow\ket{00},~\ket{01}\shortrightarrow\ket{01},~
@@ -530,7 +532,7 @@ Dieses realisiert die Transformation~\cite{Hoever2023QC}:
 
 Um die Wirkung mehrerer Gatter zu berechnen, die nacheinander auf ein Qubit wirken, 
 werden die Matrizen der Gatter in umgekehrter Reihenfolge aufgeschrieben, 
-wie diese im Quantenschaltkreis vorkommen. 
+als diese im Quantenschaltkreis vorkommen. 
 In Abbildung~\ref{fig:gate_order} wirkt zuerst ein Pauli-X-Gatter und anschließend ein Hadamard-Gatter auf das Qubit im Zustand \(\ket{0}\).
 \[
   \frac{1}{\sqrt{2}}
@@ -586,11 +588,19 @@ Beispielsweise entspricht \(\ket{1}_1\) einem Qubit,
 welches sich im Zustand \(\ket{1}\) befindet.
 Dank des Index ist bei den Qubits \(\ket{1}_3\) klar, 
 dass es sich um drei Qubits handelt. 
-Dabei befinden sich die ersten beiden Qubits im Zustand \(\ket{0}\) und das Letzte im Zustand \(\ket{1}\).
+Die Wertigkeit der Qubits wird durch die Reihenfolge festgelegt, 
+dabei hat jedes Qubit den Wert einer Zweierpotenz.
+Bei \(\ket{1}_3\) befinden sich die ersten beiden Qubits im Zustand \(\ket{0}\) und das Letzte im Zustand \(\ket{1}\).
 Hingegen beschreibt \(\ket{4}_3\) ebenfalls drei Qubits, 
 wobei diesmal das erste Qubit im Zustand \(\ket{1}\) ist und die letzten beiden dem Zustand \(\ket{0}\) entsprechen.
 Also:
-\[\ket{4}_3 = \ket{1}_1 \tensor \ket{0}_1 \tensor \ket{0}_1 = \ket{100}_3\]
+\[\ket{1}_3 = \ket{0}_1 \tensor \ket{0}_1 \tensor \ket{1}_1 = \ket{001}_3,~
+\ket{4}_3 = \ket{1}_1 \tensor \ket{0}_1 \tensor \ket{0}_1 = \ket{100}_3\]
+
+Ohne den Index 3 wäre die \(\ket{100}_3\) zweideutig. 
+Der Index gibt an, dass es nur drei Qubits gibt. 
+Da die dezimale 100 in binärer Schreibweise nicht mit drei Qubits darstellbar ist, 
+muss es sich um die dezimale 4 handeln.
 
 Zustände, die weder ein spezifisches Qubit noch ein Quantenregister beschreiben, 
 werden ohne Index aufgeschrieben:
@@ -816,7 +826,7 @@ In Abbildung~\ref{fig:iqft} ist beispielhaft die inverse Quanten-Fourier-Transfo
 \centering
 \end{figure}
 
-\subsection{Quanten-Phase-Estimation} \label{Quanten-Phase-Estimation}
+\subsection{Quantum-Phase-Estimation} \label{Quanten-Phase-Estimation}
 
 Im nachfolgenden Abschnitt wird die Anwendung und Funktionsweise des Quantum-Phase-Estimation Quantenalgorithmus erläutert. 
 Die Quantum-Phase-Estimation ist ein Bestandteil einiger fortgeschrittener Quantenalgorithmen und eine integrale Komponente des spezifischen Quantenalgorithmus, 
@@ -848,7 +858,7 @@ somit die Wahrscheinlichkeiten der Messergebnisse unverändert bleiben.
 Stattdessen muss man die Qubits so manipulieren, 
 dass die globale Phase doch Einfluss auf die Amplituden nimmt.
 
-Der Quanten-Phase-Estimation Quantenalgorithmus ist in der Lage, 
+Der Quantum-Phase-Estimation Quantenalgorithmus ist in der Lage, 
 den Eigenwert aus \(U^{\tensor n}\ket{x}_n=\lambda_x\ket{x}_n\), 
 also die Phasenverschiebungen repräsentiert durch \(\lambda_x = e^{2\pi i \varphi_x}\),
 auf die Amplitude eines anderen Qubits zu verschieben.
@@ -923,8 +933,8 @@ Mit Hilfe des Phase-Kickback kann man also den Eigenwert einer unitären Transfo
 Der Vorteil davon ist, 
 dass diese Phasenverschiebung nur den Vorfaktor von \(\ket{1}\) des Kontrollqubits betrifft und keine globale Phase darstellt.
 
-Der Aufbau eines Quanten-Phase-Estimation Quantenschaltung sieht beispielsweise wie folgt aus:
-Beachtet wird die unitäre Transformation eines Phase-Gatter(P) mit einer variablen Phasenverschiebung von 
+Der Aufbau einer Quantum-Phase-Estimation Quantenschaltung sieht beispielsweise wie folgt aus:
+Beachtet wird die unitäre Transformation eines Phase-Gatters(P) mit einer variablen Phasenverschiebung von 
 \[P(2 \pi \varphi ) = 
 \begin{pmatrix}
   1 & 0\\
@@ -1155,9 +1165,9 @@ iQFT\Bigg(
 \Bigg)
 \end{align*}
 \[ = \ket{\varphi_1 \varphi_{2}...\varphi_n}_n = \ket{2^n\varphi}_n\]
-Schließlich kann \(\varphi\) mit einer division durch \(2^n\) bestimmt werden.
+Schließlich kann \(\varphi\) mit einer Division durch \(2^n\) bestimmt werden.
 
-Als Beispiel wird die Quanten-Phase-Estimation für
+Als Beispiel wird die Quantum-Phase-Estimation für
 \(U\ket{1}_1=e^{2\pi i \frac{3}{8}}\ket{1}_1\), 
 also mit \(\varphi = \frac{3}{8}\) betrachtet.
 Im Quantenschaltkreis aus Abbildung~\ref{fig:3_qubit_qpe} 
@@ -1198,7 +1208,7 @@ die den genauen Wert am besten approximieren.
 Dabei liegt die Wahrscheinlichkeit, dass die Messung in einen der beiden angrenzenden Zustände kollabiert, 
 bei mindestens \(\frac{8}{\pi^2}\)~\cite[119]{kaye2007introduction}.
 
-In Abbildung~\ref*{fig:3_qubit_qpe_measurment_uncertain} sind die Messergebnisse einer Quanten-Phase-Estimation abgebildet, 
+In Abbildung~\ref*{fig:3_qubit_qpe_measurment_uncertain} sind die Messergebnisse einer Quantum-Phase-Estimation abgebildet, 
 die die Phase \(\varphi = \frac{5}{16}\) bestimmen soll.
 Da \(\frac{5}{16}\) nicht mit 3 Qubits darstellbar ist, 
 gibt es kein eindeutiges Messergebnis.

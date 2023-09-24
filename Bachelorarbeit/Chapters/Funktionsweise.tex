@@ -48,18 +48,18 @@ Bei einem \(a = 7\) und \(N = 15\) ist dies \(p=4\):
 \end{tabular} \longmapsto p = 4
 \]
 
-Die quantenmechanische Berechnung im Shor-Algorithmus basiert im Wesentlichen auf der Quanten-Phase-Estimation.
-Die Architektur dieser spezifischen Quanten-Phase-Estimation korrespondiert weitgehend mit der in Abschnitt~\ref{Quanten-Phase-Estimation} vorgestellten Struktur.
+Die quantenmechanische Berechnung im Shor-Algorithmus basiert im Wesentlichen auf der Quantum-Phase-Estimation.
+Die Architektur dieser spezifischen Quantum-Phase-Estimation korrespondiert weitgehend mit der in Abschnitt~\ref{Quanten-Phase-Estimation} vorgestellten Struktur.
 Hierbei werden speziell für die gegebene Anwendung definierte \(U\)-Gatter eingesetzt.
 
 Für den konkreten Kontext der Periodenberechnung, realisieren die \(U\)-Gatter die Transformation:
 \[U\ket{y} = \ket{ay \mod N}\] 
-Die Ausführung der Quanten-Phase-Estimation erfordert die Erzeugung eines Eigenvektors der Transformation \(U\).
-Da die Quanten-Phase-Estimation \(\varphi\) aus dem Eigenwert extrahiert, 
+Die Ausführung der Quantum-Phase-Estimation erfordert die Erzeugung eines Eigenvektors der Transformation \(U\).
+Da die Quantum-Phase-Estimation \(\varphi\) aus dem Eigenwert extrahiert, 
 darf der Eigenvektor nicht den trivialen Eigenwert 1 besitzen.
 Stattdessen ist es notwendig, dass die Periode der Transformation im Eigenwert enthalten ist.
 
-Wie in~\autocite[227]{nielsen_chuang_2010} gezeigt wird, gibt es zu \(U\) Eigenvektoren \(\ket{u_s}\), 
+Wie in~\cite[227]{nielsen_chuang_2010} gezeigt wird, gibt es zu \(U\) Eigenvektoren \(\ket{u_s}\), 
 mit \(0 \leq s \leq p-1\): 
 \[\ket{u_s} =
 \frac{1}{\sqrt{p}}
@@ -124,7 +124,7 @@ Also wird das Qubit, welches das Least-Significant-Bit des für den Eigenvektor 
 mit \(\ket{1}\) initialisiert.
 
 Die Superposition der Eigenvektoren hat zur Folge, 
-dass nach der inversen Quanten-Fourier-Transformation, also am Ende der Quanten-Phase-Estimation,
+dass nach der inversen Quanten-Fourier-Transformation, also am Ende der Quantum-Phase-Estimation,
 ebenfalls eine Superposition mit dem \(\varphi_s\) der Eigenwerte \(\lambda_{u_s}\) aller möglichen Eigenvektoren \(\ket{u_s}\) existiert.
 Sei \(k\) die Anzahl der Kontroll-Qubits dann:
 \[
@@ -145,7 +145,7 @@ in dem \(\varphi_s\) beziehungsweise \(\frac{s}{p}\) enthalten ist.
 Falls nicht ausreichend Kontroll-Qubits vorhanden sind 
 und der Wert von \(\varphi_s\) somit nicht ausreichend umfasst werden kann,
 wird die Messung mit hoher Wahrscheinlichkeit 
-in einen der möglichen Zustände kollabiert, 
+in einen der möglichen Zustände kollabieren, 
 der dem genauen Ergebnis am nächsten ist.
 Dadurch bildet sich ein Peak rund um den korrekten Wert, 
 der vergleichbar ist mit Abbildung~\ref{fig:3_qubit_qpe_measurment_uncertain}.
@@ -179,7 +179,7 @@ Als Beispiel sei die finale Superposition für \(a = 7;~N=15\) mit \(p=4\) und e
  \frac{1}{\sqrt{4}}
  \Big(\ket{0}_4 +\ket{4}_4 + \ket{8}_4+\ket{12}_4\Big) \]
 Mit Ausnahme der Zustände \(\ket{0}_4\) und \(\ket{8}_4\) 
-resultieren die beiden anderen Zustände nach einer Division durch \(2^4\) eine Kommazahl. 
+resultieren die beiden anderen Zustände nach einer Division durch \(2^4\) in einer Kommazahl. 
 Diese kann als Bruch dargestellt werden, 
 dessen Nenner die gesuchte Periode \(p=4\) ist.
 
@@ -224,9 +224,9 @@ Es ist ersichtlich, dass die genauen Zustände immer noch Nachkommastellen aufwe
 weshalb mit einer geringeren Wahrscheinlichkeit auch andere Werte gemessen werden können.
 Bei einer Messung ist anstelle des Zustands \(\ket{21,\overline{3}}_7\) der Zustand \(\ket{21}_7\) das wahrscheinlichste Ergebnis.
 Für \(\frac{21}{2^{7}}\) erhält man eine Kommazahl, deren exakter Bruch \(\frac{21}{128}\) entspricht.
-Bekanntlich entspricht die Periode einer Zahl \(p\) die kleiner ist als \(N\).
 Wendet man den Kettenbruch-Algorithmus auf \(\frac{21}{128}\) an und limitiert den Nenner auf \(N\), 
 wird der nächstgelegene Bruch mit einem Nenner gefunden, der kleiner als \(N\) ist.
+Der Nenner wird auf \(N\) limitiert, da die Periode einer Zahl \(p\) entspricht die kleiner ist als \(N\).
 Im konkreten Beispiel ergibt sich aus \(\frac{21}{128}\) der Bruch \(\frac{1}{6}\), 
 welcher die Periode im Nenner offenbart.
 Bei einer Messung könnte auch der benachbarte ganzzahlige Zustand \(\ket{22}_7\) gemessen werden, 
@@ -235,10 +235,11 @@ Der Zustand \(\ket{22}_7\) ermöglicht nicht die Extraktion der Periode,
 da \(\frac{22}{128}\) mit dem Kettenbruch-Algorithmus auf einen für \(N\) limitierten Nenner
 zu \(\frac{3}{17}\) wird.
 
-Bedeutet mit einer hinreichenden Genauigkeit, kann die Periode nur aus dem Zustand extrahiert werden, 
+Das bedeutet, 
+mit einer hinreichenden Genauigkeit, kann die Periode nur aus dem Zustand extrahiert werden, 
 welcher den Wert des genauen Zustandes am besten approximiert.
 
-Mit zusätzlichen Kontroll-Qubits wird das Messergebnis Fehlertolerant.
+Mit zusätzlichen Kontroll-Qubits wird das Messergebnis fehlertolerant.
 Wiederholt man das Beispiel erneut, diesmal jedoch mit \(k=10\), 
 ist der zweite Zustand in der finalen Superposition: 
 \(\ket{2^{10} \cdot \frac{1}{6}}_{10} =\ket{170,\overline{6}}_{10}\).
@@ -274,7 +275,7 @@ welche nach der Anwendung des Kettenbruch-Algorithmus die Periode enthalten.
 Es lässt sich zeigen, dass bei einer bekannten Periode \(p\) die Wahl von \(k > 2\text{ld}(p)\) 
 eine ausreichende Genauigkeit gewährleistet. 
 Unter diesen Bedingungen wird eines der bestmöglichen Messergebnisse durch den Einsatz des Kettenbruch-Algorithmus zu einem Näherungsbruch \(\frac{s}{p}\) von \(\varphi_s\) konvergieren.
-Im Normalfall kann für eine Element \(a\) für den Modulus \(N\) vorab nicht gesagt werden, 
+Im Normalfall kann für ein Element \(a\) für den Modulus \(N\) vorab nicht gesagt werden, 
 wie viele Kontroll-Qubits man exakt braucht, 
 da dies von der unbekannten Periode \(p\) abhängt.
 Stattdessen verwendet man einen Wert der auf alle Fälle größer als \(2\text{ld}(p)\) ist, 
@@ -309,7 +310,7 @@ die erfolgreiche Extraktion der Periode.
 
 Die Erhöhung der Genauigkeit \(k\) auf Werte über \(2\text{ld}(N)\) hinaus hat den Effekt, 
 dass die Wahrscheinlichkeit für das Eintreten des ersten oder zweiten Falls abnimmt.
-Dadurch verbessern sich gleichzeitig die Wahrscheinlichkeit, direkt ein korrektes Ergebnis zu messen.
+Dadurch verbessert sich gleichzeitig die Wahrscheinlichkeit, direkt ein korrektes Ergebnis zu messen.
 Allerdings führt dies zu einem komplexeren Quantenschaltkreis und 
 somit erhöhen sich die Kosten an zusätzlichen Ressourcen~\autocite[229]{nielsen_chuang_2010}.
 
@@ -335,7 +336,7 @@ Es lässt sich zeigen, dass die Wahrscheinlichkeit mindestens \(\frac{1}{2\text{
 bei einer Messung ein \(s\) zu erhalten, welches eine Primzahl ist und somit zu \(p\) teilerfremd ist.
 Das bedeutet, dass die Wahrscheinlichkeit bei insgesamt \(2\text{ld}(N)\) Messungen sehr hoch ist, 
 mindestens einmal ein \(\frac{s}{p}\) zu messen, 
-bei dem \(s\) und \(p\) nicht gekürzt sind~\autocite[231]{nielsen_chuang_2010}.
+bei dem \(s\) und \(p\) nicht gekürzt sind.~\cite[231]{nielsen_chuang_2010}
 
 Ob die korrekte Periode gefunden wurde, kann mit \(a^p = 1 \mod N\) geprüft werden.
 
@@ -346,6 +347,6 @@ Dies schlägt nur fehl,
 wenn \(p\) ungerade ist
 oder wenn \(a^{\frac{p}{2}} = -1 \mod N\) erfüllt ist~\cite{Shor_1997}.
 Die Wahrscheinlichkeit, dass einer der beiden genannten Fälle eintritt, beträgt \(1-\frac{1}{2^f}\), 
-wobei \(f\) die Anzahl an unterschiedlicher Primfaktoren von \(N\) angibt~\cite{Shor_1997}.
-In einem solchen Fall, wiederholt man die Periodenberechnung mit einem anderen \(a\).
+wobei \(f\) die Anzahl an unterschiedlichen Primfaktoren von \(N\) angibt~\cite{Shor_1997}.
+In einem solchen Fall wiederholt man die Periodenberechnung mit einem anderen \(a\).
 
