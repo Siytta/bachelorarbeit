@@ -160,7 +160,7 @@ Um einen Vergleich zwischen den benötigten Durchläufen mit Nachberechnung und 
 wurden die Erfolgsraten beider Methoden erhoben.
 
 Dazu wurden beide Methoden verwendet, um die Zahl \(N=391\) jeweils 200-mal zu faktorisieren.
-Die Statistik beinhaltet die benötigten Durchläufe des Quantenalgorithmus, die pro Faktorisierung notwendig waren.
+Die Statistik beinhaltet die Anzahl an benötigten Durchläufe des Quantenalgorithmus, die pro Faktorisierung notwendig waren.
 
 Die Berechnung des Quantenalgorithmus wurde unter Verwendung des Simulators von Qiskit durchgeführt. 
 Bei jedem Durchlauf wurde ein zufälliges \(a\) gewählt.
@@ -178,7 +178,7 @@ Die Anzahl der zu überprüfenden Nachbarn und Vielfachen in der klassischen Nac
     \caption{Anzahl der Durchläufe pro Faktorisierung mit Nachberechnung}
     \begin{tabular}{|c|c|c|c|c|c|c|} 
         \hline
-        \textbf{Druckläufe} & 1 & 2 & 3 & 4\\
+        \textbf{Durchläufe} & 1 & 2 & 3 & 4\\
         \hline
         \textbf{Häufigkeit} & 168 & 27 & 3 & 2 \\
         \hline
@@ -190,7 +190,7 @@ Die Anzahl der zu überprüfenden Nachbarn und Vielfachen in der klassischen Nac
     \caption{Anzahl der Durchläufe pro Faktorisierung ohne Nachberechnung}
     \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|} 
         \hline
-        \textbf{Druckläufe} & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 11 \\
+        \textbf{Durchläufe} & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 11 \\
         \hline
         \textbf{Häufigkeit} & 87 & 51 & 28 & 14 & 9 & 5 & 3 & 2 & 1 \\
         \hline
@@ -203,7 +203,7 @@ Hingegen ist bei einem Vorgehen ohne Nachberechnung ein einzelner Durchlauf in w
 Des Weiteren war bei der Verwendung einer Nachberechnung nur bei 2.5\% aller Faktorisierungen mehr als zwei Durchläufe nötig. 
 Wiederum gab es ohne Nachberechnung in mehr als 30\% der Fälle die Notwendigkeit für mehr als zwei Durchläufe. 
 Dazu kommt, 
-dass das gemessene Worst-Case-Szenario ohne Nachberechnung um fast Faktor 3 mehr Durchläufe benötigte als bei der Verwendung von Nachberechnungen.
+dass das gemessene Worst-Case-Szenario ohne Nachberechnung um fast Faktor 3 mehr Durchläufe benötigte als das Worst-Case-Szenario bei der Verwendung von Nachberechnungen.
 
 Unter Beachtung der durchschnittlichen Durchläufe pro Faktorisierung beläuft sich der Durchschnittswert mit Nachberechnungen auf \(1,2\). 
 Bei einem Vorgehen ohne Nachberechnung sind durchschnittlich \(2,26\) Durchläufe nötig. 
@@ -218,7 +218,8 @@ Anhand der in Tabelle~\ref{Varainten_Analyse} aufgeführten \textit{Maxdepth}-We
 dass selbst unter optimalen Bedingungen, bei denen ein einzelner Durchlauf zur Faktorisierung führt, 
 der implementierte Quantenalgorithmus für Schlüssellängen ab 3072 Bit eine Laufzeit erfordert, 
 die den niedrigsten Sicherheitsanforderungen gemäß den NIST-Kriterien entspricht. 
-Dies verdeutlicht, dass die verwendete Implementierung des Quantenschaltkreises in dieser Arbeit keine effiziente Methode darstellt, 
+Dies verdeutlicht, dass die verwendete Implementierung des Quantenschaltkreises in dieser Arbeit, 
+keine effiziente Methode darstellt, 
 um ein RSA-Verfahren mit den derzeit empfohlenen Schlüssellängen zu kompromittieren.
 
 Stattdessen wird für die effiziente Faktorisierung ein Quantenschaltkreis benötigt, 
@@ -245,7 +246,7 @@ dass sie kleiner als \(2^{1500}\) ist.
 
 Andere Möglichkeiten zur Reduzierung der \textit{Maxdepth} des in dieser Arbeit implementierten Quantenalgorithmus sind nicht bekannt. 
 Es liegt nahe anzunehmen, dass für eine effektive Reduktion der \textit{Maxdepth}, ohne signifikante Nachteile, 
-eine andere Architektur für einige der verwendeten Bausteine gewählt oder entwickelt werden muss.
+eine andere Architektur für einige der verwendeten Bausteine entwickelt werden muss.
 
 \subsection*{Schlussfolgerung}
 
@@ -257,6 +258,7 @@ dass der Schwerpunkt bei der Konstruktion des Quantenschaltkreises nicht auf ein
 
 Es ist denkbar, dass durch die Verwendung zusätzlicher Qubits ein Quantenschaltkreis mit einer geringeren \textit{Maxdepth} konstruiert werden kann. 
 Bei der Konstruktion eines solchen Quantenschaltkreises könnte man sich auf die Parallelisierung der Berechnung konzentrieren. 
+
 Eine weitere potenzielle Einsparmöglichkeit besteht beim Baustein der modularen Addition aus Sektion~\ref{sub:modulareAddition}.
 Indem auf die Quantengatter verzichtet wird, 
 welche das Bedingungs-Qubit zurücksetzen, 
