@@ -1,10 +1,69 @@
-\section{Fazit}
+\section{Fazit und Ausblick}
+\subsection*{Fazit}
+Mit dem Ziel, eine Bibliothek von Quantenalgorithmen für die Kryptoanalyse zu entwickeln, 
+wurde der Shor-Algorithmus in vier verschiedenen Varianten implementiert. 
+Im Verlauf der Arbeit wurde zuerst die Funktionsweise der benötigten Bausteine, 
+wie die Quanten-Fourier-Transformation und die Quantum-Phasen-Estimation, erläutert. 
+Auf dieser Grundlage wurde die Verbindung zum Shor-Algorithmus hergestellt, 
+der in seiner Essenz eine Form der Quantum-Phase-Estimation mit spezifischen unitären Gattern darstellt. 
+Im weiteren Verlauf der Arbeit wurde die Funktionsweise und die Implementierung der spezifischen unitären Gatter 
+sowie des gesamten Shor-Algorithmus vorgeführt. 
 
-%Es wurde gezeigt wie die Berechnung des Shor-Algorithmus und seine Bausteine Funktionieren
-%Es wurde erklärt wie eine konkrete Implementation des Shor Algorithmus aussieht, die möglichst Qubit sparsam ist
-% Es wurde eine klassischer Algorithmus zur Nachberechnung entwickelt
-%Es wurde gezeigt wie Effizient diese Implementierung nach den NIST kriterien für einen konkreten Angriff auf RSA ist
-%Als Resultat wurde gezeigt, dass die verwendete Bauart zwar effizienter ist als andere,
-% aber noch immer zu ineffizient für aktuelle RSA Schlüssellängen ist
-%Zukünftige Arbeiten Fokus auf Reduktion der tiefe des Quantenschaltkreises
-%Zukünftige Arbeiten ggf Fehlerkorrektur
+Aufbauend auf der resultierenden Struktur des Shor-Algorithmus wurden zwei Optimierungen angewendet, 
+die den Bedarf an Qubits sowie den gesamten Bedarf an Quantengattern signifikant verringern. 
+Bei der Untersuchung einer dieser Optimierungen wurde festgestellt, 
+dass es einen Fehler in einer der verwendeten Quellen gibt. 
+Unter Hinzunahme von Simulationen wurde nachgewiesen, 
+dass diese Unstimmigkeit zu einem fehlerhaften Quantenschaltkreis führt.
+
+Des Weiteren wurde ein klassischer Algorithmus entwickelt, 
+um die Erfolgsrate des Shor-Algorithmus zu steigern. 
+Dieser Algorithmus führt Berechnungen basierend auf den Messergebnissen des Shor-Algorithmus durch und wurde speziell entworfen, 
+um auf drei mögliche Sonderfälle eines Messergebnisses zu reagieren. Diese Sonderfälle wurden anhand von Simulationen erläutert.
+
+In einer abschließenden Analyse wurden die vier resultierenden Varianten des Shor-Algorithmus, 
+die im Prinzip aus unterschiedlichen Kombinationen der Optimierungen bestehen, 
+hinsichtlich ihrer Laufzeit und ihres Ressourcenbedarfs analysiert. 
+Die Laufzeitanalyse orientierte sich an den Kriterien des \textit{National Institute of Standards and Technology}, 
+die realistische Laufzeiten für Quantenalgorithmen zu kryptoanalytischen Zwecken vorgeben.
+Das Resultat dieser Analyse hatte das eindeutige Ergebnis, 
+dass von den vier Varianten die implementierte \textit{Iterative-Approximative} Variante die effizienteste darstellt.
+
+Des Weiteren wurde die Konstruktion der verwendeten Bausteine in Bezug auf die Laufzeit und den Gesamtbedarf an Ressourcen im Vergleich zu ähnlichen Arbeiten analysiert. 
+Auch hier ergab sich das Ergebnis, 
+dass die \textit{Iterative-Approximative} Variante sowohl eine kürzere Laufzeit als auch einen geringeren Bedarf an Qubits aufweist, 
+was sie effizienter macht als die Bauart aus der vergleichbaren Arbeit.
+
+Um die Vorteile des klassischen Algorithmus zur Nachberechnung zu bewerten, 
+wurde die durchschnittliche Anzahl der benötigten Messdurchläufe berechnet und 
+mit einem Ansatz ohne klassische Nachberechnung verglichen. 
+Das Ergebnis dieses Vergleichs führte zu der eindeutigen Erkenntnis, 
+dass die Verwendung der Nachberechnung die Anzahl der benötigten Durchläufe des Quantenalgorithmus effektiv reduzieren kann. 
+
+Abhängig von den Kriterien des \textit{National Institute of Standards and Technology} wurde festgestellt,
+dass \textbf{keine} der implementierten Varianten effiziente Möglichkeiten zur Durchführung eines kryptografischen Angriffs bei den derzeit empfohlenen RSA-Schlüssellängen bieten.
+Für RSA-Verfahren mit kürzeren Schlüssellängen als den derzeit empfohlenen, die immer noch weit verbreitet sind,
+erfüllen jedoch alle vier Varianten die Kriterien und
+stellen somit effiziente Quantenalgorithmen zur Kryptoanalyse dar.
+
+\subsection*{Ausblick}
+
+Die Ergebnisse dieser Arbeit zeigen, 
+dass der Fokus zukünftige Untersuchungen des Shor-Algorithmus für kryptoanalytische Zwecke, 
+auf der Reduktion der benötigten Laufzeit des Quantenalgorithmus liegen sollte. 
+Es ist naheliegend, dass dafür eine neue Konstruktionsart der spezifischen unitären Gatter nötig ist. 
+
+Eine weitere potentielle Möglichkeiten besteht darin, 
+den Quantenalgorithmus auf Kosten von zusätzlichen Qubits zu parallelisieren. 
+Eine solche Untersuchung sollte die Abwägung zwischen zusätzlichen Qubits und eingesparter Laufzeit näher beleuchten.
+
+\vspace{1em} 
+
+Des Weiteren existiert noch das komplexe Themenfeld der Korrektur von Fehlern, 
+die durch Dekohärenz erzeugt werden. 
+Aufgrund der Komplexität dieses Themas, 
+sollte für die Bearbeitung ein fortgeschrittener Kenntnisstand im Quanten-Computing vorhanden sein.
+Zusätzlich sollte vorab eine gründliche Untersuchung der geplanten Quantencomputer stattfinden, 
+um so konkreteres über prognostizierte Fehlerraten zu erfahren. 
+Es ist möglich, dass für die zukünftigen Quantencomputer Architekturen geplant sind, 
+bei denen eine Fehlerkorrektur auf der Abstraktionsebene von Quantengattern obsolet ist.
