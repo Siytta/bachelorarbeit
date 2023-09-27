@@ -328,7 +328,7 @@ Die Implementierung nutzt die ressourceneffiziente Variante der Quanten-Addition
 In der Funktion \texttt{A\_Gate} wird ein Gatter erzeugt, 
 das sämtliche für die Quanten-Addition erforderlichen Phasen-Gatter umfasst.
 Der Code zur Funktion ist in Abbildung~\ref{code:QuantumAdd} dargestellt.
-\begin{figure}[H]
+\begin{listing}[H]
 \begin{minted}[linenos,fontsize=\footnotesize]{python}    
 def A_Gate(a_bin: list[int]) -> qiskit.circuit.gate:
     A_Gate = qiskit.QuantumCircuit(len(a_bin))
@@ -347,7 +347,7 @@ def A_Gate(a_bin: list[int]) -> qiskit.circuit.gate:
   \end{minted}
   \caption{Quantum-Addition in Qiskit}
   \label{code:QuantumAdd}
-\end{figure}
+\end{listing}
 Der Funktion \texttt{A\_Gate} wird der zu addierende Summand im Binärformat übergeben, 
 wobei am Index Null das Least-Significant-Bit liegt.
 Abhängig von der Anzahl der Bits des Summanden wird ein Quantenschaltkreis mit der gleichen Anzahl an Qubits erzeugt. 
@@ -389,7 +389,7 @@ Die Implementierung der Quanten-Subtraktion ist aufgrund der \texttt{inverse} Fu
 Wendet man die \texttt{inverse} Funktion auf ein Gatter der Quanten-Addition aus der \texttt{A\_Gate} Funktion an, 
 wird dieses in die Quanten-Subtraktion invertiert.
 Der zugehörige Code ist in~\ref{code:QuantumSub} abgebildet.
-\begin{figure}[H]
+\begin{listing}[H]
 \begin{minted}[linenos,fontsize=\footnotesize]{python}    
 def S_Gate(subtrahend_bin: list[int]) -> qiskit.circuit.gate:
     S_Gate = A_Gate(subtrahend_bin).inverse()
@@ -398,7 +398,7 @@ def S_Gate(subtrahend_bin: list[int]) -> qiskit.circuit.gate:
   \end{minted}
   \caption{Quantum-Subtraktion in Qiskit}
   \label{code:QuantumSub}
-\end{figure}
+\end{listing}
 
 \subsubsection{Modulare Addition} \label{sub:modulareAddition}
 Das Gatter der Quanten-Addition und der Quanten-Subtraktion ermöglichen die Konstruktion einer unitären Transformation, 
@@ -608,7 +608,7 @@ wird die Methode \texttt{append} eines Qiskit-Quantenschaltkreises genutzt.
 
 Abschließend wird der Quantenschaltkreis in Zeile 19 in ein Gatter umgewandelt.
 
-\begin{figure}[H]
+\begin{listing}[H]
 \begin{minted}[linenos,fontsize=\footnotesize]{python}    
 def Modular_Adder_Gate(a_bin: list[int],N_bin: list[int]) -> qiskit.circuit.gate:
   c_qbits = [0,1]
@@ -634,7 +634,7 @@ def Modular_Adder_Gate(a_bin: list[int],N_bin: list[int]) -> qiskit.circuit.gate
   \end{minted}
   \caption{Modulare Addition in Qiskit}
   \label{code:ModularAddition}
-\end{figure}
+\end{listing}
 
 \subsubsection{Kontrollierte Multiplikation}
 Als Nächstes wird ein Gatter konstruiert, 
@@ -747,7 +747,7 @@ Genau aus diesem Grund, wird bei dem Gatter zur modularen Addition das Bedingung
 Abschließend wird noch die inverse Quanten-Fourier-Transformation auf das \(\ket{b}_{n+1}\) Quantenregister anwendet und 
 der Quantenschaltkreis in ein Quantengatter umgeformt.
 
-\begin{figure}[H]
+\begin{listing}[H]
 \begin{minted}[linenos,fontsize=\footnotesize]{python}  
 def cmult_gate(x_bits_amount: int,a_bin: list[int],N_bin: list[int]) -> qiskit.circuit.gate:  
   a_dez = binToDez(a_bin)
@@ -769,7 +769,7 @@ def cmult_gate(x_bits_amount: int,a_bin: list[int],N_bin: list[int]) -> qiskit.c
   \end{minted}
   \caption{Kontrollierte Multiplikation in Qiskit}
   \label{code:ModularMultiplication}
-\end{figure}
+\end{listing}
 
 In Qiskit wird der durch den Code gebildete Quantenschaltkreis wie in Abbildung~\ref{fig:cmult_qiskit} dargestellt.
 Die Abbildung repräsentiert den Quantenschaltkreis für \(a = 11;~N = 15\).
@@ -790,7 +790,7 @@ alle Qubits des \(\ket{x}_n\) Registers verlaufen,
 jedoch ausschließlich durch das Qubit kontrolliert werden, 
 das im modularen Additions-Gatter den Index 1 trägt.
 
-\begin{figure}[H]
+\begin{figure} [H]
   \centering
   \includegraphics[scale = 0.5]{cmult_qiskit.PNG}
   \caption{Schaltkreis der kontrollierten Multiplikation in Qiskit}
@@ -803,7 +803,7 @@ den \(n+1\) Qubits von \(\ket{b}_{n+1}\) und dem einzelnen Bedingungs-Qubit \(\k
 
 Um der Inversen des kontrollierten Multiplikation Gatters eine eindeutige Benennung zu geben, 
 wird dafür eine zusätzliche Funktion \texttt{inv\_cmult\_gate} definiert.
-\begin{figure}[H]
+\begin{listing}[H]
 \begin{minted}[linenos,fontsize=\footnotesize]{python}  
 def inv_cmult_gate(x_bits_amount: int,a_bin: list[int],N_bin: list[int]) -> qiskit.circuit.gate:  
   inv_cmult_gate = cmult_gate(x_bits_amount,a_bin,N_bin).inverse()
@@ -812,7 +812,7 @@ def inv_cmult_gate(x_bits_amount: int,a_bin: list[int],N_bin: list[int]) -> qisk
   \end{minted}
   \caption{Inverse kontrollierte Multiplikation in Qiskit}
   \label{code:InverseModularMultiplication}
-\end{figure}
+\end{listing}
 
 \subsubsection{Vollständige Transformation}
 
@@ -885,7 +885,7 @@ so bewirkt das \(U\)-Gatter eine Transformation von:
  \ket{(ax)\mod N}_{n}\ket{0}_{n+1}\]
 
 Das Konzept des Aufbaus des Quantenschaltkreises ist in Abbildung~\ref{fig:u_gatter} dargestellt.
-\begin{figure}[H]
+\begin{figure} [H]
   \centering
   \includegraphics[scale = 0.8]{u_gatter.png}
   \caption{\(U_a\)-Gatter~\cite{beauregard2003circuit}}
@@ -917,7 +917,7 @@ In Zeile 11 wird \(a^{-1}\mod N\) mittels des erweiterten euklidischen Algorithm
 Anschließend wird das berechnete \(a^{-1}\mod N\) als Parameter an ein inverses kontrolliertes Multiplikation Gatter übergeben.
 Abschließend wird der Quantenschaltkreis zu einem Gatter umgeformt und passend benannt.
 
-\begin{figure}[H]
+\begin{listing}[H]
 \begin{minted}[linenos,fontsize=\footnotesize]{python}  
 def U_gate(x_bits_amount: int,a_bin: list[int],N_bin: list[int]) -> qiskit.circuit.gate:  
   c_qbit = [0]
@@ -937,7 +937,7 @@ def U_gate(x_bits_amount: int,a_bin: list[int],N_bin: list[int]) -> qiskit.circu
   \end{minted}
   \caption{\(U\)-Gatter in Qiskit}
   \label{code:UGatter}
-\end{figure}
+\end{listing}
 
 Der Quantenschaltkreis, der durch den Code~\ref{code:UGatter} gebildet wird, 
 wird in Qiskit wie in Abbildung~\ref{fig:u_gatter_qiskit} dargestellt. 
@@ -1017,7 +1017,7 @@ Wie bei der Definition des Quantenschaltkreises in Zeile 5 erkennbar,
 benötigt der Quantenschaltkreis \(4n+2\) Qubits anstatt \(2n+3\).
 Die Reduktion der benötigten Qubits wird in der Sektion~\ref{Optimierung} thematisiert. 
 
-\begin{figure}[H]
+\begin{listing}[H]
 \begin{minted}[linenos,fontsize=\footnotesize]{python}  
 def Shor(a: int, N: int,number_shots: int = 1000, backend: str = "aer_simulator"):
   n = N.bit_length()
@@ -1037,7 +1037,7 @@ def Shor(a: int, N: int,number_shots: int = 1000, backend: str = "aer_simulator"
   \end{minted}
   \caption{Periodenbestimmung in Qiskit}
   \label{code:Periodenbestimmung}
-\end{figure}
+\end{listing}
 
 In Abbildung~\ref{fig:shor_qiskit} ist der Quantenschaltkreis zu sehen, 
 der durch die Funktion \texttt{Shor} für \(a=7;~N=15\) generiert wird.
@@ -1365,7 +1365,7 @@ werden von unterschiedlichen klassischen Bits mit der Methode \(c\_if\) kontroll
 
 Da die Funktion direkt auf den Quantenschaltkreis \textit{qc} wirkt, 
 wird kein Rückgabewert benötigt.
-\begin{figure}[H]
+\begin{listing}[H]
 \begin{minted}[linenos,fontsize=\footnotesize]{python}    
 def iterative_QFT(target: int, qc: QuantumCircuit ,k: range, controlling_qubit: int):
     if target != 0:
@@ -1375,7 +1375,7 @@ def iterative_QFT(target: int, qc: QuantumCircuit ,k: range, controlling_qubit: 
   \end{minted}
   \caption{Part Iterative QFT in Qiskit}
   \label{code:iterativeQFT}
-\end{figure}
+\end{listing}
 
 Der Code zum vollständigen Quantenschaltkreis ist in Abbildung~\ref{code:IterativeQPE} in der Funktion \texttt{Shor\_sequential} dargestellt.
 Die Parameter sind identisch mit denen der regulären \texttt{Shor} Funktion. 
@@ -1392,7 +1392,7 @@ hingegen werden die Messergebnisse in klassischen Bits mit aufsteigender Wertigk
 Um zu verhindern, 
 dass der Code den Seitenrand überschreitet, wurden die Zeilen zehn und elf mit einem Zeilenumbruch geteilt.
 
-\begin{figure}[H]
+\begin{listing}[H]
 \begin{minted}[linenos,fontsize=\footnotesize]{python}    
 def Shor_sequential(a: int, N: int,number_shots: int = 1000, backend: str = "aer_simulator"):
   n = N.bit_length()
@@ -1414,13 +1414,13 @@ def Shor_sequential(a: int, N: int,number_shots: int = 1000, backend: str = "aer
   \end{minted}
   \caption{Iterative QPE}
   \label{code:IterativeQPE}
-\end{figure}
+\end{listing}
 
 Für \(a = 7,~N=15,~k=4\) ist in Abbildung~\ref{fig:iterative_iQPE_qiskit} der Quantenschaltkreis nach der Funktion \texttt{Shor\_sequential} dargestellt.
 Das \(k\) wurde verringert, damit die Grafik nicht zu viel Platz beansprucht.
 Aufgrund des geringeren \(k\) kommen dementsprechend weniger \(U^{2^x}\)-Gatter zum Einsatz.
 
-\begin{figure}[H]
+\begin{figure} [H]
   \centering
   \includegraphics[scale = 0.4]{code_iterative_QPE_qiskit.PNG}
   \caption{iterative QPE Beispiel in qiskit}

@@ -9,6 +9,7 @@
 *.pdf
 *.run.xml
 *.lof
+*.lol
 *.toc
 *.synctex*
 _minted-BA

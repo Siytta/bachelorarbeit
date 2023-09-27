@@ -15,6 +15,9 @@
 \usepackage{amsmath}
 \usepackage{mathtools}
 \usepackage{minted}
+  \renewcommand\listingscaption{Quellcode}
+  \renewcommand\listoflistingscaption{Quellcodeverzeichnis}
+  \usepackage{scrhack} % Uses KOMA deprecated float@listhead
 \usepackage{url}
 \usepackage{hyperref}
 \hypersetup{
@@ -71,6 +74,7 @@
 \tableofcontents			% Inhaltsverzeichnis
 %\listoftables				% Tabellenverzeichnis
 \listoffigures				% Abbildungsverzeichnis
+\listoflistings       % Codeverzeichnis
 %\printnomenclature			% Abkürzungsverzeichnis
 
 \input{Chapters/Abkuerzungsverz.tex}
