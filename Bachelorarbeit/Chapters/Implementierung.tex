@@ -37,7 +37,7 @@ werden zusätzliche Hilfsqubits benötigt.
 Die zusätzlichen Hilfsqubits bewirken, dass der Nachbau eines klassischen Schaltkreises für die Addition zweier \(n\)-Bit Zahlen, 
 also solche der Größenordnung \(2^n\), mindestens \(3n\) Qubits benötigt~\cite{zalka1998fast}.
 
-Eine effizientere Methode, die ohne Hilfsqubits auskommt, ist die Quanten-Addition~\cite{draper2000addition}. 
+Eine effizientere Methode, welche ohne Hilfsqubits auskommt, ist die Quanten"=Addition~\cite{draper2000addition}. 
 Die Quanten-Addition führt die Berechnung auf quantenmechanische Weise durch. 
 Im Wesentlichen wird dabei die Addition in der Fourierbasis berechnet. 
 Dafür befindet sich ein Summand des Quantenregisters \(\ket{b}_n\) in der Standardbasis und 
@@ -821,7 +821,7 @@ def inv_cmult_gate(x_bits_amount: int,a_bin: list[int],N_bin: list[int]) -> qisk
 Das letzte zu konstruierende Gatter wird als \(U_a\)-Gatter bezeichnet, 
 weil es die benötigte Transformation realisiert: 
 \[U^{\tensor n}\ket{y}_n = \ket{ay \mod N}_n\] 
-Das \(U_a\)-Gatter dient zur Realisierung der Quantum-Phase-Estimation im Shor-Algorithmus, 
+Das \(U_a\)-Gatter dient zur Realisierung der Quantum"=Phase"=Estimation im Shor"=Algorithmus, 
 wie in Abbildung~\ref{fig:shor_n_qubit} dargestellt.
 
 Dafür nimmt das \(U_a\)-Gatter vier Quantenregister entgegen und 
