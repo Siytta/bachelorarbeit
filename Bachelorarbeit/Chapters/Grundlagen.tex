@@ -751,8 +751,8 @@ indem man die Brüche kürzt:
   QFT_{8}\ket{x}_{3} = 
   \frac{1}{\sqrt{8}} 
   \Bigg[ 
-    \Big( \ket{0} + e^{\pi i x_1}\ket{1} \Big) \tensor
-    \Big(\ket{0} + { e^{\pi i x_2} e^{ \frac{ \pi i x_1}{2}} }\ket{1} \Big) \tensor
+    \Big( \ket{0} + e^{\pi i x_1}\ket{1} \Big) &\tensor
+    \Big(\ket{0} + { e^{\pi i x_2} e^{ \frac{ \pi i x_1}{2}} }\ket{1} \Big) \\ &\tensor
     \Big(\ket{0} + { e^{\pi i x_3} e^{\frac{\pi i x_2}{2}} e^{ \frac{ \pi i x_1}{4}} }\ket{1} \Big) 
   \Bigg] 
 \end{align*}
@@ -973,7 +973,7 @@ anschließend mit einem Hadamard-Gatter(H) in die gleichmäßige Superposition \
  \]
 Über das kontrollierte Phase-Gatter wird der Eigenwert auf das Kontrollqubit verschoben und
 befindet sich daher nicht mehr im Zustand \(\ket{+}_1\) :
-\[
+\begin{align*}
   \frac{1}{\sqrt{2}}
   \begin{pmatrix}
    0 \\
@@ -996,15 +996,15 @@ befindet sich daher nicht mehr im Zustand \(\ket{+}_1\) :
    0 \\
    1
   \end{pmatrix}
-  =
+  &=
   \frac{1}{\sqrt{2}}
   \begin{pmatrix}
     0 \\
     1 \\
     0 \\
     e^{2 i \pi \varphi}
-  \end{pmatrix}
-  =
+  \end{pmatrix} \\
+  &=
   \frac{1}{\sqrt{2}}
   \begin{pmatrix}
     1 \\
@@ -1015,7 +1015,7 @@ befindet sich daher nicht mehr im Zustand \(\ket{+}_1\) :
     0 \\
     1 
    \end{pmatrix}
-  \]
+\end{align*}
 Anschließend wird auf die Kontrollqubits die inverse Quanten-Fourier-Transformation angewendet.
 Die inverse Quanten-Fourier-Transformation sorgt dafür, 
 dass der Eigenwert die Amplituden der Kontrollqubits beeinflusst.
