@@ -1,4 +1,11 @@
 \section{Grundlagen}
+In diesem Abschnitt werden einige grundlegende Elemente erläutert, 
+die für das Verständnis der Funktionsweise des Shor-Algorithmus erforderlich sind.
+Als Grundfundament sind Kenntnisse in der Modulararithmetik, lineare Algebra und den komplexen Zahlen Vorraussetzung. 
+
+Vorwissen über die Grundprinzipien der Quantenmechanik sind hilfreich, 
+werden aber im folgenden Abschnitt erläutert. 
+
 
 \subsection{RSA-Verschlüsselung}
 Das RSA-Verfahren ist ein weitverbreitetes asymmetrisches Kryptosystem, 
@@ -19,7 +26,7 @@ berechnet deren Produkt
 Des Weiteren wird ein Exponent \(e\) ausgewählt, 
 der teilerfremd zu \(f\) ist.
 Anschließend wird \(d\) berechnet, 
-welches das multiplikative Inverse von \(e\) modulo \(f\) ist.
+welches das multiplikative Inverse von \(e\) modulo \(f\) darstellt.
 Der öffentliche Schlüssel besteht aus \(N\) und dem Exponenten \(e\). 
 Der private Schlüssel ist \(d\).
 
@@ -53,7 +60,7 @@ RSA-Verschlüsselung effizient zu brechen,
 da das Problem der Zerlegung einer Zahl \(N\) in seine Primfaktoren für große Zahlen exponentiell schwieriger wird. 
 Nach dem aktuellen Stand (Herbst 2023~\cite{Hoever2022Krypto}) benötigen die besten klassischen Algorithmen exponentiell mehr Zeit zur Entschlüsselung, 
 je länger der verwendete Schlüssel ist.
-Daher wird RSA als sicher angesehen, solange die Schlüssellänge ausreichend groß ist (heutzutage meist 2048 Bit oder mehr).
+Daher wird RSA als sicher angesehen, solange die Schlüssellänge ausreichend groß ist.
 
 
 
@@ -94,8 +101,8 @@ Des Weiteren kann ein Qubit auch beide der Basiszustände gleichzeitig einnehmen
 \begin{center}
 \(\ket{\Psi} = \alpha\ket{0} + \beta\ket{1}\)
 \end{center}
-Dieses Phänomen ist eines der charakteristischen Eigenschaften von Qubits und wird als \textbf{Superposition} bezeichnet.
-Dabei handelt es sich bei den Vorfaktoren \(\alpha\) und \(\beta\) um reale Zahlen, 
+Dieses Phänomen ist eine der charakteristischen Eigenschaften von Qubits und wird als \textbf{Superposition} bezeichnet.
+Dabei handelt es sich bei den Vorfaktoren \(\alpha\) und \(\beta\) um rationale Zahlen, 
 für die gilt:
 \begin{center}
 \(\lvert\alpha\rvert^2 + \lvert\beta\rvert^2 = 1\)
@@ -110,23 +117,22 @@ Man kann sich dies jedoch in etwa an einer Münze vorstellen~\cite{Hoever2023Mü
 Ein klassisches Bit kann dabei entweder auf der Kopf- oder auf der Zahl-Seite liegen.
 Ein Qubit hingegen ist eine Münze, 
 die auf der Kante um die eigene Achse rotiert.
-Dabei geben die Vorfaktoren \(\alpha\) und \(\beta\) an,
+Dabei geben die Vorfaktoren \(\alpha\) und \(\beta\) an, 
 wie die Münze zu der einen oder zu der anderen Seite tendiert.
-Ohne die Münze zu beeinflussen, 
-ist es nicht möglich, die Tendenz, 
-also die Vorfaktoren, zu bestimmen.
 
-Um ein konkretes Ergebnis zu erhalten, 
+Um ein Ergebnis zu erhalten, 
 muss das Qubit gelesen werden, 
 beziehungsweise genauer gesagt, gemessen.
 Durch die Messung wird die Superposition zerstört und 
 das Qubit kollabiert in einen der beiden Basiszustände.
 
-In Analogie zur Münze wird die Rotation der Münze gezielt gestoppt, sodass diese auf eine der beiden Seiten kippt.
+In Analogie zur Münze wird die Rotation der Münze gezielt gestoppt, sodass diese auf eine der beiden Seiten kippt. 
 
 Die Vorfaktoren \(\alpha\) und \(\beta\) repräsentieren die Amplituden des Qubits.
 Die Amplituden beschreiben, 
-wie stark die Tendenz des Qubits ist, in einen bestimmten Basiszustand zu kollabieren.
+wie stark die Tendenz des Qubits zu den Basiszuständen ist.
+Bei einer Messung bestimmt die Tendenz die Wahrscheinlichkeit, 
+in welchen der beiden Basiszustand das Qubit kollabieren.
 Um die konkreten Wahrscheinlichkeiten für diese Zustände zu bestimmen, 
 verwendet man die quadrierten Beträge der jeweiligen Vorfaktoren:
 \begin{center}
@@ -135,7 +141,7 @@ verwendet man die quadrierten Beträge der jeweiligen Vorfaktoren:
 
 Es ist nicht möglich, 
 den Zustand eines Qubit während einer Berechnung zu beobachten,
-da ansonsten die Superposition zerstört wird und sich somit der Zustand des Qubits verändert.
+da ansonsten die Superposition zerstört wird und in einen der beiden Basiszustände kollabiert.
 Aus diesem Grund erfolgt die Messung in der Regel erst am Ende eines Quantenalgorithmus, um das endgültige Ergebnis zu ermitteln.
 
 \vspace{1em}
@@ -155,6 +161,17 @@ spricht man von einer globalen Phase:
     \ket{\Psi} = e^{i\varphi} \cdot (\alpha \ket{0} + \beta  \ket{1} )
     \text{, }~
     \varphi~\in~\mathbb{C}
+  \)
+\end{center}
+Unterscheiden sich wiederum die Phasenverschiebung beider Vorfaktoren, 
+handelt es sich um eine relative Phase:
+\begin{center}
+  \(
+    \ket{\Psi} = (\alpha \cdot e^{i\varphi_1}) \cdot \ket{0} + (\beta \cdot e^{i\varphi_2}) \cdot \ket{1}
+    \text{, }~
+    \varphi_1,\varphi_2~\in~\mathbb{C}
+    \text{, }~
+    \varphi_1 \neq \varphi_2
   \)
 \end{center}
 Bei einer Messung hat eine Phasenverschiebung keinen Einfluss auf das Messergebnis, 
@@ -208,6 +225,8 @@ Somit wird die grundlegende Bedingung eines Qubits nicht verletzt:
 \begin{center}
 \(\lvert\alpha\rvert^2 + \lvert\beta\rvert^2 = 1\)
 \end{center}
+Des Weiteren haben Quantengatter die identische Anzahl an Ausgangsqubits wie Eingangsqubit, 
+andernfalls würde dies ebenfalls keine unitäre Transformation darstellen.
 
 Im Verlauf dieser Arbeit werden insbesondere Pauli-X-Gatter, Hadamard-Gatter und Phasen-Gatter verwendet. 
 Die Transformationen dieser Gatter werden in Form einer Matrix beschrieben.
@@ -299,91 +318,118 @@ Das Hadamard-Gatter realisiert die Transformation:
     1 & -1
     \end{pmatrix}
 \]
-Die Transformation des Hadamard-Gatters, 
-wird von den Phasen der Zustände beziehungsweise Phasenverschiebungen beeinflusst:
-\[
+Die Zustände \(\ket{0}\) und \(\ket{1}\) sind praktisch die Basiszustände der sogenannten Standardbasis.
+Wendet man auf \(\ket{0}\) und \(\ket{1}\) die Hadamard-Transformation an, 
+werden diese entsprechend zu den Basiszuständen der Fourierbasis \(\ket{+}\) und \(\ket{-}\):
+\[ 
+  \frac{1}{\sqrt{2}}
+\begin{pmatrix}
+  1 & 1 \\
+  1 & -1
+  \end{pmatrix}
+  \cdot
+  \begin{pmatrix}
+    1 \\
+    0
+  \end{pmatrix}
+  =
+  \frac{1}{\sqrt{2}}
+  \begin{pmatrix}
+    1 \\
+    1
+  \end{pmatrix}
+  =
+  \ket{+}
+  \text{ und }
   \frac{1}{\sqrt{2}}
   \begin{pmatrix}
     1 & 1 \\
     1 & -1
     \end{pmatrix}
     \cdot
+    \begin{pmatrix}
+      0 \\
+      1
+    \end{pmatrix}
+    =
     \frac{1}{\sqrt{2}}
     \begin{pmatrix}
       1 \\
-      1
-    \end{pmatrix}
-     =
-     \begin{pmatrix}
-      1 \\
-      0
+      -1
     \end{pmatrix}
     =
-     \ket{0}
-     \text{ und }
-     \frac{1}{\sqrt{2}}
-     \begin{pmatrix}
-       1 & 1 \\
-       1 & -1
-       \end{pmatrix}
-       \cdot
-       \frac{1}{\sqrt{2}}
-       \begin{pmatrix}
-         1 \\
-         -1
-       \end{pmatrix}
-        =
-        \begin{pmatrix}
-         0 \\
-         1
-       \end{pmatrix}
-       =
-        \ket{1}
+    \ket{-}
   \]
-  Die Zustände \(\ket{0}\) und \(\ket{1}\) sind praktisch die Basiszustände der sogenannten Standardbasis.
-  Wendet man auf \(\ket{0}\) und \(\ket{1}\) die Hadamard-Transformation an, 
-  werden diese entsprechend zu den Basiszuständen der Fourierbasis \(\ket{+}\) und \(\ket{-}\):
-  \[ 
-    \frac{1}{\sqrt{2}}
+Die beiden Basiszuständen der Fourierbasis unterscheiden sich lediglich um eine relative Phase:
+\[
+  \frac{1}{\sqrt{2}}
+  \begin{pmatrix}
+    1 \\
+    1
+  \end{pmatrix} = 
+  \ket{+}
+  \text{ und }
+  \frac{1}{\sqrt{2}}
+  \begin{pmatrix}
+    1 \\
+   e^{\pi i} \cdot 1
+  \end{pmatrix} = 
+  \frac{1}{\sqrt{2}}
+  \begin{pmatrix}
+    1 \\
+   - 1
+  \end{pmatrix} = 
+  \ket{-}
+  \]
+
+Wendet man die Transformation des Hadamard-Gatters auf die Basiszustände der Fourierbasis an, 
+wird deutlich,
+dass die Hadamard-Transformation von einer Phase beeinflusst wird:
+\begin{align*}
+  H \cdot \ket{+} &=
+  \frac{1}{\sqrt{2}}
   \begin{pmatrix}
     1 & 1 \\
     1 & -1
-    \end{pmatrix}
-    \cdot
-    \begin{pmatrix}
-      1 \\
-      0
-    \end{pmatrix}
-    =
-    \frac{1}{\sqrt{2}}
-    \begin{pmatrix}
-      1 \\
-      1
-    \end{pmatrix}
-    =
-    \ket{+}
-    \text{ und }
-    \frac{1}{\sqrt{2}}
-    \begin{pmatrix}
-      1 & 1 \\
-      1 & -1
-      \end{pmatrix}
-      \cdot
-      \begin{pmatrix}
-        0 \\
-        1
-      \end{pmatrix}
-      =
-      \frac{1}{\sqrt{2}}
-      \begin{pmatrix}
-        1 \\
-        -1
-      \end{pmatrix}
-      =
-      \ket{-}
-    \]
+  \end{pmatrix}
+  \cdot
+  \frac{1}{\sqrt{2}}
+  \begin{pmatrix}
+    1 \\
+    1
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    1 \\
+    0
+  \end{pmatrix}
+  =
+  \ket{0}\\
+  H \cdot \ket{-} &=
+  \frac{1}{\sqrt{2}}
+  \begin{pmatrix}
+    1 & 1 \\
+    1 & -1
+  \end{pmatrix}
+  \cdot
+  \frac{1}{\sqrt{2}}
+  \begin{pmatrix}
+    1 \\
+    -1
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    0 \\
+    1
+  \end{pmatrix}
+  =
+  \ket{1}
+\end{align*}
+
+
     Im Kapitel der Quanten-Fourier-Transformation~\ref{Quanten-Fourier-Transformation} wird dies vertieft.
-    Für das Verständnis dieses Kapitels sollte man im Hinterkopf haben, 
+    Für ein besseres Verständnis dieses Kapitels ist es hilfreich, 
+    im Hinterkopf zu behalten, 
     dass das Ergebnis eines Hadamard-Gatters von der Phasenverschiebung des Zustandes beeinflusst wird.
 
     \vspace{1em}
@@ -426,7 +472,8 @@ wenn das Kontroll-Qubit im Zustand \(\ket{1}\) ist.
 
 Als Beispiel wird der Effekt eines kontrollierten Pauli-X-Gatters beziehungsweise 
 Controlled-Not-Gatters für die beiden Basiszustände betrachtet.
-Der Quantenschaltkreis für die beiden Qubits \(\ket{xy}\) ist in Abbildung~\ref{fig:cnot} abgebildet.
+Der Quantenschaltkreis für die beiden Qubits \(\ket{x}\) und \(\ket{y}\), zusammengefasst \(\ket{xy}\), 
+ist in Abbildung~\ref{fig:cnot} abgebildet.
 Dabei handelt es sich bei \(\ket{x}\) um das Kontroll-Qubit und bei \(\ket{y}\) um das Ziel-Qubit:
 \[\ket{00}\shortrightarrow\ket{00},~\ket{01}\shortrightarrow\ket{01},~
 \ket{10}\shortrightarrow\ket{11},~\ket{11}\shortrightarrow\ket{10}
@@ -438,7 +485,7 @@ wenn das Qubit \(\ket{x}\) dem Zustand \(\ket{1}\) entspricht.
   \includegraphics[scale=1]{cnot.png}
   \caption{CNot-Gatter}
   \label{fig:cnot}
-\end{figure}
+ \end{figure}
 
 Im Verlauf dieser Arbeit werden einige kontrollierte Operationen verwendet. 
 Für ein besseres Verständnis ist es hilfreich, 
@@ -576,6 +623,33 @@ In Abbildung~\ref{fig:gate_order} wirkt zuerst ein Pauli-X-Gatter und anschließ
   \caption{Berechnung aufeinanderfolgende Gatter}
   \label{fig:gate_order}
 \end{figure}
+
+\subsubsection*{Logische Gatter als Quantengatter} 
+Das X-Gatter entspricht im Grunde genommen der identischen Transformation eines logischen NOT-Gatters für Basiszustände der Standardbasis.
+\[
+  X \cdot \ket{0} = \ket{1} 
+  \text{ und }
+  X \cdot \ket{1} = \ket{0}
+\]
+Quantengatter können die logischen Operatoren für zwei Bits, wie AND und XOR, 
+nicht in ihrer herkömmlichen Form realisieren. 
+Ein logisches AND als Quantengatter muss eines der beiden Qubits als Ergebnis der AND-Operation festlegen.
+Im gegebenen Beispiel enthält das zweite Qubit das Ergebnis:
+\[
+  \ket{00} \shortrightarrow \ket{00} 
+  \text{, } 
+  \ket{01} \shortrightarrow \ket{00}
+  \text{, }
+  \ket{10} \shortrightarrow \ket{10}
+  \text{, }
+  \ket{11} \shortrightarrow \ket{11}
+  \]
+Unabhängig von der Definition des ersten Ausgangsqubits wird es immer zwei unterschiedliche Eingangszustände geben, 
+die denselben Ausgangszustand haben. 
+
+Es ist dennoch möglich, 
+AND und OR als Quantengatter zu realisieren. 
+Dafür muss ein Hilfsqubit verwendet werden, sodass das Quantengatter effektiv auf drei Qubits wirkt.
 
 \subsection{Notation}
 Die Notation von Quantenzuständen und Berechnungen ist in der Literatur nicht immer eindeutig. 
