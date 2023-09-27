@@ -72,9 +72,8 @@ weshalb diese ebenfalls berücksichtigt werden.
 
 \vspace{1em}
 
-\begin{table}[H] \label{Varainten_Analyse}
+\begin{table}[H]
     \centering
-    \caption{Vergleich der vier Varianten des Shor-Algorithmus für verschiedene Schlüssellängen}
     \begin{tabular}{|l|l|l|l|l|}
         \hline
         \textbf{Variante} & \textbf{Schlüssellänge} & \textbf{Qubits} & \textbf{Gatteranzahl} & \textbf{Maxdepth} \\ \hline
@@ -95,7 +94,9 @@ weshalb diese ebenfalls berücksichtigt werden.
         Approximative-Iterative & 3072-Bit & 6147 & \(2^{43}\) & \(2^{40}\) \\ \hline
         Approximative-Iterative & 4096-Bit & 8195 & \(2^{44}\) & \(2^{41}\) \\ \hline
     \end{tabular}
-    \end{table}
+    \caption{Vergleich der vier Varianten des Shor-Algorithmus für verschiedene Schlüssellängen}
+    \label{Varainten_Analyse}
+\end{table}
     
 Anhand der Tabelle~\ref{Varainten_Analyse} fällt auf,
 dass die unterschiedlichen Varianten keinen Unterschied in Bezug auf die \textit{Maxdepth} haben.
@@ -124,15 +125,16 @@ dass der in dieser Publikation verwendete Quantenschaltkreis klassische Volladdi
 
 In Tabelle~\ref{Volladdierer_Analyse} sind die Ergebnisse der Publikation dargestellt:
 
-\begin{table}[H] \label{Volladdierer_Analyse}
+\begin{table}[H]
     \centering
-    \caption{Vergleich Shor-Algorithmus mit Volladdierer~\cite{cryptoeprint:2023/092}}
     \begin{tabular}{|l|l|l|l|l|}
         \hline
         \textbf{Variante} & \textbf{Schlüssellänge} & \textbf{Qubits} & \textbf{Gatteranzahl} & \textbf{Maxdepth} \\ \hline
         Volladdierer & 1024-Bit & 5121 & \(2^{38}\) & \(2^{38}\) \\ \hline
         Volladdierer & 2048-Bit & 10241 & \(2^{41}\) & \(2^{41}\) \\ \hline
     \end{tabular}
+    \caption{Vergleich Shor-Algorithmus mit Volladdierer~\cite{cryptoeprint:2023/092}}
+    \label{Volladdierer_Analyse}
 \end{table}
 In der Publikation werden die Ressourcen nur für Schlüssellängen von jeweils \(1024\) und \(2048\) Bit untersucht. 
 Nichtsdestotrotz lässt sich im direkten Vergleich feststellen, 
@@ -173,9 +175,8 @@ wie in der Implementierung in Sektion~\ref{sec:Implementierung} verwendet wurde.
 Die Nachberechnung wurde nach dem Verfahren, wie in Sektion~\ref{sec:Faktorisierungsalgorithmus} beschrieben, angewendet. 
 Die Anzahl der zu überprüfenden Nachbarn und Vielfachen in der klassischen Nachberechnung betrug ebenfalls den standardmäßigen Wert von \(2^{\text{ld}(\text{ld}(N))}\).
 
-\begin{table}[h] \label{Nachberechnung}
+\begin{table}[h]
     \centering
-    \caption{Anzahl der Durchläufe pro Faktorisierung mit Nachberechnung}
     \begin{tabular}{|c|c|c|c|c|c|c|} 
         \hline
         \textbf{Durchläufe} & 1 & 2 & 3 & 4\\
@@ -183,11 +184,12 @@ Die Anzahl der zu überprüfenden Nachbarn und Vielfachen in der klassischen Nac
         \textbf{Häufigkeit} & 168 & 27 & 3 & 2 \\
         \hline
     \end{tabular}
+    \caption{Anzahl der Durchläufe pro Faktorisierung mit Nachberechnung}
+    \label{Nachberechnung}
 \end{table}
 
-\begin{table}[h] \label{ohneNachberechnung}
+\begin{table}[h]
     \centering
-    \caption{Anzahl der Durchläufe pro Faktorisierung ohne Nachberechnung}
     \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|} 
         \hline
         \textbf{Durchläufe} & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 11 \\
@@ -195,6 +197,8 @@ Die Anzahl der zu überprüfenden Nachbarn und Vielfachen in der klassischen Nac
         \textbf{Häufigkeit} & 87 & 51 & 28 & 14 & 9 & 5 & 3 & 2 & 1 \\
         \hline
     \end{tabular}
+    \caption{Anzahl der Durchläufe pro Faktorisierung ohne Nachberechnung}
+    \label{ohneNachberechnung}
 \end{table}
 
 Im direkten Vergleich der Ergebnisse von Tabelle~\ref{Nachberechnung} zu Tabelle~\ref{ohneNachberechnung} fällt auf, 

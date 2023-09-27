@@ -433,12 +433,12 @@ Dabei handelt es sich bei \(\ket{x}\) um das Kontroll-Qubit und bei \(\ket{y}\) 
   \]
 Also wird die Not-Transformation auf das Qubit \(\ket{y}\) nur ausgeführt, 
 wenn das Qubit \(\ket{x}\) dem Zustand \(\ket{1}\) entspricht.
-\begin{figure} [H]
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=1]{cnot.png}
   \caption{CNot-Gatter}
   \label{fig:cnot}
-  \includegraphics[scale=1]{cnot.png}
-  \centering
-  \end{figure}
+\end{figure}
 
 Im Verlauf dieser Arbeit werden einige kontrollierte Operationen verwendet. 
 Für ein besseres Verständnis ist es hilfreich, 
@@ -570,12 +570,12 @@ In Abbildung~\ref{fig:gate_order} wirkt zuerst ein Pauli-X-Gatter und anschließ
         =
         \ket{-}
   \]
-\begin{figure} [H]
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=1]{gate_order.png}
   \caption{Berechnung aufeinanderfolgende Gatter}
   \label{fig:gate_order}
-  \includegraphics[scale=1]{gate_order.png}
-  \centering
-  \end{figure}
+\end{figure}
 
 \subsection{Notation}
 Die Notation von Quantenzuständen und Berechnungen ist in der Literatur nicht immer eindeutig. 
@@ -801,11 +801,11 @@ Wie in Abbildung~\ref{fig:qft} ersichtlich,
 kehrt die Quanten-Fourier-Transformation die Reihenfolge der Qubits um~\cite[217]{homeister2023quantum215}.
 Um die ursprüngliche Reihenfolge wiederherzustellen, 
 werden am Ende der Quanten-Fourier-Transformation Swap-Operationen durchgeführt.
-\begin{figure} [H]
-\caption{3-Qubit QFT}
-\label{fig:qft}
-\includegraphics[width=\columnwidth]{qft.PNG}
-\centering
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\columnwidth]{qft.PNG}
+  \caption{3-Qubit QFT}
+  \label{fig:qft}
 \end{figure}
 
 Anhand der Implementierung wird ersichtlich,
@@ -819,11 +819,11 @@ Um einen Quantenschaltkreis aus unitären Gattern zu invertieren,
 werden die Inversen der verwendeten Gatter in umgekehrter Reihenfolge zur ursprünglichen Schaltung angewendet. 
 Die Swap-Operationen stehen somit bei der inversen Quanten-Fourier-Transformation am Anfang.
 In Abbildung~\ref{fig:iqft} ist beispielhaft die inverse Quanten-Fourier-Transformation für drei Qubits abgebildet.
-\begin{figure} [H]
-\caption{3-Qubit inverse QFT}
-\label{fig:iqft}
-\includegraphics[width=\columnwidth]{iqft.PNG}
-\centering
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\columnwidth]{iqft.PNG}
+  \caption{3-Qubit inverse QFT}
+  \label{fig:iqft}
 \end{figure}
 
 \subsection{Quantum-Phase-Estimation} \label{Quanten-Phase-Estimation}
@@ -1054,11 +1054,11 @@ Das Ergebnis des Beispiels zeigt, dass der Eigenwert praktisch auf die Amplitude
 Verwendet man ein Phase-Gatter mit \(\varphi  = 0.075\), 
 so sieht der Quantenschaltkreis wie in Abbildung~\ref{fig:qpe_1qubit} aus.
 \begin{figure}[H]
+  \centering
+  \includegraphics[ scale = 0.9]{qpe_1qubit.PNG}
   \caption{Einzelnes Kontroll-Qubit QPE}
   \label{fig:qpe_1qubit}
-  \includegraphics[ scale = 0.9]{qpe_1qubit.PNG}
-  \centering
-  \end{figure}
+\end{figure}
 Mit dieser Phasenverschiebung sollte man bei einer Messung den Zustand \(\ket{0}\)
 mit einer Wahrscheinlichkeit von ungefähr \(0.9455\) 
 und den Zustand \(\ket{1}\) mit der Wahrscheinlichkeit \(0.0544\) erhalten.
@@ -1093,11 +1093,11 @@ Durch die Messung lässt sich dann der Wert für \(\varphi\) ermitteln.
 Der Aufbau der Schaltung ist als Skizze in Abbildung~\ref{fig:qpe_n_qubit} abgebildet.
 
 \begin{figure}[H]
+  \centering
+  \includegraphics[scale = 0.8]{qpe_n_qubit.PNG}
   \caption{N Qubit QPE}
   \label{fig:qpe_n_qubit}
-  \includegraphics[scale = 0.8]{qpe_n_qubit.PNG}
-  \centering
-  \end{figure}
+\end{figure}
 
 Wird die Quanten-Fourier-Transformation wie in Abbildung~\ref{fig:qpe_n_qubit} realisiert,
 kann man den Zustand der Kontrollqubits vor der inversen Quanten-Fourier-Transformation wie folgt beschreiben:
@@ -1172,12 +1172,12 @@ Als Beispiel wird die Quantum-Phase-Estimation für
 also mit \(\varphi = \frac{3}{8}\) betrachtet.
 Im Quantenschaltkreis aus Abbildung~\ref{fig:3_qubit_qpe} 
 werden die kontrollierten \(U^{2^x}\)-Gatter als Phase-Gatter mit steigendem \(x\) in \(P(2^x 2\pi \frac{3}{8})\) realisiert.
-\begin{figure} [H]
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\columnwidth]{3_qubit_qpe.png}
   \caption{3-Kontroll-Qubit QPE}
   \label{fig:3_qubit_qpe}
-  \includegraphics[width=\columnwidth]{3_qubit_qpe.png}
-  \centering
-  \end{figure}
+\end{figure}
 Die Messung in Abbildung~\ref{fig:3_qubit_qpe_measurement} ergibt konsistent bei allen Durchläufen den Zustand \(\ket{3}_3\).
 Da \(\ket{3}_3 = \ket{2^3\varphi}_3\) entspricht, 
 lässt sich durch eine Division \(\varphi = \frac{3}{8}\) ermitteln.
@@ -1186,10 +1186,10 @@ dass die Reihenfolge der Wertigkeit der Qubits gleich bleibt.
 Normalerweise tauschen die inverse wie auch die normale Quanten-Fourier-Transformation die Wertigkeiten.
 Dieser Effekt wird jedoch durch Swap-Gatter korrigiert.
 \begin{figure}[H]
-\caption{3-C-Qubit QPE Messergebnis}
-\label{fig:3_qubit_qpe_measurement}
-\includegraphics[width=\columnwidth]{3_qubit_qpe_measurement.PNG}
-\centering
+  \centering
+  \includegraphics[width=\columnwidth]{3_qubit_qpe_measurement.PNG}
+  \caption{3-C-Qubit QPE Messergebnis}
+  \label{fig:3_qubit_qpe_measurement}
 \end{figure}
 
 Im vorherigen Beispiel liefern die Messungen aller Durchläufe den gleichen Zustand, 
@@ -1218,12 +1218,12 @@ einen der beiden angrenzenden Zustände kollabiert.
 Diese entsprechen \({\frac{2}{8} = \frac{4}{16}}\) und \({\frac{3}{8} = \frac{6}{16}}\), 
 also genau den Werten, die \(\frac{5}{16}\) am nächsten sind.
 
-\begin{figure} [H]
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\columnwidth]{3_qubit_qpe_measurment_uncertain.PNG}
   \caption{QPE unpräzises Messergebnis}
   \label{fig:3_qubit_qpe_measurment_uncertain}
-  \includegraphics[width=\columnwidth]{3_qubit_qpe_measurment_uncertain.PNG}
-  \centering
-  \end{figure}
+\end{figure}
 
 
 
