@@ -233,23 +233,25 @@ wenn man das gleiche Tensorprodukt im Kontext der Quanten-Fourier-Transformation
 \end{align*}
 Die Summe von \(a\) und \(b\) entspricht \(c = 4\) also \(c_3 = 1,~c_2 = 0,~c_1=0\):
 \begin{align*}
-    &QFT(\ket{4}_3) = \\
-    &= \frac{1}{\sqrt{8}} \Bigg[ \Big(\ket{0} + { e^{\frac{2 \pi i (2^0(0))}{2^1}}}\ket{1} \Big) 
-    \tensor
-    \Big( \ket{0} + { e^{\frac{2 \pi i (2^1(0)+2^0(0))}{2^2}}}\ket{1} \Big) 
-\tensor
-\Big( \ket{0} + { e^{\frac{2 \pi i (2^{2}(1) +2^1(0)+2^0(0))}{2^3}}}\ket{1} \Big) \Bigg] \\
+    QFT(\ket{4}_3) &=
+    \begin{aligned}[t]
+      \frac{1}{\sqrt{8}} \Bigg[ \Big(\ket{0} + { e^{\frac{2 \pi i (2^0(0))}{2^1}}}\ket{1} \Big) 
+      &\tensor
+      \Big( \ket{0} + { e^{\frac{2 \pi i (2^1(0)+2^0(0))}{2^2}}}\ket{1} \Big) \\
+      &\tensor
+      \Big( \ket{0} + { e^{\frac{2 \pi i (2^{2}(1) +2^1(0)+2^0(0))}{2^3}}}\ket{1} \Big) \Bigg]
+    \end{aligned} \\
     &= 
     \frac{1}{\sqrt{8}} \Bigg[ \Big(\ket{0} + { e^{\frac{2 \pi i (0)}{2^1}}}\ket{1} \Big) 
     \tensor
     \Big( \ket{0} + { e^{\frac{2 \pi i (0)}{2^2}}}\ket{1} \Big) 
-\tensor
-\Big( \ket{0} + { e^{\frac{2 \pi i (2^{2}(1))}{2^3}}}\ket{1} \Big) \Bigg] \\
-&=\frac{1}{\sqrt{8}} \Bigg[ \Big(\ket{0} + \ket{1} \Big) 
-\tensor
-\Big( \ket{0} +   \ket{1} \Big) 
-\tensor
-\Big( \ket{0} +  e^{\pi i }\ket{1} \Big) \Bigg]
+    \tensor
+    \Big( \ket{0} + { e^{\frac{2 \pi i (2^{2}(1))}{2^3}}}\ket{1} \Big) \Bigg] \\
+    &=\frac{1}{\sqrt{8}} \Bigg[ \Big(\ket{0} + \ket{1} \Big) 
+    \tensor
+    \Big( \ket{0} +   \ket{1} \Big) 
+    \tensor
+    \Big( \ket{0} +  e^{\pi i }\ket{1} \Big) \Bigg]
 \end{align*}
 Der Zustand, 
 der durch die Quanten-Addition der Summanden \(a=3\) und 
