@@ -6,7 +6,7 @@ den privaten Schlüssel des RSA-Verfahrens aus dem zugehörigen öffentlichen Sc
 Das RSA-Verfahren stellt ein sogenanntes asymmetrisches Kryptosystem dar.
 Bei asymmetrischen Kryptosystemen kommt ein mathematisch verknüpftes Schlüsselpaar zum Einsatz. 
 Dieses Schlüsselpaar besteht aus einem öffentlichen und einem privaten Schlüssel.
-Wobei der privaten Schlüssel ausschließlich dem Eigentümer des Schlüsselpaares zugänglich sein sollte.
+Hierbei sollte der privaten Schlüssel ausschließlich dem Eigentümer des Schlüsselpaares zugänglich sein.
 Mit dem privaten Schlüssel ist der Eigentümer in der Lage, Nachrichten zu signieren. 
 Ein Nutzer kann unter der Verwendung des öffentlichen Schlüssels die Authentizität der signierten Nachricht überprüfen. 
 Hingegen erlaubt der öffentliche Schlüssel die Verschlüsselung von Nachrichten, 
@@ -16,7 +16,7 @@ dass die Ableitung des privaten Schlüssels aus dem öffentlichen Schlüssel ein
 Um dieser Anforderung gerecht zu werden, basieren asymmetrische Kryptosysteme auf mathematischen Problemstellungen, 
 deren Lösung sogar unter Nutzung eines Computers von erheblicher Komplexität ist.
 
-Die Sicherheit des kryptografischen Verfahren RSA beruht auf der Annahme,
+Die Sicherheit des kryptografischen Verfahrens RSA beruht auf der Annahme,
 dass die Faktorisierung eines Produkts bestehend aus zwei großen Primzahlen in keiner vertretbaren Zeit berechenbar ist.
 Andernfalls wäre es möglich, aus dem öffentlichen Schlüssel die beiden Primfaktoren zu extrahieren, 
 um anschließend damit den privaten Schlüssel zu bestimmen.
@@ -28,12 +28,11 @@ In diesem Zusammenhang bedeutet "`effizient"', dass die Laufzeit des Algorithmus
 
 Im Kontext der Entschlüsselungsfunktion wird eine Funktion implementiert,
 die in der Lage ist, die Primfaktorzerlegung effizient zu berechnen.
-Dazu kombiniert die Entschlüsselungsfunktion den Shor-Algorithmus mit einem klassischen Algorithmus.
 Der Shor-Algorithmus kann effektiv die Ordnung eines Elements in einer Gruppe bestimmen. 
 Um auf bestimmte Sonderfälle bezüglich der Ergebnisse des Shor-Algorithmus zu reagieren, 
 wird ein klassischer Algorithmus entwickelt, welcher diese Vorkommnisse behandelt. 
 Dadurch wird die Qualität der Ergebnisse verbessert, was wiederum die Effizienz der Entschlüsselungsfunktion steigert.
-
+Effektiv kombiniert die Entschlüsselungsfunktion den Shor-Algorithmus mit einem klassischen Algorithmus.
 
 Unter Einbeziehung der zuvor bestimmten Ordnung werden anschließend die Primfaktoren des öffentlichen Schlüssels berechnet.
 In einem abschließenden Schritt wird der private Schlüssel auf der Grundlage der berechneten Primfaktoren ermittelt.
