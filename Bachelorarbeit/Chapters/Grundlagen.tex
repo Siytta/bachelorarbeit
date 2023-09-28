@@ -32,21 +32,21 @@ Der private Schlüssel ist \(d\).
 
 Eine zu sendende Nachricht \( M \) wird in einen numerischen Wert umgewandelt und mittels des öffentlichen Schlüssels verschlüsselt:
 \[
-  C = M^e \mod N
+  C = M^e \bmod N
 \]
 Der Empfänger kann die verschlüsselte Nachricht \(C\) dann mit seinem privaten Schlüssel entschlüsseln:
 \[
-  M = C^d \mod N
+  M = C^d \bmod N
 \]
 
 Eine Nachricht \( M \) kann als \(S\) mit dem privaten Schlüssel signiert werden:
 \[
-  S = M^d \mod N
+  S = M^d \bmod N
 \]
 Für die Verifikation der Nachricht \(M\) muss dem Nutzer des öffentlichen Schlüssels \(M\) bekannt sein. 
 Die Signatur \(S\) sollte die Nachricht wiedergeben:
 \[
-  M = S^e \mod N
+  M = S^e \bmod N
 \]
 
 Der private Schlüssel kann kompromittiert werden, wenn es gelingt, die beiden Faktoren \(p\) und 
