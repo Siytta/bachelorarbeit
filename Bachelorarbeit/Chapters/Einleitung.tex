@@ -5,7 +5,8 @@ Das Ziel dieser Arbeit ist die Entwicklung und Implementierung einer auf Quanten
 basierenden Bibliothek zur Kryptoanalyse aktueller Verschlüsselungsverfahren. 
 Angesichts des spezialisierten Fachwissens, das für die Entwicklung von Quantenalgorithmen erforderlich ist, 
 konzentriert sich diese Arbeit auf die Implementierung und Optimierung eines in der Literatur bereits vorgestellten Quantenalgorithmus.
-Der ausgewählte Quantenalgorithmus ist in der Lage, eine spezifische Problemstellung, 
+Bei dem ausgewählten Quantenalgorithmus handelt es sich um den \textbf{Shor-Algorithmus}.
+Der Shor-Algorithmus ist in der Lage, eine spezifische Problemstellung, 
 die aufgrund ihrer Komplexität eine zentrale Rolle in modernen Verschlüsselungsverfahren einnimmt, 
 deutlich effizienter zu lösen als die besten klassischen Algorithmen.
 
@@ -13,12 +14,12 @@ In der zugrunde liegenden wissenschaftlichen Literatur wird dieser Quantenalgori
 ohne dass auf konkrete Implementierungsdetails eingegangen wird. 
 Diese Arbeit beseitigt die Diskrepanz zwischen theoretischen Konzepten und praktischen Realisierungen, 
 indem auf Basis der abstrakten Konzepte eine konkrete Implementierung entwickelt wird.
-Anschließend werden die resultierenden Implementierungen der Quantenalgorithmen mit klassischen Algorithmen kombiniert, 
+Anschließend werden die resultierende Implementierung des Quantenalgorithmus mit klassischen Algorithmen kombiniert, 
 um die Problemstellungen, die für die Sicherheit der Verschlüsselungsverfahren entscheidend sind, effektiver lösen zu können. 
-Um die Effektivität der Resultate einzuschätzen, 
-werden diese anhand von kryptografisch relevanten Kriterien und den Ergebnissen vergleichbarer Arbeiten bewertet.
+Um die Effektivität der resultierenden Implementierung einzuschätzen, 
+wird diese anhand von kryptografisch relevanten Kriterien und den Ergebnissen vergleichbarer Arbeiten bewertet.
 
-Diese Arbeit implementiert die Bibliothek auf der Abstraktionsebene von Quantenschaltkreisen.
+Diese Arbeit implementiert den Quantenalgorithmus auf der Abstraktionsebene von Quantenschaltkreisen.
 Dazu wird das Open-Source-Softwareentwicklungskit Qiskit genutzt, das auf der Programmiersprache Python basiert.
 
 \subsection{Motivation}
@@ -26,11 +27,15 @@ In den letzten Jahren haben Fortschritte in der Forschung und Entwicklung von Qu
 Gegenwärtig ermöglichen sowohl Simulatoren von Quantencomputern als auch real existierende, wenn auch leistungsbegrenzte, Quantencomputer die Durchführung praktischer Tests.
 Zur Zeit der ursprünglichen Konzeption der in dieser Arbeit verwendeten Quantenalgorithmen war eine praktische Erprobung entweder undenkbar oder nur durch umständliche Experimente mit stark vereinfachten Versuchen möglich.
 
-Indem diese technologischen Möglichkeiten zur Ausführung und Erprobung des implementierten Quantenalgorithmus genutzt wird, 
-eröffnet sich ein neuer Standpunkt, der die Betrachtung aus anderen Blickwinkeln erlaubt.
+Die Nutzung dieser technologischen Möglichkeiten zur Ausführung und Erprobung des implementierten Quantenalgorithmus eröffnet einen neuen Standpunkt, 
+der die Betrachtung aus anderen Blickwinkeln erlaubt. 
 
+Anhand dessen ermöglicht die praktische Erprobung die Überprüfung theoretischer Konzepte,
+wodurch potenzielle Fehler identifiziert und korrigiert werden können.
+Darüber hinaus eröffnet die Nutzung von Simulationen die Möglichkeit,
+Vergleiche zwischen den Resultaten verschiedener Herangehensweisen durchzuführen, 
+um so ein optimales Vorgehen abzuleiten.
 
 \subsection{Gliederung}
 *Hier wird dann beschrieben in welchen Kapiteln der Leser welche Inhalte erwarten kann und wieso die Reihenfolge der Kapitel so gewählt wurden, inklusive der Struktur der Arbeit*
-
 

@@ -1,7 +1,62 @@
-%Kurzfassung und Abstract gleich nur Deutsch und Englisch
+
 \section*{Kurzfassung}
-\textbf{Schlagwörter:} placeholder
-%
+In den vergangenen Jahren haben sich in der Entwicklung von Quantencomputern kontinuierliche Fortschritte ergeben. 
+Aufgrund dieser Fortschritte erwarten Prognosen, 
+dass in absehbarer Zukunft Quantencomputer mit kryptografisch relevanter Rechenleistung existieren könnten. 
+Derzeit existieren bereits konzeptuelle Quantenalgorithmen, die in der Lage sind, 
+bestimmte mathematische Probleme effizient zu lösen. 
+Diese mathematischen Probleme spielen aufgrund ihrer Komplexität eine grundlegende Rolle in bestimmten Kryptosystemen. 
+Da bisher keine Quantencomputer mit ausreichender Rechenleistung existieren, 
+gibt es auch wenige konkrete Implementierungen dieser Quantenalgorithmen.
+
+In dieser Arbeit wird der \textit{Shor-Algorithmus} implementiert. 
+Mithilfe dieses Quantenalgorithmus ist es möglich, 
+die Primfaktorzerlegung mit einem vertretbaren Laufzeitaufwand zu berechnen. 
+Konventionelle klassische Algorithmen zeigen bei dieser Berechnung eine exponentielle Laufzeitsteigerung, 
+wobei das Wachstum von der Größe der Zahl abhängt. 
+Das RSA-Kryptosystem basiert auf der Schwierigkeit der Primfaktorzerlegung und 
+wird dementsprechend durch den \textit{Shor-Algorithmus} bedroht. 
+
+Die in dieser Arbeit durchgeführte Implementierung des \textit{Shor-Algorithmus} 
+wird um mehrere Optimierungen erweitert, 
+die in unterschiedlichen Kombinationen verschiedene Varianten des Quantenalgorithmus ergeben.  
+Des Weiteren wird ein klassischer Algorithmus zur Nachberechnung entwickelt, 
+der die Erfolgsrate des Quantenalgorithmus erhöht. 
+In einer Analyse werden die Laufzeiten und 
+der Ressourcenbedarf der implementierten Varianten anhand von Kriterien für kryptografische Angriffe durch Quantenalgorithmen bewertet. 
+Abschließend erfolgt ein Vergleich mit den Resultaten vergleichbarer Arbeiten, 
+gefolgt von einer Bewertung der erzielten Resultate.
+
+Die Implementierung findet auf der Abstraktionsebene von Quantenschaltkreisen statt. 
+Dazu wird das Open-Source-Softwareentwicklungskit Qiskit verwendet.
+
+
+\textbf{Schlagwörter:} \textit{Shor-Algorithus},\textit{Quanten-Computing}, \textit{Qiskit}, \textit{RSA}, \textit{Primfaktorzerlegung}
+
 \section*{Abstract}
 
-\textbf{Keywords:} placeholder
+In recent years, there have been continuous advancements in the development of quantum computers. 
+Due to these advancements, forecasts suggest that in the foreseeable future, 
+quantum computers with cryptographically relevant computing power could exist. 
+Currently, conceptual quantum algorithms already exist, capable of efficiently solving certain mathematical problems. 
+These mathematical problems play a fundamental role in specific cryptographic systems due to their complexity. 
+However, as of now, 
+there are few concrete implementations of these quantum algorithms because quantum computers with sufficient computing power do not yet exist.
+
+In this work, the Shor algorithm is implemented. With the help of this quantum algorithm, 
+it is possible to compute the prime factorization with a reasonable runtime. 
+Conventional classical algorithms exhibit an exponential increase in runtime for this computation, 
+depending on the size of the number. 
+The RSA cryptosystem relies on the difficulty of prime factorization and is, 
+therefore, threatened by the Shor algorithm.
+
+The implementation of the Shor algorithm in this work is extended with several optimizations, 
+resulting in various variants of the quantum algorithm in different combinations. 
+Furthermore, a classical post-processing algorithm is developed to increase the success rate of the quantum algorithm. 
+In an analysis, 
+the runtimes and resource requirements of the implemented variants are evaluated based on criteria for cryptographic attacks using quantum algorithms. 
+Finally, a comparison is made with the results of similar works, followed by an assessment of the achieved results.
+
+The implementation takes place at the abstraction level of quantum circuits, using the open-source software development kit Qiskit.
+
+\textbf{Keywords:} \textit{Shor-Algorithm},\textit{Quantum-Computing}, \textit{Qiskit}, \textit{RSA}, \textit{Prime factorization}

@@ -26,14 +26,17 @@ das RSA-Verfahren als kompromittiert angesehen werden muss~\cite{Cormen2009}.
 Bislang ist kein klassischer Algorithmus bekannt, der die Primfaktorzerlegung effizient berechnen kann~\cite{Hoever2022Krypto}.
 In diesem Zusammenhang bedeutet "'effizient"', dass die Laufzeit des Algorithmus in einem höchstens polynomialen Verhältnis zur Größe der Eingabezahl anwächst.
 
-Im Kontext der Entschlüsselungsfunktion für RSA wird eine Funktion implementiert,
+Im Kontext der Entschlüsselungsfunktion wird eine Funktion implementiert,
 die in der Lage ist, die Primfaktorzerlegung effizient zu berechnen.
-Die Entschlüsselungsfunktion besteht aus einem Quantenalgorithmus und einem klassischen Algorithmus.
-Der eingesetzte Quantenalgorithmus kann effektiv die Ordnung eines Elements in einer Gruppe bestimmen. 
-Unter Einbeziehung der zuvor bestimmten Ordnung werden anschließend die Primfaktoren des öffentlichen Schlüssels mithilfe eines klassischen Algorithmus berechnet~\cite{Shor_1997}.
+Dazu kombiniert die Entschlüsselungsfunktion den Shor-Algorithmus mit einem klassischen Algorithmus.
+Der Shor-Algorithmus kann effektiv die Ordnung eines Elements in einer Gruppe bestimmen. 
+Um auf bestimmte Sonderfälle bezüglich der Ergebnisse des Shor-Algorithmus zu reagieren, 
+wird ein klassischer Algorithmus entwickelt, welcher diese Vorkommnisse behandelt. 
+Dadurch wird die Qualität der Ergebnisse verbessert, was wiederum die Effizienz der Entschlüsselungsfunktion steigert.
+
+
+Unter Einbeziehung der zuvor bestimmten Ordnung werden anschließend die Primfaktoren des öffentlichen Schlüssels berechnet.
 In einem abschließenden Schritt wird der private Schlüssel auf der Grundlage der berechneten Primfaktoren ermittelt.
-
-
 
 
 
