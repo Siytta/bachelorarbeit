@@ -8,22 +8,19 @@ Der erste Algorithmus ermöglicht die effiziente Berechnung der Primfaktorzerleg
 während der zweite Algorithmus die effiziente Berechnung des diskreten Logarithmus ermöglicht.
 Aufgrund ihrer konzeptionellen Ähnlichkeiten werden beide Algorithmen häufig kollektiv als "`Shors Algorithmus"' bezeichnet.
 
-Die Quantenberechnungen beider Algorithmen basieren auf arithmetischen Operationen in Restklassen und der Quanten-Fourier-Transformation.
-Da Shor die Umsetzung von arithmetischen Operationen in Restklassen sowie die Quanten"=Fourier"=Transformation nicht explizit behandelt,
-stützt sich die Implementierung auf den Ergebnissen weiterer Arbeiten. 
-Diese untersuchen insbesondere effiziente Methoden zur Durchführung von arithmetischen Operationen in Restklassen innerhalb eines Quantenschaltkreises.
-Einige dieser Arbeiten untersuchen die Quanten-Fourier-Transformation, 
-da diese ein notwendiges Element für gewisse Berechnungen darstellt.
+Die Quantenberechnungen beider Algorithmen basieren auf arithmetischen Operationen in Restklassen und der Quanten-Fourier-Transformation. 
+Shor behandelt die Umsetzung dieser arithmetischen Operationen sowie der Quanten"=Fourier"=Transformation nicht explizit. 
+Daher stützt sich die Implementierung auf den Ergebnissen aus anderen Arbeiten, die diese Themen genauer untersuchen.
 
 In der Publikation \textit{"`Quantum Networks for Elementary Arithmetic Operations"'} erklären Vlatko Vedral,  Adriano Barenco und Artur Ekert,
-wie die modulare Exponentiation in einem Quantenschaltkreis berechnet werden kann. 
+wie die modulare Exponentiation in einem Quantenschaltkreis berechnet werden kann~\cite{Vedral_1996}. 
 
 St\'{e}phane Beauregard baut auf den Erkenntnissen von Vedral, Barenco und Ekert auf und
-verbessert den Quantenschaltkreis für die arithmetische Operation der modularen Exponentiation.
+verbessert den Quantenschaltkreis für die arithmetische Operation der modularen Exponentiation~\cite{beauregard2003circuit}.
 Hierfür ersetzt Beauregard einen Teil des ursprünglichen Quantenschaltkreis,
 der in der modularen Exponentiation für die Berechnung der Addition genutzt wurde, 
 durch einen effizienteren Quantenschaltkreis,
-wie ihn Thomas G. Draper in \textit{"`Addition on a Quantum Computer"'} beschreibt.
+wie ihn Thomas G. Draper in \textit{"`Addition on a Quantum Computer"'} beschreibt~\cite{draper2000addition}.
 Des weiteren verwendet Beauregard diese Optimierungen in seiner Arbeit \textit{"`Circuit for Shor’s algorithm using 2n+3 qubits"'},
 um eine Realisierung von Shors Algorithmus zur Faktorisierung zu beschreiben.
 
@@ -47,5 +44,5 @@ Dabei wurden veraltete Einträge in der Dokumentation von Qiskit gefunden,
 die eine Variante von Shors Quantenalgorithmus zur Faktorisierung beschreiben~\cite{QiskitShorImplementations}. 
 Die Implementierung von Qiskit verzichtet auf eine Optimierung, die in dieser Arbeit vorgenommen wird. 
 Diese Optimierung wird mit einer Abwägung ihrer Vor- und Nachteile in dieser Arbeit untersucht. 
-Im Vergleich zur Variante von Qiskit benötigt die optimierte Implementierung nur halb so viele Qubits. 
-Darüber hinaus ist die Implementierung von Qiskit veraltet und kann deshalb nicht mehr importiert werden.
+Im Vergleich zur Variante von Qiskit benötigt die optimierte Implementierung nur halb so viele Quantenbits. 
+Darüber hinaus ist die Implementierung von Qiskit veraltet und wurde entfernt.
