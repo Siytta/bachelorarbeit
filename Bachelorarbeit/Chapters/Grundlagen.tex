@@ -1,7 +1,7 @@
 \section{Grundlagen}
 In diesem Abschnitt werden einige grundlegende Elemente erläutert, 
 die für das Verständnis der Funktionsweise des Shor-Algorithmus erforderlich sind.
-Als Grundfundament sind Kenntnisse in der Modulararithmetik, lineare Algebra und den komplexen Zahlen Vorraussetzung. 
+Als Fundament sind Kenntnisse in der Modulararithmetik, lineare Algebra und den komplexen Zahlen Vorraussetzung. 
 
 Vorkenntnisse über die Grundprinzipien der Quantenmechanik sind hilfreich, 
 werden aber im folgenden Abschnitt erläutert. 
@@ -12,7 +12,10 @@ Das RSA-Verfahren ist ein weitverbreitetes asymmetrisches Kryptosystem,
 das 1977 von Ron \textbf{R}ivest, Adi \textbf{S}hamir und Leonard \textbf{A}dleman entwickelt wurde~\cite{10.1145/359340.359342}. 
 In asymmetrischen Verschlüsselungsverfahren werden zwei verschiedene Schlüssel verwendet: 
 Ein öffentlicher Schlüssel zum Verschlüsseln von Nachrichten und ein privater Schlüssel zum Entschlüsseln dieser Nachrichten.
-Der private Schlüssel kann ebenfalls Nachrichten verschlüsseln beziehungsweise signieren.
+Der private Schlüssel kann auch dazu verwendet werden, 
+Nachrichten zu verschlüsseln und 
+die Verschlüsselung signiert praktisch die Nachrichten 
+(streng genommen den Hash dieser Nachrichten, jedoch wird dies hier der Einfachheit halber nicht vertieft).
 Eine Signatur kann mit dem öffentlichen Schlüssel bestätigt werden, 
 damit kann der Nutzer des öffentlichen Schlüssels die Authentizität der Nachricht kontrollieren.
 
@@ -21,12 +24,10 @@ Die Grundlage des RSA-Verfahrens basiert auf der Schwierigkeit,
 das Produkt zweier großer Primzahlen zu zerlegen. 
 
 Zunächst wählt man zwei große Primzahlen \(p\) und \(q\) und 
-berechnet deren Produkt 
+berechnet deren Produkt: 
 \[N = p \cdot q \text{ und } f=(p-1)(q-1)\]  
-Des Weiteren wird ein Exponent \(e\) ausgewählt, 
-der teilerfremd zu \(f\) ist.
-Anschließend wird \(d\) berechnet, 
-welches das multiplikative Inverse von \(e\) modulo \(f\) darstellt.
+Nun wird der Exponent \(e\) teilerfremd zu \(f\) gewählt.
+Darauf basierend wird der private Schlüssel \(d\) als das multiplikative Inverse von \(e\) modulo \(f\) berechnet.
 Der öffentliche Schlüssel besteht aus \(N\) und dem Exponenten \(e\). 
 Der private Schlüssel ist \(d\).
 
@@ -52,7 +53,8 @@ Die Signatur \(S\) sollte die Nachricht wiedergeben:
 Der private Schlüssel kann kompromittiert werden, wenn es gelingt, die beiden Faktoren \(p\) und 
 \(q\) aus dem öffentlichen Schlüssel \(N\) zu extrahieren. 
 In diesem Fall wäre es möglich, den privaten Schlüssel zu berechnen. 
-Dadurch könnte man sowohl verschlüsselte Nachrichten mitlesen als auch Nachrichten signieren.
+Dies würde es ermöglichen, sowohl verschlüsselte Nachrichten zu lesen als auch Nachrichten zu signieren, 
+ohne ursprünglich im Besitz des privaten Schlüssels zu sein.
 
 \subsubsection*{Schwierigkeiten für klassische Computer}
 Ein klassischer Computer hat Schwierigkeiten, 
@@ -174,13 +176,15 @@ handelt es sich um eine relative Phase:
     \varphi_1 \neq \varphi_2
   \)
 \end{center}
-Bei einer Messung hat eine Phasenverschiebung keinen Einfluss auf das Messergebnis, 
+Phasenverschiebungen können während einer Berechnung Zwischenergebnisse beeinflussen. 
+Bei einer Messung hingegen hat eine Phasenverschiebung keinen Einfluss auf das Messergebnis, 
 da nur die Betragsquadrate ausschlaggebend sind~\cite{Hoever2023QC}. 
 
 \bigskip
 
 In Rechnungen wird häufig die vektorielle Darstellung genutzt, 
-um ein Qubit darzustellen:
+um ein Qubit darzustellen. 
+Für die beiden Basiszustände gilt:
 \[
   \ket{0} = 
   \begin{pmatrix}
@@ -316,7 +320,7 @@ Das Hadamard-Gatter realisiert die Transformation:
     1 & -1
     \end{pmatrix}
 \]
-Die Zustände \(\ket{0}\) und \(\ket{1}\) sind praktisch die Basiszustände der sogenannten Standardbasis.
+Die Zustände \(\ket{0}\) und \(\ket{1}\) sind die Basiszustände der sogenannten Standardbasis.
 Wendet man auf \(\ket{0}\) und \(\ket{1}\) die Hadamard-Transformation an, 
 werden diese entsprechend zu den Basiszuständen der Fourierbasis \(\ket{+}\) und \(\ket{-}\):
 \begin{align*} 
@@ -358,7 +362,7 @@ werden diese entsprechend zu den Basiszuständen der Fourierbasis \(\ket{+}\) un
     =
     \ket{-}
   \end{align*}
-Die beiden Basiszuständen der Fourierbasis unterscheiden sich lediglich um eine relative Phase:
+  Zustände in der Fourierbasis, einschließlich der beiden Basiszustände, unterscheiden sich lediglich durch ihre relative Phase:
 \begin{align*}
   \ket{-} =
   \frac{1}{\sqrt{2}}
@@ -432,38 +436,38 @@ dass die Hadamard-Transformation von einer Phase beeinflusst wird:
 \end{align*}
 
 
-    Im Kapitel der Quanten-Fourier-Transformation~\ref{Quanten-Fourier-Transformation} wird dies vertieft.
-    Für ein besseres Verständnis dieses Kapitels ist es hilfreich, 
-    im Hinterkopf zu behalten, 
-    dass das Ergebnis eines Hadamard-Gatters von der Phasenverschiebung des Zustandes beeinflusst wird.
+Im Kapitel der Quanten-Fourier-Transformation~\ref{Quanten-Fourier-Transformation} wird dies vertieft.
+Für ein besseres Verständnis dieses Kapitels ist es hilfreich, 
+im Hinterkopf zu behalten, 
+dass das Ergebnis eines Hadamard-Gatters von der Phasenverschiebung des Zustandes beeinflusst wird.
 
 
-    \subsubsection*{Phase-Gatter}
-    Das Phase-Gatter realisiert die Transformation:
-    \[
-      P(\lambda) =
-      \begin{pmatrix}
-        1 & 0 \\
-        0 & e^{i\lambda}
-        \end{pmatrix}
-      \]
-    Damit fügt das Phase-Gatter eine Phasenverschiebung zum \(\ket{1}\)-Anteil eines Qubits hinzu:
-    \[
-      \begin{pmatrix}
-        1 & 0 \\
-        0 & e^{i\lambda}
-        \end{pmatrix}
-        \cdot
-        \begin{pmatrix}
-          \alpha \\
-          \beta
-        \end{pmatrix}
-          =
-        \begin{pmatrix}
-          \alpha \\
-          e^{i\lambda} \cdot \beta
-        \end{pmatrix}
-    \]
+\subsubsection*{Phase-Gatter}
+Das Phase-Gatter realisiert die Transformation:
+\[
+  P(\lambda) =
+  \begin{pmatrix}
+    1 & 0 \\
+    0 & e^{i\lambda}
+    \end{pmatrix}
+  \]
+Damit fügt das Phase-Gatter eine Phasenverschiebung zum \(\ket{1}\)-Anteil eines Qubits hinzu:
+\[
+  \begin{pmatrix}
+    1 & 0 \\
+    0 & e^{i\lambda}
+    \end{pmatrix}
+    \cdot
+    \begin{pmatrix}
+      \alpha \\
+      \beta
+    \end{pmatrix}
+      =
+    \begin{pmatrix}
+      \alpha \\
+      e^{i\lambda} \cdot \beta
+    \end{pmatrix}
+\]
 
 
 \subsubsection*{Kontrollierte Gatter}
