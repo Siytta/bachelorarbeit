@@ -244,8 +244,8 @@ wirkt die Transformation:
   \]
 Die Wirkung auf Qubits in den Basiszuständen ähnelt dem logischen Not, 
 daher kommt auch die Bezeichnung als Not-Gatter:
-\[
-  X \cdot
+\begin{align*}
+  &X \cdot
   \ket{0} 
   =
   \begin{pmatrix}
@@ -263,9 +263,9 @@ daher kommt auch die Bezeichnung als Not-Gatter:
       1
     \end{pmatrix}
     = 
-    \ket{1}~
-    \text{bzw. }
-    X \cdot
+    \ket{1}
+    \text{ bzw.} \\
+    &X \cdot
   \ket{1} 
   =
   \begin{pmatrix}
@@ -284,7 +284,7 @@ daher kommt auch die Bezeichnung als Not-Gatter:
     \end{pmatrix}
     = 
     \ket{0}
-  \]
+  \end{align*}
 Im Allgemeinen führt das Pauli-X-Gatter einen Bitflip durch, 
 indem die Vorfaktoren vertauscht werden:
 \[
@@ -319,8 +319,8 @@ Das Hadamard-Gatter realisiert die Transformation:
 Die Zustände \(\ket{0}\) und \(\ket{1}\) sind praktisch die Basiszustände der sogenannten Standardbasis.
 Wendet man auf \(\ket{0}\) und \(\ket{1}\) die Hadamard-Transformation an, 
 werden diese entsprechend zu den Basiszuständen der Fourierbasis \(\ket{+}\) und \(\ket{-}\):
-\[ 
-  \frac{1}{\sqrt{2}}
+\begin{align*} 
+  &\frac{1}{\sqrt{2}}
 \begin{pmatrix}
   1 & 1 \\
   1 & -1
@@ -338,8 +338,8 @@ werden diese entsprechend zu den Basiszuständen der Fourierbasis \(\ket{+}\) un
   \end{pmatrix}
   =
   \ket{+}
-  \text{ und }
-  \frac{1}{\sqrt{2}}
+  \quad\text{ und } \\
+  &\frac{1}{\sqrt{2}}
   \begin{pmatrix}
     1 & 1 \\
     1 & -1
@@ -357,28 +357,35 @@ werden diese entsprechend zu den Basiszuständen der Fourierbasis \(\ket{+}\) un
     \end{pmatrix}
     =
     \ket{-}
-  \]
+  \end{align*}
 Die beiden Basiszuständen der Fourierbasis unterscheiden sich lediglich um eine relative Phase:
-\[
-  \frac{1}{\sqrt{2}}
-  \begin{pmatrix}
-    1 \\
-    1
-  \end{pmatrix} = 
-  \ket{+}
-  \text{ und }
-  \frac{1}{\sqrt{2}}
-  \begin{pmatrix}
-    1 \\
-   e^{\pi i} \cdot 1
-  \end{pmatrix} = 
+\begin{align*}
+  \ket{-} =
   \frac{1}{\sqrt{2}}
   \begin{pmatrix}
     1 \\
    - 1
+  \end{pmatrix} &= 
+  \frac{1}{\sqrt{2}}
+  \begin{pmatrix}
+    1 \\
+   e^{\pi i} \cdot 1
+  \end{pmatrix} \\ &= 
+  \frac{1}{\sqrt{2}}
+  \begin{pmatrix}
+    1 & 0 \\
+    0 & e^{\pi i}
+  \end{pmatrix}
+  \begin{pmatrix}
+    1 \\
+    1
   \end{pmatrix} = 
-  \ket{-}
-  \]
+  \begin{pmatrix}
+    1 & 0 \\
+    0 & e^{\pi i}
+  \end{pmatrix}
+  \ket{+}
+  \end{align*}
 
 Wendet man die Transformation des Hadamard-Gatters auf die Basiszustände der Fourierbasis an, 
 wird deutlich,
@@ -395,7 +402,7 @@ dass die Hadamard-Transformation von einer Phase beeinflusst wird:
   \begin{pmatrix}
     1 \\
     1
-  \end{pmatrix}
+  \end{pmatrix}&
   =
   \begin{pmatrix}
     1 \\
