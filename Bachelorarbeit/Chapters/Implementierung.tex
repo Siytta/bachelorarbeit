@@ -423,7 +423,7 @@ Sowohl die Quanten-Addition als auch die Quanten-Subtraktion addieren beziehungs
 sind somit die zuvor vorgestellten Varianten mit gewöhnlichen Phasen-Gattern.
 
 Der Quantenschaltkreis zur modularen Addition agiert als Baustein in einem größeren Gesamtbild. 
-Aus diesem Grund werden zwei Kontroll-Qubits \(\ket{c_1}_1\) und \(\ket{c_2}_1\) eingebaut, 
+Aus diesem Grund werden zwei Kontrollqubits \(\ket{c_1}_1\) und \(\ket{c_2}_1\) eingebaut, 
 die im weiteren Verlauf Anwendung finden.
 Das Eingaberegister, das zugleich als Zielregister dient,  
 ist initial bereits in der Fourier-Basis mit \(\ket{\phi(b)}\).
@@ -527,7 +527,7 @@ Wenn man den Quantenschaltkreis in Abbildung~\ref{fig:modulare_addition_paper} b
 fällt auf, 
 dass nicht alle Quanten-Additionen und Quanten-Subtraktionen kontrolliert durchgeführt werden.
 Die modulare Addition soll nur dann ausgeführt werden, 
-wenn die Kontroll-Qubits \(\ket{c_1}_1\) und \(\ket{c_2}_1\) gesetzt sind.
+wenn die Kontrollqubits \(\ket{c_1}_1\) und \(\ket{c_2}_1\) gesetzt sind.
 
 Betrachtet man ausschließlich die kombinierte Wirkung der Gatter des Quantenschaltkreises, 
 welche nicht von \(\ket{c_1}\) und \(\ket{c_2}\) kontrolliert sind, 
@@ -540,7 +540,7 @@ steht bereits der modulare Rest im Zielregister und somit ist keine Berechnung n
 Der Grund, weshalb nicht alle Quanten-Additionen, 
 Quanten-Subtraktionen und gegebenenfalls sogar die (inversen) Quanten-Fourier-Transformationen kontrolliert sind,
 liegt in der erhöhten Komplexität, die dadurch im Quantenschaltkreis entstehen würde~\cite{beauregard2003circuit}.
-Wenn ein Kontroll-Qubit nicht aktiviert ist, wird das kontrollierte Gatter trotzdem ausgeführt, jedoch ohne praktische Wirkung.
+Wenn ein Kontrollqubit nicht aktiviert ist, wird das kontrollierte Gatter trotzdem ausgeführt, jedoch ohne praktische Wirkung.
 Abbildung~\ref{fig:gatedef_U1U2U3_CNOT} zeigt die physikalische Implementierung dreier Single-Qubit-Gatter im Vergleich zu einem kontrollierten X-Gatter.
 Wie in der Abbildung erkennbar, 
 benötigt das kontrollierte Gatter mehr Hardware-Elemente als die drei Single-Qubit-Gatter.
@@ -591,7 +591,7 @@ müssen die Listen jeweils von der Länge \(n+1\) sein,
 wobei das Most-Significant-Bit immer \(0\) entspricht.
 
 Die Funktion definiert drei Wertebereiche, die die Positionen der Qubits beschreiben.
-\textit{c\_qbits} definiert die Position der beiden Kontroll-Qubits \(\ket{c_1}_1\) und \(\ket{c_2}_1\), 
+\textit{c\_qbits} definiert die Position der beiden Kontrollqubits \(\ket{c_1}_1\) und \(\ket{c_2}_1\), 
 \textit{b\_qbits} die Qubits, welche den Summanden \(b\) 
 in der Fourier-Basis enthalten 
 und \textit{cond\_qbit} repräsentiert die Position des Bedingungs-Qubit.
@@ -645,7 +645,7 @@ die folgende Transformation durchführt:
 \[\ket{c}_1\ket{x}_{n}\ket{b}_{n+1}\ket{0}_1
 \longrightarrow
 \ket{c}_1\ket{x}_{n}\ket{b + (ax)\mod N}_{n+1}\ket{0}_1\]
-Das Gatter umfasst ein Kontroll-Qubit \(\ket{c}_1\), 
+Das Gatter umfasst ein Kontrollqubit \(\ket{c}_1\), 
 ein Quantenregister \(\ket{x}_{n}\) mit dem Faktor \(x\),
 das Zielregister \(\ket{b}_{n+1}\) mit dem initialen Wert \(b\) und 
 ein Hilfsqubit \(\ket{0}_1\), das als Bedingungs-Qubit dient.
@@ -681,7 +681,7 @@ und aufgrund der Abhängigkeit zu \(x_i\) durch das Qubit \(\ket{x_i}_1\) kontro
 Für die gesamte Summe muss jedes Qubit des \(\ket{x}_{n}\) Quantenregisters ein Gatter zur modularen Addition kontrollieren, 
 welches auf das Quantenregister \(\ket{b}_{n+1}\) wirkt.
 Jedes Gatter zur modularen Addition bekommt die zugehörige Potenz von \(2^i\) zugewiesen, 
-die auch der Wertigkeit des zugehörigen Kontroll-Qubits \(\ket{x_i}_1\) entspricht.
+die auch der Wertigkeit des zugehörigen Kontrollqubits \(\ket{x_i}_1\) entspricht.
 Also wirken alle Gatter zur modularen Addition nacheinander auf das \(\ket{b}_{n+1}\) Quantenregister und 
 transformieren dies so sukzessiv nach \(\ket{b + (x\cdot a) \mod N}_{n+1}\).
 
@@ -691,9 +691,9 @@ Also wird im Gatter für die kontrollierte Multiplikation zuerst eine Quanten-Fo
 als letzte Operation erfolgt die inverse Quanten-Fourier-Transformation, 
 damit der Inhalt des Quantenregister wieder der Standardbasis entspricht.
 
-Zusätzlich verfügt das Gatter zur kontrollierten Multiplikation noch über das Kontroll-Qubit \(\ket{c}_1\).
-Dieses Kontroll-Qubit kontrolliert alle der verwendeten modularen Addition Gatter.
-Das Kontroll-Qubit \(\ket{c}_1\) findet beim nächsten Gatter Gebrauch.
+Zusätzlich verfügt das Gatter zur kontrollierten Multiplikation noch über das Kontrollqubit \(\ket{c}_1\).
+Dieses Kontrollqubit kontrolliert alle der verwendeten modularen Addition Gatter.
+Das Kontrollqubit \(\ket{c}_1\) findet beim nächsten Gatter Gebrauch.
 
 Alles zusammen führt zu einem Quantenschaltkreis wie in Abbildung~\ref{fig:cmult}.
 \begin{figure}[H]
@@ -722,7 +722,7 @@ und somit \(n\) entspricht.
 Um die Position der Qubits zu beschreiben, 
 definiert die Funktion vier Wertebereiche.
 \textit{c\_qbit} liegt an der ersten Stelle des kontrollierten Multiplikation Gatters und 
-ist für das Kontroll-Qubit \(\ket{c}_1\) vorhergesehen.
+ist für das Kontrollqubit \(\ket{c}_1\) vorhergesehen.
 Die darauffolgenden Qubits umfassen das \(\ket{x}_n\) Quantenregister und bestehen aus insgesamt \(n\) Qubits, 
 deren Position in \textit{c\_qbit} definiert ist.
 Die Position des \(\ket{b}_{n+1}\) Quantenregisters wird in \textit{b\_qbits} beschrieben.
@@ -776,10 +776,10 @@ In Qiskit wird der durch den Code gebildete Quantenschaltkreis wie in Abbildung~
 Die Abbildung repräsentiert den Quantenschaltkreis für \(a = 11;~N = 15\).
 
 Die Visualisierung der Kontroll-Abzweigungen ist anders als in den vorherigen Abbildungen dargestellt.
-Dies liegt daran, dass die Kontroll-Qubits bereits in den unterliegenden Gattern, 
+Dies liegt daran, dass die Kontrollqubits bereits in den unterliegenden Gattern, 
 also der modularen Addition, 
 definiert wurden.
-Es ist möglich, die Kontroll-Qubits bei der Definition der modularen Adder Gatter auszulassen und 
+Es ist möglich, die Kontrollqubits bei der Definition der modularen Adder Gatter auszulassen und 
 stattdessen erst bei der Anwendung im kontrollierten Multiplikation Gatter anzuwenden, 
 indem die Qiskit Funktion \textit{control} verwendet wird.
 Dadurch wird der Kontrolleffekt auf das gesamte Gatter zur modularen Addition angewendet, 
@@ -799,7 +799,7 @@ das im modularen Additions-Gatter den Index 1 trägt.
 \end{figure}
 
 Insgesamt wirkt das Gatter auf \(2n+3\) Qubits.
-Diese setzen sich aus dem Kontroll-Qubit \(\ket{c}_1\), den \(n\) Qubits von \(\ket{x}_n\), 
+Diese setzen sich aus dem Kontrollqubit \(\ket{c}_1\), den \(n\) Qubits von \(\ket{x}_n\), 
 den \(n+1\) Qubits von \(\ket{b}_{n+1}\) und dem einzelnen Bedingungs-Qubit \(\ket{0}_1\)zusammen.
 
 Um der Inversen des kontrollierten Multiplikation Gatters eine eindeutige Benennung zu geben, 
@@ -899,7 +899,7 @@ nämlich  \textit{a\_bin} und \textit{N\_bin}, welche jeweils \(a\) und \(N\) in
 sowie \textit{x\_bits\_amount}, das im Grunde \(n\) repräsentiert.
 
 Im Code~\ref{code:UGatter} werden insgesamt fünf Wertebereiche definiert.
-Das Kontroll-Qubit \(\ket{c}_1\) befindet sich auf der Position \textit{c\_qbit},
+Das Kontrollqubit \(\ket{c}_1\) befindet sich auf der Position \textit{c\_qbit},
 gefolgt von \textit{x\_qbits} für das \(\ket{x}_{n}\) Quantenregister und  
 \textit{b\_qbits} für die Qubits von \(\ket{0}_{n+1}\).
 Das Bedingungs-Qubit wird auf der letzten Position des Gatters platziert und  
@@ -967,16 +967,16 @@ Die zweite Variante ist möglich wegen~\cite{beauregard2003circuit}:
 Bei der Wahl zwischen den beiden Varianten liegt das entscheidende Kriterium bei der Ressourceneffizienz. 
 Die zweite Variante schneidet dabei deutlich besser ab, 
 da sie lediglich \(x\) \(U_a\)-Gatter benötigt, 
-wenn \(x\) viele Kontroll-Qubits verwendet werden, 
+wenn \(x\) viele Kontrollqubits verwendet werden, 
 im Gegensatz zur ersten Variante, die \(2^x-1\) \(U_a\)-Gatter erfordert.
 
-Ein weiterer wichtiger Aspekt für den Aufbau der Quantenschaltung betrifft die Anzahl der benötigten Kontroll-Qubits.
+Ein weiterer wichtiger Aspekt für den Aufbau der Quantenschaltung betrifft die Anzahl der benötigten Kontrollqubits.
 Beauregard erklärt in seinem Paper~\cite{beauregard2003circuit} nicht, 
-warum er eine Konstruktion mit insgesamt \(2n\) Kontroll-Qubits beziehungsweise \({U_a}^{2^x}\)-Gatter wählt.
-Es gibt Quellen, die mehr als \(2n\)  Kontroll-Qubits verwendeten~\cite[229]{nielsen_chuang_2010}.
-Nach dem Paper von Peter Shor~\cite{Shor_1997} sind jedoch \(2n\) Kontroll-Qubits ausreichend,
+warum er eine Konstruktion mit insgesamt \(2n\) Kontrollqubits beziehungsweise \({U_a}^{2^x}\)-Gatter wählt.
+Es gibt Quellen, die mehr als \(2n\)  Kontrollqubits verwendeten~\cite[229]{nielsen_chuang_2010}.
+Nach dem Paper von Peter Shor~\cite{Shor_1997} sind jedoch \(2n\) Kontrollqubits ausreichend,
 wie auch im Abschnitt~\ref{Funktionsweise:klassisch} erläutert wird.
-Deswegen verwendet die hier implementierte Variante \(2n\) Kontroll-Qubits.
+Deswegen verwendet die hier implementierte Variante \(2n\) Kontrollqubits.
 
 \bigskip
 
@@ -995,21 +995,21 @@ würde man stattdessen die Bezeichnung der entsprechenden Quantum-Backend verwen
 
 Die Funktion \texttt{Shor} definiert die beiden Wertebereiche \textit{c\_qbits} und 
 \textit{ev\_qbits}, um die Positionen der beiden Quantenregister zu beschreiben.
-Der Wertebereich \textit{c\_qbits} enthält die insgesamt \(2n\) Positionen der Kontroll-Qubits.
+Der Wertebereich \textit{c\_qbits} enthält die insgesamt \(2n\) Positionen der Kontrollqubits.
 Der Eigenvektor wird in den Qubits gespeichert, 
 deren Position in \textit{ev\_qbits} definiert ist.
 
 Der Quantenschaltkreis wird in der 5. Zeile definiert und umfasst \(4n+2\) Qubits und 
 \(2n\) klassische Bits, welche zum Messen verwendet werden.
-In Zeilen 6 und 7 wird ein Hadamard-Gatter auf jedes Kontroll-Qubit angewendet.
+In Zeilen 6 und 7 wird ein Hadamard-Gatter auf jedes Kontrollqubit angewendet.
 In den der 8. Zeile wird der Eigenvektor gebildet. 
 Da der Eigenvektor dem Zustand \(\ket{1}\) entspricht,
 genügt es, wenn das Least-Significant-Qubit mit einem X-Gatter versehen wird.
 In den Zeilen 9 und 10 werden die zugehörigen \({U_a}^{2^x}\)-Gatter mit dem passenden \(x\) auf das Register mit dem Eigenvektor angewendet.
 Die Funktion \texttt{mod\_exp} berechnet \((a^{2^x})\mod N\).
-In der 11. Zeile werden die Kontroll-Qubits mit der inverse Quanten-Fourier-Transformation in die Standardbasis transformiert.  
+In der 11. Zeile werden die Kontrollqubits mit der inverse Quanten-Fourier-Transformation in die Standardbasis transformiert.  
 Da die Funktion \texttt{Shor} Messungen durchführen soll, 
-wird in der 12. Zeile definiert, dass die Kontroll-Qubits gemessen werden.
+wird in der 12. Zeile definiert, dass die Kontrollqubits gemessen werden.
 In dem Fall entspricht dies den Qubits auf den Positionen \textit{c\_qbits}.
 Anschließend werden in den Zeilen 13 und 14 \textit{number\_shots} viele Messungen durchgeführt und 
 das Ergebnis wird als Rückgabewert der Funktion zurückgegeben.
@@ -1250,9 +1250,9 @@ Dabei sind die Eigenschaften und die Architektur des genutzten Quantencomputers 
 \subsubsection{Iterative Quantumten-Phase-Estimation}
 In den vorherigen Kapiteln wurde die Quantum-Phase-Estimation in der Standardvariante, 
 wie in Sektion~\ref{Quanten-Phase-Estimation} beschrieben, verwendet.
-In der Standardvariante wird für jedes \(U^{2^x}\)-Gatter ein eigenes Kontroll-Qubit benötigt.
+In der Standardvariante wird für jedes \(U^{2^x}\)-Gatter ein eigenes Kontrollqubit benötigt.
 Dies bedeutet, wenn \(2n\) viele \(U^{2^x}\)-Gatter angewendet werden sollen, 
-sind genau so viele Kontroll-Qubits nötig.
+sind genau so viele Kontrollqubits nötig.
 
 Ein zentraler Bestandteil der Quantum-Phase-Estimation ist die (inverse) Quanten-Fourier-Transformation. 
 Wie im Abschnitt~\ref{Quanten-Fourier-Transformation} gezeigt, 
@@ -1270,7 +1270,7 @@ Dementsprechend sind bei der inversen Quanten-Fourier-Transformation die kontrol
 
 Die Abhängigkeit zum Ausgangszustand ermöglicht es, 
 die inverse Quanten-Fourier-Transformation aufzuteilen und die Bestandteile iterativ anzuwenden.
-Dadurch wird der Ressourcenbedarf der Quantum-Phase-Estimation von \(2n\) Kontroll-Qubits auf ein einzelnes reduziert~\cite{Parker2000}.
+Dadurch wird der Ressourcenbedarf der Quantum-Phase-Estimation von \(2n\) Kontrollqubits auf ein einzelnes reduziert~\cite{Parker2000}.
 
 In der Standardvariante der Quanten-Fourier-Transformation kontrollieren Qubits die Phasen-Gatter.
 In der semi-klassischen beziehungsweise, iterativen Variante ist dies anders.
@@ -1302,7 +1302,7 @@ indem nach der Anwendung des Hadamard-Gatters auf das \(\ket{q3}_1\) Qubit
 der Messwert im klassischen Bit \(c1\) gespeichert wird.
 Anschließend kontrolliert das klassische Bit \(c1\) die Phasen-Gatter.
 
-Um nach der Messung dasselbe Kontroll-Qubit für \(\ket{q2}_1\) verwenden zu können, 
+Um nach der Messung dasselbe Kontrollqubit für \(\ket{q2}_1\) verwenden zu können, 
 muss dieses in einen eindeutigen Zustand versetzt werden, 
 in diesem Fall der Zustand \(\ket{0}\).
 Aufgrund der zuvor durchgeführten Messung 
@@ -1355,7 +1355,7 @@ welche Phasen-Gatter benötigt werden.
 Alle durch die Funktion \texttt{iterative\_QFT} angewendeten Gatter 
 werden auf den Quantenschaltkreis im Parameter \textit{qc} angewendet.
 Der letzte Parameter, \textit{controlling\_qubit}, beinhaltet das Ziel der angewendeten Gatter und 
-somit die Position des Kontroll-Qubit.
+somit die Position des Kontrollqubit.
 
 Wenn der Parameter \textit{target} dem Wert 0 entspricht, 
 wird die iterative Quanten-Fourier-Transformation für das Most-Significant-Bit angewendet.
@@ -1471,7 +1471,7 @@ Die Anwendung der Gatter und Messungen in dieser Reihenfolge stimmt nicht mit an
 \end{figure}
 
 Wie in Abbildung~\ref{fig:iQFTswaps} für die inverse Quanten-Fourier-Transformation zu sehen ist, 
-werden die Gatter auf den Eingangszustand \(\ket{q1}\) durch die Ergebnisse der beiden anderen Kontroll-Qubits kontrolliert.
+werden die Gatter auf den Eingangszustand \(\ket{q1}\) durch die Ergebnisse der beiden anderen Kontrollqubits kontrolliert.
 Für die iterative Variante nach Beauregard bedeutet das, 
 dass die klassisch kontrollierten Phasen-Gatter auf \(\ket{q1}\) von klassischen Bits kontrolliert werden, 
 welche noch nicht das Messergebnis beinhalten.
