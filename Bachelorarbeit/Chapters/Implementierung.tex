@@ -521,7 +521,7 @@ um die zuvor erfolgte Quanten-Subtraktion von \(a\) auf das Zielregister zu reve
 Das Zielregister beinhaltet nun den gewünschten Zustand \(\ket{\Phi(a+b)\mod N}\) für \(a, b < N\).
 Des Weiteren befindet sich das Bedingungs-Qubit wieder im initialen Zustand \(\ket{0}\) und kann für weitere Rechnungen wiederverwendet werden.
 
-\vspace{1em}
+\bigskip
 
 Wenn man den Quantenschaltkreis in Abbildung~\ref{fig:modulare_addition_paper} betrachtet,
 fällt auf, 
@@ -704,8 +704,7 @@ Alles zusammen führt zu einem Quantenschaltkreis wie in Abbildung~\ref{fig:cmul
 \end{figure}
 
 
-
-\vspace{1em}
+\bigskip
 
 Der Code, der einen Quantenschaltkreis als Gatter gemäß dem Konzept in Abbildung~\ref{fig:cmult} generiert, 
 ist in der Funktion \texttt{cmult\_gate}~\ref{code:ModularMultiplication} definiert.
@@ -979,7 +978,7 @@ Nach dem Paper von Peter Shor~\cite{Shor_1997} sind jedoch \(2n\) Kontroll-Qubit
 wie auch im Abschnitt~\ref{Funktionsweise:klassisch} erläutert wird.
 Deswegen verwendet die hier implementierte Variante \(2n\) Kontroll-Qubits.
 
-\vspace{1em}
+\bigskip
 
 Der Code für einen Quantenschaltkreis wie in Abbildung~\ref{fig:shor_n_qubit} ist in der Funktion 
 \texttt{Shor}~\ref{code:Periodenbestimmung} enthalten.
@@ -1071,7 +1070,7 @@ mit klassischen Methoden aufzubereiten.
 Als Resultat können so weitere Durchläufe der Quantum-Phase-Estimation eingespart und 
 durch klassische Rechenleistung ersetzt werden.
 
-\vspace{1em}
+\bigskip
 
 Die Grafik~\ref{fig:shor_measure} repräsentiert insgesamt 512 Messungen für \(a=19;~N=119\), 
 mit einer Genauigkeit \(k\) von \(2\text{ld}(119) \approx 14 \). 
@@ -1117,7 +1116,8 @@ jedoch kann aus dieser Information keine hilfreiche Konsequenz gezogen werden.
   \label{fig:shor_measure}
 \end{figure}
 
-\vspace{1em}
+
+\bigskip
 
 Abbildung~\ref{fig:Flussdiagramm} gibt einen Überblick über den Ablauf des Algorithmus 
 von der Berechnung der Periode bis zur Bestimmung der Primfaktoren.
@@ -1456,7 +1456,7 @@ einen breiteren Quantenschaltkreis gegen einen minimal tieferen ein.
 Welche der beiden Varianten vorzuziehen ist, 
 hängt vor allem von den zur Verfügung stehenden Ressourcen des Quantencomputers ab.
 
-\vspace{1em}
+\bigskip
 
 Die Konstruktion der iterativen Anwendung nach Beauregard ist in Abbildung~\ref{fig:iterative_iQPE_Beauregard} dargestellt.
 Anhand der Grafik ist erkennbar, 
@@ -1514,7 +1514,7 @@ Der Co-Autor Guy Lapalme ist emeritierter Professor der University of Montreal.
 Da Beauregard die University of Montreal verlassen hat, 
 hatte auch Guy Lapalme keine Kontaktinformationen von Beauregard.
 
-\vspace{1em}
+\bigskip
 
 Im Faktorisierungsalgorithmus wird die iterative Quantum-Phase-Estimation genutzt, 
 wenn die Anzahl der erforderlichen Qubits für die reguläre Variante mit \(4n+2\) Qubits einen zu hohen Ressourcenbedarf darstellt, 
