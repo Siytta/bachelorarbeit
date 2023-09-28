@@ -1,6 +1,6 @@
 
 \section*{Kurzfassung}
-In den vergangenen Jahren haben sich in der Entwicklung von Quantencomputern kontinuierliche Fortschritte ergeben. 
+In den vergangenen Jahren haben sich in der Entwicklung von Quantencomputern bedeutsame Fortschritte ergeben.
 Aufgrund dieser Fortschritte erwarten Prognosen, 
 dass in absehbarer Zukunft Quantencomputer mit kryptografisch relevanter Rechenleistung existieren könnten. 
 Derzeit existieren bereits konzeptuelle Quantenalgorithmen, die in der Lage sind, 
@@ -9,13 +9,15 @@ Diese mathematischen Probleme spielen aufgrund ihrer Komplexität eine grundlege
 Da bisher keine Quantencomputer mit ausreichender Rechenleistung existieren, 
 gibt es auch wenige konkrete Implementierungen dieser Quantenalgorithmen.
 
-In dieser Arbeit wird der \textit{Shor-Algorithmus} implementiert. 
+In dieser Arbeit wird der \textit{Shor-Algorithmus} zusammen mit verschiedenen Optimierungen 
+auf der Abstraktionsebene von Quantenschaltkreisen implementiert.
 Mithilfe dieses Quantenalgorithmus ist es möglich, 
 die Primfaktorzerlegung mit einem vertretbaren Laufzeitaufwand zu berechnen. 
-Konventionelle klassische Algorithmen zeigen bei dieser Berechnung eine exponentielle Laufzeitsteigerung, 
-wobei das Wachstum von der Größe der Zahl abhängt. 
-Das RSA-Kryptosystem basiert auf der Schwierigkeit der Primfaktorzerlegung und 
-wird dementsprechend durch den \textit{Shor-Algorithmus} bedroht. 
+Alle bisher bekannten konventionellen klassischen Algorithmen zeigen bei dieser Berechnung eine exponentielle Laufzeitsteigerung, 
+wobei das Wachstum der Laufzeit von der Größe der zu faktorisierenden Zahl abhängt.
+Dementsprechend ist die Sicherheit von Kryptosystemen wie beispielsweise dem RSA-Verfahren, 
+die auf der Schwierigkeit der Primfaktorzerlegung basieren, 
+durch den \textit{Shor-Algorithmus} gefährdet.
 
 Die in dieser Arbeit durchgeführte Implementierung des \textit{Shor-Algorithmus} 
 wird um mehrere Optimierungen erweitert, 
@@ -23,40 +25,42 @@ die in unterschiedlichen Kombinationen verschiedene Varianten des Quantenalgorit
 Des Weiteren wird ein klassischer Algorithmus zur Nachberechnung entwickelt, 
 der die Erfolgsrate des Quantenalgorithmus erhöht. 
 In einer Analyse werden die Laufzeiten und 
-der Ressourcenbedarf der implementierten Varianten anhand von Kriterien für kryptografische Angriffe durch Quantenalgorithmen bewertet. 
-Abschließend erfolgt ein Vergleich mit den Resultaten vergleichbarer Arbeiten, 
-gefolgt von einer Bewertung der erzielten Resultate.
-
-Die Implementierung findet auf der Abstraktionsebene von Quantenschaltkreisen statt. 
-Dazu wird das Open-Source-Softwareentwicklungskit Qiskit verwendet.
-
+der Ressourcenbedarf der implementierten Varianten anhand von Kriterien für kryptografische Angriffe durch Quantenalgorithmen bewertet.
+In einem Vergleich mit den Ergebnissen vergleichbarer Arbeiten zeigt sich, 
+dass eine der implementierten Varianten sowohl einen geringeren Ressourcenbedarf als auch eine kürzere Laufzeit aufweist. 
+Dennoch erfüllt keine der Varianten die Kriterien in Bezug auf die Laufzeit, 
+um als effiziente Methode für empfohlene aktuelle Schlüssellängen betrachtet zu werden.
 
 \textbf{Schlagwörter:} \textit{Shor-Algorithus},\textit{Quanten-Computing}, \textit{Qiskit}, \textit{RSA}, \textit{Primfaktorzerlegung}
 
 \section*{Abstract}
 
-In recent years, there have been continuous advancements in the development of quantum computers. 
-Due to these advancements, forecasts suggest that in the foreseeable future, 
-quantum computers with cryptographically relevant computing power could exist. 
-Currently, conceptual quantum algorithms already exist, capable of efficiently solving certain mathematical problems. 
-These mathematical problems play a fundamental role in specific cryptographic systems due to their complexity. 
-However, as of now, 
-there are few concrete implementations of these quantum algorithms because quantum computers with sufficient computing power do not yet exist.
+In recent years, 
+significant progress has been made in the development of quantum computers. 
+These advancements have led to predictions that quantum computers with cryptographically relevant 
+computational power could exist in the foreseeable future. 
+Currently, there are already conceptual quantum algorithms capable of efficiently solving certain mathematical problems. 
+Due to their complexity, 
+these mathematical problems play a fundamental role in certain cryptographic systems. 
+However, as of now, there are few concrete implementations of these quantum algorithms due 
+to the lack of quantum computers with sufficient computational power.
 
-In this work, the Shor algorithm is implemented. With the help of this quantum algorithm, 
-it is possible to compute the prime factorization with a reasonable runtime. 
-Conventional classical algorithms exhibit an exponential increase in runtime for this computation, 
-depending on the size of the number. 
-The RSA cryptosystem relies on the difficulty of prime factorization and is, 
-therefore, threatened by the Shor algorithm.
+In this thesis, 
+the Shor algorithm, 
+along with various optimizations at the abstraction level of quantum circuits, 
+is implemented. Using this quantum algorithm, 
+it becomes feasible to compute prime factorization with reasonable computational time. 
+All known conventional classical algorithms exhibit exponential runtime growth in this computation, 
+with the runtime growth depending on the size of the number to be factored. 
+Consequently, the security of cryptographic systems, such as the RSA algorithm, 
+which relies on the difficulty of prime factorization, is compromised by the Shor algorithm.
 
-The implementation of the Shor algorithm in this work is extended with several optimizations, 
-resulting in various variants of the quantum algorithm in different combinations. 
+The implementation of the Shor algorithm in this work is extended with several optimizations that result in different variants of 
+the quantum algorithm when combined in various ways. 
 Furthermore, a classical post-processing algorithm is developed to increase the success rate of the quantum algorithm. 
-In an analysis, 
-the runtimes and resource requirements of the implemented variants are evaluated based on criteria for cryptographic attacks using quantum algorithms. 
-Finally, a comparison is made with the results of similar works, followed by an assessment of the achieved results.
-
-The implementation takes place at the abstraction level of quantum circuits, using the open-source software development kit Qiskit.
+An analysis evaluates the runtimes and resource requirements of the 
+implemented variants based on criteria for cryptographic attacks by quantum algorithms. 
+A comparison with the results of similar works reveals that one of the implemented variants exhibits both lower resource requirements and shorter runtime. 
+However, none of the variants meet the criteria regarding runtime to be considered an efficient method for recommended current key lengths.
 
 \textbf{Keywords:} \textit{Shor-Algorithm},\textit{Quantum-Computing}, \textit{Qiskit}, \textit{RSA}, \textit{Prime factorization}
