@@ -8,7 +8,7 @@ Um den Quantum-Phase-Estimation Algorithmus für die Periodenberechnung zu nutze
 benötigt man ein \(U\)-Gatter, 
 welches die modulare Multiplikation, 
 als eine unitäre Transformation realisiert:
-\[U^{\tensor n}\ket{x}_n=\ket{a y \mod N}_n\]
+\[U^{\tensor n}\ket{x}_n=\ket{a y \bmod N}_n\]
 Mit dem passenden \(U\)-Gatter wird der Quantenschaltkreis wie in Abbildung~\ref{fig:shor_n_qubit} strukturiert.
 \begin{figure}
     \centering
@@ -274,7 +274,7 @@ iQFT(\ket{\Phi(4)_3})
 
 Das Zielregister sollte aus genügend Qubits bestehen, 
 damit die Summe vollständig erfasst werden kann.
-Andernfalls kommt es zum Overflow mit \(a + b \mod 2^n\), 
+Andernfalls kommt es zum Overflow mit \(a + b \bmod 2^n\), 
 wobei \(n\) die Anzahl der Qubits des Zielregisters beschreibt.
 
 Für die Realisierung der modularen Multiplikation wird zu keinem Zeitpunkt der Berechnung eine Addition zweier Zwischenergebnisse benötigt. 
@@ -406,7 +406,7 @@ def S_Gate(subtrahend_bin: list[int]) -> qiskit.circuit.gate:
 Das Gatter der Quanten-Addition und der Quanten-Subtraktion ermöglichen die Konstruktion einer unitären Transformation, 
 welche die Berechnung der modularen Addition realisiert.
 Gemeinsam bilden sie einen Quantenschaltkreis, 
-der das Ergebnis der Berechnung \(\ket{\Phi(a+b)\mod N}\) für \(a, b < N\) im Zielregister speichert.
+der das Ergebnis der Berechnung \(\ket{\Phi(a+b)\bmod N}\) für \(a, b < N\) im Zielregister speichert.
 
 \begin{figure}[H]
   \centering
@@ -452,8 +452,8 @@ Daraus resultieren zwei mögliche Zustände:
 \[2.~
 (b+a) < N~\rightarrow~\ket{\phi(2^{n+1}-(N-(a+b)))}_{n+1}
   \]
-Im ersten Fall entspricht das Ergebnis der korrekten Berechnung von \(a+b \mod N\).
-In diesem Fall ist der Inhalt des Quantenregisters mit \(a+b \mod N\) kleiner als \(N\), 
+Im ersten Fall entspricht das Ergebnis der korrekten Berechnung von \(a+b \bmod N\).
+In diesem Fall ist der Inhalt des Quantenregisters mit \(a+b \bmod N\) kleiner als \(N\), 
 weshalb das Borrow-Bit nicht gesetzt ist.
 Im Gegensatz dazu ist das Ergebnis im zweiten Fall fehlerhaft.
 Da bei \((b+a) < N\) bereits der Rest der modularen Restklasse im Register steht, 
@@ -479,7 +479,7 @@ zu dem korrekten:
 \ket{\phi(2^{n+1}+(a+b))}_{n+1} \underrightarrow{\text{overflow }2^{n+1}}
 \ket{\phi(a+b)}_{n+1}
   \]
-Nun befindet sich in beiden Fällen das korrekt berechnete Ergebnis im Zielregister mit \(\ket{\Phi(a+b)\mod N}\).
+Nun befindet sich in beiden Fällen das korrekt berechnete Ergebnis im Zielregister mit \(\ket{\Phi(a+b)\bmod N}\).
 Somit ist die Berechnung der modularen Addition abgeschlossen.
 
 Je nachdem, welcher der beiden Fälle eingetreten ist, 
@@ -509,7 +509,7 @@ Dadurch befindet sich das Borrow-Bit nun in denselben Zuständen wie in den beid
 Im nächsten Schritt kontrolliert das Borrow-Bit ein X-Gatter, das auf das Bedingungs-Qubit wirkt.
 Dadurch wird es wieder in den initialen Zustand \(\ket{0}\) versetzt.
 
-Um den Zustand \(\ket{\Phi(a+b)\mod N}\) des Zielregisters wiederherzustellen, 
+Um den Zustand \(\ket{\Phi(a+b)\bmod N}\) des Zielregisters wiederherzustellen, 
 werden die Gatter bis zur Quanten-Subtraktion mit \(a\)
 nun in umgekehrter Reihenfolge und invers angewendet.
 Zunächst wird ein selbstinverses X-Gatter auf das Borrow-Bit angewendet.
@@ -519,7 +519,7 @@ Abschließend folgt die Quanten-Addition mit \(a\),
 um die zuvor erfolgte Quanten-Subtraktion von \(a\) auf das Zielregister zu revertieren.
 
 Das Zielregister beinhaltet nun den gewünschten Zustand:
-\[\ket{\Phi(a+b)\mod N} \text{ für } a, b < N\]
+\[\ket{\Phi(a+b)\bmod N} \text{ für } a, b < N\]
 Des Weiteren befindet sich das Bedingungs-Qubit wieder im initialen Zustand \(\ket{0}\) und kann für weitere Rechnungen wiederverwendet werden.
 
 \bigskip
@@ -645,7 +645,7 @@ das basierend auf vier Quantenregister,
 die folgende Transformation durchführt: 
 \[\ket{c}_1\ket{x}_{n}\ket{b}_{n+1}\ket{0}_1
 \longrightarrow
-\ket{c}_1\ket{x}_{n}\ket{b + (ax)\mod N}_{n+1}\ket{0}_1\]
+\ket{c}_1\ket{x}_{n}\ket{b + (ax)\bmod N}_{n+1}\ket{0}_1\]
 Das Gatter umfasst ein Kontrollqubit \(\ket{c}_1\), 
 ein Quantenregister \(\ket{x}_{n}\) mit dem Faktor \(x\),
 das Zielregister \(\ket{b}_{n+1}\) mit dem initialen Wert \(b\) und 
@@ -667,16 +667,16 @@ also zum Beispiel in Binärschreibweise für drei Qubits
 Das Produkt kann dementsprechend umgeformt werden: 
 \[(x\cdot a)  = (2^0x_0\cdot a+2^1x_1\cdot a+2^2x_2\cdot a) \]
 Beziehungsweise bezogen auf die Transformation des \(\ket{b}_{n+1}\) Registers für ein Beispiel mit \(n=3\):
-\[\ket{b + (x\cdot a) \mod N}_{4} = \ket{b + (2^0x_0\cdot a+2^1x_1\cdot a+2^2x_2\cdot a) \mod N}_{4}\]
+\[\ket{b + (x\cdot a) \bmod N}_{4} = \ket{b + (2^0x_0\cdot a+2^1x_1\cdot a+2^2x_2\cdot a) \bmod N}_{4}\]
 Dies bedeutet, dass die Transformation realisiert werden kann, 
 indem die einzelnen Produkte \(2^ix_i\cdot a\) einzeln auf \(\ket{b}_{n+1}\) addiert werden.
 Um große Zwischenergebnisse zu vermeiden, die gegebenenfalls für einen Overflow im \(\ket{b}_{n+1}\) Register sorgen, 
 kann man die Berechnung weiter umformen~\cite{beauregard2003circuit}:
-\[= \ket{(((b + 2^0x_0\cdot a)\mod N+2^1x_1\cdot a)\mod N+2^2x_2\cdot a) \mod N}_{4}\]
+\[= \ket{(((b + 2^0x_0\cdot a)\bmod N+2^1x_1\cdot a)\bmod N+2^2x_2\cdot a) \bmod N}_{4}\]
 
 Dies wird als Quantenschaltkreis realisiert, 
 indem ein Gatter zur modularen Addition verwendet wird, 
-um \((b + 2^ix_i\cdot a)\mod N\) zu berechnen.
+um \((b + 2^ix_i\cdot a)\bmod N\) zu berechnen.
 Dafür wird dem modularen Addition-Gatter der Summand beziehungsweise Parameter \(2^i\cdot a\) zugewiesen 
 und aufgrund der Abhängigkeit zu \(x_i\) durch das Qubit \(\ket{x_i}_1\) kontrolliert.
 Für die gesamte Summe muss jedes Qubit des \(\ket{x}_{n}\) Quantenregisters ein Gatter zur modularen Addition kontrollieren, 
@@ -684,7 +684,7 @@ welches auf das Quantenregister \(\ket{b}_{n+1}\) wirkt.
 Jedes Gatter zur modularen Addition bekommt die zugehörige Potenz von \(2^i\) zugewiesen, 
 die auch der Wertigkeit des zugehörigen Kontrollqubits \(\ket{x_i}_1\) entspricht.
 Also wirken alle Gatter zur modularen Addition nacheinander auf das \(\ket{b}_{n+1}\) Quantenregister und 
-transformieren dies so sukzessiv nach \(\ket{b + (x\cdot a) \mod N}_{n+1}\).
+transformieren dies so sukzessiv nach \(\ket{b + (x\cdot a) \bmod N}_{n+1}\).
 
 Die verwendeten Gatter zur modularen Addition führen alle Berechnungen in der Fourierbasis durch.
 Deswegen muss sich das \(\ket{b}_{n+1}\) Quantenregister auch in der Fourierbasis befinden.
@@ -736,9 +736,9 @@ Dieses Qubit dient als Bedingungs-Qubit für die unterliegenden modularen Additi
 Im Code~\ref{code:ModularMultiplication} wird in Zeile 9. die Quanten-Fourier-Transformation auf 
 das \(\ket{b}_{n+1}\) Quantenregister angewandt.
 In Zeile 10 bis 13 folgen die Gatter zur modularen Addition.
-Da \((b + a \cdot x) \mod N\) äquivalent ist zu \((b + (a \cdot x)\mod N) \mod N\)~\cite{koepf_modular_2021}, 
+Da \((b + a \cdot x) \bmod N\) äquivalent ist zu \((b + (a \cdot x)\bmod N) \bmod N\)~\cite{koepf_modular_2021}, 
 wird einem Gatter der modularen Addition nicht der Parameter \(2^i\cdot a\) übergeben, 
-sondern \((2^i\cdot a)\mod N\).
+sondern \((2^i\cdot a)\bmod N\).
 Andernfalls wäre es notwendig, 
 zusätzliche Qubits zu verwenden, um \(2^i\cdot a\) zu speichern.
 
@@ -821,7 +821,7 @@ def inv_cmult_gate(x_bits_amount: int,a_bin: list[int],N_bin: list[int]) -> qisk
 
 Das letzte zu konstruierende Gatter wird als \(U_a\)-Gatter bezeichnet, 
 weil es die benötigte Transformation realisiert: 
-\[U^{\tensor n}\ket{y}_n = \ket{ay \mod N}_n\] 
+\[U^{\tensor n}\ket{y}_n = \ket{ay \bmod N}_n\] 
 Das \(U_a\)-Gatter dient zur Realisierung der Quantum"=Phase"=Estimation im Shor"=Algorithmus, 
 wie in Abbildung~\ref{fig:shor_n_qubit} dargestellt.
 
@@ -829,7 +829,7 @@ Dafür nimmt das \(U_a\)-Gatter vier Quantenregister entgegen und
 führt die folgende Transformation durch: 
 \[\ket{c}_1\ket{x}_{n}\ket{0}_{n+1}\ket{0}_1
 \longrightarrow
-\ket{c}_1\ket{(a x) \mod N}_{n}\ket{0}_{n+1}\ket{0}_1
+\ket{c}_1\ket{(a x) \bmod N}_{n}\ket{0}_{n+1}\ket{0}_1
 \]
 
 Um ein \(U_a\)-Gatter zu realisieren, benötigt man im Grunde kontrollierte Swap-Gatter und 
@@ -849,14 +849,14 @@ die folgende Transformation durch~\cite{beauregard2003circuit}:
 \[
   \ket{x}_{n}\ket{0}_{n+1}
   \longrightarrow
-  \ket{x}_{n}\ket{(ax)\mod N}_{n+1}
+  \ket{x}_{n}\ket{(ax)\bmod N}_{n+1}
   \]
 
 Darauf folgen kontrollierte Swap-Gatter, die beide Zustände vertauschen:
 \[
-  \ket{x}_{n}\ket{(ax)\mod N}_{n+1}
+  \ket{x}_{n}\ket{(ax)\bmod N}_{n+1}
 \longrightarrow
-\ket{(ax)\mod N}_{n}\ket{x}_{n+1}
+\ket{(ax)\bmod N}_{n}\ket{x}_{n+1}
 \]
 Dabei ist zu beachten, 
 dass das zweite Quantenregister aus \(n+1\) Qubits besteht und
@@ -867,25 +867,25 @@ kann es vernachlässigt werden und wird daher keiner Swap-Operation unterzogen.
 Nach dem Swap wird ein inverses Gatter zur kontrollierten Multiplikation angewendet.
 Dabei wird dem inversen Gatter zur kontrollierten Multiplikation statt dem Element \(a\) 
 das multiplikative Inverse von \(a\) in den Einheiten des Restklassenrings \(N\) übergeben, 
-also \(a^{-1} \mod N\).
+also \(a^{-1} \bmod N\).
 Als Folge davon verändert sich der Zustand der Quantenregister folgendermaßen:  
-\[\ket{(ax)\mod N}_{n}\ket{x}_{n+1}
+\[\ket{(ax)\bmod N}_{n}\ket{x}_{n+1}
 \longrightarrow
-\ket{(ax)\mod N}_{n}\ket{(x-a^{-1}ax)\mod N}_{n+1}
+\ket{(ax)\bmod N}_{n}\ket{(x-a^{-1}ax)\bmod N}_{n+1}
 \] 
-Der Ausdruck \((a^{-1}a)\mod N\) entspricht dem neutralen Element 1, 
+Der Ausdruck \((a^{-1}a)\bmod N\) entspricht dem neutralen Element 1, 
 weswegen der Zustand der Quantenregister wie folgt vereinfacht werden kann:  
 \[
-\ket{(ax)\mod N}_{n}\ket{(x-a^{-1}ax)\mod N}_{n+1}
+\ket{(ax)\bmod N}_{n}\ket{(x-a^{-1}ax)\bmod N}_{n+1}
 =
-\ket{(ax)\mod N}_{n}\ket{0}_{n+1}
+\ket{(ax)\bmod N}_{n}\ket{0}_{n+1}
 \] 
 
 Beachtet man den Eingangs- und Ausgangszustand der beiden Quantenregister, 
 so bewirkt das \(U\)-Gatter eine Transformation von:
  \[\ket{x}_{n}\ket{0}_{n+1} 
  \longrightarrow 
- \ket{(ax)\mod N}_{n}\ket{0}_{n+1}\]
+ \ket{(ax)\bmod N}_{n}\ket{0}_{n+1}\]
 
 Das Konzept des Aufbaus des Quantenschaltkreises ist in Abbildung~\ref{fig:u_gatter} dargestellt.
 \begin{figure} [H]
@@ -916,8 +916,8 @@ somit umfasst das \(U_a\)-Gatter \(2n+3\) Qubits.
 In Zeile 9 und 10 werden die kontrollierten Swap-Gatter eingesetzt.
 Wie man in Zeile 10. erkennt, bezieht sich die Wirkung eines Swap-Gatters auf denselben Index von \textit{x\_qbits} und \textit{b\_qbits}.
 Somit werden die Qubits beider Quantenregister vertauscht, die die gleiche Wertigkeit haben.
-In Zeile 11. wird \(a^{-1}\mod N\) mittels des erweiterten euklidischen Algorithmus berechnet.
-Anschließend wird das berechnete \(a^{-1}\mod N\) als Parameter an ein inverses kontrolliertes Multiplikation Gatter übergeben.
+In Zeile 11. wird \(a^{-1}\bmod N\) mittels des erweiterten euklidischen Algorithmus berechnet.
+Anschließend wird das berechnete \(a^{-1}\bmod N\) als Parameter an ein inverses kontrolliertes Multiplikation Gatter übergeben.
 Abschließend wird der Quantenschaltkreis zu einem Gatter umgeformt und passend benannt.
 
 \begin{listing}[H]
@@ -964,7 +964,7 @@ Diese können realisiert werden,
 indem ein \({U_a}\)-Gatter insgesamt \(2^x\) mal hintereinander geschaltet wird oder 
 indem anstelle von \(a\) der Parameter \(a^{2^x}\) an ein einzelnes \(U_a\)-Gatter übergeben wird.
 Die zweite Variante ist möglich wegen~\cite{beauregard2003circuit}:
-\[(a^nx)\mod N = \underbrace{(a\dotsc(((a(ax)\mod N)\mod N)\dotsc)\mod N)}_{\text{\(n\) mal}}\]
+\[(a^nx)\bmod N = \underbrace{(a\dotsc(((a(ax)\bmod N)\bmod N)\dotsc)\bmod N)}_{\text{\(n\) mal}}\]
 
 Bei der Wahl zwischen den beiden Varianten liegt das entscheidende Kriterium bei der Ressourceneffizienz. 
 Die zweite Variante schneidet dabei deutlich besser ab, 
@@ -1008,7 +1008,7 @@ In den der 8. Zeile wird der Eigenvektor gebildet.
 Da der Eigenvektor dem Zustand \(\ket{1}\) entspricht,
 genügt es, wenn das Least-Significant-Qubit mit einem X-Gatter versehen wird.
 In den Zeilen 9 und 10 werden die zugehörigen \({U_a}^{2^x}\)-Gatter mit dem passenden \(x\) auf das Register mit dem Eigenvektor angewendet.
-Die Funktion \texttt{mod\_exp} berechnet \((a^{2^x})\mod N\).
+Die Funktion \texttt{mod\_exp} berechnet \((a^{2^x})\bmod N\).
 In der 11. Zeile werden die Kontrollqubits mit der inverse Quanten-Fourier-Transformation in die Standardbasis transformiert.  
 Da die Funktion \texttt{Shor} Messungen durchführen soll, 
 wird in der 12. Zeile definiert, dass die Kontrollqubits gemessen werden.
@@ -1044,7 +1044,7 @@ def Shor(a: int, N: int,number_shots: int = 1000, backend: str = "aer_simulator"
 
 In Abbildung~\ref{fig:shor_qiskit} ist der Quantenschaltkreis zu sehen, 
 der durch die Funktion \texttt{Shor} für \(a=7;~N=15\) generiert wird.
-Bei \(N=15\) tritt der Effekt auf, dass für \(x>1\) die Rechnung \((a^{2^x})\mod N = 1\) ergibt, 
+Bei \(N=15\) tritt der Effekt auf, dass für \(x>1\) die Rechnung \((a^{2^x})\bmod N = 1\) ergibt, 
 weshalb auch die \({U_a}^{2^x}\)-Gatter zu \(U\_1\) werden.
 
 \begin{figure}[H]
@@ -1206,7 +1206,7 @@ mit demselben \(a\) durchgeführt.
 Im Falle, dass die Periode direkt extrahiert werden konnte oder 
 durch die Nachberechnung bestimmt wurde, wird überprüft, 
 ob die Periode einer geraden Zahl entspricht und die folgende Bedingung erfüllt:
-\[a^{\frac{p}{2}} = -1 \mod N\]
+\[a^{\frac{p}{2}} = -1 \bmod N\]
 Wenn beide Kriterien zutreffen, 
 kann mit der Periode und 
 Euklids Algorithmus mindestens einer der beiden nicht-trivialen Faktoren von \(N\) berechnet werden~\cite{Shor_1997}:

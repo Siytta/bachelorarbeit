@@ -38,14 +38,14 @@ Zu bestimmen sind die Primfaktoren der Zahl \(N\).
 Zuerst wird ein \(a\) mit \(0 < a < N\) gewählt.
 Falls der seltene Fall eintritt, dass \(a\) nicht teilerfremd zu \(N\) ist, entspricht \(a\) einem der Primfaktoren, weswegen 
 keine weiteren Berechnungen mehr nötig wären.
-Anschließend wird die Ordnung beziehungsweise Periode \(p\) der Funktion \({f(x) = a^x \mod N}\) mit dem Quantenalgorithmus bestimmt.
+Anschließend wird die Ordnung beziehungsweise Periode \(p\) der Funktion \({f(x) = a^x \bmod N}\) mit dem Quantenalgorithmus bestimmt.
 
-Die Periode \(p\) beschreibt die kleinste ganze Zahl mit \({p > 0}\), für die gilt: \({f(p) = 1 \mod N}\).
+Die Periode \(p\) beschreibt die kleinste ganze Zahl mit \({p > 0}\), für die gilt: \({f(p) = 1 \bmod N}\).
 Bei einem \(a = 7\) und \(N = 15\) ist dies \(p=4\):
 \[
 \begin{tabular}{l|llllll}
     x     &     0     &     1       &     2      &      3   &  4 &  5  \\ \hline
-    \(7^x \mod 15\)    &      1     &        7     &       4     &     13     &  1 &  7 
+    \(7^x \bmod 15\)    &      1     &        7     &       4     &     13     &  1 &  7 
 \end{tabular} \longmapsto p = 4
 \]
 
@@ -54,7 +54,7 @@ Die Architektur dieser spezifischen Quantum-Phase-Estimation korrespondiert weit
 Hierbei werden speziell für die gegebene Anwendung definierte \(U\)-Gatter eingesetzt.
 
 Für den konkreten Kontext der Periodenberechnung, realisieren die \(U\)-Gatter die Transformation:
-\[U\ket{y} = \ket{ay \mod N}\] 
+\[U\ket{y} = \ket{ay \bmod N}\] 
 Die Ausführung der Quantum-Phase-Estimation erfordert die Erzeugung eines Eigenvektors der Transformation \(U\).
 Da die Quantum-Phase-Estimation \(\varphi\) aus dem Eigenwert extrahiert, 
 darf der Eigenvektor nicht den trivialen Eigenwert 1 besitzen.
@@ -64,7 +64,7 @@ Wie in~\cite[227]{nielsen_chuang_2010} gezeigt wird, gibt es zu \(U\) Eigenvekto
 mit \(0 \leq s \leq p-1\): 
 \[\ket{u_s} =
 \frac{1}{\sqrt{p}}
-\sum_{k=0}^{p-1} e^{\frac{-2 \pi i s k}{p}\ket{a^k \mod N}} 
+\sum_{k=0}^{p-1} e^{\frac{-2 \pi i s k}{p}\ket{a^k \bmod N}} 
 \]
 Für \(a=7\) bei \(N=15\) entspricht \(p=4\).
 Ein Eigenvektor zu \(s=1\) lautet dann:
@@ -341,14 +341,14 @@ Das bedeutet, dass die Wahrscheinlichkeit bei insgesamt \(2\text{ld}(N)\) Messun
 mindestens einmal ein \(\frac{s}{p}\) zu messen, 
 bei dem \(s\) und \(p\) nicht gekürzt sind.~\cite[231]{nielsen_chuang_2010}
 
-Ob die korrekte Periode gefunden wurde, kann mit \(a^p = 1 \mod N\) geprüft werden.
+Ob die korrekte Periode gefunden wurde, kann mit \(a^p = 1 \bmod N\) geprüft werden.
 
 Sobald die korrekte Periode \(p\) gefunden wurde, 
 können die Primfaktoren von \(N\) mit dem größten gemeinsamen Teiler(gcd) berechnet werden:
 \[gcd(a^{\frac{p}{2}}-1, N), gcd(a^{\frac{p}{2}}+1, N)\]
 Dies schlägt nur fehl, 
 wenn \(p\) ungerade ist
-oder wenn \(a^{\frac{p}{2}} = -1 \mod N\) erfüllt ist.
+oder wenn \(a^{\frac{p}{2}} = -1 \bmod N\) erfüllt ist.
 Die Wahrscheinlichkeit, dass einer der beiden genannten Fälle eintritt, beträgt \(1-\frac{1}{2^f}\), 
 wobei \(f\) die Anzahl an unterschiedlichen Primfaktoren von \(N\) angibt.
 In einem solchen Fall wiederholt man die Periodenberechnung mit einem anderen \(a\).\cite{Shor_1997}
