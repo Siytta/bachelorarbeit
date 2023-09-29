@@ -204,21 +204,20 @@ als würde man die Summe der beiden Zahlen in die Formel der Quanten-Fourier-Tra
 Beispielsweise sei \(a = 3\) also binär \(a_3 = 0\), \(a_2 = 1\), \(a_1 = 1\) und 
 \(b = 1\) also \(b_3 = 0\), \(b_2 = 0\), \(b_1 = 1\):
 \begin{align*}
-\frac{1}{\sqrt{8}} 
+&\begin{aligned}\frac{1}{\sqrt{8}} 
 \Bigg[ \Big(\ket{0} + { e^{\frac{2 \pi i (2^0(1+1))}{2^1}}}\ket{1} \Big) 
-\tensor
-\Big( \ket{0} + &{ e^{\frac{2 \pi i (2^1(1+0)+2^0(1+1))}{2^2}}}\ket{1} \Big) \\
 &\tensor
-\Big( \ket{0} + { e^{\frac{2 \pi i (2^{2}(0+0) +2^1(1+0)+2^0(1+1))}{2^3}}}\ket{1} \Big) 
+\Big( \ket{0} +  e^{\frac{2 \pi i (2^1(1+0)+2^0(1+1))}{2^2}}\ket{1} \Big) \\
+&\tensor
+\Big( \ket{0} +  e^{\frac{2 \pi i (2^{2}(0+0) +2^1(1+0)+2^0(1+1))}{2^3}}\ket{1} \Big) 
 \Bigg]
-\end{align*}
-\[
-=\frac{1}{\sqrt{8}} 
+\end{aligned}\\
+=&\frac{1}{\sqrt{8}} 
 \Bigg[ \Big(\ket{0} + \ket{1} \Big) \tensor
 \Big( \ket{0} +   \ket{1} \Big) \tensor
 \Big( \ket{0} +  e^{\pi i }\ket{1} \Big) 
 \Bigg]
-\]
+\end{align*}
 Dass dies tatsächlich der Summe in der Fourierbasis entspricht, wird deutlich, 
 wenn man das gleiche Tensorprodukt im Kontext der Quanten-Fourier-Transformation bildet:
 \begin{align*}
