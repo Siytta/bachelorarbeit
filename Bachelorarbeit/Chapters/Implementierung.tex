@@ -751,7 +751,8 @@ der Quantenschaltkreis in ein Quantengatter umgeformt.
 \begin{listing}[H]
 
 \begin{minted}[linenos, fontsize=\customsize]{python}
-def cmult_gate(x_bits_amount: int,a_bin: list[int],N_bin: list[int]) -> qiskit.circuit.gate:  
+def cmult_gate(x_bits_amount: int, a_bin: list[int],
+                                   N_bin: list[int]) -> qiskit.circuit.gate:  
   a_dez = binToDez(a_bin)
   N_dez = binToDez(N_bin)
   c_qbit = [0]
@@ -763,7 +764,8 @@ def cmult_gate(x_bits_amount: int,a_bin: list[int],N_bin: list[int]) -> qiskit.c
   for i in range(0, len(x_qbits)):
       a_i = ((2**(i)) *  a_dez) % N_dez
       a_i_bin = dezToBin(a_i, len(a_bin))
-      cmult_gate.append(modular_adder_gate(a_i_bin, N_bin),c_qbit+[x_qbits[i]]+b_qbits+cond_qbit)
+      cmult_gate.append(modular_adder_gate(a_i_bin, N_bin),
+                        c_qbit+[x_qbits[i]]+b_qbits+cond_qbit)
   cmult_gate.append(QFT_Gate(len(b_qbits),inverse = True, MSB_first = False), b_qbits)
   cmult_gate = cmult_gate.to_gate()
   cmult_gate.name = "cmult " + str(a_dez) + " Mod " + str(N_dez)
