@@ -932,7 +932,7 @@ def U_gate(x_bits_amount: int,a_bin: list[int],N_bin: list[int]) -> qiskit.circu
   U_a_gate.append(cmult_gate(x_bits_amount,a_bin ,N_bin), full_range)
   for i in (range(x_bits_amount)):
       U_a_gate.cswap(c_qbit,x_qbits[i],b_qbits[i])
-  a_inv_bin = dezToBin(gcd(binToDez(a_bin),binToDez(N_bin)),len(a_bin))
+  a_inv_bin = dezToBin(\gcd(binToDez(a_bin),binToDez(N_bin)),len(a_bin))
   U_a_gate.append(inv_cmult_gate(x_bits_amount,a_inv_bin ,N_bin), full_range)
   U_a_gate = U_a_gate.to_gate()
   U_a_gate.name = "  U_" + str(binToDez(a_bin))
@@ -1132,7 +1132,7 @@ ist dieser einer der gesuchten Faktoren von \(N\),
 weswegen der Algorithmus terminiert.
 Die Überprüfung, ob \(a\) und \(N\) einen Faktor teilen, 
 kann mit Euklids Algorithmus mit maximal polynomialen Aufwand berechnet werden~\cite[301]{homeister2023quantum215}. 
-Euklids Algorithmus ist in der Lage, den größten gemeinsamen Teiler(gcd) zu berechnen.
+Euklids Algorithmus ist in der Lage, den größten gemeinsamen Teiler (\(\gcd\)) zu berechnen.
 
 Anschließend wird zu dem gewählten \(a\) ein Set erstellt.
 Dieses Set wird dafür genutzt, um die Brüche zu speichern, 
@@ -1210,7 +1210,7 @@ ob die Periode einer geraden Zahl entspricht und die folgende Bedingung erfüllt
 Wenn beide Kriterien zutreffen, 
 kann mit der Periode und 
 Euklids Algorithmus mindestens einer der beiden nicht-trivialen Faktoren von \(N\) berechnet werden~\cite{Shor_1997}:
-\[gcd(a^{\frac{p}{2}}-1, N), gcd(a^{\frac{p}{2}}+1, N)\]
+\[\gcd(a^{\frac{p}{2}}-1, N), \gcd(a^{\frac{p}{2}}+1, N)\]
 Anschließend terminiert der Algorithmus. 
 
 Im Falle, dass nur ein Faktor gefunden wurde, kann der zweite berechnet werden, 
