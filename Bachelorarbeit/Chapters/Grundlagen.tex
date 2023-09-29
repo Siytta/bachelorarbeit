@@ -722,7 +722,7 @@ wieder zurück in die Standardbasis zu transformieren.
 Dies ermöglicht die Extraktion der Information aus der Phase in einen messbaren Zustand.
 
 Die Quanten-Fourier-Transformation ist für ein \(N\) = \(2^n\) mit \(n\) Qubits
-für die Basisvektoren \(\ket{x}, x = 0,...,N-1\) wie folgt definiert~\cite[216]{homeister2023quantum215}:
+für die Basisvektoren \(\ket{x}, x = 0,\dotsc,N-1\) wie folgt definiert~\cite[216]{homeister2023quantum215}:
 \[QFT_{N}\ket{x}_{n} = \frac{1}{\sqrt{N}}\sum_{y=0}^{N-1}  e^{\frac{2 \pi i x y}{N}}\ket{y}_{n}\]
 Anhand dieser Definition kann der Quantenschaltkreis nicht direkt hergeleitet werden.
 Stattdessen muss die Formel umgeformt werden.
@@ -735,30 +735,30 @@ Indem \(y\) in der ersten Formel in die Binärschreibweise überführt wird, erg
 \begin{align*}
   QFT_{N}\ket{x}_{n} &=
     \frac{1}{\sqrt{N}}
-    \sum_{y_n=0}^{1} ...
+    \sum_{y_n=0}^{1} \dotsb
     \sum_{y_1=0}^{1} e^{\frac{2 \pi i x \sum_{k=1}^{n}2^{n-k} y_{n-k+1}}{N}}
-    \ket{y_n ... y_{2}y_{1}}
+    \ket{y_n \dotsc y_{2}y_{1}}
 \end{align*}
 Mit \(N\) = \(2^n\) kann der Bruch im Exponenten gekürzt werden:
-\[QFT_{N}\ket{x}_{n} = \frac{1}{\sqrt{N}}\sum_{y_n=0}^{1}...\sum_{y_1=0}^{1}  e^{\frac{2 \pi i x \sum_{k=1}^{n}2^{n-k} y_{n-k+1}}{2^n}}\ket{y_n ... y_{2}y_{1}}\]
-\[QFT_{N}\ket{x}_{n} = \frac{1}{\sqrt{N}}\sum_{y_n=0}^{1}...\sum_{y_1=0}^{1}  e^{2 \pi i x \sum_{k=1}^{n}2^{-k} y_{n-k+1}}\ket{y_n ... y_{2}y_{1}}\]
+\[QFT_{N}\ket{x}_{n} = \frac{1}{\sqrt{N}}\sum_{y_n=0}^{1}\dotsb\sum_{y_1=0}^{1}  e^{\frac{2 \pi i x \sum_{k=1}^{n}2^{n-k} y_{n-k+1}}{2^n}}\ket{y_n \dotsc y_{2}y_{1}}\]
+\[QFT_{N}\ket{x}_{n} = \frac{1}{\sqrt{N}}\sum_{y_n=0}^{1}\dotsb\sum_{y_1=0}^{1}  e^{2 \pi i x \sum_{k=1}^{n}2^{-k} y_{n-k+1}}\ket{y_n \dotsc y_{2}y_{1}}\]
 Anschließend kann der Ausdruck \(2^{-k}\) zu \(\frac{1}{2^k}\) umgeformt werden: 
-\[QFT_{N}\ket{x}_{n} = \frac{1}{\sqrt{N}}\sum_{y_n=0}^{1}...\sum_{y_1=0}^{1}  e^{\frac{2 \pi i x \sum_{k=1}^{n} y_{n-k+1}}{2^k}}\ket{y_n ... y_{2}y_{1}}\]
+\[QFT_{N}\ket{x}_{n} = \frac{1}{\sqrt{N}}\sum_{y_n=0}^{1}\dotsb\sum_{y_1=0}^{1}  e^{\frac{2 \pi i x \sum_{k=1}^{n} y_{n-k+1}}{2^k}}\ket{y_n \dotsc y_{2}y_{1}}\]
 Die Summe im Exponenten der Basis \(e\) kann als Produkt umgeschrieben werden.
 Anstatt dem Produktzeichen \(\prod\) wird das Tensorprodukt \(\Tensor\) verwendet, da es sich um Qubits handelt:
-\[QFT_{N}\ket{x}_{n} = \frac{1}{\sqrt{N}}\sum_{y_n=0}^{1}...\sum_{y_1=0}^{1} \Tensor_{k=1}^n{ e^{\frac{2 \pi i x y_k}{2^k}}}\ket{y_{k}}\]
+\[QFT_{N}\ket{x}_{n} = \frac{1}{\sqrt{N}}\sum_{y_n=0}^{1}\dotsb\sum_{y_1=0}^{1} \Tensor_{k=1}^n{ e^{\frac{2 \pi i x y_k}{2^k}}}\ket{y_{k}}\]
 Der Ausdruck kann weiter vereinfacht werden indem das Tensorprodukt vorgezogen wird:
 \[QFT_{N}\ket{x}_{n} = \frac{1}{\sqrt{N}}\Tensor_{k=1}^n \Big[  \sum_{y_k=0}^{1}{ e^{\frac{2 \pi i x y_k}{2^k}}}\ket{y_{k}}\Big]\]
 \[QFT_{N}\ket{x}_{n} = \frac{1}{\sqrt{N}}\Tensor_{k=1}^n \Big[  \ket{0} + { e^{\frac{2 \pi i x}{2^k}}}\ket{1}\Big]\] 
 Schreibt man das Tensorprodukt voll aus und notiert \(x\) in Binärschreibweise, erhält man:
 \begin{align*}
 \frac{1}{\sqrt{N}}\Bigg(
-  \Big(\ket{0} + { e^{\frac{2 \pi i (2^{n-1}x_n+...+2^1x_2+2^0x_1)}{2^1}}}\ket{1}\Big)
+  \Big(\ket{0} + { e^{\frac{2 \pi i (2^{n-1}x_n+\dotsb+2^1x_2+2^0x_1)}{2^1}}}\ket{1}\Big)
   &\tensor
-  \Big(\ket{0} + { e^{\frac{2 \pi i (2^{n-1}x_n+...+2^1x_2+2^0x_1)}{2^2}}}\ket{1}\Big) \\
+  \Big(\ket{0} + { e^{\frac{2 \pi i (2^{n-1}x_n+\dotsb+2^1x_2+2^0x_1)}{2^2}}}\ket{1}\Big) \\
   &\vdotswithin{\tensor} \\
   &\tensor
-  \Big(\ket{0} + { e^{\frac{2 \pi i (2^{n-1}x_n+...+2^1x_2+2^0x_1)}{2^n}}}\ket{1}\Big)
+  \Big(\ket{0} + { e^{\frac{2 \pi i (2^{n-1}x_n+\dotsb+2^1x_2+2^0x_1)}{2^n}}}\ket{1}\Big)
   \Bigg)
 \end{align*}
 Die komplexe Exponentialfunktion ergibt für eine natürliche Zahl \(k\): \(e^{2\pi i k} = 1\).
@@ -783,7 +783,7 @@ Abschließend lässt sich das gesamte Tensorprodukt vereinfachen:
     \Big( \ket{0} + { e^{\frac{2 \pi i (2^1x_2+2^0x_1)}{2^2}}}\ket{1}\Big) \\
     &\vdotswithin{\tensor}\\
     &\tensor
-    \Big( \ket{0} + { e^{\frac{2 \pi i (2^{n-1}x_n+ ... +2^1x_2+2^0x_1)}{2^n}}}\ket{1}\Big)
+    \Big( \ket{0} + { e^{\frac{2 \pi i (2^{n-1}x_n+ \dotsb +2^1x_2+2^0x_1)}{2^n}}}\ket{1}\Big)
   \Bigg)
 \end{align*}
 Ein einzelner Tensor repräsentiert die Wirkung der Quantenschaltung auf ein einzelnes Qubit. 
@@ -1184,7 +1184,7 @@ kann man den Zustand der Kontrollqubits vor der inversen Quanten-Fourier-Transfo
 \[\frac{1}{\sqrt{N}}\Bigg[
   CU^{2^0}\Big(\ket{0} + \ket{1}\Big) \tensor
   CU^{2^1}\Big(\ket{0} + \ket{1}\Big) \tensor 
-  ... \tensor
+  \dotsb \tensor
   CU^{2^{n-1}}\Big(\ket{0} + \ket{1}\Big) 
   \Bigg]\]
 Mit \(U^{2^x}\ket{x}_n=e^{2\pi i 2^x\varphi}\ket{x}_n\) wird der Eigenwert \(e^{2\pi i \varphi}\) wegen des Phase-Kickbacks
@@ -1192,18 +1192,18 @@ Mit \(U^{2^x}\ket{x}_n=e^{2\pi i 2^x\varphi}\ket{x}_n\) wird der Eigenwert \(e^{
 \[\frac{1}{\sqrt{N}}\Bigg[
   \Big(\ket{0} + e^{2\pi i 2^0 \varphi}\ket{1}\Big) \tensor
   \Big(\ket{0} + e^{2\pi i 2^1 \varphi}\ket{1}\Big) \tensor 
-  ... \tensor
+  \dotsb \tensor
   \Big(\ket{0} + e^{2\pi i 2^{n-1} \varphi}\ket{1}\Big) 
   \Bigg]\]
 Schreibt man \(\varphi\) als Binärbruch:
-\[\varphi = \frac{\varphi_n}{2^1} + \frac{\varphi_{n-1}}{2^2} + ... + \frac{\varphi_1}{2^n}\]
+\[\varphi = \frac{\varphi_n}{2^1} + \frac{\varphi_{n-1}}{2^2} + \dotsb + \frac{\varphi_1}{2^n}\]
 Kann die Formel in einer ähnlichen Form wie die Quanten-Fourier-Transformation umgeformt werden:
 \begin{align*}
 \frac{1}{\sqrt{N}}\Bigg[
   \Big(\ket{0} + e^{2\pi i (\frac{\varphi_n}{2})} 
-  ...  
+  \dotsb  
   e^{2\pi i (\frac{\varphi_2}{2^{n-1}})}e^{2\pi i (\frac{\varphi_1}{2^{n}})}\ket{1}\Big) 
-  \tensor ... 
+  \tensor \dotsb 
   &\tensor
   \Big(\ket{0} +  e^{2\pi i (\frac{\varphi_2}{2})}e^{2\pi i (\frac{\varphi_1}{4})}\ket{1}\Big)\\ 
   &\tensor 
@@ -1220,7 +1220,7 @@ Die Formel besitzt die gespiegelte Struktur wie die Quanten-Fourier-Transformati
     \Big( \ket{0} + { e^{2 \pi i (\frac{x_2}{2})(\frac{x_1}{4})}}\ket{1}\Big)\\
     &\vdotswithin{\tensor}\\
     &\tensor
-    \Big(\ket{0} + e^{2\pi i (\frac{x_n}{2})} ... e^{2\pi i (\frac{x_2}{2^{n-1}})}e^{2\pi i (\frac{x_1}{2^{n}})}\ket{1}\Big)
+    \Big(\ket{0} + e^{2\pi i (\frac{x_n}{2})} \dotsb e^{2\pi i (\frac{x_2}{2^{n-1}})}e^{2\pi i (\frac{x_1}{2^{n}})}\ket{1}\Big)
   \Bigg]
 \end{align*}
 Durch die Verwendung der Swap-Gatter kann die Reihenfolge der Quanten-Fourier-Transformation gespiegelt werden, 
@@ -1236,7 +1236,7 @@ Die Anwendung der inversen Quanten-Fourier-Transformation, inklusive Swap-Gatter
 iQFT\Bigg(
 \frac{1}{\sqrt{N}}
 \Bigg[
-  \Big(\ket{0} + e^{2\pi i (\frac{\varphi_n}{2})} ...& e^{2\pi i (\frac{\varphi_2}{2^{n-1}})}e^{2\pi i (\frac{\varphi_1}{2^{n}})}\ket{1}\Big) \\
+  \Big(\ket{0} + e^{2\pi i (\frac{\varphi_n}{2})} \dotsb & e^{2\pi i (\frac{\varphi_2}{2^{n-1}})}e^{2\pi i (\frac{\varphi_1}{2^{n}})}\ket{1}\Big) \\
   &\vdotswithin{\tensor}\\
   &\tensor
   \Big(\ket{0} +  e^{2\pi i (\frac{\varphi_2}{2})}e^{2\pi i (\frac{\varphi_1}{4})}\ket{1}\Big) \tensor 
@@ -1244,7 +1244,7 @@ iQFT\Bigg(
   	\Bigg]
 \Bigg)
 \end{align*}
-\[ = \ket{\varphi_1 \varphi_{2}...\varphi_n}_n = \ket{2^n\varphi}_n\]
+\[ = \ket{\varphi_1 \varphi_{2}\dotsc\varphi_n}_n = \ket{2^n\varphi}_n\]
 Schließlich kann \(\varphi\) mit einer Division durch \(2^n\) bestimmt werden.
 
 Als Beispiel wird die Quantum-Phase-Estimation für
