@@ -44,9 +44,9 @@ Dafür befindet sich ein Summand des Quantenregisters \(\ket{b}_n\) in der Stand
 der andere Summand des Quantenregisters \(\ket{a}_n\) in der Fourierbasis.
 Da sich das zweite Quantenregister in der Fourierbasis \(\Phi\) befindet, 
 wird dieses als \(\ket{\Phi(a)}_n\) bezeichnet.
-Anschließend kontrolliert der Summand in \(\ket{b}_n\) Phasen-Gatter, 
+Anschließend kontrolliert der Summand in \(\ket{b}_n\) kontrollierte Phasen-Gatter, 
 die auf den anderen Summanden in \(\ket{\Phi(a)}_n\) wirken.
-Die durch die Phasen-Gatter induzierten Phasenverschiebungen übertragen die Werte, 
+Die durch die kontrollierten Phasen-Gatter induzierten Phasenverschiebungen übertragen die Werte, 
 die dem Zustand des Summanden \(\ket{b}_n\) in der Fourierbasis entsprechen.
 Dadurch befindet sich anschließend in dem Zielregister der Phasen-Gatter die Addition beider Werte in der Fourierbasis mit \(\ket{\Phi(a+b)}_n\).
 
@@ -67,7 +67,7 @@ Ein Unterschied besteht darin,
 dass die Hadamard-Gatter durch kontrollierte \(P(\pi)\) Phasen-Gatter ersetzt wurden.
 Sowohl das Hadamard-Gatter als auch das \(P(\pi)\) Phasen-Gatter erzeugt eine relative Phase von \(e^{\pi i}\).
 Ein weiterer Unterschied zur Quanten-Fourier-Transformation besteht darin, 
-dass die Phasen-Gatter nicht durch das Quantenregister kontrolliert werden, 
+dass die kontrollierten Phasen-Gatter nicht durch das Quantenregister kontrolliert werden, 
 auf das die Gatter auch wirken.
 Stattdessen kontrollieren die Qubits des Quantenregisters \(\ket{b}_3\) die Phasen-Gatter, 
 welche auf das \(\ket{a}_3\) Quantenregister wirken.
@@ -96,7 +96,7 @@ Dadurch befindet sich \(\ket{a}_3\) nun in der Fourierbasis \(\Phi\), also \(\ke
 Anschließend wird auf das hinterste Tensorprodukt ein \(P(\pi)\) Phasen-Gatter angewendet,
 das von \(\ket{b_3}_1\) kontrolliert wird.
 Wenn sich Qubit \(\ket{b_3}_1\) im Zustand \(\ket{0}\) befindet, passiert nichts.
-Befindet es sich jedoch im Zustand \(\ket{1}\), wird das Phasen-Gatte angewendet.
+Befindet es sich jedoch im Zustand \(\ket{1}\), wird die Phasenverschiebung des Phasen-Gatters angewendet.
 Dieses Verhalten lässt sich für beide Fälle mit den entsprechenden Matrizen
 \begin{align*}
   \begin{pmatrix}
@@ -200,7 +200,7 @@ wird dies zu:
 \end{align*}
 Setzt man in diese Formel zwei Zahlen in Binärschreibweise ein, 
 wird man denselben Zustand erhalten,
-als, würde man die Summe der beiden Zahlen in die Formel der Quanten-Fourier-Transformation einsetzt.
+als würde man die Summe der beiden Zahlen in die Formel der Quanten-Fourier-Transformation einsetzt.
 Beispielsweise sei \(a = 3\) also binär \(a_3 = 0\), \(a_2 = 1\),\(a_1 = 1\) und 
 \(b = 1\) also \(b_3 = 0\), \(b_2 = 0\),\(b_1 = 1\):
 \begin{align*}
@@ -362,7 +362,7 @@ Abschließend wird der Quantenschaltkreis in ein Gatter umgewandelt und mit eine
 Die Quanten-Addition besteht ausschließlich aus unitären Gattern und ist daher selbst ebenfalls unitär.
 Diese Eigenschaft vereinfacht die Implementierung der Subtraktion. 
 Durch die Invertierung der Quanten-Addition ergibt sich ein Quantenschaltkreis, 
-der eine Subtraktion in der Fourier-Basis ausführt. 
+der eine Subtraktion in der Fourierbasis ausführt. 
 Damit erhält man praktisch einen Quantenschaltkreis, für die Quanten-Subtraktion.
 
 Genau wie bei der Quanten-Addition kann es auch bei der Quanten-Subtraktion zu einem Overflow
@@ -426,7 +426,7 @@ Der Quantenschaltkreis zur modularen Addition agiert als Baustein in einem grö�
 Aus diesem Grund werden zwei Kontrollqubits \(\ket{c_1}_1\) und \(\ket{c_2}_1\) eingebaut, 
 die im weiteren Verlauf Anwendung finden.
 Das Eingaberegister, das zugleich als Zielregister dient,  
-ist initial bereits in der Fourier-Basis mit \(\ket{\phi(b)}\).
+ist initial bereits in der Fourierbasis mit \(\ket{\phi(b)}\).
 
 Das Zielregister wird um ein weiteres Qubit erweitert, 
 welches das Most-Significant-Bit des Zielregisters darstellt.
@@ -593,7 +593,7 @@ wobei das Most-Significant-Bit immer \(0\) entspricht.
 Die Funktion definiert drei Wertebereiche, die die Positionen der Qubits beschreiben.
 \textit{c\_qbits} definiert die Position der beiden Kontrollqubits \(\ket{c_1}_1\) und \(\ket{c_2}_1\), 
 \textit{b\_qbits} die Qubits, welche den Summanden \(b\) 
-in der Fourier-Basis enthalten 
+in der Fourierbasis enthalten 
 und \textit{cond\_qbit} repräsentiert die Position des Bedingungs-Qubit.
 Dadurch, dass \textit{b\_qbits} genauso groß definiert wird, 
 wie die Liste des Summand \(a\) lang ist, wird sichergestellt, 
