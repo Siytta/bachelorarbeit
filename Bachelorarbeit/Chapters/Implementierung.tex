@@ -925,7 +925,8 @@ Abschließend wird der Quantenschaltkreis zu einem Gatter umgeformt und passend 
 
 \begin{listing}[H]
 \begin{minted}[linenos,fontsize=\footnotesize]{python}  
-def U_gate(x_bits_amount: int,a_bin: list[int],N_bin: list[int]) -> qiskit.circuit.gate:  
+def U_gate(x_bits_amount: int, a_bin: list[int],
+                               N_bin: list[int]) -> qiskit.circuit.gate:  
   c_qbit = [0]
   x_qbits =  list(range(1, x_bits_amount + 1))
   b_qbits = list(range(1+x_bits_amount, 1 + x_bits_amount + len(a_bin)))
@@ -1034,8 +1035,10 @@ def Shor(a: int, N: int,number_shots: int = 1000, backend: str = "aer_simulator"
     qc.h(c_bit)
   qc.x(ev_qbits[0])
   for c_bit in c_qbits:
-    qc.append(U_gate(n,dezToBin(mod_exp(a,2**c_bit,N),n+1),dezToBin(N,n+1)),[c_bit]+ev_qbits)
-  qc.append(QFT_Gate(len(c_qbits),inverse = True, MSB_first = False,swaps = True), c_qbits)
+    qc.append(U_gate(n,dezToBin(mod_exp(a,2**c_bit,N),n+1),dezToBin(N,n+1)),
+              [c_bit]+ev_qbits)
+  qc.append(QFT_Gate(len(c_qbits),inverse = True, MSB_first = False,swaps = True),
+            c_qbits)
   qc.measure(c_qbits,c_qbits)
   simulator = qiskit.Aer.get_backend(backend)
   sim_result = qiskit.execute(qc, backend=simulator, shots=number_shots).result()
