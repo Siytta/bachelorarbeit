@@ -376,11 +376,11 @@ die maximal der Größenordnung \(2^n\) entsprechen und
 ein Zielregister, 
 welches aus \(n+1\) Qubits besteht.
 Der Minuend \(b\) befindet sich im Zielregister, 
-also \(\ket{\phi(b)}_{n+1}\), 
+also \(\ket{\Phi(b)}_{n+1}\), 
 worauf die Quanten-Subtraktion mit dem Subtrahenden \(a\) wirkt.
 Dann existieren zwei mögliche Fälle~\cite{beauregard2003circuit}:
-\[b \geq a\;\rightarrow\;\ket{\phi(b-a)}_{n+1};\quad
-b < a \;\rightarrow\;\ket{\phi(2^{n+1}-(a-b))}_{n+1}
+\[b \geq a\;\rightarrow\;\ket{\Phi(b-a)}_{n+1};\quad
+b < a \;\rightarrow\;\ket{\Phi(2^{n+1}-(a-b))}_{n+1}
   \]
 Das Most-Significant Bit ist ausschließlich im zweiten Fall gesetzt und kann somit, 
 nachdem das Quantenregister in die Standardbasis transformiert wurde, 
@@ -415,7 +415,7 @@ der das Ergebnis der Berechnung \(\ket{\Phi(a+b)\bmod N}\) für \(a, b < N\) im 
 \end{figure}
 Abbildung~\ref{fig:modulare_addition_paper} zeigt das Konzept, 
 das als Bauplan für die Implementierung der modularen Addition diente.
-In der Grafik sind zwei Arten von \(\phi \ADD\)-Gattern zu sehen:
+In der Grafik sind zwei Arten von \(\Phi \ADD\)-Gattern zu sehen:
 Die Quanten-Addition, erkennbar an dem fettgedruckten Strich auf der rechten Seite 
 und die Quanten-Subtraktion, erkennbar an dem fettgedruckten Strich auf der linken Seite.
 Sowohl die Quanten-Addition als auch die Quanten-Subtraktion addieren beziehungsweise subtrahieren eine feste Zahl und 
@@ -425,7 +425,7 @@ Der Quantenschaltkreis zur modularen Addition agiert als Baustein in einem grö�
 Aus diesem Grund werden zwei Kontrollqubits \(\ket{c_1}_1\) und \(\ket{c_2}_1\) eingebaut, 
 die im weiteren Verlauf Anwendung finden.
 Das Eingaberegister, das zugleich als Zielregister dient,  
-ist initial bereits in der Fourierbasis mit \(\ket{\phi(b)}\).
+ist initial bereits in der Fourierbasis mit \(\ket{\Phi(b)}\).
 
 Das Zielregister wird um ein weiteres Qubit erweitert, 
 welches das Most-Significant-Bit des Zielregisters darstellt.
@@ -441,15 +441,15 @@ wird daher im Weiteren als Bedingungs-Qubit bezeichnet.
 Um die Berechnung des Quantenschaltkreises nachvollziehen zu können, 
 werden die Auswirkungen der verwendeten Gatter im Einzelnen erklärt.
 Die erste Quanten-Addition sorgt dafür, 
-dass auf das initiale Zielregister \(\ket{\phi(b)}\) eine Addition mit \(a\) angewendet wird und 
-dadurch \(\ket{\phi(b + a)}\) entspricht.
+dass auf das initiale Zielregister \(\ket{\Phi(b)}\) eine Addition mit \(a\) angewendet wird und 
+dadurch \(\ket{\Phi(b + a)}\) entspricht.
 Darauf folgt eine Quanten-Subtraktion, 
-die mit dem Subtrahend \(N\) auf das Zielregister \(\ket{\phi(b + a)}\) wirkt und 
-dieses in den Zustand \(\ket{\phi(b + a - N)}\) überführt. 
+die mit dem Subtrahend \(N\) auf das Zielregister \(\ket{\Phi(b + a)}\) wirkt und 
+dieses in den Zustand \(\ket{\Phi(b + a - N)}\) überführt. 
 Daraus resultieren zwei mögliche Zustände:
-\[1.~(b+a) \geq N~\rightarrow~\ket{\phi((b+a) - N)}_{n+1}\]
+\[1.~(b+a) \geq N~\rightarrow~\ket{\Phi((b+a) - N)}_{n+1}\]
 \[2.~
-(b+a) < N~\rightarrow~\ket{\phi(2^{n+1}-(N-(a+b)))}_{n+1}
+(b+a) < N~\rightarrow~\ket{\Phi(2^{n+1}-(N-(a+b)))}_{n+1}
   \]
 Im ersten Fall entspricht das Ergebnis der korrekten Berechnung von \(a+b \bmod N\).
 In diesem Fall ist der Inhalt des Quantenregisters mit \(a+b \bmod N\) kleiner als \(N\), 
@@ -474,9 +474,9 @@ Anschließend kontrolliert das Bedingungs-Qubit eine Quanten-Addition mit dem Su
 Die kontrollierte Quanten-Addition wird also nur im zweiten Fall angewendet und korrigiert das vorher ungültige Ergebnis
 zu dem korrekten:
 \[
-\ket{\phi(2^{n+1}-(N-(a+b)))}_{n+1} \underrightarrow{~+N~} 
-\ket{\phi(2^{n+1}+(a+b))}_{n+1} \underrightarrow{\text{overflow }2^{n+1}}
-\ket{\phi(a+b)}_{n+1}
+\ket{\Phi(2^{n+1}-(N-(a+b)))}_{n+1} \underrightarrow{~+N~} 
+\ket{\Phi(2^{n+1}+(a+b))}_{n+1} \underrightarrow{\text{overflow }2^{n+1}}
+\ket{\Phi(a+b)}_{n+1}
   \]
 Nun befindet sich in beiden Fällen das korrekt berechnete Ergebnis im Zielregister mit \(\ket{\Phi(a+b)\bmod N}\).
 Somit ist die Berechnung der modularen Addition abgeschlossen.
