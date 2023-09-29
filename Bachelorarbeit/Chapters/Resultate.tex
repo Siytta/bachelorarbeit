@@ -58,13 +58,13 @@ Die vier Varianten werden nach den implementierten Optimierungsstrategien in die
 In den Kategorien unterscheidet sich insbesondere die Nutzung der Quantum-Phase-Estimation und der Quanten-Fourier-Transformation. 
 Während die \textit{Reguläre} Variante auf die \(4n+2\) Qubit Version der Quantum-Phase-Estimation mit der exakten Quanten-Fourier-Transformation setzt, 
 nutzt die \textit{Approximative} Variante ebenfalls die \(4n+2\) Qubit Variante, 
-verwendet jedoch die approximative Quanten-Fourier-Transformation mit einem Approximationsfaktor von \(m = \lceil\text{ld}(n)+2\rceil\).
+verwendet jedoch die approximative Quanten-Fourier-Transformation mit einem Approximationsfaktor von \(m = \lceil\ld(n)+2\rceil\).
 
 Die \textit{Iterative} Variante bedient sich der iterativen Quantum-Phase-Estimation mit \(2n+3\) Qubits und 
 verwendet die exakte Quanten-Fourier-Transformation, dementsprechend in iterativer Anwendung.
 Die \textit{Approximative-Iterative} Variante verwendet ebenfalls die iterative Quantum-Phase-Estimation mit \(2n+3\) Qubits, 
 aber ergänzt die iterativ angewendete Quanten-Fourier-Transformation um einen Approximationsfaktor von 
-\[m = \lceil\text{ld}(n)+2\rceil\]
+\[m = \lceil\ld(n)+2\rceil\]
 
 Die Analyse bezieht sich auf die Schlüssellängen des RSA-Kryptosystems von 1024-Bit, 2048-Bit, 3072-Bit und 4096-Bit. 
 Nach aktuellem Stand empfiehlt das BSI für das RSA-Verfahren keine Schlüssellänge unter 3000-Bit~\cite[41]{BSI2023}. 
@@ -152,9 +152,9 @@ Bezüglich der \textit{Maxdepth} erfüllt eine Schlüssellänge von mindestens,
 Es ist jedoch zu beachten, dass diese \textit{Maxdepth} nur für einen einzelnen Durchlauf des Quantenalgorithmus gilt. 
 Wenn mehrere Durchläufe benötigt werden, steigt dementsprechend auch die \textit{Maxdepth} der gesamten Berechnung.
 
-Wie in Sektion~\ref{Funktionsweise:klassisch} erklärt, kann es ohne klassische Nachberechnungen bis zu \(2\text{ld}(N)\) Messungen erfordern, 
+Wie in Sektion~\ref{Funktionsweise:klassisch} erklärt, kann es ohne klassische Nachberechnungen bis zu \(2\ld(N)\) Messungen erfordern, 
 bis ein Messergebnis die ungekürzte Periode enthält. 
-In Bezug auf eine Schlüssellänge von 3072 Bit würde das im Worst-Case-Szenario \(2\text{ld}(2^{3072})\) erfordern, 
+In Bezug auf eine Schlüssellänge von 3072 Bit würde das im Worst-Case-Szenario \(2\ld(2^{3072})\) erfordern, 
 also in etwa \(2^{13}\) Durchläufe des Quantenalgorithmus.
 Dies ergibt eine gesamte \textit{Maxdepth} aller Durchläufe von \(2^{40} \cdot 2^{13}\), insgesamt also \(2^{53}\).
 Unter Berücksichtigung der erforderlichen Laufzeiten wird die Sinnhaftigkeit intensiver Nachberechnungen mit klassischen Methoden verdeutlicht.
@@ -170,11 +170,11 @@ Bei jedem Durchlauf wurde ein zufälliges \(a\) gewählt.
 Um die Statistik nicht zu verfälschen, wurden Durchläufe, die ein \(a\) verwendeten, 
 welches ein Faktor von \(N\) war, nicht gezählt.
 
-Beide Methoden verwendeten die Approximative-Iterative Variante des Quantenalgorithmus mit einem \(k=2n\) und \(m=\lceil\text{ld}(n)+2\rceil\).
+Beide Methoden verwendeten die Approximative-Iterative Variante des Quantenalgorithmus mit einem \(k=2n\) und \(m=\lceil\ld(n)+2\rceil\).
 Dies entspricht den beiden Standardwerten, 
 wie in der Implementierung in Sektion~\ref{sec:Implementierung} verwendet wurde. 
 Die Nachberechnung wurde nach dem Verfahren, wie in Sektion~\ref{sec:Faktorisierungsalgorithmus} beschrieben, angewendet. 
-Die Anzahl der zu überprüfenden Nachbarn und Vielfachen in der klassischen Nachberechnung betrug ebenfalls den standardmäßigen Wert von \(2^{\text{ld}(n)}\).
+Die Anzahl der zu überprüfenden Nachbarn und Vielfachen in der klassischen Nachberechnung betrug ebenfalls den standardmäßigen Wert von \(2^{\ld(n)}\).
 
 \begin{table}[h]
     \centering
@@ -233,11 +233,11 @@ der für Schlüssellängen mit mehr als 3072 Bit eine geringere \textit{Maxdepth
 \bigskip
 
 In Abschnitt~\ref{Funktionsweise:klassisch} wurde darauf hingewiesen, 
-dass im Grunde genommen ein Wert \(k\) mit \(k > 2\text{ld}(p)\) ausreichend Genauigkeit gewährt.
+dass im Grunde genommen ein Wert \(k\) mit \(k > 2\ld(p)\) ausreichend Genauigkeit gewährt.
 Ein möglicher Ansatz zur Reduzierung der \textit{Maxdepth} des hier verwendeten Quantenschaltkreises besteht darin, 
 auf eine geringere Größenordnung der Periode zu spekulieren, 
 um einen Quantenschaltkreis mit einer kleineren \textit{Maxdepth} zu erreichen~\cite{Shor_1997}. 
-Zum Beispiel würde ein \(p\) in der Größenordnung von \(2^{1500}\) mit einem entsprechenden \(k = 2\text{ld}(2^{1500})\) dazu führen, 
+Zum Beispiel würde ein \(p\) in der Größenordnung von \(2^{1500}\) mit einem entsprechenden \(k = 2\ld(2^{1500})\) dazu führen, 
 dass die \textit{Maxdepth} des Quantenschaltkreises von \(2^{40}\) auf \(2^{37}\) reduziert wird. 
 Es ist jedoch wichtig zu betonen, dass die Erfolgswahrscheinlichkeit dieses Ansatzes kritisch zu betrachten ist. 
 In einem Szenario mit einem Gesamtraum von \(2^{3072}\) ist es äußerst unwahrscheinlich, 

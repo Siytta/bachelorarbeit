@@ -1075,7 +1075,7 @@ durch klassische Rechenleistung ersetzt werden.
 \bigskip
 
 Die Grafik~\ref{fig:shor_measure} repräsentiert insgesamt 512 Messungen für \(a=19;~N=119\), 
-mit einer Genauigkeit \(k\) von \(2\text{ld}(119) \approx 14 \). 
+mit einer Genauigkeit \(k\) von \(2\ld(119) \approx 14 \). 
 Ihr Zweck ist es, die Besonderheiten, 
 welche bei Messergebnissen auftreten können, hervorzuheben.
 Zur Verdeutlichung sind die Messergebnisse in Abbildung~\ref{fig:shor_measure} in vier Kategorien eingeteilt.
@@ -1167,7 +1167,7 @@ Dabei ist zu beachten, bis zu welchem Vielfachen diese Überprüfung durchgefüh
 Ein sinnvoller Ansatz wäre, eine Obergrenze festzulegen, die logarithmisch mit \(n\) wächst.
 Andernfalls könnte es bei sehr großen Werten für \(N\) passieren, 
 dass zu viele klassische Berechnungen anfallen würden, die in keinem vertretbaren Zeitaufwand durchführbar wären.
-In der Implementierung werden die Vielfachen mit einer Multiplikation von \(2\) bis \(2^{\text{ld}(n)}\) getestet.
+In der Implementierung werden die Vielfachen mit einer Multiplikation von \(2\) bis \(2^{\ld(n)}\) getestet.
 
 Sollte die Periode keines der getesteten Vielfachen des Nenners darstellen, 
 wird das kleinste gemeinsame Vielfache(kgV) des aktuellen Nenners mit den einzelnen Nennern aus dem Set gebildet.
@@ -1185,7 +1185,7 @@ Damit der Aufwand nicht den Rahmen der Laufzeit sprengt,
 werden genau wie bei der Überprüfung der Vielfachen
 nur eine begrenzte Anzahl an Nachbarn getestet.
 Genau wie bei der Überprüfung der Vielfachen werden in der Implementierung alle Nachbarn durch 
-die Addition beziehungsweise Subtraktion des Messwertes von \(1\) bis \(2^{\text{ld}(n)}\) getestet.
+die Addition beziehungsweise Subtraktion des Messwertes von \(1\) bis \(2^{\ld(n)}\) getestet.
 
 Falls einer der Nachbarn die Periode enthält, 
 handelt es sich bei dem Zustand des Nachbarn um einen, 
@@ -1559,7 +1559,7 @@ bis zu welcher Phasenverschiebung von \(e^{\frac{2\pi i}{2^m}}\) die Phasen-Gatt
 Die vollständige Quanten-Fourier-Transformation entspricht einer \(AQFT_n\).
 
 Wenn der Approximationsfaktor \(m\) einen Wert
-\[m \geq \text{ld}(n)+2\]
+\[m \geq \ld(n)+2\]
 entspricht, nähert sich die Wahrscheinlichkeit, das optimale Ergebnis mit \(AQFT_m\)
 zu erhalten, dem Wert~\cite{cheung2004improved}: 
 \[P \geq \frac{4}{\pi^2} - \frac{1}{4n}\]
@@ -1567,7 +1567,7 @@ Dies steht im Gegensatz zur Wahrscheinlichkeit von \(\frac{4}{\pi^2}\),
 die für die exakte Quanten-Fourier-Transformation \(QFT\) gilt~\cite{cheung2004improved}\cite[119]{kaye2007introduction}.
 
 Im Hinblick auf die Ressourceneffizienz benötigt die \(AQFT_m\) insgesamt \(\Landau(nm)\) Gatter.
-Wenn \(m\) wie zuvor definiert wird, entspricht dies \(\Landau(n~\text{ld}(n))\). 
+Wenn \(m\) wie zuvor definiert wird, entspricht dies \(\Landau(n~\ld(n))\). 
 Im Vergleich dazu erfordert die exakte Quanten-Fourier-Transformation \(\Landau(n^2)\) Gatter~\cite{Barenco_1996}.
 Die Tiefe der Schaltung wird durch die approximative Quanten-Fourier-Transformation im Vergleich zur exakten nicht verändert.
 
@@ -1593,7 +1593,7 @@ Um das bestmögliche Ergebnis zu erzielen,
 muss eine gewisse Ungenauigkeit durch die Approximation in Kauf genommen werden, 
 die wiederum durch die geringere Fehlerrate kompensiert wird. 
 Das optimale \(m\) nähert sich der Untergrenze von~\cite{Barenco_1996}:
-\[m \geq \text{ld}(n)+2\]
+\[m \geq \ld(n)+2\]
 
 Die Approximationstechnik kann auch in der iterativen beziehungsweise, 
 semi"=klassisch\-en Quanten-Fourier-Transformation angewendet werden. 
@@ -1605,7 +1605,7 @@ und würden zu falschen Ergebnissen führen.
 
 Die Implementierung des \texttt{Faktorisierungsalgorithmus} wird um den Parameter \(m\) ergänzt.
 Standardmäßig entspricht der Approximationsfaktor 
-\[m = \lceil\text{ld}(n)+2\rceil\]  
+\[m = \lceil\ld(n)+2\rceil\]  
 Dieser kann jedoch über den Parameter beliebig angepasst oder 
 durch Setzen von \(m=-1\) deaktiviert werden.
 Im Falle der Deaktivierung wird die exakte Quanten-Fourier-Transformation angewendet.

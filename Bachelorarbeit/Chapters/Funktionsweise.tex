@@ -272,17 +272,17 @@ welche nach der Anwendung des Kettenbruch-Algorithmus die Periode enthalten.
     \label{fig:Messung10k}
 \end{figure}
 
-Es lässt sich zeigen, dass bei einer bekannten Periode \(p\) die Wahl von \(k > 2\text{ld}(p)\) 
+Es lässt sich zeigen, dass bei einer bekannten Periode \(p\) die Wahl von \(k > 2\ld(p)\) 
 eine ausreichende Genauigkeit gewährleistet. 
 Unter diesen Bedingungen wird eines der bestmöglichen Messergebnisse durch den Einsatz des Kettenbruch-Algorithmus zu einem Näherungsbruch \(\frac{s}{p}\) von \(\varphi_s\) konvergieren.
 Im Normalfall kann für ein Element \(a\) für den Modulus \(N\) vorab nicht gesagt werden, 
 wie viele Kontrollqubits man exakt braucht, 
 da dies von der unbekannten Periode \(p\) abhängt.
-Stattdessen verwendet man einen Wert der auf alle Fälle größer als \(2\text{ld}(p)\) ist, 
-wie zum Beispiel \(2\text{ld}(N)\).~\cite{Shor_1997,mosca1999hidden}
+Stattdessen verwendet man einen Wert der auf alle Fälle größer als \(2\ld(p)\) ist, 
+wie zum Beispiel \(2\ld(N)\).~\cite{Shor_1997,mosca1999hidden}
 
 Wie man in Abbildungen~\ref{fig:Messung10k} sieht, 
-gibt es auch bei der Verwendung von \(2\text{ld}(N)\) Kontrollqubits einige Messergebnisse, 
+gibt es auch bei der Verwendung von \(2\ld(N)\) Kontrollqubits einige Messergebnisse, 
 bei denen ein Zustand mit einer ungültigen Periode gemessen werden kann.
 Diese Zustände lassen sich in drei Szenarien oder Fallunterscheidungen einteilen:
 
@@ -309,7 +309,7 @@ Im konkreten Beispiel ermöglicht bereits die geringfügige Anpassung des Messer
 also zu \(\ket{175}_{10}\), 
 die erfolgreiche Extraktion der Periode.
 
-Die Erhöhung der Genauigkeit \(k\) auf Werte über \(2\text{ld}(N)\) hinaus hat den Effekt, 
+Die Erhöhung der Genauigkeit \(k\) auf Werte über \(2\ld(N)\) hinaus hat den Effekt, 
 dass die Wahrscheinlichkeit für das Eintreten des ersten oder zweiten Falls abnimmt.
 Dadurch verbessert sich gleichzeitig die Wahrscheinlichkeit, direkt ein korrektes Ergebnis zu messen.
 Allerdings führt dies zu einem komplexeren Quantenschaltkreis und 
@@ -333,9 +333,9 @@ enthalten ursprünglich im Nenner die korrekte Periode,
 wurden jedoch  auf \(\frac{1}{3}\), beziehungsweise \(\frac{2}{3}\), gekürzt. 
 Eine Überprüfung der nächsten Vielfachen, in diesem Fall \(2 \cdot 3 = 6 \), führt zur korrekten Periode.
 
-Es lässt sich zeigen, dass die Wahrscheinlichkeit mindestens \(\frac{1}{2\text{ld}(N)}\) beträgt, 
+Es lässt sich zeigen, dass die Wahrscheinlichkeit mindestens \(\frac{1}{2\ld(N)}\) beträgt, 
 bei einer Messung ein \(s\) zu erhalten, welches eine Primzahl ist und somit zu \(p\) teilerfremd ist.
-Das bedeutet, dass die Wahrscheinlichkeit bei insgesamt \(2\text{ld}(N)\) Messungen sehr hoch ist, 
+Das bedeutet, dass die Wahrscheinlichkeit bei insgesamt \(2\ld(N)\) Messungen sehr hoch ist, 
 mindestens einmal ein \(\frac{s}{p}\) zu messen, 
 bei dem \(s\) und \(p\) nicht gekürzt sind.~\cite[231]{nielsen_chuang_2010}
 
@@ -349,5 +349,5 @@ wenn \(p\) ungerade ist
 oder wenn \(a^{\frac{p}{2}} = -1 \bmod N\) erfüllt ist.
 Die Wahrscheinlichkeit, dass einer der beiden genannten Fälle eintritt, beträgt \(1-\frac{1}{2^f}\), 
 wobei \(f\) die Anzahl an unterschiedlichen Primfaktoren von \(N\) angibt.
-In einem solchen Fall wiederholt man die Periodenberechnung mit einem anderen \(a\).\cite{Shor_1997}
+In einem solchen Fall wiederholt man die Periodenberechnung mit einem anderen \(a\).~\cite{Shor_1997}
 
