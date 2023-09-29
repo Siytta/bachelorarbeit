@@ -964,7 +964,7 @@ Diese können realisiert werden,
 indem ein \({U_a}\)-Gatter insgesamt \(2^x\) mal hintereinander geschaltet wird oder 
 indem anstelle von \(a\) der Parameter \(a^{2^x}\) an ein einzelnes \(U_a\)-Gatter übergeben wird.
 Die zweite Variante ist möglich wegen~\cite{beauregard2003circuit}:
-\[(a^nx)\mod N = \underbrace{(a...(((a(ax)\mod N)\mod N)...)\mod N)}_{\text{\(n\) mal}}\]
+\[(a^nx)\mod N = \underbrace{(a\dotsc(((a(ax)\mod N)\mod N)\dotsc)\mod N)}_{\text{\(n\) mal}}\]
 
 Bei der Wahl zwischen den beiden Varianten liegt das entscheidende Kriterium bei der Ressourceneffizienz. 
 Die zweite Variante schneidet dabei deutlich besser ab, 
