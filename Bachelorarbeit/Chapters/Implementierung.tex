@@ -139,8 +139,8 @@ dass die Addition im Wesentlichen in der Phase des Quantenzustands stattfindet:
 \]
 Wie in der Abbildung~\ref{fig:3_qubit_quantum_add} erkenntlich,
 wirken auf das hinterste Tensorprodukt auch noch die beiden Phasen-Gatter \(P(\frac{\pi}{2})\) und \(P(\frac{\pi}{4})\) mit:
-\[
-    P(\frac{\pi}{2}) = 
+\begin{align*}
+    P(\frac{\pi}{2}) &= 
 \begin{pmatrix}
     1 & 0 \\
     0 & e^{\frac{\pi}{2} i b_2}
@@ -149,9 +149,8 @@ wirken auf das hinterste Tensorprodukt auch noch die beiden Phasen-Gatter \(P(\f
   \begin{pmatrix}
     1 & 0 \\
     0 & e^{\frac{2\pi i (2^1b_2)}{2^3}}
-  \end{pmatrix}
-  ~;~
-P(\frac{\pi}{4}) = 
+  \end{pmatrix} \\
+P(\frac{\pi}{4}) &= 
 \begin{pmatrix}
     1 & 0 \\
     0 & e^{\frac{\pi}{4} i b_1}
@@ -161,13 +160,14 @@ P(\frac{\pi}{4}) =
     1 & 0 \\
     0 & e^{\frac{2\pi i (2^0b_1)}{2^3}}
   \end{pmatrix}
-\]
+\end{align*}
+Multipliziert man beide von links an das vorherige Ergebnis erhält man:
 \begin{align*}
-    \begin{pmatrix}
+    &\begin{pmatrix}
         1 & 0 \\
         0 & e^{\frac{2\pi i (2^0b_1)}{2^3}}
       \end{pmatrix}
-      &\cdot
+      \cdot
       \begin{pmatrix}
         1 & 0 \\
         0 & e^{\frac{2\pi i (2^1b_2)}{2^3}}
@@ -179,7 +179,7 @@ P(\frac{\pi}{4}) =
          e^{\frac{2 \pi i (2^{2}(a_3+b_3) +2^1a_2+2^0a_1)}{2^3}} 
       \end{pmatrix} 
      \\
-      &=
+      =&
       \frac{1}{\sqrt{2}}
       \begin{pmatrix}
         1  \\
