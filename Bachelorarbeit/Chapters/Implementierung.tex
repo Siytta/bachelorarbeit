@@ -326,7 +326,7 @@ Berechnung durch wie der Quantenschaltkreis aus Abbildung~\ref{fig:3_qubit_fixed
 Darüber hinaus werden die benötigten Phasenverschiebungen mit einem einzigen Phasen-Gatter pro Qubit realisiert.
 
 Die Implementierung nutzt die ressourceneffiziente Variante der Quanten-Addition.
-In der Funktion \texttt{A\_Gate} wird ein Gatter erzeugt, 
+In der Funktion \mintinline{python}{A_Gate} wird ein Gatter erzeugt, 
 das sämtliche für die Quanten-Addition erforderlichen Phasen-Gatter umfasst.
 Der Code zur Funktion ist in Abbildung~\ref{code:QuantumAdd} dargestellt.
 \begin{listing}[H]
@@ -349,7 +349,7 @@ def A_Gate(a_bin: list[int]) -> qiskit.circuit.gate:
   \caption{Quantum-Addition in Qiskit}
   \label{code:QuantumAdd}
 \end{listing}
-Der Funktion \texttt{A\_Gate} wird der zu addierende Summand im Binärformat übergeben, 
+Der Funktion \mintinline{python}{A_Gate} wird der zu addierende Summand im Binärformat übergeben, 
 wobei am Index Null das Least-Significant-Bit liegt.
 Abhängig von der Anzahl der Bits des Summanden wird ein Quantenschaltkreis mit der gleichen Anzahl an Qubits erzeugt. 
 In den Zeilen 4 bis 9 werden die Phasenverschiebungen, die auf ein einzelnes Qubit wirken sollen, berechnet und akkumuliert.
@@ -386,8 +386,8 @@ Das Most-Significant Bit ist ausschließlich im zweiten Fall gesetzt und kann so
 nachdem das Quantenregister in die Standardbasis transformiert wurde, 
 als eine Art Borrow-Bit verwendet werden.
 
-Die Implementierung der Quanten-Subtraktion ist aufgrund der \texttt{inverse} Funktion von Qiskit unkompliziert.
-Wendet man die \texttt{inverse} Funktion auf ein Gatter der Quanten-Addition aus der \texttt{A\_Gate} Funktion an, 
+Die Implementierung der Quanten-Subtraktion ist aufgrund der \mintinline{python}{inverse} Funktion von Qiskit unkompliziert.
+Wendet man die \mintinline{python}{inverse} Funktion auf ein Gatter der Quanten-Addition aus der \mintinline{python}{A_Gate} Funktion an, 
 wird dieses in die Quanten-Subtraktion invertiert.
 Der zugehörige Code ist in~\ref{code:QuantumSub} abgebildet.
 \begin{listing}[H]
@@ -562,12 +562,12 @@ Wäre es möglich, diesen Teil auszulassen, könnten zwei der insgesamt fünf Qu
 Quanten-Subtraktionen sowie die Hälfte der (inversen) Quanten-Fourier-Transformationen eingespart werden.
 
 Es gibt die Möglichkeit, bei einem Qubit einen Reset durchzuführen, wodurch dieses den Zustand \(\ket{0}\) annimmt.
-In Qiskit kann dies mit der Funktion \texttt{Reset} realisiert werden~\cite{qiskitReset}.
+In Qiskit kann dies mit der Funktion \mintinline{python}{Reset} realisiert werden~\cite{qiskitReset}.
 Die Verwendung ist jedoch nicht zielführend, da diese durch keine unitäre Abbildungsmatrix
 beschrieben werden kann.
 Somit ist die Reset-Transformation nicht unitär und würde deswegen dazu führen, dass alle Quantenalgorithmen, 
 die diese Funktion nutzen, ebenfalls nicht mehr unitär wären.
-Da die Quantum-Phase-Estimation den Eigenwert einer \textit{unitären} Transformation extrahiert, 
+Da die Quantum-Phase-Estimation den Eigenwert einer \emph{unitären} Transformation extrahiert, 
 ist diese Funktion für die Anwendung im Shor-Algorithmus ungeeignet.
 
 \begin{figure}[H]
@@ -580,9 +580,9 @@ ist diese Funktion für die Anwendung im Shor-Algorithmus ungeeignet.
 Abbildung~\ref{fig:ModularAddition} zeigt die Implementierung eines Gatters für die modulare Addition 
 mit \(a = 6\) und \(N = 15\) in Qiskit.
 Der zugehörige Code, der ein Gatter wie in Abbildung~\ref{fig:ModularAddition} generiert, 
-ist in der Funktion \texttt{Modular\_Adder\_Gate}~\ref{code:ModularAddition} enthalten.
+ist in der Funktion \mintinline{python}{Modular_Adder_Gate}~\ref{code:ModularAddition} enthalten.
 
-Die Funktion \texttt{Modular\_Adder\_Gate} erwartet den Summand \(a\) und die Zahl \(N\) als Parameter, 
+Die Funktion \mintinline{python}{Modular_Adder_Gate} erwartet den Summand \(a\) und die Zahl \(N\) als Parameter, 
 jeweils in der Form einer Liste, 
 welche die Zahl in Binärdarstellung beschreibt.
 Dabei repräsentiert der erste Index beider Listen das Least-Significant-Bit.
@@ -591,22 +591,22 @@ müssen die Listen jeweils von der Länge \(n+1\) sein,
 wobei das Most-Significant-Bit immer \(0\) entspricht.
 
 Die Funktion definiert drei Wertebereiche, die die Positionen der Qubits beschreiben.
-\textit{c\_qbits} definiert die Position der beiden Kontrollqubits \(\ket{c_1}_1\) und \(\ket{c_2}_1\), 
-\textit{b\_qbits} die Qubits, welche den Summanden \(b\) 
+\mintinline{python}{c_qbits} definiert die Position der beiden Kontrollqubits \(\ket{c_1}_1\) und \(\ket{c_2}_1\), 
+\mintinline{python}{b_qbits} die Qubits, welche den Summanden \(b\) 
 in der Fourierbasis enthalten 
-und \textit{cond\_qbit} repräsentiert die Position des Bedingungs-Qubit.
-Dadurch, dass \textit{b\_qbits} genauso groß definiert wird, 
+und \mintinline{python}{cond_qbit} repräsentiert die Position des Bedingungs-Qubit.
+Dadurch, dass \mintinline{python}{b_qbits} genauso groß definiert wird, 
 wie die Liste des Summand \(a\) lang ist, wird sichergestellt, 
-dass das \textit{b\_qbits} Register ein extra Qubit für das Borrow-Bit enthält.
+dass das \mintinline{python}{b_qbits} Register ein extra Qubit für das Borrow-Bit enthält.
 In Zeile 5 der Funktion wird ein Quantenschaltkreis definiert, 
 der aus so vielen Qubits besteht, wie es insgesamt Positionen in 
-\textit{c\_qbits}, \textit{b\_qbits} und \textit{cond\_qbit} gibt.
+\mintinline{python}{c_qbits}, \mintinline{python}{b_qbits} und \mintinline{python}{cond_qbit} gibt.
 
 In den Zeilen 6 bis 18 werden alle benötigten Gatter 
 in derselben Reihenfolge wie in Abbildung~\ref{fig:modulare_addition_paper} angewendet.
 Zum Hinzufügen eines eigens programmierten Gatters, 
 also für die Quanten-Addition, Quanten-Subtraktion und die Quanten-Fourier-Transformation,
-wird die Methode \texttt{append} eines Qiskit-Quantenschaltkreises genutzt.
+wird die Methode \mintinline{python}{append} eines Qiskit-Quantenschaltkreises genutzt.
 
 Abschließend wird der Quantenschaltkreis in Zeile 19. in ein Gatter umgewandelt.
 
@@ -707,7 +707,7 @@ Alles zusammen führt zu einem Quantenschaltkreis wie in Abbildung~\ref{fig:cmul
 \bigskip
 
 Der Code, der einen Quantenschaltkreis als Gatter gemäß dem Konzept in Abbildung~\ref{fig:cmult} generiert, 
-ist in der Funktion \texttt{cmult\_gate}~\ref{code:ModularMultiplication} definiert.
+ist in der Funktion \mintinline{python}{cmult_gate}~\ref{code:ModularMultiplication} definiert.
 
 Die Funktion erwartet sowohl \(a\) als auch \(N\) als Parameter, 
 jeweils in der Form einer Liste, welche die Zahl in Binärdarstellung beschreibt.
@@ -715,21 +715,21 @@ Dabei repräsentiert der erste Index beider Listen das Least-Significant-Bit.
 Damit die unterliegenden modularen Addition Gatter für die korrekte Anzahl an Qubits gebildet werden, 
 müssen die Listen jeweils die Länge n + 1 haben, wenn \(N\) der Größenordnung \(2^n\) entspricht.
 Das Most-Significant-Bit sollte in beiden Listen dementsprechend den Wert \(0\) haben.
-Des Weiteren erwartet die Funktion den Parameter \textit{x\_bits\_amount}, der angibt, 
+Des Weiteren erwartet die Funktion den Parameter \mintinline{python}{x_bits_amount}, der angibt, 
 wie viele Qubits das Quantenregister \(\ket{x}_n\) umfasst 
 und somit \(n\) entspricht. 
 
 Um die Position der Qubits zu beschreiben, 
 definiert die Funktion vier Wertebereiche.
-\textit{c\_qbit} liegt an der ersten Stelle des kontrollierten Multiplikation Gatters und 
+\mintinline{python}{c_qbit} liegt an der ersten Stelle des kontrollierten Multiplikation Gatters und 
 ist für das Kontrollqubit \(\ket{c}_1\) vorhergesehen.
 Die darauffolgenden Qubits umfassen das \(\ket{x}_n\) Quantenregister und bestehen aus insgesamt \(n\) Qubits, 
-deren Position in \textit{c\_qbit} definiert ist.
-Die Position des \(\ket{b}_{n+1}\) Quantenregisters wird in \textit{b\_qbits} beschrieben.
+deren Position in \mintinline{python}{c_qbit} definiert ist.
+Die Position des \(\ket{b}_{n+1}\) Quantenregisters wird in \mintinline{python}{b_qbits} beschrieben.
 Aufgrund der unterliegenden Gatter umfasst das \(\ket{b}_{n+1}\) Quantenregister ein zusätzliches Qubit, 
 welches als Borrow-Bit dient.
 Die Position des letzten Qubit \(\ket{0}_1\), 
-wird mit \textit{cond\_qbit} definiert.
+wird mit \mintinline{python}{cond_qbit} definiert.
 Dieses Qubit dient als Bedingungs-Qubit für die unterliegenden modularen Addition Gatter.
 
 Im Code~\ref{code:ModularMultiplication} wird in Zeile 9. die Quanten-Fourier-Transformation auf 
@@ -742,7 +742,7 @@ Andernfalls wäre es notwendig,
 zusätzliche Qubits zu verwenden, um \(2^i\cdot a\) zu speichern.
 
 Wie man in Zeile 13. sieht, teilen sich alle modularen Additions Gatter das selbe Bedingungs-Qubit \(\ket{0}_1\), 
-welches sich auf der Position von \textit{cond\_qbit} befindet.
+welches sich auf der Position von \mintinline{python}{cond_qbit} befindet.
 Genau aus diesem Grund, wird bei dem Gatter zur modularen Addition das Bedingungs-Qubit zurückgesetzt.
 
 Abschließend wird noch die inverse Quanten-Fourier-Transformation auf das \(\ket{b}_{n+1}\) Quantenregister anwendet und 
@@ -782,7 +782,7 @@ also der modularen Addition,
 definiert wurden.
 Es ist möglich, die Kontrollqubits bei der Definition der modularen Adder Gatter auszulassen und 
 stattdessen erst bei der Anwendung im kontrollierten Multiplikation Gatter anzuwenden, 
-indem die Qiskit Funktion \textit{control} verwendet wird.
+indem die Qiskit Funktion \mintinline{python}{control} verwendet wird.
 Dadurch wird der Kontrolleffekt auf das gesamte Gatter zur modularen Addition angewendet, 
 wodurch ein ineffizienterer Quantenschaltkreis entsteht, 
 wie bereits im Abschnitt~\ref{sub:modulareAddition} zur modularen Addition erwähnt.
@@ -804,7 +804,7 @@ Diese setzen sich aus dem Kontrollqubit \(\ket{c}_1\), den \(n\) Qubits von \(\k
 den \(n+1\) Qubits von \(\ket{b}_{n+1}\) und dem einzelnen Bedingungs-Qubit \(\ket{0}_1\)zusammen.
 
 Um der Inversen des kontrollierten Multiplikation Gatters eine eindeutige Benennung zu geben, 
-wird dafür eine zusätzliche Funktion \texttt{inv\_cmult\_gate} definiert.
+wird dafür eine zusätzliche Funktion \mintinline{python}{inv_cmult_gate} definiert.
 \begin{listing}[H]
 \begin{minted}[linenos,fontsize=\customsize]{python}  
 def inv_cmult_gate(x_bits_amount: int,a_bin: list[int],N_bin: list[int]) -> qiskit.circuit.gate:  
@@ -894,26 +894,26 @@ Das Konzept des Aufbaus des Quantenschaltkreises ist in Abbildung~\ref{fig:u_gat
   \label{fig:u_gatter}
 \end{figure}
 
-Die Funktion \texttt{U\_gate}~\ref{code:UGatter} enthält den Code zur Generierung eines \(U_a\)-Gatters.
-Dazu nimmt die Funktion dieselben Parameter wie die Funktion \texttt{cmult\_gate} entgegen, 
-nämlich  \textit{a\_bin} und \textit{N\_bin}, welche jeweils \(a\) und \(N\) in binärer Form im Listenformat beschreiben,  
-sowie \textit{x\_bits\_amount}, das im Grunde \(n\) repräsentiert.
+Die Funktion \mintinline{python}{U_gate}~\ref{code:UGatter} enthält den Code zur Generierung eines \(U_a\)-Gatters.
+Dazu nimmt die Funktion dieselben Parameter wie die Funktion \mintinline{python}{cmult_gate} entgegen, 
+nämlich  \mintinline{python}{a_bin} und \mintinline{python}{N_bin}, welche jeweils \(a\) und \(N\) in binärer Form im Listenformat beschreiben,  
+sowie \mintinline{python}{x_bits_amount}, das im Grunde \(n\) repräsentiert.
 
 Im Code~\ref{code:UGatter} werden insgesamt fünf Wertebereiche definiert.
-Das Kontrollqubit \(\ket{c}_1\) befindet sich auf der Position \textit{c\_qbit},
-gefolgt von \textit{x\_qbits} für das \(\ket{x}_{n}\) Quantenregister und  
-\textit{b\_qbits} für die Qubits von \(\ket{0}_{n+1}\).
+Das Kontrollqubit \(\ket{c}_1\) befindet sich auf der Position \mintinline{python}{c_qbit},
+gefolgt von \mintinline{python}{x_qbits} für das \(\ket{x}_{n}\) Quantenregister und  
+\mintinline{python}{b_qbits} für die Qubits von \(\ket{0}_{n+1}\).
 Das Bedingungs-Qubit wird auf der letzten Position des Gatters platziert und  
-ist in \textit{cond\_qbit} festgelegt.
-Des Weiteren wird \textit{full\_range} verwendet,
+ist in \mintinline{python}{cond_qbit} festgelegt.
+Des Weiteren wird \mintinline{python}{full_range} verwendet,
 um alle vier vorherigen Quantenregister zu umfassen.
 
 Wie in Zeile 7. des Codes ersichtlich, wird zuerst ein Gatter zur kontrollierten Multiplikation eingesetzt.
-Dafür werden der Funktion \texttt{cmult\_gate} die Parameter \textit{a\_bin}, \textit{N\_bin} und \textit{x\_bits\_amount} übergeben.
-Das Gatter zur kontrollierten Multiplikation wird auf den gesamten Bereich \textit{full\_range} angewendet, 
+Dafür werden der Funktion \mintinline{python}{cmult_gate} die Parameter \mintinline{python}{a_bin}, \mintinline{python}{N_bin} und \mintinline{python}{x_bits_amount} übergeben.
+Das Gatter zur kontrollierten Multiplikation wird auf den gesamten Bereich \mintinline{python}{full_range} angewendet, 
 somit umfasst das \(U_a\)-Gatter \(2n+3\) Qubits.
 In Zeile 9 und 10 werden die kontrollierten Swap-Gatter eingesetzt.
-Wie man in Zeile 10. erkennt, bezieht sich die Wirkung eines Swap-Gatters auf denselben Index von \textit{x\_qbits} und \textit{b\_qbits}.
+Wie man in Zeile 10. erkennt, bezieht sich die Wirkung eines Swap-Gatters auf denselben Index von \mintinline{python}{x_qbits} und \mintinline{python}{b_qbits}.
 Somit werden die Qubits beider Quantenregister vertauscht, die die gleiche Wertigkeit haben.
 In Zeile 11. wird \(a^{-1}\bmod N\) mittels des erweiterten euklidischen Algorithmus berechnet.
 Anschließend wird das berechnete \(a^{-1}\bmod N\) als Parameter an ein inverses kontrolliertes Multiplikation Gatter übergeben.
@@ -982,23 +982,23 @@ Deswegen verwendet die hier implementierte Variante \(2n\) Kontrollqubits.
 \bigskip
 
 Der Code für einen Quantenschaltkreis wie in Abbildung~\ref{fig:shor_n_qubit} ist in der Funktion 
-\texttt{Shor}~\ref{code:Periodenbestimmung} enthalten.
+\mintinline{python}{Shor}~\ref{code:Periodenbestimmung} enthalten.
 
 Die Funktion erwartet die beiden Zahlen \(a\) und \(N\) als Parameter.
-Des Weiteren kann der Funktion über den Parameter \textit{number\_shots} mitgeteilt werden, 
+Des Weiteren kann der Funktion über den Parameter \mintinline{python}{number_shots} mitgeteilt werden, 
 mit wie vielen Durchläufen der Quantenalgorithmus ausgeführt werden soll.
 Jeder Durchlauf gewährt ein weiteres Messergebnis.
-Der Parameter \textit{backend} ist dazu da, 
+Der Parameter \mintinline{python}{backend} ist dazu da, 
 um festzulegen, auf welchem System der Quantenalgorithmus ausgeführt werden soll.
 Standardmäßig wird der Simulator von Qiskit genutzt. 
 Falls Zugang zu einem Quantensystem von IBM besteht, 
 würde man stattdessen die Bezeichnung der entsprechenden Quantum-Backend verwenden.
 
-Die Funktion \texttt{Shor} definiert die beiden Wertebereiche \textit{c\_qbits} und 
-\textit{ev\_qbits}, um die Positionen der beiden Quantenregister zu beschreiben.
-Der Wertebereich \textit{c\_qbits} enthält die insgesamt \(2n\) Positionen der Kontrollqubits.
+Die Funktion \mintinline{python}{Shor} definiert die beiden Wertebereiche \mintinline{python}{c_qbits} und 
+\mintinline{python}{ev_qbits}, um die Positionen der beiden Quantenregister zu beschreiben.
+Der Wertebereich \mintinline{python}{c_qbits} enthält die insgesamt \(2n\) Positionen der Kontrollqubits.
 Der Eigenvektor wird in den Qubits gespeichert, 
-deren Position in \textit{ev\_qbits} definiert ist.
+deren Position in \mintinline{python}{ev_qbits} definiert ist.
 
 Der Quantenschaltkreis wird in der 5. Zeile definiert und umfasst \(4n+2\) Qubits und 
 \(2n\) klassische Bits, welche zum Messen verwendet werden.
@@ -1007,12 +1007,12 @@ In den der 8. Zeile wird der Eigenvektor gebildet.
 Da der Eigenvektor dem Zustand \(\ket{1}\) entspricht,
 genügt es, wenn das Least-Significant-Qubit mit einem X-Gatter versehen wird.
 In den Zeilen 9 und 10 werden die zugehörigen \({U_a}^{2^x}\)-Gatter mit dem passenden \(x\) auf das Register mit dem Eigenvektor angewendet.
-Die Funktion \texttt{mod\_exp} berechnet \((a^{2^x})\bmod N\).
+Die Funktion \mintinline{python}{mod_exp} berechnet \((a^{2^x})\bmod N\).
 In der 11. Zeile werden die Kontrollqubits mit der inverse Quanten-Fourier-Transformation in die Standardbasis transformiert.  
-Da die Funktion \texttt{Shor} Messungen durchführen soll, 
+Da die Funktion \mintinline{python}{Shor} Messungen durchführen soll, 
 wird in der 12. Zeile definiert, dass die Kontrollqubits gemessen werden.
-In dem Fall entspricht dies den Qubits auf den Positionen \textit{c\_qbits}.
-Anschließend werden in den Zeilen 13 und 14 \textit{number\_shots} viele Messungen durchgeführt und 
+In dem Fall entspricht dies den Qubits auf den Positionen \mintinline{python}{c_qbits}.
+Anschließend werden in den Zeilen 13 und 14 \mintinline{python}{number_shots} viele Messungen durchgeführt und 
 das Ergebnis wird als Rückgabewert der Funktion zurückgegeben.
 
 Wie bei der Definition des Quantenschaltkreises in Zeile 5. erkennbar, 
@@ -1042,9 +1042,9 @@ def Shor(a: int, N: int,number_shots: int = 1000, backend: str = "aer_simulator"
 \end{listing}
 
 In Abbildung~\ref{fig:shor_qiskit} ist der Quantenschaltkreis zu sehen, 
-der durch die Funktion \texttt{Shor} für \(a=7;~N=15\) generiert wird.
+der durch die Funktion \mintinline{python}{Shor} für \(a=7;~N=15\) generiert wird.
 Bei \(N=15\) tritt der Effekt auf, dass für \(x>1\) die Rechnung \((a^{2^x})\bmod N = 1\) ergibt, 
-weshalb auch die \({U_a}^{2^x}\)-Gatter zu \(U\_1\) werden.
+weshalb auch die \({U_a}^{2^x}\)-Gatter zu \(U_1\) werden.
 
 \begin{figure}[H]
   \centering
@@ -1351,29 +1351,29 @@ den einzelnen \(U^{2^x}\)-Gatter angewendet werden.
 \bigskip
 
 Aufgrund der benötigten klassisch-kontrollierten Phasen-Gatter wird die iterative Quanten-Fourier-Transformation nicht als einzelne Gatter, 
-sondern in einer Funktion \texttt{iterative\_QFT} definiert.
+sondern in einer Funktion \mintinline{python}{iterative_QFT} definiert.
 Diese Funktion wendet die erforderlichen klassisch-kontrollierten Gatter direkt auf den Quantenschaltkreis für ein jeweiliges Qubit an.
 
 Wie im Code in Abbildung~\ref{code:iterativeQFT} dargestellt, 
-erwartet die Funktion \texttt{iterative\_QFT} die vier Parameter: \textit{target}, \textit{qc}, \textit{k} und \textit{controlling\_qubit}.
-Der Parameter \textit{target} beschreibt die Wertigkeit des Qubits und 
-definiert zusammen mit der Genauigkeit \textit{k}, 
+erwartet die Funktion \mintinline{python}{iterative_QFT} die vier Parameter: \mintinline{python}{target}, \mintinline{python}{qc}, \mintinline{python}{k} und \mintinline{python}{controlling_qubit}.
+Der Parameter \mintinline{python}{target} beschreibt die Wertigkeit des Qubits und 
+definiert zusammen mit der Genauigkeit \mintinline{python}{k}, 
 welche Phasen-Gatter benötigt werden.
-Alle durch die Funktion \texttt{iterative\_QFT} angewendeten Gatter 
-werden auf den Quantenschaltkreis im Parameter \textit{qc} angewendet.
-Der letzte Parameter, \textit{controlling\_qubit}, beinhaltet das Ziel der angewendeten Gatter und 
+Alle durch die Funktion \mintinline{python}{iterative_QFT} angewendeten Gatter 
+werden auf den Quantenschaltkreis im Parameter \mintinline{python}{qc} angewendet.
+Der letzte Parameter, \mintinline{python}{controlling_qubit}, beinhaltet das Ziel der angewendeten Gatter und 
 somit die Position des Kontrollqubit.
 
-Wenn der Parameter \textit{target} dem Wert 0 entspricht, 
+Wenn der Parameter \mintinline{python}{target} dem Wert 0 entspricht, 
 wird die iterative Quanten-Fourier-Transformation für das Most-Significant-Bit angewendet.
 Wie in Abbildung~\ref{fig:iterative_iQFT} gezeigt, entspricht dies nur der Anwendung eines einzelnen Hadamard-Gatters.
 In Zeile 3 und 4 ist zu erkennen, 
 dass mit abnehmender Wertigkeit eines Qubits zunehmend mehr Phasen-Gatter angewendet werden.
 Alle Phasen-Gatter, welche in Zeile 4. genutzt werden, 
-wirken auf das \textit{controlling\_qubit} und 
-werden von unterschiedlichen klassischen Bits mit der Methode \(c\_if\) kontrolliert.
+wirken auf das \mintinline{python}{controlling_qubit} und 
+werden von unterschiedlichen klassischen Bits mit der Methode \(c_if\) kontrolliert.
 
-Da die Funktion direkt auf den Quantenschaltkreis \textit{qc} wirkt, 
+Da die Funktion direkt auf den Quantenschaltkreis \mintinline{python}{qc} wirkt, 
 wird kein Rückgabewert benötigt.
 \begin{listing}[H]
 \begin{minted}[linenos,fontsize=\footnotesize]{python}    
@@ -1387,8 +1387,8 @@ def iterative_QFT(target: int, qc: QuantumCircuit ,k: range, controlling_qubit: 
   \label{code:iterativeQFT}
 \end{listing}
 
-Der Code zum vollständigen Quantenschaltkreis ist in Abbildung~\ref{code:IterativeQPE} in der Funktion \texttt{Shor\_sequential} dargestellt.
-Die Parameter sind identisch mit denen der regulären \texttt{Shor} Funktion. 
+Der Code zum vollständigen Quantenschaltkreis ist in Abbildung~\ref{code:IterativeQPE} in der Funktion \mintinline{python}{Shor_sequential} dargestellt.
+Die Parameter sind identisch mit denen der regulären \mintinline{python}{Shor} Funktion. 
 Wie in Zeile 6. der Quantenschaltkreis-Definition zu erkennen ist, 
 benötigt diese Variante insgesamt \(2n+3\) Qubits und halbiert damit fast den Bedarf der Standardvariante von \(4n+2\) Qubits.
 In den Zeilen 8 bis 14 ist ersichtlich, 
@@ -1426,7 +1426,7 @@ def Shor_sequential(a:int, N:int, number_shots:int=1000, backend:str="aer_simula
   \label{code:IterativeQPE}
 \end{listing}
 
-Für \(a = 7,~N=15,~k=4\) ist in Abbildung~\ref{fig:iterative_iQPE_qiskit} der Quantenschaltkreis nach der Funktion \texttt{Shor\_sequential} dargestellt.
+Für \(a = 7,~N=15,~k=4\) ist in Abbildung~\ref{fig:iterative_iQPE_qiskit} der Quantenschaltkreis nach der Funktion \mintinline{python}{Shor_sequential} dargestellt.
 Das \(k\) wurde verringert, damit die Grafik nicht zu viel Platz beansprucht.
 Aufgrund des geringeren \(k\) kommen dementsprechend weniger \(U^{2^x}\)-Gatter zum Einsatz.
 
@@ -1530,7 +1530,7 @@ In diesem Fall wird auf Kosten der Laufzeit die sparsamere Variante angewendet.
 Sollten auch dafür nicht genügend Qubits vorhanden sein, 
 wird die Berechnung mit einer Fehlermeldung abgebrochen. 
 Die Fallunterscheidung in der Implementierung wird realisiert, 
-indem statt der Funktion \texttt{Shor} die iterative Variante \texttt{Shor\_sequential} ausgeführt wird. 
+indem statt der Funktion \mintinline{python}{Shor} die iterative Variante \mintinline{python}{Shor_sequential} ausgeführt wird. 
 Weitere Anpassungen sind nicht nötig, 
 da sowohl die Eingabewerte als auch die Form der Rückgabewerte identisch sind.
 
@@ -1602,7 +1602,7 @@ das gleiche \(m\) nutzen.
 Andernfalls wären die angewendeten und extrahierten Phasenverschiebungen inkonsistent 
 und würden zu falschen Ergebnissen führen.
 
-Die Implementierung des \texttt{Faktorisierungsalgorithmus} wird um den Parameter \(m\) ergänzt.
+Die Implementierung des \mintinline{python}{Faktorisierungsalgorithmus} wird um den Parameter \(m\) ergänzt.
 Standardmäßig entspricht der Approximationsfaktor 
 \[m = \lceil\ld(n)+2\rceil\]  
 Dieser kann jedoch über den Parameter beliebig angepasst oder 
