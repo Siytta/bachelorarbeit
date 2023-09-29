@@ -968,8 +968,8 @@ Beachtet werden zwei Qubits im Zustand \(\ket{+}_1 \tensor \ket{-}_1\) auf die e
 Dabei ist \(\ket{-}_1\) der Eigenvektor einer X-Transformation mit zugehörigen Eigenwert \(e^{\pi i} = -1\), also: 
 \[X \cdot \ket{-}_1=-\ket{-}_1\]
 Auf das zweite Qubit \(\ket{-}_1\) wirkt ein \(CX^{\tensor 2}\) Gatter welches durch das erste Qubit \(\ket{+}_1\) kontrolliert wird:
-\[
-  CX^{\tensor 2}( \ket{+}_1\ \tensor \ket{-}_1) =
+\begin{align*}
+  CX^{\tensor 2}( \ket{+}_1\ \tensor \ket{-}_1) &=
   \begin{pmatrix}
     1 & 0 & 0 & 0\\
     0 & 1 & 0 & 0\\
@@ -991,10 +991,8 @@ Auf das zweite Qubit \(\ket{-}_1\) wirkt ein \(CX^{\tensor 2}\) Gatter welches d
     -1 \\
     -1 \\
     1 
-  \end{pmatrix}
-  \]
-  \[
-  =
+  \end{pmatrix} \\
+  &=
   \frac{1}{{\sqrt{2}}}
   \begin{pmatrix}
     1 \\
@@ -1008,13 +1006,13 @@ Auf das zweite Qubit \(\ket{-}_1\) wirkt ein \(CX^{\tensor 2}\) Gatter welches d
   \end{pmatrix}
   =
   \ket{-}_1 \tensor \ket{-}_1
-  \]
+  \end{align*}
 Mit Hilfe des Phase-Kickback kann man also den Eigenwert einer unitären Transformation in die relative Phase eines Kontrollqubits verschieben.
 Der Vorteil davon ist, 
 dass diese Phasenverschiebung nur den Vorfaktor von \(\ket{1}\) des Kontrollqubits betrifft und keine globale Phase darstellt.
 
 Der Aufbau einer Quantum-Phase-Estimation Quantenschaltung sieht beispielsweise wie folgt aus:
-Beachtet wird die unitäre Transformation eines Phase-Gatters(P) mit einer variablen Phasenverschiebung von 
+Beachtet wird die unitäre Transformation eines Phase-Gatters (P) mit einer variablen Phasenverschiebung von 
 \[P(2 \pi \varphi ) = 
 \begin{pmatrix}
   1 & 0\\
