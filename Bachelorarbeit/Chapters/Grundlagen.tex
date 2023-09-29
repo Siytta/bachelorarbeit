@@ -587,42 +587,42 @@ Um die Wirkung mehrerer Gatter zu berechnen, die nacheinander auf ein Qubit wirk
 werden die Matrizen der Gatter in umgekehrter Reihenfolge aufgeschrieben, 
 als diese im Quantenschaltkreis vorkommen. 
 In Abbildung~\ref{fig:gate_order} wirkt zuerst ein Pauli-X-Gatter und anschließend ein Hadamard-Gatter auf das Qubit im Zustand \(\ket{0}\).
-\[
+\begin{align*}
+  &\frac{1}{\sqrt{2}}
+  \begin{pmatrix}
+    1 & 1 \\
+    1 & -1
+  \end{pmatrix} 
+  \cdot
+  \begin{pmatrix}
+    0 & 1 \\
+    1 & 0
+    \end{pmatrix} 
+  \cdot
+  \begin{pmatrix}
+    1  \\
+    0 
+  \end{pmatrix}  \\
+  =&
   \frac{1}{\sqrt{2}}
   \begin{pmatrix}
     1 & 1 \\
     1 & -1
     \end{pmatrix} 
-    \cdot
-    \begin{pmatrix}
-      0 & 1 \\
-      1 & 0
-      \end{pmatrix} 
-    \cdot
-    \begin{pmatrix}
-      1  \\
-      0 
-      \end{pmatrix} 
-      =
-      \frac{1}{\sqrt{2}}
-      \begin{pmatrix}
-        1 & 1 \\
-        1 & -1
-        \end{pmatrix} 
-      \cdot
-      \begin{pmatrix}
-        0  \\
-        1 
-        \end{pmatrix} 
-        =
-        \frac{1}{\sqrt{2}}
-        \begin{pmatrix}
-          1  \\
-          -1 
-          \end{pmatrix}
-        =
-        \ket{-}
-  \]
+  \cdot
+  \begin{pmatrix}
+    0  \\
+    1 
+  \end{pmatrix} \\
+  =&
+  \frac{1}{\sqrt{2}}
+  \begin{pmatrix}
+    1  \\
+    -1 
+  \end{pmatrix}
+  =
+  \ket{-}
+  \end{align*}
 \begin{figure}[H]
   \centering
   \includegraphics[scale=1]{gate_order.png}
