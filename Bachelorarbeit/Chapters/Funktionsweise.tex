@@ -2,7 +2,7 @@
 Im folgenden Kapitel wird der Shor-Algorithmus zur Faktorisierung von Zahlen beschrieben. 
 Der Inhalt fokussiert sich auf den Zweck, die Funktionsweise und den Aufbau des Algorithmus. 
 Der Aufbau beinhaltet nicht die konkrete Implementierung der Bestandteile des Algorithmus. 
-Stattdessen werden die Details bezüglich der Implementierung im nächsten Kapitel behandelt
+Stattdessen werden die Details bezüglich der Implementierung im nächsten Kapitel behandelt.
 
 \subsection{Zweck}
 Der Shor-Algorithmus wurde mit dem spezifischen Ziel entwickelt, 
@@ -36,7 +36,8 @@ Daher ist die gesamte Laufzeit des Shor-Algorithmus ebenfalls von polynomialer G
 \subsection{Ordnungsbestimmung} \label{Shor:Ordnungsbestimmung}
 Zu bestimmen sind die Primfaktoren der Zahl \(N\).
 Zuerst wird ein \(a\) mit \(0 < a < N\) gewählt.
-Falls der seltene Fall eintritt, dass \(a\) nicht teilerfremd zu \(N\) ist, entspricht \(a\) einem der Primfaktoren.
+Falls der seltene Fall eintritt, dass \(a\) nicht teilerfremd zu \(N\) ist, entspricht \(a\) einem der Primfaktoren, weswegen 
+keine weiteren Berechnungen mehr nötig wären.
 Anschließend wird die Ordnung beziehungsweise Periode \(p\) der Funktion \({f(x) = a^x \mod N}\) mit dem Quantenalgorithmus bestimmt.
 
 Die Periode \(p\) beschreibt die kleinste ganze Zahl mit \({p > 0}\), für die gilt: \({f(p) = 1 \mod N}\).
@@ -63,7 +64,7 @@ Wie in~\cite[227]{nielsen_chuang_2010} gezeigt wird, gibt es zu \(U\) Eigenvekto
 mit \(0 \leq s \leq p-1\): 
 \[\ket{u_s} =
 \frac{1}{\sqrt{p}}
-\sum_{k=0}^{p-1} e^{\frac{-2 \pi i s k}{p}\ket{a^k \mod N}} %ich soll die Formel mit der Summe sein
+\sum_{k=0}^{p-1} e^{\frac{-2 \pi i s k}{p}\ket{a^k \mod N}} 
 \]
 Für \(a=7\) bei \(N=15\) entspricht \(p=4\).
 Ein Eigenvektor zu \(s=1\) lautet dann:
@@ -120,13 +121,14 @@ Man kann diese Problematik jedoch umgehen indem man anstelle eines einzelnen Eig
 eine Superposition verwendet, die alle \(\ket{u_s}\) umfasst.
 Die Superposition entspricht~\autocite[227]{nielsen_chuang_2010}:
 \[\frac{1}{\sqrt{p}} \sum_{s=0}^{p-1}\ket{u_s} = \ket{1}\] 
-Also wird das Qubit, welches das Least-Significant-Bit des für den Eigenvektor bestimmten Qubit-Registers repräsentiert, 
-mit \(\ket{1}\) initialisiert.
+Daher wird das Qubit, welches das Least-Significant-Bit des Qubit-Registers für den Eigenvektor darstellt, 
+mit dem Zustand \(\ket{1}\) initialisiert.
 
 Die Superposition der Eigenvektoren hat zur Folge, 
 dass nach der inversen Quanten-Fourier-Transformation, also am Ende der Quantum-Phase-Estimation,
 ebenfalls eine Superposition mit dem \(\varphi_s\) der Eigenwerte \(\lambda_{u_s}\) aller möglichen Eigenvektoren \(\ket{u_s}\) existiert.
-Sei \(k\) die Anzahl der Kontroll-Qubits dann:
+Sei \(k\) die Anzahl der Kontrollqubits. 
+Dann nehmen diese den folgenden Zustand an:
 \[
     \frac{1}{\sqrt{p}} \sum_{s=0}^{p-1}\ket{2^k \cdot \frac{s}{p}}_k   = 
     \frac{1}{\sqrt{p}} \Bigg(\ket{0}_k  + \ket{2^k \cdot \frac{1}{p}}_k + \ket{2^k \cdot \frac{2}{p}}_k  ... + \ket{2^k \cdot \frac{p-1}{p}}_k \Bigg)
@@ -135,14 +137,14 @@ Bei einer Messung wird also zufällig eines der insgesamt \(p\) vielen \(\varphi
 
 Die Genauigkeit des Algorithmus, ausgedrückt durch den Parameter \(k\),
 ist direkt abhängig von der Anzahl der verwendeten \(U^{2^x}\)-Gatter
-und der damit assoziierten Kontroll-Qubits im Quantenschaltkreis.
+und der damit assoziierten Kontrollqubits im Quantenschaltkreis.
 Somit definiert \(k\) die Genauigkeit des Messwertes gegenüber dem \(\varphi_s\).
 
-Wenn genügend Kontroll-Qubits verwendet werden, 
+Wenn genügend Kontrollqubits verwendet werden, 
 wird bei einer Messung ein Zustand gemessen, 
 in dem \(\varphi_s\) beziehungsweise \(\frac{s}{p}\) enthalten ist.
 
-Falls nicht ausreichend Kontroll-Qubits vorhanden sind 
+Falls nicht ausreichend Kontrollqubits vorhanden sind 
 und der Wert von \(\varphi_s\) somit nicht ausreichend umfasst werden kann,
 wird die Messung mit hoher Wahrscheinlichkeit 
 in einen der möglichen Zustände kollabieren, 
@@ -171,7 +173,7 @@ wird daher mit einem klassischen Algorithmus durchgeführt.
 
 Ein einzelner Zustand der finalen Superposition 
 entspricht einem genauen Ergebnis und hat die Form \(\ket{2^k \cdot \frac{s}{p}}_k\) für \(0 \leq s < p\).
-Durch Division durch \(2^k\) kann \(\frac{s}{p}\) extrahiert werden.
+Indem eine Division durch \(2^k\) durchgeführt wird, kann \(\frac{s}{p}\) extrahiert werden.
 Als Beispiel sei die finale Superposition für \(a = 7;~N=15\) mit \(p=4\) und einer Genauigkeit von \(k=4\) gegeben:
 \[\frac{1}{\sqrt{4}}
 \Bigg(\ket{0}_4 +\ket{2^4 \cdot \frac{1}{4}}_4 + \ket{2^4 \cdot \frac{2}{4}}_4+\ket{2^4 \cdot \frac{3}{4}}_4
@@ -184,7 +186,7 @@ Diese kann als Bruch dargestellt werden,
 dessen Nenner die gesuchte Periode \(p=4\) ist.
 
 Im vorherigen Beispiel handelt es sich bei der Periode um eine 2er Potenz, 
-weshalb die Messergebnisse eindeutig sind.
+deshalb sind die genauen Zustände ganzzahlig und die Messergebnisse somit eindeutig.
 Dies ist jedoch ein ideales Szenario, 
 das bei immer größeren \(N\) seltener auftritt. 
 Das nächste Beispiel beachtet \(a=11;~N=21\) mit der Periode \(p=6\) und einer Genauigkeit von \(k=4\):
@@ -196,14 +198,14 @@ Das nächste Beispiel beachtet \(a=11;~N=21\) mit der Periode \(p=6\) und einer 
 \Big(\ket{0}_4 +\ket{2,\overline{6}}_4 + \ket{5,\overline{3}}_4+
 \ket{8}_4+\ket{10,\overline{6}}_4 + \ket{13,\overline{3}}_4
 \Big) \]
-Die Kontroll-Qubits, welche gemessen werden, 
+Die Kontrollqubits, welche gemessen werden, 
 können keine Kommazahlen darstellen.
 Infolgedessen bildet sich um die benachbarten Zustände eine Wahrscheinlichkeitsverteilung, 
 die bei dem ganzzahligen Zustand, der am nächsten liegt, 
 ihren Höhepunkt hat, vergleichbar mit Abbildung~\ref{fig:3_qubit_qpe_measurment_uncertain}.
 Im konkreten Beispiel wird für \(\ket{2,\overline{6}}_4\) der Zustand \(\ket{3}_4\) 
 mit der höchsten Wahrscheinlichkeit gemessen.
-Eine Extraktion der Periode aus \(\ket{3}_4\) durch eine Division mit \(2^4\) liefert als Ergebnis die Kommazahl \(0,1875\).
+Eine Extraktion der Periode aus \(\ket{3}_4\) mit einer Division durch \(2^4\) liefert als Ergebnis die Kommazahl \(0,1875\).
 Um von dieser Kommazahl den nächsten Bruch zu finden, wird der Kettenbruch-Algorithmus angewendet.
 Im konkreten Fall wird dadurch \(\frac{3}{16}\) gefunden.
 Der Bruch \(\frac{3}{16}\) enthält im Nenner nicht die gesuchte Periode \(p=6\). 
@@ -212,7 +214,7 @@ die mit hoher Wahrscheinlichkeit gemessen werden können, wie
 \(\ket{5}_4,~\ket{8}_4,~\ket{11}_4\) und \(\ket{13}_4\).
 
 Das Scheitern der vorangegangenen Berechnung ist auf eine unzureichende Genauigkeit zurückzuführen. 
-In der vorangegangenen Darstellung werden \(k=4\) Kontroll-Qubits eingesetzt, 
+In der vorangegangenen Darstellung werden \(k=4\) Kontrollqubits eingesetzt, 
 welche für die gesuchte Periode einen zu kleinen Wertebereich bilden.
 
 Wird das Verfahren mit \(k=7\) wiederholt, ergibt sich die folgende Superposition:
@@ -222,7 +224,7 @@ Wird das Verfahren mit \(k=7\) wiederholt, ergibt sich die folgende Superpositio
 \Big) \]
 Es ist ersichtlich, dass die genauen Zustände immer noch Nachkommastellen aufweisen, 
 weshalb mit einer geringeren Wahrscheinlichkeit auch andere Werte gemessen werden können.
-Bei einer Messung ist anstelle des Zustands \(\ket{21,\overline{3}}_7\) der Zustand \(\ket{21}_7\) das wahrscheinlichste Ergebnis.
+Bei einer Messung ist anstelle des Zustands \(\ket{21,\overline{3}}_7\) der Zustand \(\ket{21}_7\) das Ergebnismit der höchsten Wahrscheinlichkeit .
 Für \(\frac{21}{2^{7}}\) erhält man eine Kommazahl, deren exakter Bruch \(\frac{21}{128}\) entspricht.
 Wendet man den Kettenbruch-Algorithmus auf \(\frac{21}{128}\) an und limitiert den Nenner auf \(N\), 
 wird der nächstgelegene Bruch mit einem Nenner gefunden, der kleiner als \(N\) ist.
@@ -239,7 +241,7 @@ Das bedeutet,
 mit einer hinreichenden Genauigkeit, kann die Periode nur aus dem Zustand extrahiert werden, 
 welcher den Wert des genauen Zustandes am besten approximiert.
 
-Mit zusätzlichen Kontroll-Qubits wird das Messergebnis fehlertolerant.
+Mit zusätzlichen Kontrollqubits wird das Messergebnis fehlertolerant.
 Wiederholt man das Beispiel erneut, diesmal jedoch mit \(k=10\), 
 ist der zweite Zustand in der finalen Superposition: 
 \(\ket{2^{10} \cdot \frac{1}{6}}_{10} =\ket{170,\overline{6}}_{10}\).
@@ -247,15 +249,15 @@ Im Gegensatz zu vorher liefert jetzt nicht nur das am besten approximierte Ergeb
 in dem Fall die \(\ket{170}_{10}\), mit dem Kettenbruch-Algorithmus die Periode, 
 sondern auch alle benachbarten Zustände von \(\ket{167}_{10}\) bis \(\ket{175}_{10}\).
 
-Durch den Einsatz von zusätzlichen Kontroll-Qubits erhöht sich der Wertebereich. 
+Durch den Einsatz von zusätzlichen Kontrollqubits erhöht sich der Wertebereich. 
 Aufgrund des größeren Wertebereiches existieren mehr mögliche Zustände, 
 die bei einer Messung vorkommen könnten und ebenfalls auch mehr Zustände, 
 die die Extraktion der korrekten Periode ermöglichen. 
 Dabei ist die Wahrscheinlichkeitsverteilung der ausschlaggebende Faktor. 
-Diese verändert sich mit einer wachsenden Anzahl an Kontroll-Qubits zugunsten der Zustände, 
+Diese verändert sich mit einer wachsenden Anzahl an Kontrollqubits zugunsten der Zustände, 
 welche die korrekte Periode offenbaren.
 Die Abbildungen~\ref{fig:Messung7k} und~\ref{fig:Messung10k} 
-heben den Effekt zusätzlicher Kontroll-Qubits auf die Wahrscheinlichkeitsverteilung der Messungen hervor.
+heben den Effekt zusätzlicher Kontrollqubits auf die Wahrscheinlichkeitsverteilung der Messungen hervor.
 Die grünen Säulen im Diagram zeigen die Messergebnisse, 
 welche nach der Anwendung des Kettenbruch-Algorithmus die Periode enthalten.
 
@@ -276,14 +278,15 @@ Es lässt sich zeigen, dass bei einer bekannten Periode \(p\) die Wahl von \(k >
 eine ausreichende Genauigkeit gewährleistet. 
 Unter diesen Bedingungen wird eines der bestmöglichen Messergebnisse durch den Einsatz des Kettenbruch-Algorithmus zu einem Näherungsbruch \(\frac{s}{p}\) von \(\varphi_s\) konvergieren.
 Im Normalfall kann für ein Element \(a\) für den Modulus \(N\) vorab nicht gesagt werden, 
-wie viele Kontroll-Qubits man exakt braucht, 
+wie viele Kontrollqubits man exakt braucht, 
 da dies von der unbekannten Periode \(p\) abhängt.
 Stattdessen verwendet man einen Wert der auf alle Fälle größer als \(2\text{ld}(p)\) ist, 
 wie zum Beispiel \(2\text{ld}(N)\).~\cite{Shor_1997,mosca1999hidden}
 
 Wie man in Abbildungen~\ref{fig:Messung10k} sieht, 
-gibt es auch bei der Verwendung von \(2\text{ld}(N)\) Kontroll-Qubits drei Szenarien, 
+gibt es auch bei der Verwendung von \(2\text{ld}(N)\) Kontrollqubits einige Messergebnisse, 
 bei denen ein Zustand mit einer ungültigen Periode gemessen werden kann.
+Diese Zustände lassen sich in drei Szenarien oder Fallunterscheidungen einteilen:
 
 Im Falle des ersten Szenarios 
 entspricht mindestens einer der Zustände der finalen Superposition einer Kommazahl.
@@ -345,8 +348,8 @@ können die Primfaktoren von \(N\) mit dem größten gemeinsamen Teiler(gcd) ber
 \[gcd(a^{\frac{p}{2}}-1, N), gcd(a^{\frac{p}{2}}+1, N)\]
 Dies schlägt nur fehl, 
 wenn \(p\) ungerade ist
-oder wenn \(a^{\frac{p}{2}} = -1 \mod N\) erfüllt ist~\cite{Shor_1997}.
+oder wenn \(a^{\frac{p}{2}} = -1 \mod N\) erfüllt ist.
 Die Wahrscheinlichkeit, dass einer der beiden genannten Fälle eintritt, beträgt \(1-\frac{1}{2^f}\), 
-wobei \(f\) die Anzahl an unterschiedlichen Primfaktoren von \(N\) angibt~\cite{Shor_1997}.
-In einem solchen Fall wiederholt man die Periodenberechnung mit einem anderen \(a\).
+wobei \(f\) die Anzahl an unterschiedlichen Primfaktoren von \(N\) angibt.
+In einem solchen Fall wiederholt man die Periodenberechnung mit einem anderen \(a\).\cite{Shor_1997}
 
