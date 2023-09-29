@@ -809,9 +809,11 @@ Um der Inversen des kontrollierten Multiplikation Gatters eine eindeutige Benenn
 wird dafür eine zusätzliche Funktion \mintinline{python}{inv_cmult_gate} definiert.
 \begin{listing}[H]
 \begin{minted}[linenos,fontsize=\customsize]{python}  
-def inv_cmult_gate(x_bits_amount: int,a_bin: list[int],N_bin: list[int]) -> qiskit.circuit.gate:  
+def inv_cmult_gate(x_bits_amount: int, a_bin: list[int],
+                                       N_bin: list[int]) -> qiskit.circuit.gate:  
   inv_cmult_gate = cmult_gate(x_bits_amount,a_bin,N_bin).inverse()
-  inv_cmult_gate.name = "inv cmult " + str(binToDez(a_bin)) + " Mod " + str(binToDez(N_bin))
+  inv_cmult_gate.name = "inv cmult " + str(binToDez(a_bin)) 
+                      + " Mod " + str(binToDez(N_bin))
   return inv_cmult_gate
   \end{minted}
   \caption{Inverse kontrollierte Multiplikation in Qiskit}
