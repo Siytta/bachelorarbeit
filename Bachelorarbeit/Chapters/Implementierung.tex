@@ -609,7 +609,7 @@ Zum Hinzufügen eines eigens programmierten Gatters,
 also für die Quanten-Addition, Quanten-Subtraktion und die Quanten-Fourier-Transformation,
 wird die Methode \texttt{append} eines Qiskit-Quantenschaltkreises genutzt.
 
-Abschließend wird der Quantenschaltkreis in Zeile 19 in ein Gatter umgewandelt.
+Abschließend wird der Quantenschaltkreis in Zeile 19. in ein Gatter umgewandelt.
 
 \begin{listing}[H]
 \begin{minted}[linenos,fontsize=\footnotesize]{python}    
@@ -733,7 +733,7 @@ Die Position des letzten Qubit \(\ket{0}_1\),
 wird mit \textit{cond\_qbit} definiert.
 Dieses Qubit dient als Bedingungs-Qubit für die unterliegenden modularen Addition Gatter.
 
-Im Code~\ref{code:ModularMultiplication} wird in Zeile 9 die Quanten-Fourier-Transformation auf 
+Im Code~\ref{code:ModularMultiplication} wird in Zeile 9. die Quanten-Fourier-Transformation auf 
 das \(\ket{b}_{n+1}\) Quantenregister angewandt.
 In Zeile 10 bis 13 folgen die Gatter zur modularen Addition.
 Da \((b + a \cdot x) \mod N\) äquivalent ist zu \((b + (a \cdot x)\mod N) \mod N\)~\cite{koepf_modular_2021}, 
@@ -742,7 +742,7 @@ sondern \((2^i\cdot a)\mod N\).
 Andernfalls wäre es notwendig, 
 zusätzliche Qubits zu verwenden, um \(2^i\cdot a\) zu speichern.
 
-Wie man in Zeile 13 sieht, teilen sich alle modularen Additions Gatter das selbe Bedingungs-Qubit \(\ket{0}_1\), 
+Wie man in Zeile 13. sieht, teilen sich alle modularen Additions Gatter das selbe Bedingungs-Qubit \(\ket{0}_1\), 
 welches sich auf der Position von \textit{cond\_qbit} befindet.
 Genau aus diesem Grund, wird bei dem Gatter zur modularen Addition das Bedingungs-Qubit zurückgesetzt.
 
@@ -750,7 +750,8 @@ Abschließend wird noch die inverse Quanten-Fourier-Transformation auf das \(\ke
 der Quantenschaltkreis in ein Quantengatter umgeformt.
 
 \begin{listing}[H]
-\begin{minted}[linenos,fontsize=\footnotesize]{python}  
+
+\begin{minted}[linenos, fontsize=\customsize]{python}
 def cmult_gate(x_bits_amount: int,a_bin: list[int],N_bin: list[int]) -> qiskit.circuit.gate:  
   a_dez = binToDez(a_bin)
   N_dez = binToDez(N_bin)
@@ -806,7 +807,7 @@ den \(n+1\) Qubits von \(\ket{b}_{n+1}\) und dem einzelnen Bedingungs-Qubit \(\k
 Um der Inversen des kontrollierten Multiplikation Gatters eine eindeutige Benennung zu geben, 
 wird dafür eine zusätzliche Funktion \texttt{inv\_cmult\_gate} definiert.
 \begin{listing}[H]
-\begin{minted}[linenos,fontsize=\footnotesize]{python}  
+\begin{minted}[linenos,fontsize=\customsize]{python}  
 def inv_cmult_gate(x_bits_amount: int,a_bin: list[int],N_bin: list[int]) -> qiskit.circuit.gate:  
   inv_cmult_gate = cmult_gate(x_bits_amount,a_bin,N_bin).inverse()
   inv_cmult_gate.name = "inv cmult " + str(binToDez(a_bin)) + " Mod " + str(binToDez(N_bin))
@@ -908,14 +909,14 @@ ist in \textit{cond\_qbit} festgelegt.
 Des Weiteren wird \textit{full\_range} verwendet,
 um alle vier vorherigen Quantenregister zu umfassen.
 
-Wie in Zeile 7 des Codes ersichtlich, wird zuerst ein Gatter zur kontrollierten Multiplikation eingesetzt.
+Wie in Zeile 7. des Codes ersichtlich, wird zuerst ein Gatter zur kontrollierten Multiplikation eingesetzt.
 Dafür werden der Funktion \texttt{cmult\_gate} die Parameter \textit{a\_bin}, \textit{N\_bin} und \textit{x\_bits\_amount} übergeben.
 Das Gatter zur kontrollierten Multiplikation wird auf den gesamten Bereich \textit{full\_range} angewendet, 
 somit umfasst das \(U_a\)-Gatter \(2n+3\) Qubits.
 In Zeile 9 und 10 werden die kontrollierten Swap-Gatter eingesetzt.
-Wie man in Zeile 10 erkennt, bezieht sich die Wirkung eines Swap-Gatters auf denselben Index von \textit{x\_qbits} und \textit{b\_qbits}.
+Wie man in Zeile 10. erkennt, bezieht sich die Wirkung eines Swap-Gatters auf denselben Index von \textit{x\_qbits} und \textit{b\_qbits}.
 Somit werden die Qubits beider Quantenregister vertauscht, die die gleiche Wertigkeit haben.
-In Zeile 11 wird \(a^{-1}\mod N\) mittels des erweiterten euklidischen Algorithmus berechnet.
+In Zeile 11. wird \(a^{-1}\mod N\) mittels des erweiterten euklidischen Algorithmus berechnet.
 Anschließend wird das berechnete \(a^{-1}\mod N\) als Parameter an ein inverses kontrolliertes Multiplikation Gatter übergeben.
 Abschließend wird der Quantenschaltkreis zu einem Gatter umgeformt und passend benannt.
 
@@ -952,7 +953,7 @@ Die Abbildung zeigt ein Beispiel für \(a=7\) und \(N=15\).
   \label{fig:u_gatter_qiskit}
 \end{figure}
 
-\subsubsection{QPE für Shor} \label{section:imp_QPE_Shor}
+\subsubsection{Quantum-Phase-Estimation für Shor} \label{section:imp_QPE_Shor}
 Der letzte Schritt zur Komplettierung des Quantenschaltkreises für den Quantenalgorithmus, 
 der in der Lage ist, 
 die Periode zu bestimmen, besteht darin, 
@@ -967,9 +968,9 @@ Die zweite Variante ist möglich wegen~\cite{beauregard2003circuit}:
 
 Bei der Wahl zwischen den beiden Varianten liegt das entscheidende Kriterium bei der Ressourceneffizienz. 
 Die zweite Variante schneidet dabei deutlich besser ab, 
-da sie lediglich \(x\) \(U_a\)-Gatter benötigt, 
+da sie lediglich \(x\) viele \(U_a\)-Gatter benötigt, 
 wenn \(x\) viele Kontrollqubits verwendet werden, 
-im Gegensatz zur ersten Variante, die \(2^x-1\) \(U_a\)-Gatter erfordert.
+im Gegensatz zur ersten Variante, die \(2^x-1\) viele \(U_a\)-Gatter erfordert.
 
 Ein weiterer wichtiger Aspekt für den Aufbau der Quantenschaltung betrifft die Anzahl der benötigten Kontrollqubits.
 Beauregard erklärt in seinem Paper~\cite{beauregard2003circuit} nicht, 
@@ -1015,12 +1016,12 @@ In dem Fall entspricht dies den Qubits auf den Positionen \textit{c\_qbits}.
 Anschließend werden in den Zeilen 13 und 14 \textit{number\_shots} viele Messungen durchgeführt und 
 das Ergebnis wird als Rückgabewert der Funktion zurückgegeben.
 
-Wie bei der Definition des Quantenschaltkreises in Zeile 5 erkennbar, 
+Wie bei der Definition des Quantenschaltkreises in Zeile 5. erkennbar, 
 benötigt der Quantenschaltkreis \(4n+2\) Qubits anstatt \(2n+3\).
 Die Reduktion der benötigten Qubits wird in der Sektion~\ref{Optimierung} thematisiert. 
 
 \begin{listing}[H]
-\begin{minted}[linenos,fontsize=\footnotesize]{python}  
+\begin{minted}[linenos,fontsize=\customsizetwo]{python}  
 def Shor(a: int, N: int,number_shots: int = 1000, backend: str = "aer_simulator"):
   n = N.bit_length()
   c_qbits = range(2*n)
@@ -1166,6 +1167,7 @@ Dabei ist zu beachten, bis zu welchem Vielfachen diese Überprüfung durchgefüh
 Ein sinnvoller Ansatz wäre, eine Obergrenze festzulegen, die logarithmisch mit \(n\) wächst.
 Andernfalls könnte es bei sehr großen Werten für \(N\) passieren, 
 dass zu viele klassische Berechnungen anfallen würden, die in keinem vertretbaren Zeitaufwand durchführbar wären.
+In der Implementierung werden die Vielfachen mit einer Multiplikation von \(2\) bis \(2^{\text{ld}(n)}\) getestet.
 
 Sollte die Periode keines der getesteten Vielfachen des Nenners darstellen, 
 wird das kleinste gemeinsame Vielfache(kgV) des aktuellen Nenners mit den einzelnen Nennern aus dem Set gebildet.
@@ -1182,6 +1184,8 @@ In diesem Fall wird überprüft, ob einer der Nachbarn die Periode enthält.
 Damit der Aufwand nicht den Rahmen der Laufzeit sprengt, 
 werden genau wie bei der Überprüfung der Vielfachen
 nur eine begrenzte Anzahl an Nachbarn getestet.
+Genau wie bei der Überprüfung der Vielfachen werden in der Implementierung alle Nachbarn durch 
+die Addition beziehungsweise Subtraktion des Messwertes von \(1\) bis \(2^{\text{ld}(n)}\) getestet.
 
 Falls einer der Nachbarn die Periode enthält, 
 handelt es sich bei dem Zustand des Nachbarn um einen, 
@@ -1278,7 +1282,7 @@ In der semi-klassischen beziehungsweise, iterativen Variante ist dies anders.
 Diese Methode kam erstmals 1995 zum Einsatz und 
 nutzt das klassische Signal einer Messung, 
 um ein Quanten-Gatter zu kontrollieren~\cite{Griffiths_1996}.
-Im Kern der Optimierung liegt der Trick, 
+Im Kern der Optimierung liegt der Trick darin, 
 das Messergebnis des jeweiligen Qubits als Steuerungsbedingung für ein Phasen-Gatter zu verwenden.
 
 Die Quantum-Phase-Estimation verwendet die inverse Quanten-Fourier-Transformation mit Swap-Gattern.
@@ -1344,6 +1348,9 @@ im Vergleich zur regulären Variante.
 Dies resultiert darin, dass die iterative Quanten-Fourier-Transformation kein zusammenhängender Baustein ist, 
 sondern dass die einzelnen Bestandteile schrittweise zwischen 
 den einzelnen \(U^{2^x}\)-Gatter angewendet werden.
+
+\bigskip
+
 Aufgrund der benötigten klassisch-kontrollierten Phasen-Gatter wird die iterative Quanten-Fourier-Transformation nicht als einzelne Gatter, 
 sondern in einer Funktion \texttt{iterative\_QFT} definiert.
 Diese Funktion wendet die erforderlichen klassisch-kontrollierten Gatter direkt auf den Quantenschaltkreis für ein jeweiliges Qubit an.
@@ -1361,9 +1368,9 @@ somit die Position des Kontrollqubit.
 Wenn der Parameter \textit{target} dem Wert 0 entspricht, 
 wird die iterative Quanten-Fourier-Transformation für das Most-Significant-Bit angewendet.
 Wie in Abbildung~\ref{fig:iterative_iQFT} gezeigt, entspricht dies nur der Anwendung eines einzelnen Hadamard-Gatters.
-In Zeile drei und vier ist zu erkennen, 
+In Zeile 3 und 4 ist zu erkennen, 
 dass mit abnehmender Wertigkeit eines Qubits zunehmend mehr Phasen-Gatter angewendet werden.
-Alle Phasen-Gatter, welche in der vierten Zeile genutzt werden, 
+Alle Phasen-Gatter, welche in Zeile 4. genutzt werden, 
 wirken auf das \textit{controlling\_qubit} und 
 werden von unterschiedlichen klassischen Bits mit der Methode \(c\_if\) kontrolliert.
 
@@ -1383,9 +1390,9 @@ def iterative_QFT(target: int, qc: QuantumCircuit ,k: range, controlling_qubit: 
 
 Der Code zum vollständigen Quantenschaltkreis ist in Abbildung~\ref{code:IterativeQPE} in der Funktion \texttt{Shor\_sequential} dargestellt.
 Die Parameter sind identisch mit denen der regulären \texttt{Shor} Funktion. 
-Wie in Zeile sechs der Quantenschaltkreis-Definition zu erkennen ist, 
+Wie in Zeile 6. der Quantenschaltkreis-Definition zu erkennen ist, 
 benötigt diese Variante insgesamt \(2n+3\) Qubits und halbiert damit fast den Bedarf der Standardvariante von \(4n+2\) Qubits.
-In den Zeilen acht bis vierzehn ist ersichtlich, 
+In den Zeilen 8 bis 14 ist ersichtlich, 
 dass die Komponenten der iterativen Quanten-Fourier-Transformation in jedem Schleifendurchlauf nach einem \(U^{2^x}\)-Gatter angewendet werden. 
 Des Weiteren ist ersichtlich, 
 dass die Schleife mit dem Qubit beginnt, 
@@ -1394,11 +1401,11 @@ Pro Iteration wird jeweils ein \(U^{2^x}\)-Gatter mit absteigender Potenzen zum 
 hingegen werden die Messergebnisse in klassischen Bits mit aufsteigender Wertigkeit gespeichert.
 
 Um zu verhindern, 
-dass der Code den Seitenrand überschreitet, wurden die Zeilen zehn und elf mit einem Zeilenumbruch geteilt.
+dass der Code den Seitenrand überschreitet, wurden die Zeilen 10 und 11 mit einem Zeilenumbruch geteilt.
 
 \begin{listing}[H]
 \begin{minted}[linenos,fontsize=\footnotesize]{python}    
-def Shor_sequential(a: int, N: int,number_shots: int = 1000, backend: str = "aer_simulator"):
+def Shor_sequential(a:int, N:int, number_shots:int=1000, backend:str="aer_simulator"):
   n = N.bit_length()
   controlling_qubit = 0
   ev_qbits  = range(1, 2*n+3)
@@ -1603,7 +1610,7 @@ Dieser kann jedoch über den Parameter beliebig angepasst oder
 durch Setzen von \(m=-1\) deaktiviert werden.
 Im Falle der Deaktivierung wird die exakte Quanten-Fourier-Transformation angewendet.
 
-Der Grund, warum die approximative Variante verwendet wird, 
+Der Grund, warum die approximative Variante standardmäßigen verwendet wird, 
 liegt darin, dass das Ergebnis bereits bei kleinen \(n\) eine gute Genauigkeit gewährt. 
 Dies wird deutlich, wenn man Abbildung~\ref{fig:shor_measure} mit \(m=n=7\) und
 Abbildung~\ref{fig:shor_measure_AQFT} mit \(m=4\) vergleicht.
