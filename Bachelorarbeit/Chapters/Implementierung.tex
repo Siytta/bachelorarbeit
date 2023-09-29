@@ -1176,9 +1176,9 @@ dass zu viele klassische Berechnungen anfallen würden, die in keinem vertretbar
 In der Implementierung werden die Vielfachen mit einer Multiplikation von \(2\) bis \(2^{\ld(n)}\) getestet.
 
 Sollte die Periode keines der getesteten Vielfachen des Nenners darstellen, 
-wird das kleinste gemeinsame Vielfache(kgV) des aktuellen Nenners mit den einzelnen Nennern aus dem Set gebildet.
+wird das kleinste gemeinsame Vielfache (\(\lcm\)) des aktuellen Nenners mit den einzelnen Nennern aus dem Set gebildet.
 Falls die beiden zugehörigen Zähler keinen Faktor teilen, 
-kann mit einer Wahrscheinlichkeit größer als \(0.25\) die Periode aus dem kgV berechnet werden~\cite[231]{nielsen_chuang_2010}.
+kann mit einer Wahrscheinlichkeit größer als \(0.25\) die Periode aus dem \(\lcm\) berechnet werden~\cite[231]{nielsen_chuang_2010}.
 
 Die beiden vorherigen Methoden können zum Erfolg führen, 
 falls ein Messergebnis, wie in Abbildung~\ref{fig:shor_measure}, 
@@ -1201,7 +1201,7 @@ wie beispielsweise in Abbildung~\ref{fig:shor_measure} der Zustand \(\ket{8878}_
 Es ist möglich, 
 dass die Zustände der Nachbarn des Messergebnisses der gelben Kategorie angehören.
 In diesem Fall ist eine direkte Extraktion nicht möglich, 
-weswegen auch die Vielfachen und das kgV von einem benachbarten Zustand geprüft wird.
+weswegen auch die Vielfachen und das \(\lcm\) von einem benachbarten Zustand geprüft wird.
 In Abbildung~\ref{fig:shor_measure} repräsentiert der Zustand \(\ket{6837}_{14}\) dieses Szenario.
 
 Sollte trotz der Nachberechnung keine Periode extrahiert werden können, 
