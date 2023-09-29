@@ -1557,22 +1557,22 @@ Indem ein angemessener Approximationsfaktor gewählt wird,
 kann eine Genauigkeit erzielt werden, 
 die weiterhin für ein akzeptables Endergebnis ausreichend ist.
 
-Die approximative Quanten-Fourier-Transformation wird als \(AQFT_m\) definiert und 
+Die approximative Quanten-Fourier-Transformation wird als \(\AQFT_m\) definiert und 
 wendet maximal \(m\) Phase-Gatter pro Qubit an. 
-Der Parameter \(m\) wird als Approximationsfaktor bezeichnet und bestimmt die Präzision der \(AQFT_m\). 
+Der Parameter \(m\) wird als Approximationsfaktor bezeichnet und bestimmt die Präzision der \(\AQFT_m\). 
 Der Approximationsfaktor gibt an, 
 bis zu welcher Phasenverschiebung von \(e^{\frac{2\pi i}{2^m}}\) die Phasen-Gatter angewendet werden.
-Die vollständige Quanten-Fourier-Transformation entspricht einer \(AQFT_n\).
+Die vollständige Quanten-Fourier-Transformation entspricht einer \(\AQFT_n\).
 
 Wenn der Approximationsfaktor \(m\) einen Wert
 \[m \geq \ld(n)+2\]
-entspricht, nähert sich die Wahrscheinlichkeit, das optimale Ergebnis mit \(AQFT_m\)
+entspricht, nähert sich die Wahrscheinlichkeit, das optimale Ergebnis mit \(\AQFT_m\)
 zu erhalten, dem Wert~\cite{cheung2004improved}: 
 \[P \geq \frac{4}{\pi^2} - \frac{1}{4n}\]
 Dies steht im Gegensatz zur Wahrscheinlichkeit von \(\frac{4}{\pi^2}\), 
 die für die exakte Quanten-Fourier-Transformation \(QFT\) gilt~\cite{cheung2004improved}\cite[119]{kaye2007introduction}.
 
-Im Hinblick auf die Ressourceneffizienz benötigt die \(AQFT_m\) insgesamt \(\Landau(nm)\) Gatter.
+Im Hinblick auf die Ressourceneffizienz benötigt die \(\AQFT_m\) insgesamt \(\Landau(nm)\) Gatter.
 Wenn \(m\) wie zuvor definiert wird, entspricht dies \(\Landau(n~\ld(n))\). 
 Im Vergleich dazu erfordert die exakte Quanten-Fourier-Transformation \(\Landau(n^2)\) Gatter~\cite{Barenco_1996}.
 Die Tiefe der Schaltung wird durch die approximative Quanten-Fourier-Transformation im Vergleich zur exakten nicht verändert.
