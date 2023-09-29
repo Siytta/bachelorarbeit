@@ -1,0 +1,15 @@
+def Shor(a: int, N: int,number_shots: int = 1000, backend: str = "aer_simulator"):
+  n = N.bit_length()
+  c_qbits = range(2*n)
+  ev_qbits = list(range(len(c_qbits),4*n+2))
+  qc = qiskit.QuantumCircuit(4*n+2,len(c_qbits))
+  for c_bit in c_qbits:
+    qc.h(c_bit)
+  qc.x(ev_qbits[0])
+  for c_bit in c_qbits:
+    qc.append(U_gate(n,dezToBin(mod_exp(a,2**c_bit,N),n+1),dezToBin(N,n+1)),[c_bit]+ev_qbits)
+  qc.append(QFT_Gate(len(c_qbits),inverse = True, MSB_first = False,swaps = True), c_qbits)
+  qc.measure(c_qbits,c_qbits)
+  simulator = qiskit.Aer.get_backend(backend)
+  sim_result = qiskit.execute(qc, backend=simulator, shots=number_shots).result()
+  return sim_result.get_counts(qc)
