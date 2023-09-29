@@ -75,27 +75,32 @@ weshalb diese ebenfalls berücksichtigt werden.
 
 \begin{table}[H]
     \centering
-    \begin{tabular}{|l|l|l|l|l|}
+    \begin{tabular}{llrrr}
         \hline
-        \textbf{Variante} & \textbf{Schlüssellänge} & \textbf{Qubits} & \textbf{Gatteranzahl} & \textbf{Maxdepth} \\ \hline
-        Reguläre & 1024-Bit & 4098 & \(2^{43}\) & \(2^{35}\) \\ \hline
-        Reguläre & 2048-Bit & 8194 & \(2^{47}\) & \(2^{38}\) \\ \hline
-        Reguläre & 3072-Bit & 12290 & \(2^{49}\) & \(2^{40}\) \\ \hline
-        Reguläre & 4096-Bit & 16386 & \(2^{51}\) & \(2^{41}\) \\ \hline
-        Approximative & 1024-Bit & 4098 & \(2^{38}\) & \(2^{35}\) \\ \hline
-        Approximative & 2048-Bit & 8194 & \(2^{41}\) & \(2^{38}\) \\ \hline
-        Approximative & 3072-Bit & 12290 & \(2^{43}\) & \(2^{40}\) \\ \hline
-        Approximative & 4096-Bit & 16386 & \(2^{44}\) & \(2^{41}\) \\ \hline
-        Iterative & 1024-Bit & 2051 & \(2^{43}\) & \(2^{35}\) \\ \hline
-        Iterative & 2048-Bit & 4099 & \(2^{47}\) & \(2^{38}\) \\ \hline
-        Iterative & 3072-Bit & 6147 & \(2^{49}\) & \(2^{40}\) \\ \hline
-        Iterative & 4096-Bit & 8195 & \(2^{51}\) & \(2^{41}\) \\ \hline
-        Approximative-Iterative & 1024-Bit & 2051 & \(2^{38}\) & \(2^{35}\) \\ \hline
-        Approximative-Iterative & 2048-Bit & 4099 & \(2^{41}\) & \(2^{38}\) \\ \hline
-        Approximative-Iterative & 3072-Bit & 6147 & \(2^{43}\) & \(2^{40}\) \\ \hline
-        Approximative-Iterative & 4096-Bit & 8195 & \(2^{44}\) & \(2^{41}\) \\ \hline
+        \textbf{Variante} & \textbf{Schlüssellänge} & \textbf{Qubits} & \textbf{Gatteranzahl} & \textbf{Maxdepth} \\
+        \hline
+        Reguläre & 1024-Bit & 4098 & \(2^{43}\) & \(2^{35}\) \\
+        Reguläre & 2048-Bit & 8194 & \(2^{47}\) & \(2^{38}\) \\
+        Reguläre & 3072-Bit & 12290 & \(2^{49}\) & \(2^{40}\) \\
+        Reguläre & 4096-Bit & 16386 & \(2^{51}\) & \(2^{41}\) \\
+        \hline
+        Approximative & 1024-Bit & 4098 & \(2^{38}\) & \(2^{35}\) \\
+        Approximative & 2048-Bit & 8194 & \(2^{41}\) & \(2^{38}\) \\
+        Approximative & 3072-Bit & 12290 & \(2^{43}\) & \(2^{40}\) \\
+        Approximative & 4096-Bit & 16386 & \(2^{44}\) & \(2^{41}\) \\
+        \hline
+        Iterative & 1024-Bit & 2051 & \(2^{43}\) & \(2^{35}\) \\
+        Iterative & 2048-Bit & 4099 & \(2^{47}\) & \(2^{38}\) \\
+        Iterative & 3072-Bit & 6147 & \(2^{49}\) & \(2^{40}\) \\
+        Iterative & 4096-Bit & 8195 & \(2^{51}\) & \(2^{41}\) \\
+        \hline
+        Approximative-Iterative & 1024-Bit & 2051 & \(2^{38}\) & \(2^{35}\) \\
+        Approximative-Iterative & 2048-Bit & 4099 & \(2^{41}\) & \(2^{38}\) \\
+        Approximative-Iterative & 3072-Bit & 6147 & \(2^{43}\) & \(2^{40}\) \\
+        Approximative-Iterative & 4096-Bit & 8195 & \(2^{44}\) & \(2^{41}\) \\
+        \hline
     \end{tabular}
-    \caption{Vergleich der vier Varianten des Shor-Algorithmus für verschiedene Schlüssellängen}
+    \caption{Vergleich der Varianten des Shor-Algorithmus für verschiedene Schlüssellängen}
     \label{Varainten_Analyse}
 \end{table}
     
@@ -128,11 +133,13 @@ In Tabelle~\ref{Volladdierer_Analyse} sind die Ergebnisse der Publikation darges
 
 \begin{table}[H]
     \centering
-    \begin{tabular}{|l|l|l|l|l|}
+    \begin{tabular}{llrrr}
         \hline
-        \textbf{Variante} & \textbf{Schlüssellänge} & \textbf{Qubits} & \textbf{Gatteranzahl} & \textbf{Maxdepth} \\ \hline
-        Volladdierer & 1024-Bit & 5121 & \(2^{38}\) & \(2^{38}\) \\ \hline
-        Volladdierer & 2048-Bit & 10241 & \(2^{41}\) & \(2^{41}\) \\ \hline
+        \textbf{Variante} & \textbf{Schlüssellänge} & \textbf{Qubits} & \textbf{Gatteranzahl} & \textbf{Maxdepth} \\
+        \hline
+        Volladdierer & 1024-Bit & 5121 & \(2^{38}\) & \(2^{38}\) \\
+        Volladdierer & 2048-Bit & 10241 & \(2^{41}\) & \(2^{41}\) \\
+        \hline
     \end{tabular}
     \caption{Vergleich Shor-Algorithmus mit Volladdierer~\cite{cryptoeprint:2023/092}}
     \label{Volladdierer_Analyse}
@@ -178,10 +185,9 @@ Die Anzahl der zu überprüfenden Nachbarn und Vielfachen in der klassischen Nac
 
 \begin{table}[h]
     \centering
-    \begin{tabular}{|c|c|c|c|c|c|c|} 
+    \begin{tabular}{lrrrrrr} 
         \hline
         \textbf{Durchläufe} & 1 & 2 & 3 & 4\\
-        \hline
         \textbf{Häufigkeit} & 168 & 27 & 3 & 2 \\
         \hline
     \end{tabular}
@@ -191,10 +197,9 @@ Die Anzahl der zu überprüfenden Nachbarn und Vielfachen in der klassischen Nac
 
 \begin{table}[h]
     \centering
-    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|} 
+    \begin{tabular}{lrrrrrrrrr} 
         \hline
         \textbf{Durchläufe} & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 11 \\
-        \hline
         \textbf{Häufigkeit} & 87 & 51 & 28 & 14 & 9 & 5 & 3 & 2 & 1 \\
         \hline
     \end{tabular}
