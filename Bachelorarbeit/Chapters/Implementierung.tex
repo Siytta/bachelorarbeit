@@ -1406,12 +1406,10 @@ welches die höchste Wertigkeit (Most-Significant-Bit) hat.
 Pro Iteration wird jeweils ein \(U^{2^x}\)-Gatter mit absteigender Potenzen zum vorherigen Durchlauf angewendet, 
 hingegen werden die Messergebnisse in klassischen Bits mit aufsteigender Wertigkeit gespeichert.
 
-Um zu verhindern, 
-dass der Code den Seitenrand überschreitet, wurden die Zeilen 10 und 11 mit einem Zeilenumbruch geteilt.
-
 \begin{listing}[H]
 \begin{minted}[linenos,fontsize=\footnotesize]{python}    
-def Shor_sequential(a:int, N:int, number_shots:int=1000, backend:str="aer_simulator"):
+def Shor_sequential(a:int, N:int, number_shots:int=1000,
+    backend:str="aer_simulator"):
   n = N.bit_length()
   controlling_qubit = 0
   ev_qbits  = range(1, 2*n+3)
@@ -1420,8 +1418,10 @@ def Shor_sequential(a:int, N:int, number_shots:int=1000, backend:str="aer_simula
   qc.x(1)
   for target in k:
     qc.h(0)
-    qc.append(U_gate(n,dezToBin(mod_exp(a, 2**(len(k)-target-1), N),n+1),
-        dezToBin(N,n+1)),[0]+list(ev_qbits))
+    qc.append(
+      U_gate(n,dezToBin(mod_exp(a, 2**(len(k)-target-1), N),n+1),dezToBin(N,n+1)),
+      [0]+list(ev_qbits)
+    )
     iterative_QFT(target,qc,k,controlling_qubit)
     qc.measure(controlling_qubit,k[target])
     qc.x(0).c_if(k[target],1)
