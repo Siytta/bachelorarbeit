@@ -69,13 +69,6 @@ mit \(0 \leq s \leq p-1\):
 Für \(a=7\) bei \(N=15\) entspricht \(p=4\).
 Ein Eigenvektor zu \(s=1\) lautet dann:
 \begin{align*}
-    \ket{u_1}_4 &=
-    \frac{1}{\sqrt{4}}(
-        \ket{1}_4 + 
-        e^{-\frac{2 \pi i}{4}}\ket{7}_4 + 
-        e^{-\frac{4 \pi i}{4}}\ket{4}_4+ 
-        e^{-\frac{6 \pi i}{4}}\ket{13}_4
-    )\\   
     U^{\tensor 4}\ket{u_1}_4 &=
     \frac{1}{\sqrt{4}}(
         U^{\tensor 4}\ket{1}_4 + 
@@ -83,14 +76,14 @@ Ein Eigenvektor zu \(s=1\) lautet dann:
         e^{-\frac{4 \pi i}{4}}U^{\tensor 4}\ket{4}_4+ 
         e^{-\frac{6 \pi i}{4}}U^{\tensor 4}\ket{13}_4
     )\\
-    U^{\tensor 4}\ket{u_1}_4 &=
+    &=
     \frac{1}{\sqrt{4}}(
         \ket{7}_4 + 
         e^{-\frac{2 \pi i}{4}}\ket{4}_4 + 
         e^{-\frac{4 \pi i}{4}}\ket{13}_4+ 
         e^{-\frac{6 \pi i}{4}}\ket{1}_4
     )\\
-    U^{\tensor 4}\ket{u_1}_4 &=
+    &=
     e^{\frac{2 \pi i}{4}}
     \cdot
     \frac{1}{\sqrt{4}}(
@@ -98,17 +91,22 @@ Ein Eigenvektor zu \(s=1\) lautet dann:
         e^{-\frac{4 \pi i}{4}}\ket{4}_4 + 
         e^{-\frac{6 \pi i}{4}}\ket{13}_4+ 
         e^{-\frac{8 \pi i}{4}}\ket{1}_4
-    )\\
-    U^{\tensor 4}\ket{u_1}_4 &=
-    e^{\frac{2 \pi i}{4}}
-    \cdot
+    )
+\end{align*}
+Durch Substition mit
+\begin{align*}
+    \ket{u_1}_4 &=
     \frac{1}{\sqrt{4}}(
-        \ket{1}_4 +
+        \ket{1}_4 + 
         e^{-\frac{2 \pi i}{4}}\ket{7}_4 + 
-        e^{-\frac{4 \pi i}{4}}\ket{4}_4 + 
-        e^{-\frac{6 \pi i}{4}}\ket{13}_4 )\\
-    U^{\tensor 4}\ket{u_1}_4&=
-    e^{\frac{2 \pi i}{4}} \cdot
+        e^{-\frac{4 \pi i}{4}}\ket{4}_4+ 
+        e^{-\frac{6 \pi i}{4}}\ket{13}_4
+    )
+\end{align*}
+erhält man schlussendlich:
+\begin{align*}
+    U^{\tensor 4}\ket{u_1}_4 
+    =e^{\frac{2 \pi i}{4}} \cdot
     \ket{u_1}_4
 \end{align*}
 Das kann verallgemeinert werden:
