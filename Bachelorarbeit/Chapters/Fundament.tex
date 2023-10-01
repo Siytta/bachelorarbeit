@@ -1,12 +1,12 @@
 \section{Fundament}
 \subsection{Literatur} 
-\subsubsection*{Shors Algorithmus}
+\subsubsection*{Shor-Algorithmus}
 Der Algorithmus wurde erstmals in der Publikation \textit{"`Algorithms for Quantum Computation: Discrete Logarithms and Factoring"'} von Peter W. Shor veröffentlicht.
 
 Die Arbeit von Shor umfasste zwei Algorithmen.
 Der erste Algorithmus ermöglicht die effiziente Berechnung der Primfaktorzerlegung, 
 während der zweite Algorithmus die effiziente Berechnung des diskreten Logarithmus ermöglicht.
-Aufgrund ihrer konzeptionellen Ähnlichkeiten werden beide Algorithmen häufig kollektiv als "`Shors Algorithmus"' bezeichnet.
+Aufgrund ihrer konzeptionellen Ähnlichkeiten werden beide Algorithmen häufig kollektiv als "`Shor-Algorithmus"' bezeichnet.
 
 Die Quantenberechnungen beider Algorithmen basieren auf arithmetischen Operationen in Restklassen und der Quanten-Fourier-Transformation. 
 Shor behandelt die Umsetzung dieser arithmetischen Operationen sowie der Quanten"=Fourier"=Transformation nicht explizit. 
@@ -22,16 +22,16 @@ der in der modularen Exponentiation für die Berechnung der Addition genutzt wur
 durch einen effizienteren Quantenschaltkreis,
 wie ihn Thomas G. Draper in \textit{"`Addition on a Quantum Computer"'} beschreibt~\cite{draper2000addition}.
 Des weiteren verwendet Beauregard diese Optimierungen in seiner Arbeit \textit{"`Circuit for Shor’s algorithm using 2n+3 qubits"'},
-um eine Realisierung von Shors Algorithmus zur Faktorisierung zu beschreiben.
+um eine Realisierung von Shor-Algorithmus zur Faktorisierung zu beschreiben.
 
-Andere Arbeiten, die sich mit der Implementierung von Shors Algorithmus auseinandersetzen,
+Andere Arbeiten, die sich mit der Implementierung von Shor-Algorithmus auseinandersetzen,
 realisieren die modularen Exponentiation, 
 indem klassische Schaltkreise identisch in den Quantenkontext übersetzt werden~\cite{Vedral_1996}.
 Der Nachbau von klassischen Operationen ist aufgrund der unitären Natur von Quantenoperationen nicht die effizienteste Realisierung.
 Des Weiteren meiden andere Arbeiten die Realisierung der modularen Exponentiation für allgemeine Eingaben~\cite{9376169,9686492}. 
 Ohne modulare Exponentiation sind diese Varianten nicht in der Lage, 
 die Berechnung variabler Werte zu verarbeiten.
-Stattdessen dienen diese ausschließlich der Demonstration der Funktionsweise von Shors Algorithmus und
+Stattdessen dienen diese ausschließlich der Demonstration der Funktionsweise von Shor-Algorithmus und
 sind nur in der Lage, ausgewählte Eingaben zu verarbeiten.
 
 Bei Recherchen wurde keine allgemeine Variante gefunden,
@@ -39,7 +39,7 @@ die weniger Qubits benötigt als die Variante aus der Arbeit \textit{"`Circuit f
 Deswegen bildet diese die Grundlage der Implementierung ab.
 
 Des Weiteren wurde untersucht, 
-ob bereits vergleichbare Implementierungen von Shors Algorithmus für Qiskit existieren. 
+ob bereits vergleichbare Implementierungen von Shor-Algorithmus für Qiskit existieren. 
 Dabei wurden veraltete Einträge in der Dokumentation von Qiskit gefunden, 
 die eine Variante von Shors Quantenalgorithmus zur Faktorisierung beschreiben~\cite{QiskitShorImplementations}. 
 Die Implementierung von Qiskit verzichtet auf eine Optimierung, die in dieser Arbeit vorgenommen wird. 
