@@ -22,16 +22,16 @@ der in der modularen Exponentiation für die Berechnung der Addition genutzt wur
 durch einen effizienteren Quantenschaltkreis,
 wie ihn Thomas G. Draper in \textit{"`Addition on a Quantum Computer"'} beschreibt~\cite{draper2000addition}.
 Des weiteren verwendet Beauregard diese Optimierungen in seiner Arbeit \textit{"`Circuit for Shor’s algorithm using 2n+3 qubits"'},
-um eine Realisierung von Shor-Algorithmus zur Faktorisierung zu beschreiben.
+um eine Realisierung vom Shor-Algorithmus zur Faktorisierung zu beschreiben.
 
-Andere Arbeiten, die sich mit der Implementierung von Shor-Algorithmus auseinandersetzen,
+Andere Arbeiten, die sich mit der Implementierung vom Shor-Algorithmus auseinandersetzen,
 realisieren die modularen Exponentiation, 
 indem klassische Schaltkreise identisch in den Quantenkontext übersetzt werden~\cite{Vedral_1996}.
 Der Nachbau von klassischen Operationen ist aufgrund der unitären Natur von Quantenoperationen nicht die effizienteste Realisierung.
 Des Weiteren meiden andere Arbeiten die Realisierung der modularen Exponentiation für allgemeine Eingaben~\cite{9376169,9686492}. 
 Ohne modulare Exponentiation sind diese Varianten nicht in der Lage, 
 die Berechnung variabler Werte zu verarbeiten.
-Stattdessen dienen diese ausschließlich der Demonstration der Funktionsweise von Shor-Algorithmus und
+Stattdessen dienen diese ausschließlich der Demonstration der Funktionsweise vom Shor-Algorithmus und
 sind nur in der Lage, ausgewählte Eingaben zu verarbeiten.
 
 Bei Recherchen wurde keine allgemeine Variante gefunden,
@@ -39,7 +39,7 @@ die weniger Qubits benötigt als die Variante aus der Arbeit \textit{"`Circuit f
 Deswegen bildet diese die Grundlage der Implementierung ab.
 
 Des Weiteren wurde untersucht, 
-ob bereits vergleichbare Implementierungen von Shor-Algorithmus für Qiskit existieren. 
+ob bereits vergleichbare Implementierungen vom Shor-Algorithmus für Qiskit existieren. 
 Dabei wurden veraltete Einträge in der Dokumentation von Qiskit gefunden, 
 die eine Variante von Shors Quantenalgorithmus zur Faktorisierung beschreiben~\cite{QiskitShorImplementations}. 
 Die Implementierung von Qiskit verzichtet auf eine Optimierung, die in dieser Arbeit vorgenommen wird. 
